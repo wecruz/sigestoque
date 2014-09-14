@@ -7,7 +7,6 @@
  *
  * Designed and built with all the love in the world by @mdo and @fat.
  */
- 
 .clearfix {
 	*zoom: 1;
 }
@@ -1041,15 +1040,21 @@
 		height: 40px;
 		width: 500px;
 	}
-	.login .botao .btn{
-	margin: 5px 0px 5px 200px;
-			height: 30px;
+	.login .botao .btn {
+		margin: 5px 0px 5px 200px;
+		height: 30px;
 		width: 90px;
 	}
-	.header{
+	.header {
+	    width:1000px; margin:0 auto;
 		height: 300px;
-		width: 1000px;
+		width: 100%;
 		background-color: #CCC;
-		margin: -10px 0px 0px -10px;
+	}
+		.header .logo {
+		height: 200px;
+		width: 200px;
+		background-color: #0059B2;
+		float: left;
 	}
 }
