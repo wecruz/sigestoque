@@ -1071,16 +1071,16 @@
 		width: 600px;
 		margin-top: 35px;
 	}
-	.menu {
+	.menu1 {
 		border: 1px;
 		height: 67px;
 		width: 100%;
+		list-style: none;
+		float: left;
 	}
-}
-
-.content {
-	border: 1px;
-	height: 600px;
-	width: 100%;
-}
+	.content {
+		border: 1px;
+		height: 600px;
+		width: 100%;
+	}
 }
