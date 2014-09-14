@@ -1809,6 +1809,7 @@ select[multiple].input-sm {
   height: auto;
 }
 .input-lg {
+	background-color: #ccc;
   height: 46px;
   padding: 10px 16px;
   font-size: 18px;
