@@ -60,8 +60,6 @@ select {
 
 .body {
 	font: 14px "Trebuchet MS", Arial, Helvetica, sans-serif;
-	background-image:url(../img/header.png);
-	background-repeat: repeat-x;
 }
 
 .box {

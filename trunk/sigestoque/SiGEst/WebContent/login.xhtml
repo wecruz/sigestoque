@@ -8,32 +8,35 @@
 	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 
 	<ui:define name="body">
-		<h:graphicImage value="/img/u9.png" styleClass="imglogo" />
-		<!-- login -->
-		<div class="login">
+		<div class="boxlogin">
+			<div class="logoimagem">
+				<h:graphicImage value="/img/box_sigest.png" styleClass="imglogo" />
+			</div>
+			<!-- login -->
+			<div class="login">
 
-			<h:form id="loginForm">
+				<h:form id="loginForm">
 
-				<div class="dialog">
-					<h:panelGrid columns="2" rowClasses="prop"
-						columnClasses="name,value">
-						<h:outputLabel for="username">usuario</h:outputLabel>
-						<h:inputText id="username" value="#{credentials.username}"
-							styleClass="form-control" />
-						<h:outputLabel for="password">Senha</h:outputLabel>
-						<h:inputSecret id="password" value="#{credentials.password}"
-							styleClass="form-controlRed" />
-						<h:outputLabel for="rememberMe">Lembrar</h:outputLabel>
-						<h:selectBooleanCheckbox id="rememberMe"
-							value="#{rememberMe.enabled}" />
-					</h:panelGrid>
-				</div>
-				<div class="botao">
-					<h:commandButton id="submit" value="Login"
-						action="#{identity.login}" class="btn btn-primary" />
-				</div>
-			</h:form>
-			<!-- Fim login -->
+					<div class="dialog">
+						<h:panelGrid columns="2" rowClasses="prop"
+							columnClasses="name,value">
+							<h:outputLabel for="username">usuario</h:outputLabel>
+							<h:inputText id="username" value="#{credentials.username}"
+								styleClass="form-control" />
+							<h:outputLabel for="password">Senha</h:outputLabel>
+							<h:inputSecret id="password" value="#{credentials.password}"
+								styleClass="form-controlRed" />
+							<h:outputLabel for="rememberMe">Lembrar</h:outputLabel>
+							<h:selectBooleanCheckbox id="rememberMe"
+								value="#{rememberMe.enabled}" />
+						</h:panelGrid>
+					</div>
+					<div class="botao">
+						<h:commandButton id="submit" value="Login"
+							action="#{identity.login}" class="btn btn-primary" />
+					</div>
+				</h:form>
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>
