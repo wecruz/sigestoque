@@ -1090,6 +1090,11 @@
 		list-style: none;
 		float: left;
 	}
+	.menu1{
+	width: 100%;
+	height: 24px;
+	padding: 0 72px;
+	}
 	.content {
 		height: 600px;
 		width: 1000px;

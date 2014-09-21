@@ -5,14 +5,22 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:s="http://jboss.com/products/seam/taglib"
     xmlns:rich="http://richfaces.org/rich">
+    <div class="menu1">
     <rich:toolBarGroup>
         <h:outputText value="#{projectName}:"/>
         <s:link id="menuHomeId" view="/home.xhtml" value="Home" propagation="none"/>
+        <s:link id="menuHomeId" view="/home.xhtml" value="Produtos" propagation="none"/>
+        <s:link id="menuHomeId" view="/home.xhtml" value="Fornecedores" propagation="none"/>
+        <s:link id="menuHomeId" view="/home.xhtml" value="Clientes" propagation="none"/>
+        <s:link id="menuHomeId" view="/home.xhtml" value="Funcionarios" propagation="none"/>
+        <s:link id="menuHomeId" view="/home.xhtml" value="Relatorios" propagation="none"/>
+        <s:link id="menuHomeId" view="/home.xhtml" value="Vendas" propagation="none"/>
     </rich:toolBarGroup>
     <!-- @newMenuItem@ -->
     <rich:toolBarGroup location="right">
         <h:outputText id="menuWelcomeId" value="signed in as: #{credentials.username}" rendered="#{identity.loggedIn}"/>
         <s:link id="menuLoginId" view="/login.xhtml" value="Login" rendered="#{not identity.loggedIn}" propagation="none"/>
-        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Logout" rendered="#{identity.loggedIn}" propagation="none"/>
+        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Sair" rendered="#{identity.loggedIn}" propagation="none"/>
     </rich:toolBarGroup>
+    </div>
 </rich:toolBar>
