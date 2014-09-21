@@ -1085,16 +1085,15 @@
 		margin-top: 40px;
 	}
 	.menu {
-		border: 1px;
-		height: 67px;
+		height: 30px;
 		width: 100%;
 		list-style: none;
 		float: left;
 	}
 	.content {
-		border: 1px;
 		height: 600px;
 		width: 1000px;
 		margin: 0 auto;
+		background: #ccc;
 	}
 }
