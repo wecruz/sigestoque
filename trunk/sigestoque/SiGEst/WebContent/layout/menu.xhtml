@@ -54,7 +54,7 @@
 				rendered="#{identity.loggedIn}" />
 			<s:link id="menuLoginId" view="/login.xhtml" value="Login"
 				rendered="#{not identity.loggedIn}" propagation="none" />
-			<s:link id="menuLogoutId" view="/home.xhtml"
+			<s:link id="menuLogoutId" view="/login.xhtml"
 				action="#{identity.logout}" value="Sair"
 				rendered="#{identity.loggedIn}" propagation="none" />
 		</rich:toolBarGroup>
