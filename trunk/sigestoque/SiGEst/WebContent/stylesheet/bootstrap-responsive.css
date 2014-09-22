@@ -1040,7 +1040,7 @@
 	.boxlogin .imglogo {
 		margin-top: 200px;
 		width: 256px;
-		margin: 20px auto;
+		margin: 15px auto;
 	}
 	.boxlogin .login {
 		border: 0;
@@ -1068,7 +1068,7 @@
 		height: 130px;
 		width: 200px;
 		float: left;
-		padding: 20px 0px 0px 40px;
+		padding: 13px 0px 0px 60px;
 	}
 	.header .nome {
 		height: 130px;
@@ -1082,7 +1082,7 @@
 		color: #FFF;
 		float: left;
 		width: 600px;
-		margin-top: 40px;
+		margin-top: 38px;
 	}
 	.menu {
 		height: 30px;
