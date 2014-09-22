@@ -38,7 +38,7 @@ public class ManterFuncionarioAction {
 	
 	
 	public void salvar(){
-//		usuarioService.salvarFuncionarios(funcionario);
+		usuarioService.salvarFuncionarios(funcionario);
 		funcionarios.add(funcionario);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Funcionario Cadastro com Sucesso.", ""));
 		funcionario = new Funcionario();

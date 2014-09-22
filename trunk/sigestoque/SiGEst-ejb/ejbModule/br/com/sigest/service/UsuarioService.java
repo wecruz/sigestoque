@@ -21,11 +21,10 @@ public class UsuarioService implements IUsuarioService{
 	FuncionarioDao funcionarioDao;
 
 	public void salvarFuncionarios(Funcionario funcionario) {
-		
+		funcionarioDao.salvarFuncionario(funcionario);
 		
 	}
 
-	
 	@Destroy
 	public void destroy() {
 		

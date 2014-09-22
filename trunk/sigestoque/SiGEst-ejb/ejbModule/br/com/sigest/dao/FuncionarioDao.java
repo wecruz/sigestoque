@@ -11,7 +11,7 @@ import org.jboss.seam.annotations.Scope;
 import br.com.sigest.modelo.Funcionario;
 
 
-@Name("clienteDao")
+@Name("funcionarioDao")
 @AutoCreate
 @Scope(ScopeType.CONVERSATION)
 public class FuncionarioDao {
