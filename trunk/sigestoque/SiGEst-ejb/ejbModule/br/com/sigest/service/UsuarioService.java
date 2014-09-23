@@ -1,5 +1,7 @@
 package br.com.sigest.service;
 
+import java.util.List;
+
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
@@ -25,6 +27,10 @@ public class UsuarioService implements IUsuarioService{
 		
 	}
 
+	public List<Funcionario> pesquisarFuncionarios(Funcionario funcionario){
+		return	funcionarioDao.pesquisarFuncionarios(funcionario);
+	}
+	
 	@Destroy
 	public void destroy() {
 		
@@ -32,6 +38,11 @@ public class UsuarioService implements IUsuarioService{
 	
 	@Remove
 	public void remove() {
+		
+	}
+
+	public void excluirFuncionario(Funcionario funcionario) {
+		funcionarioDao.excluirFuncionario(funcionario);
 		
 	}
 }

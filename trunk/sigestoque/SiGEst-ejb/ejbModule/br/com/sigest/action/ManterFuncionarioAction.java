@@ -30,18 +30,61 @@ public class ManterFuncionarioAction {
 	
 	@In
 	IUsuarioService usuarioService;
-
+	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
 		return CargoFuncao.values();
 	}
 	
+	public String novoCadastro(){
+		funcionario = new Funcionario();
+		return "/funcionarios/funcionarios.xhtml";
+	}
 	
 	public void salvar(){
-		usuarioService.salvarFuncionarios(funcionario);
-		funcionarios.add(funcionario);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Funcionario Cadastro com Sucesso.", ""));
-		funcionario = new Funcionario();
+		if(validarCamposObrigatorios()){
+			usuarioService.salvarFuncionarios(funcionario);
+			funcionarios.add(funcionario);
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+			funcionario = new Funcionario();
+		}
+	}
+	
+	public boolean validarCamposObrigatorios(){
+		if(funcionario.getNome().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio!.", ""));
+			return false;
+		}
+		return true;
+	}
+	
+	public List<Funcionario> pesquisarFuncioanrios(){
+		if (validarCriterioPesquisa()) {
+			funcionarios = new ArrayList<Funcionario>();		
+			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
+			if (funcionarios.isEmpty()) {
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um Registro Localizado.", ""));
+			}
+		}
+		return funcionarios;
+	}
+	
+	public void alterar(Funcionario funcionario){
+		this.funcionario = funcionario;
+	}
+	
+	public void excluir(Funcionario funcio){
+		usuarioService.excluirFuncionario(funcio);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+	}
+	
+	public boolean validarCriterioPesquisa(){		
+		if(funcionario.getNome().isEmpty() && funcionario.getRg() == null && funcionario.getCpf() == null){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
+			return false;
+		}else{
+			return true;
+		}
 	}
 	
 	
@@ -63,4 +106,7 @@ public class ManterFuncionarioAction {
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
 	}
+
+
+	
 }
