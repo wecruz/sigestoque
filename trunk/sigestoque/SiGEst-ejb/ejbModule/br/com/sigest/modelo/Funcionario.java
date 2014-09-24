@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import br.com.sigest.enums.CargoFuncao;
 
+/**
+ * @author Werick Silva
+ */
 
 @Entity
 @Table(name ="tb_funcionario")

@@ -13,6 +13,9 @@ import org.jboss.seam.annotations.Name;
 import br.com.sigest.dao.FuncionarioDao;
 import br.com.sigest.modelo.Funcionario;
 
+/**
+ * @author Werick Silva
+ */
 
 @Name("usuarioService")
 @AutoCreate

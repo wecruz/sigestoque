@@ -1,9 +1,13 @@
 package br.com.sigest.service;
 
+
 import java.util.List;
 
 import br.com.sigest.modelo.Funcionario;
 
+/**
+ * @author Werick Silva
+ */
 public interface IUsuarioService {
 
 	

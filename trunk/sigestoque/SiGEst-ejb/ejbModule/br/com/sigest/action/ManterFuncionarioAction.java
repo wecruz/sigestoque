@@ -17,6 +17,9 @@ import br.com.sigest.enums.CargoFuncao;
 import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IUsuarioService;
 
+/**
+ * @author Werick Silva
+ */
 
 @Name("manterFuncionarioAction")
 @AutoCreate
@@ -51,11 +54,32 @@ public class ManterFuncionarioAction {
 	}
 	
 	public boolean validarCamposObrigatorios(){
+		boolean campo = true;
 		if(funcionario.getNome().isEmpty()){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio!.", ""));
-			return false;
+			campo = false;
 		}
-		return true;
+		if(funcionario.getRg() == null ){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo RG e obrigatorio!.", ""));
+			campo = false;
+		}
+		if(funcionario.getCpf() == null ){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo CPF e obrigatorio!.", ""));
+			campo = false;
+		}
+		if(funcionario.getSenha().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Senha e obrigatorio!.", ""));
+			campo = false;
+		}
+		if(funcionario.getEndereco().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Endereço e obrigatorio!.", ""));
+			campo =  false;
+		}
+		if(funcionario.getCargoFuncao() == null){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Cargo/Função e obrigatorio!.", ""));
+			campo =  false;
+		}
+		return campo;
 	}
 	
 	public List<Funcionario> pesquisarFuncioanrios(){
@@ -86,7 +110,6 @@ public class ManterFuncionarioAction {
 			return true;
 		}
 	}
-	
 	
 	
 	public Funcionario getFuncionario() {
