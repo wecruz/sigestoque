@@ -19,6 +19,10 @@
             	<begin-conversation join="true" />
                 <redirect view-id="/produtos/produtos.xhtml"/>
             </rule>
+            <rule if-outcome="fornecedores">
+            	<begin-conversation join="true" />
+                <redirect view-id="/fornecedores/fornecedores.xhtml"/>
+            </rule>
         </navigation>
     </page>
 
