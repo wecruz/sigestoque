@@ -11,7 +11,7 @@
             <rule if-outcome="home">
                 <redirect view-id="/home.xhtml"/>
             </rule>
-            <rule if-outcome="funcionarios">
+            <rule if-outcome="id_funcionarios">
             	<begin-conversation join="true" />
                 <redirect view-id="/funcionarios/funcionarios.xhtml"/>
             </rule>

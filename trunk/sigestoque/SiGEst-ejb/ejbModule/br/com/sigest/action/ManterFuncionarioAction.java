@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.Create;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
@@ -37,6 +38,11 @@ public class ManterFuncionarioAction {
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
 		return CargoFuncao.values();
+	}
+	
+	@Create
+	public String create(){
+		return "/funcionarios/funcionarios.xhtml";
 	}
 	
 	public String novoCadastro(){
