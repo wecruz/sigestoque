@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:s="http://jboss.com/products/seam/taglib"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:a4j="http://richfaces.org/a4j"
@@ -10,6 +10,8 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="id_form">
+			<br />
+			<br />
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Manter Funcionarios</div>
@@ -17,55 +19,97 @@
 				<h:messages id="messages" globalOnly="true" styleClass="message"
 					errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"
 					rendered="#{showGlobalMessages != 'false'}" />
-				<div class="panel-body">
-					<div class="formulario1">
-						<div class="label1">
-							<div class="formNome">
-								<h:outputLabel value="Nome*: " />
-								<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
-									styleClass="form-control" />
-							</div>
-							<div class="formRG">
-								<h:outputLabel value="RG*: " />
-								<h:inputText value="#{manterFuncionarioAction.funcionario.rg}"
-									styleClass="form-control" maxlength="8" />
-							</div>
-							<div class="formCPF">
-								<h:outputLabel value="CPF*: " />
-								<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
-									styleClass="form-control" maxlength="15" />
-							</div>
-							<div class="formLogin">
-								<h:outputLabel value="Login no sistema*: " />
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.login}"
-									styleClass="form-control" maxlength="8" />
-							</div>
-							<div class="formSenha">
-								<h:outputLabel value="Senha*: " />
-								<h:inputSecret
-									value="#{manterFuncionarioAction.funcionario.senha}"
-									styleClass="form-control" maxlength="15" />
-							</div>
-							<div class="formEndereco">
-								<h:outputLabel value="Endereço*: " />
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.endereco}"
-									styleClass="form-control" maxlength="15" />
-							</div>
-							<div class="formTelRes">
-								<h:outputLabel value="Telefone residencial: " />
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.telefone}"
-									styleClass="form-control mask-telefone" maxlength="15" />
-							</div>
-							<div class="formCelular">
-								<h:outputLabel value="Celular: " />
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.celular}"
-									styleClass="form-control" maxlength="15" />
-							</div>
+				<div class="form-horizontal ">
+					<br /> <br /> <br />
+						<div  style="float: right">
+							<h:commandButton value="Pesquisar" styleClass="btn btn-default navbar-btn"
+								action="#{manterFuncionarioAction.pesquisarFuncioanrios()}" />
+							<a4j:commandButton value="Novo Cadastro" styleClass="btn btn-default navbar-btn"
+								action="#{manterFuncionarioAction.novoCadastro()}"
+								reRender="_id_bnts" />
+						</div>	
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Nome*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
+								styleClass="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="RG*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="#{manterFuncionarioAction.funcionario.rg}"
+								styleClass="form-control" maxlength="8" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="CPF*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
+								styleClass="form-control" maxlength="15" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Login no sistema*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="#{manterFuncionarioAction.funcionario.login}"
+								styleClass="form-control" maxlength="8" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Senha*: " />
+						</div>
+
+						<div class="col-sm-5">
+							<h:inputSecret
+								value="#{manterFuncionarioAction.funcionario.senha}"
+								styleClass="form-control" maxlength="15" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Endereço*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText
+								value="#{manterFuncionarioAction.funcionario.endereco}"
+								styleClass="form-control" maxlength="15" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Telefone residencial: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText
+								value="#{manterFuncionarioAction.funcionario.telefone}"
+								styleClass="form-control mask-telefone" maxlength="15" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Celular: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText
+								value="#{manterFuncionarioAction.funcionario.celular}"
+								styleClass="form-control" maxlength="15" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Cargo/Funcao*: " />
+						</div>
+						<div class="col-sm-5">
 							<h:selectOneMenu
 								value="#{manterFuncionarioAction.funcionario.cargoFuncao}"
 								styleClass="form-control">
@@ -78,10 +122,10 @@
 				</div>
 			</div>
 			<rich:spacer />
-			<div class="col-sm-2" styleClass="form-group">
-				<h:commandButton action="#{manterFuncionarioAction.salvar()}"
-					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
-			</div>
+				<div class="col-sm-2" styleClass="form-group">
+					<a4j:commandButton action="#{manterFuncionarioAction.salvar()}" id="_id_bnts"
+						value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+				</div>
 			<rich:spacer />
 			<br />
 			<br />

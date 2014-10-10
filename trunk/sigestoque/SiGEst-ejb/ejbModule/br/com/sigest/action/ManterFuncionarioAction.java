@@ -48,7 +48,7 @@ public class ManterFuncionarioAction {
 	
 	public String novoCadastro(){
 		funcionario = new Funcionario();
-		return "/funcionarios/funcionarios.xhtml";
+		return "";
 	}
 	
 	public void salvar(){
