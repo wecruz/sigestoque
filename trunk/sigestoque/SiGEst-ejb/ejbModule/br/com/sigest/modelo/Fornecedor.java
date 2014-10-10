@@ -2,15 +2,10 @@ package br.com.sigest.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import br.com.sigest.enums.Cidade;
-import br.com.sigest.enums.Estado;
 
 
 /**
@@ -45,15 +40,13 @@ public class Fornecedor {
 	private String complemento; 
 	
 	@Column(name = "cidade")
-	@Enumerated(EnumType.STRING)
-	private Cidade cidade;
+	private String cidade;
 
 	@Column(name = "telefone")
 	private Integer telefone;
 	
 	@Column(name = "estado")
-	@Enumerated(EnumType.STRING)
-	private Estado estado;
+	private String estado;
 
 	@Column(name = "email")
 	private String email;
@@ -106,13 +99,6 @@ public class Fornecedor {
 		this.endereco = endereco;
 	}
 
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
@@ -121,9 +107,7 @@ public class Fornecedor {
 	public String getComplemento() {
 		return complemento;
 	}
-
 	
-
 	public Integer getTelefone() {
 		return telefone;
 	}
@@ -140,13 +124,23 @@ public class Fornecedor {
 		return email;
 	}
 
-	public Cidade getCidade() {
+	public String getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(Cidade cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	
 	
 	
 }

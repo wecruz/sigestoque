@@ -84,29 +84,12 @@
 									value="#{manterFornecedoreAction.fornecedor.estado}"
 									styleClass="form-control">
 									<s:selectItems noSelectionLabel="Selecione" value="#{estados}" 
-										var="estado" label="#{estado.nome}" itemValue="#{manterFornecedoreAction.estado}">
+										var="estado" label="#{estado.nome}" itemValue="#{manterFornecedoreAction.fornecedor.estado}">
 									</s:selectItems>
-									<a4j:support event="onchange" reRender="idform"/>
 								</h:selectOneMenu>
 							</div>
 						</div>
-					<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Cidades*: " />
-							</div>
-						<s:div rendered="#{manterFornecedoreAction.fornecedor.estado != null}" id="_idCidades">
-							<div class="form-group">
-								<h:selectOneMenu
-										value="#{manterFornecedoreAction.fornecedor.cidade}"
-										styleClass="form-control">
-										<s:selectItems noSelectionLabel="Selecione" value="#{manterFornecedoreAction.recuperarCidadesPorId()}"
-											var="cidade" label="#{cidade.nomeCidade}" itemValue="#{manterFornecedoreAction.fornecedor.cidade}">
-										</s:selectItems>
-										<a4j:support event="onchange" reRender="idform"/>
-									</h:selectOneMenu>
-							</div>
-						</s:div>
-					</div>	
+					
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Telefone*: " />
@@ -128,11 +111,9 @@
 						</div>
 					</div>
 					<div>
-						<a4j:commandButton action="#{manterFornecedoreAction.salvar()}"
-							value="salvar" styleClass="btn btn-default navbar-btn" process="_idCidades"/>
+						<a4j:commandButton action="#{manterFornecedoreAction.salvar()}" value="Salvar" styleClass="btn btn-default navbar-btn"/>
 					</div>
 					<rich:spacer />
-					
 				</div>
 			</div>
 		</h:form>
