@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.sigest.enums.Cidade;
 import br.com.sigest.enums.Estado;
 
 
@@ -44,7 +45,8 @@ public class Fornecedor {
 	private String complemento; 
 	
 	@Column(name = "cidade")
-	private String cidade;
+	@Enumerated(EnumType.STRING)
+	private Cidade cidade;
 
 	@Column(name = "telefone")
 	private Integer telefone;
@@ -120,13 +122,7 @@ public class Fornecedor {
 		return complemento;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
+	
 
 	public Integer getTelefone() {
 		return telefone;
@@ -142,6 +138,14 @@ public class Fornecedor {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 	
 	

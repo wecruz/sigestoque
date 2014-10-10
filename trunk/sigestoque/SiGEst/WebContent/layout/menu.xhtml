@@ -10,28 +10,25 @@
 			<s:link id="menuHomeId" view="/home.xhtml" value="Home"
 				propagation="none" />
 		</rich:toolBarGroup>
-		
-		
-	
-		
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/produtos.png" />
 			<s:link id="produtos" view="/produtos/produtos.xhtml" value="Produtos"
 				propagation="none" />
 		</rich:toolBarGroup>
-
 		<rich:toolBarGroup>
-			<h:graphicImage value="/img/menu/fornecedores.png" />
-			<s:link id="menuFornecedoresId" view="/fornecedores/fornecedores.xhtml"
-				value="Fornecedores" propagation="none" />
+			<h:form>
+			<h:graphicImage value="/img/menu/fornecedores.png" />	
+				<rich:menuItem id="menuFornecedoresId" submitMode="server"
+					value="Fornecedores" action="#{manterFornecedoreAction.create()}">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+			</h:form>
 		</rich:toolBarGroup>
-		
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/clientes.png" />
 			<s:link id="menuClientesId" view="/home.xhtml" value="Clientes"
 				propagation="none" />
 		</rich:toolBarGroup>
-		
 		<rich:toolBarGroup>
 			<h:form>
 			<h:graphicImage value="/img/menu/funcionarios.png"/>	
@@ -41,19 +38,16 @@
 				</rich:menuItem>
 			</h:form>
 		</rich:toolBarGroup>
-
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/relatorio.png" />
 			<s:link id="menuRelatoriosId" view="/home.xhtml" value="Relatorios"
 				propagation="none" />
 		</rich:toolBarGroup>
-		
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/vendas.png" />
 			<s:link id="menuVendasId" view="/home.xhtml" value="Vendas"
 				propagation="none" />
 		</rich:toolBarGroup>
-		
 		<!-- @newMenuItem@ -->
 		<rich:toolBarGroup location="right">
 			<h:outputText id="menuWelcomeId"

@@ -9,7 +9,7 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
-		<h:form>
+		<h:form id="idform">
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -83,22 +83,30 @@
 								<h:selectOneMenu
 									value="#{manterFornecedoreAction.fornecedor.estado}"
 									styleClass="form-control">
-									<s:selectItems noSelectionLabel="Selecione" value="#{estados}"
-										var="estado" label="#{estado.nome}">
+									<s:selectItems noSelectionLabel="Selecione" value="#{estados}" 
+										var="estado" label="#{estado.nome}" itemValue="#{manterFornecedoreAction.estado}">
 									</s:selectItems>
+									<a4j:support event="onchange" reRender="idform"/>
 								</h:selectOneMenu>
 							</div>
 						</div>
-						<div class="form-group">
+					<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Cidade: " />
+								<h:outputLabel value="Cidades*: " />
 							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.cidade}"
-									styleClass="form-control" maxlength="8" />
+						<s:div rendered="#{manterFornecedoreAction.fornecedor.estado != null}" id="_idCidades">
+							<div class="form-group">
+								<h:selectOneMenu
+										value="#{manterFornecedoreAction.fornecedor.cidade}"
+										styleClass="form-control">
+										<s:selectItems noSelectionLabel="Selecione" value="#{manterFornecedoreAction.recuperarCidadesPorId()}"
+											var="cidade" label="#{cidade.nomeCidade}" itemValue="#{manterFornecedoreAction.fornecedor.cidade}">
+										</s:selectItems>
+										<a4j:support event="onchange" reRender="idform"/>
+									</h:selectOneMenu>
 							</div>
-						</div>
+						</s:div>
+					</div>	
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Telefone*: " />
@@ -120,8 +128,8 @@
 						</div>
 					</div>
 					<div>
-						<h:commandButton action="#{manterFornecedoreAction.salvar()}"
-							value="salvar" styleClass="btn btn-default navbar-btn"/>
+						<a4j:commandButton action="#{manterFornecedoreAction.salvar()}"
+							value="salvar" styleClass="btn btn-default navbar-btn" process="_idCidades"/>
 					</div>
 					<rich:spacer />
 					

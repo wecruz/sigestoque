@@ -37,6 +37,7 @@ public class ManterFuncionarioAction {
 	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
+		
 		return CargoFuncao.values();
 	}
 	
