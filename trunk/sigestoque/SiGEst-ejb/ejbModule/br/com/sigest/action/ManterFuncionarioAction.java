@@ -41,14 +41,18 @@ public class ManterFuncionarioAction {
 		return CargoFuncao.values();
 	}
 	
+	private boolean flagNovoCadastro;
+	
+	
 	@Create
 	public String create(){
 		return "/funcionarios/funcionarios.xhtml";
 	}
 	
 	public String novoCadastro(){
+		setFlagNovoCadastro(true);
 		funcionario = new Funcionario();
-		return "";
+		return "/funcionarios/funcionarios.xhtml";
 	}
 	
 	public void salvar(){
@@ -135,6 +139,14 @@ public class ManterFuncionarioAction {
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
+	}
+
+	public boolean isFlagNovoCadastro() {
+		return flagNovoCadastro;
+	}
+
+	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
+		this.flagNovoCadastro = flagNovoCadastro;
 	}
 
 
