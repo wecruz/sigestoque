@@ -12,8 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name ="cidade")
+//@Entity
+//@Table(name ="cidade")
 public class Cidade {
 
 	@Id
@@ -26,7 +26,7 @@ public class Cidade {
 	private String nome;
 	
 	
-	@OneToMany(mappedBy="estado")
+//	@OneToMany(mappedBy="estado")
 	private List<Estado> estados = new ArrayList<Estado>();
 
 

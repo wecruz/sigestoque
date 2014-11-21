@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name ="estado")
+//@Entity
+//@Table(name ="estado")
 public class Estado {
 
 	@Id

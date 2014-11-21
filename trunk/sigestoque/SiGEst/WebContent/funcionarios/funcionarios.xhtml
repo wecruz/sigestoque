@@ -55,6 +55,7 @@
 								styleClass="form-control" maxlength="15" />
 						</div>
 					</div>
+				<s:div rendered="#{manterFuncionarioAction.flagNovoCadastro}">	
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Login no sistema*: " />
@@ -105,6 +106,7 @@
 								styleClass="form-control" maxlength="15" />
 						</div>
 					</div>
+				</s:div>	
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Cargo/Funcao*: " />
@@ -124,7 +126,11 @@
 			<rich:spacer />
 				<div class="col-sm-2" styleClass="form-group">
 					<a4j:commandButton action="#{manterFuncionarioAction.salvar()}" id="_id_bnts"
-						value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+						value="Cadastrar" styleClass="btn btn-default navbar-btn" reRender="#{manterFuncionarioAction.flagNovoCadastro}" />
+				</div>
+				<div class="col-sm-2" styleClass="form-group">
+					<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}" 
+						value="Cancelar" styleClass="btn btn-default navbar-btn" />
 				</div>
 			<rich:spacer />
 			<br />
