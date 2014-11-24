@@ -42,7 +42,7 @@ public class ManterFuncionarioAction {
 	}
 	
 	private boolean flagNovoCadastro;
-	
+	private boolean flagPesquisar;
 	
 	@Create
 	public String create(){
@@ -50,25 +50,25 @@ public class ManterFuncionarioAction {
 		return "/funcionarios/funcionarios.xhtml";
 	}
 	
-	public String novoCadastro(){
+	public void novoCadastro(){
 		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
 		funcionario = new Funcionario();
-		return "/funcionarios/funcionarios.xhtml";
 	}
 	
-	public String cancelar(){
+	public void cancelar(){
 		setFlagNovoCadastro(false);
+		setFlagPesquisar(false);
 		funcionario = new Funcionario();
-		return "/funcionarios/funcionarios.xhtml";
 	}
 	
 	public void salvar(){
-//		if(validarCamposObrigatorios()){
+		if(validarCamposObrigatorios()){
 			usuarioService.salvarFuncionarios(funcionario);
 			funcionarios.add(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			funcionario = new Funcionario();
-//		}
+		}
 	}
 	
 	public boolean validarCamposObrigatorios(){
@@ -77,26 +77,26 @@ public class ManterFuncionarioAction {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio!.", ""));
 			campo = false;
 		}
-		if(funcionario.getRg() == null ){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo RG e obrigatorio!.", ""));
-			campo = false;
-		}
-		if(funcionario.getCpf() == null ){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo CPF e obrigatorio!.", ""));
-			campo = false;
-		}
-		if(funcionario.getSenha() == null){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Senha e obrigatorio!.", ""));
-			campo = false;
-		}
-		if(funcionario.getEndereco() == null){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Endereço e obrigatorio!.", ""));
-			campo =  false;
-		}
-		if(funcionario.getCargoFuncao() == null){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Cargo/Função e obrigatorio!.", ""));
-			campo =  false;
-		}
+//		if(funcionario.getRg() == null ){
+//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo RG e obrigatorio!.", ""));
+//			campo = false;
+//		}
+//		if(funcionario.getCpf() == null ){
+//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo CPF e obrigatorio!.", ""));
+//			campo = false;
+//		}
+//		if(funcionario.getSenha() == null){
+//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Senha e obrigatorio!.", ""));
+//			campo = false;
+//		}
+//		if(funcionario.getEndereco() == null){
+//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Endereço e obrigatorio!.", ""));
+//			campo =  false;
+//		}
+//		if(funcionario.getCargoFuncao() == null){
+//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Cargo/Função e obrigatorio!.", ""));
+//			campo =  false;
+//		}
 		return campo;
 	}
 	
@@ -154,6 +154,14 @@ public class ManterFuncionarioAction {
 
 	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
 		this.flagNovoCadastro = flagNovoCadastro;
+	}
+
+	public boolean isFlagPesquisar() {
+		return flagPesquisar;
+	}
+
+	public void setFlagPesquisar(boolean flagPesquisar) {
+		this.flagPesquisar = flagPesquisar;
 	}
 
 

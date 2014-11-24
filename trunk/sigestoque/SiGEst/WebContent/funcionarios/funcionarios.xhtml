@@ -23,10 +23,10 @@
 					<br /> <br /> <br />
 						<div  style="float: right">
 							<h:commandButton value="Pesquisar" styleClass="btn btn-default navbar-btn"
-								action="#{manterFuncionarioAction.pesquisarFuncioanrios()}" />
-							<a4j:commandButton value="Novo Cadastro" styleClass="btn btn-default navbar-btn"
-								action="#{manterFuncionarioAction.novoCadastro()}"
-								reRender="_id_bnts" />
+								action="#{manterFuncionarioAction.pesquisarFuncioanrios()}" 
+								rendered="#{!manterFuncionarioAction.flagPesquisar}"/>
+							<h:commandButton value="Novo Cadastro" styleClass="btn btn-default navbar-btn"
+								action="#{manterFuncionarioAction.novoCadastro()}" immediate="true" />
 						</div>	
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
@@ -34,7 +34,7 @@
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
-								styleClass="form-control" />
+								styleClass="form-control"  />
 						</div>
 					</div>
 					<div class="form-group">
@@ -124,10 +124,14 @@
 				</div>
 			</div>
 			<rich:spacer />
+			<s:div id="_id_brn_salva" rendered="#{manterFuncionarioAction.flagNovoCadastro}" >
 				<div class="col-sm-2" styleClass="form-group">
-					<a4j:commandButton action="#{manterFuncionarioAction.salvar()}" id="_id_bnts"
-						value="Cadastrar" styleClass="btn btn-default navbar-btn" reRender="#{manterFuncionarioAction.flagNovoCadastro}" />
+					<h:commandButton action="#{manterFuncionarioAction.salvar()}" 
+						id="_id_bnts" value="Cadastrar" 
+						styleClass="btn btn-default navbar-btn" 
+						/>
 				</div>
+			</s:div>	
 				<div class="col-sm-2" styleClass="form-group">
 					<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}" 
 						value="Cancelar" styleClass="btn btn-default navbar-btn" />
@@ -137,7 +141,7 @@
 			<br />
 			<br />
 			<br />
-			<s:div styleClass="form-group"
+			<s:div styleClass="form-group" id="id_tabela_funcio"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
 				<div class="table-responsive, panel panel-info">
 					<div class="panel-heading">Lista de Funcionarios Cadastrados</div>
