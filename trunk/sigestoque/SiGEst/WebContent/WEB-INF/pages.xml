@@ -11,12 +11,12 @@
             <rule if-outcome="home">
                 <redirect view-id="/home.xhtml"/>
             </rule>
-            <rule if-outcome="id_funcionarios">
-            	<begin-conversation join="true" />
+            <rule if-outcome="funcionarios">
+            	<begin-conversation join="true" flush-mode="manual" />
                 <redirect view-id="/funcionarios/funcionarios.xhtml"/>
             </rule>
              <rule if-outcome="produtos">
-            	<begin-conversation join="true" />
+            	<begin-conversation join="true" flush-mode="manual" />
                 <redirect view-id="/produtos/produtos.xhtml"/>
             </rule>
             <rule if-outcome="fornecedores">
