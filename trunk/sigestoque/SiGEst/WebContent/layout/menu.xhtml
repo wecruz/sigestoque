@@ -30,13 +30,14 @@
 				propagation="none" />
 		</rich:toolBarGroup>
 		<rich:toolBarGroup>
-			<h:form>
+			<!-- <h:form>
 			<h:graphicImage value="/img/menu/funcionarios.png"/>	
 				<rich:menuItem id="id_funcionarios" submitMode="server"
 					value="funcionarios" action="#{manterFuncionarioAction.create()}">
-					<s:conversationPropagation type="none" />
 				</rich:menuItem>
-			</h:form>
+			</h:form> -->
+			<h:graphicImage value="/img/menu/funcionarios.png"/>
+			<s:link id="menuFuncionariosId" action="funcionarios" value="Funcionarios" propagation="none" />
 		</rich:toolBarGroup>
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/relatorio.png" />

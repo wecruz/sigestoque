@@ -35,14 +35,15 @@ public class ManterFuncionarioAction {
 	@In
 	IUsuarioService usuarioService;
 	
+	private boolean flagNovoCadastro;
+	private boolean flagPesquisar;
+
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
 		
 		return CargoFuncao.values();
 	}
 	
-	private boolean flagNovoCadastro;
-	private boolean flagPesquisar;
 	
 	@Create
 	public String create(){
@@ -50,25 +51,28 @@ public class ManterFuncionarioAction {
 		return "/funcionarios/funcionarios.xhtml";
 	}
 	
-	public void novoCadastro(){
+	public String novoCadastro(){
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		funcionario = new Funcionario();
+		return "/funcionarios/funcionarios.xhtml";
 	}
 	
-	public void cancelar(){
+	public String cancelar(){
 		setFlagNovoCadastro(false);
 		setFlagPesquisar(false);
 		funcionario = new Funcionario();
+		return "/funcionarios/funcionarios.xhtml";
 	}
 	
-	public void salvar(){
+	public String salvar(){
 		if(validarCamposObrigatorios()){
 			usuarioService.salvarFuncionarios(funcionario);
 			funcionarios.add(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			funcionario = new Funcionario();
 		}
+		return "funcionarios";
 	}
 	
 	public boolean validarCamposObrigatorios(){
