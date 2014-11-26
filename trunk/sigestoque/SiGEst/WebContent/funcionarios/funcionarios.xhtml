@@ -13,7 +13,8 @@
 			<br />
 			<br />
 			<div class="panel panel-info">
-			 <h:messages errorClass="alert alert-danger"/>
+			 	<h:messages errorClass="alert alert-danger" rendered="#{!manterFuncionarioAction.flagMensagen}"/>
+				<h:messages errorClass=" alert alert-success" rendered="#{manterFuncionarioAction.flagMensagen}" />
 				<div class="panel-heading">
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
@@ -130,7 +131,9 @@
 				<div class="col-sm-2" styleClass="form-group">
 					<h:commandButton action="#{manterFuncionarioAction.salvar()}" 
 						id="_id_bnts" value="Cadastrar" 
-						styleClass="btn btn-default navbar-btn"/>
+						styleClass="btn btn-default navbar-btn">
+						<a4j:support event="oncomplete" reRender="id_form" />
+					</h:commandButton>	
 				</div>
 			</s:div>	
 				<div class="col-sm-2" styleClass="form-group">
@@ -169,7 +172,7 @@
 							<rich:spacer />
 							<a4j:commandLink value="Excluir"
 								action="#{manterFuncionarioAction.excluir(funcio)}"
-								ajaxSingle="true" reRender="id_form" />
+								ajaxSingle="true" reRender="id_form,id_div_tabela" />
 						</rich:column>
 					</rich:dataTable>
 				</div>

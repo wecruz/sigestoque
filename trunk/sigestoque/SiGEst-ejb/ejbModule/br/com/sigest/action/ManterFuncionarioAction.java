@@ -37,6 +37,8 @@ public class ManterFuncionarioAction {
 	
 	private boolean flagNovoCadastro;
 	private boolean flagPesquisar;
+	
+	private boolean flagMensagen;
 
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
@@ -70,6 +72,7 @@ public class ManterFuncionarioAction {
 			usuarioService.salvarFuncionarios(funcionario);
 			funcionarios.add(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+			setFlagMensagen(true);
 			funcionario = new Funcionario();
 		}
 		return "funcionarios";
@@ -79,6 +82,7 @@ public class ManterFuncionarioAction {
 		boolean campo = true;
 		if(funcionario.getNome().isEmpty()){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio.", ""));
+			setFlagMensagen(false);
 			campo = false;
 		}
 //		if(funcionario.getRg() == null ){
@@ -110,6 +114,7 @@ public class ManterFuncionarioAction {
 			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
 			if (funcionarios.isEmpty()) {
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um Registro Localizado.", ""));
+				setFlagMensagen(false);
 			}
 		}
 		return funcionarios;
@@ -124,11 +129,13 @@ public class ManterFuncionarioAction {
 	public void excluir(Funcionario funcio){
 		usuarioService.excluirFuncionario(funcio);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		setFlagMensagen(true);
 	}
 	
 	public boolean validarCriterioPesquisa(){		
 		if(funcionario.getNome().isEmpty() && funcionario.getRg() == null && funcionario.getCpf() == null){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
+			setFlagMensagen(false);
 			return false;
 		}else{
 			return true;
@@ -168,6 +175,16 @@ public class ManterFuncionarioAction {
 
 	public void setFlagPesquisar(boolean flagPesquisar) {
 		this.flagPesquisar = flagPesquisar;
+	}
+
+
+	public boolean isFlagMensagen() {
+		return flagMensagen;
+	}
+
+
+	public void setFlagMensagen(boolean flagMensagen) {
+		this.flagMensagen = flagMensagen;
 	}
 
 
