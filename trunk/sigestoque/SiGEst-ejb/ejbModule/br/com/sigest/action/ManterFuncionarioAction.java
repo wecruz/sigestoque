@@ -38,7 +38,7 @@ public class ManterFuncionarioAction {
 	private boolean flagNovoCadastro;
 	private boolean flagPesquisar;
 	
-	private boolean flagMensagen;
+	private Boolean flagMensagen;
 
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
@@ -178,15 +178,14 @@ public class ManterFuncionarioAction {
 	}
 
 
-	public boolean isFlagMensagen() {
+	public Boolean getFlagMensagen() {
 		return flagMensagen;
 	}
 
 
-	public void setFlagMensagen(boolean flagMensagen) {
+	public void setFlagMensagen(Boolean flagMensagen) {
 		this.flagMensagen = flagMensagen;
 	}
 
 
-	
 }
