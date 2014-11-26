@@ -116,6 +116,8 @@ public class ManterFuncionarioAction {
 	}
 	
 	public void alterar(Funcionario funcionario){
+		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
 		this.funcionario = funcionario;
 	}
 	

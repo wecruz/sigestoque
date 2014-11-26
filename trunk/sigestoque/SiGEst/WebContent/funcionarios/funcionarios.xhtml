@@ -163,7 +163,13 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operacoes</f:facet>
-							<a4j:commandLink action="#{manterFuncionarioAction.alterar(funcio)}" value="Alterar" ajaxSingle="true" reRender="id_form" />
+							<a4j:commandLink
+								action="#{manterFuncionarioAction.alterar(funcio)}"
+								value="Alterar" ajaxSingle="true" reRender="id_form" />
+							<rich:spacer />
+							<a4j:commandLink value="Excluir"
+								action="#{manterFuncionarioAction.excluir(funcio)}"
+								ajaxSingle="true" reRender="id_form" />
 						</rich:column>
 					</rich:dataTable>
 				</div>
