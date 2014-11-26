@@ -78,7 +78,7 @@ public class ManterFuncionarioAction {
 	public boolean validarCamposObrigatorios(){
 		boolean campo = true;
 		if(funcionario.getNome().isEmpty()){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio!.", ""));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio.", ""));
 			campo = false;
 		}
 //		if(funcionario.getRg() == null ){
