@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<f:view xmlns="http://www.w3.org/1999/xhtml"
+<f:view xxmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:s="http://jboss.com/products/seam/taglib" contentType="text/html">
 	<html>
@@ -13,6 +15,7 @@
 <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" />
 <a:loadStyle src="resource:///stylesheet/theme.xcss" />
 <a:loadStyle src="resource:///stylesheet/theme.xcss" />
+<a:loadStyle src="resource:///scripts/funcoes.js"/>
 <a:loadStyle src="/stylesheet/theme.css" />
 <a:loadStyle src="/stylesheet/bootstrap.css" />
 <a:loadStyle src="/stylesheet/bootstrap.min.css" />
@@ -24,6 +27,7 @@
 <a:loadStyle src="/stylesheet/swimbi.css" />
 <a:loadStyle src="/stylesheet/swimbi.js" />
 <a:loadStyle src="/stylesheet/swimbiUIcfg.json" />
+<a4j:loadScript src="/scripts/funcoes.js" />
 <script src="/resources/js/bootstrap.js" />
 <script src="/resources/js/bootstrap.min.js" />
 <ui:insert name="head" />
