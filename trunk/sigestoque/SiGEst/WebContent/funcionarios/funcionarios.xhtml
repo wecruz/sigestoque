@@ -13,16 +13,18 @@
 	<ui:define name="body">
 		<h:form id="id_form">
 			<rich:spacer height="40px" />
-			 	<h:messages errorClass="alert alert-danger" rendered="#{!manterFuncionarioAction.flagMensagen}"/>
-				<h:messages errorClass="alert alert-success" rendered="#{manterFuncionarioAction.flagMensagen}" />
+			<h:messages errorClass="alert alert-danger"
+				rendered="#{!manterFuncionarioAction.flagMensagen}" />
+			<h:messages infoClass="alert alert-success"
+				rendered="#{manterFuncionarioAction.flagMensagen}" />
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
 				<div class="form-horizontal ">
 					<br /> <br /> <br />
-						<div  style="float: right">
-						<h:commandButton value="Pesquisar" 
+					<div style="float: right">
+						<h:commandButton value="Pesquisar"
 							styleClass="btn btn-default navbar-btn"
 							action="#{manterFuncionarioAction.pesquisarFuncioanrios()}"
 							rendered="#{!manterFuncionarioAction.flagPesquisar}" />
@@ -31,14 +33,14 @@
 							styleClass="btn btn-default navbar-btn"
 							action="#{manterFuncionarioAction.novoCadastro()}"
 							immediate="true" />
-					</div>	
+					</div>
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Nome*: " />
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
-								styleClass="form-control"/>
+								styleClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -47,8 +49,8 @@
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.rg}"
-								styleClass="form-control" maxlength="8" id="teste"/>
-								
+								styleClass="form-control" maxlength="8" id="teste" />
+
 						</div>
 					</div>
 					<div class="form-group">
@@ -57,62 +59,64 @@
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
-								 onchange="formatarCpfCnpj(this)" 
-								 onkeypress="formatarCpfCnpj(this)" styleClass="form-control" maxlength="14" />
+								onchange="formatarCpfCnpj(this)"
+								onkeypress="formatarCpfCnpj(this)" styleClass="form-control"
+								maxlength="14" />
 						</div>
 					</div>
-				<s:div rendered="#{manterFuncionarioAction.flagNovoCadastro}">	
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Login no sistema*: " />
+					<s:div rendered="#{manterFuncionarioAction.flagNovoCadastro}">
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Login no sistema*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFuncionarioAction.funcionario.login}"
+									styleClass="form-control" maxlength="8" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterFuncionarioAction.funcionario.login}"
-								styleClass="form-control" maxlength="8" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Senha*: " />
-						</div>
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Senha*: " />
+							</div>
 
-						<div class="col-sm-5">
-							<h:inputSecret
-								value="#{manterFuncionarioAction.funcionario.senha}"
-								styleClass="form-control" maxlength="15" />
+							<div class="col-sm-5">
+								<h:inputSecret
+									value="#{manterFuncionarioAction.funcionario.senha}"
+									styleClass="form-control" maxlength="15" />
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Endereço*: " />
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Endereço*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFuncionarioAction.funcionario.endereco}"
+									styleClass="form-control" maxlength="15" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText
-								value="#{manterFuncionarioAction.funcionario.endereco}"
-								styleClass="form-control" maxlength="15" />
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Telefone residencial: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFuncionarioAction.funcionario.telefone}"
+									styleClass="form-control mask-telefone" maxlength="15" />
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Telefone residencial: " />
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Celular: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFuncionarioAction.funcionario.celular}"
+									styleClass="form-control" maxlength="15" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText
-								value="#{manterFuncionarioAction.funcionario.telefone}"
-								styleClass="form-control mask-telefone" maxlength="15" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Celular: " />
-						</div>
-						<div class="col-sm-5">
-							<h:inputText
-								value="#{manterFuncionarioAction.funcionario.celular}"
-								styleClass="form-control" maxlength="15" />
-						</div>
-					</div>
-				</s:div>	
+					</s:div>
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Cargo/Funcao*: " />
@@ -130,19 +134,21 @@
 				</div>
 			</div>
 			<rich:spacer />
-			<s:div id="_id_brn_salva" rendered="#{manterFuncionarioAction.flagNovoCadastro}" >
-				<div class="col-sm-2" styleClass="form-group">
-					<h:commandButton action="#{manterFuncionarioAction.salvar()}" 
-						id="_id_bnts" value="Cadastrar" 
+			<div style="float: right">
+
+				
+					<h:commandButton action="#{manterFuncionarioAction.salvar()}"
+						 value="Cadastrar" id="_id_brn_salva"
+						rendered="#{manterFuncionarioAction.flagNovoCadastro}"
 						styleClass="btn btn-default navbar-btn">
 						<a4j:support event="oncomplete" reRender="id_form" />
-					</h:commandButton>	
-				</div>
-			</s:div>	
-				<div class="col-sm-2" styleClass="form-group">
-					<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}" 
-						value="Cancelar" styleClass="btn btn-default navbar-btn" />
-				</div>
+					</h:commandButton>
+
+
+				<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
+					value="Cancelar" styleClass="btn btn-default navbar-btn" />
+
+			</div>
 			<rich:spacer />
 			<br />
 			<br />
@@ -170,7 +176,7 @@
 						<rich:column>
 							<f:facet name="header">Operacoes</f:facet>
 							<a4j:commandLink
-								action="#{manterFuncionarioAction.alterar(funcio)}"
+								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
 								value="Alterar" ajaxSingle="true" reRender="id_form" />
 							<rich:spacer />
 							<a4j:commandLink value="Excluir"

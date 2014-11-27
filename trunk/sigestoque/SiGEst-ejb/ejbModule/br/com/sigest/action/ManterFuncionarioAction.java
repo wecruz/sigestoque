@@ -39,6 +39,8 @@ public class ManterFuncionarioAction {
 	private boolean flagPesquisar;
 	
 	private Boolean flagMensagen;
+	
+	private Integer indice;
 
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
@@ -69,8 +71,12 @@ public class ManterFuncionarioAction {
 	
 	public void salvar(){
 		if(validarCamposObrigatorios()){
+			if(getIndice() == null){
+				funcionarios.add(funcionario);				
+			}else{
+				funcionarios.set(indice, funcionario);
+			}
 			usuarioService.salvarFuncionarios(funcionario);
-			funcionarios.add(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			setFlagMensagen(true);
 			funcionario = new Funcionario();
@@ -119,13 +125,15 @@ public class ManterFuncionarioAction {
 		return funcionarios;
 	}
 	
-	public void alterar(Funcionario funcionario){
+	public void alterar(Funcionario funcionario, int indice){
+		this.setIndice(indice);
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		this.funcionario = funcionario;
 	}
 	
 	public void excluir(Funcionario funcio){
+		funcionarios.remove(funcio);
 		usuarioService.excluirFuncionario(funcio);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
@@ -185,6 +193,17 @@ public class ManterFuncionarioAction {
 	public void setFlagMensagen(Boolean flagMensagen) {
 		this.flagMensagen = flagMensagen;
 	}
+
+
+	public Integer getIndice() {
+		return indice;
+	}
+
+
+	public void setIndice(Integer indice) {
+		this.indice = indice;
+	}
+
 
 
 }
