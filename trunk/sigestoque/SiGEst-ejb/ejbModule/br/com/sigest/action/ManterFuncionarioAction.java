@@ -55,11 +55,10 @@ public class ManterFuncionarioAction {
 		return "/funcionarios/funcionarios.xhtml";
 	}
 	
-	public String novoCadastro(){
+	public void novoCadastro(){
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		funcionario = new Funcionario();
-		return "/funcionarios/funcionarios.xhtml";
 	}
 	
 	public String cancelar(){
@@ -80,6 +79,7 @@ public class ManterFuncionarioAction {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			setFlagMensagen(true);
 			funcionario = new Funcionario();
+			setFlagMensagen(null);
 		}
 	}
 	
