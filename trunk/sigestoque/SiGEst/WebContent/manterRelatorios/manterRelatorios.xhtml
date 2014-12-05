@@ -12,7 +12,21 @@
 
 	<ui:define name="body">
 		<h:form id="id_form">
-			
+					<br /> <br /> <br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="titulo">Manter Relatorios</div>
+				</div>
+				<div class="form-horizontal ">
+					<br /> <br /> <br />
+
+					<h:commandButton
+						action="#{manterFuncionarioAction.gerarRelatorio()}"
+						value="imprimir" onclick="target='_black'"
+						styleClass="btn btn-default navbar-btn">
+					</h:commandButton>
+				</div>
+			</div>
 		</h:form>
 	</ui:define>
 </ui:composition>

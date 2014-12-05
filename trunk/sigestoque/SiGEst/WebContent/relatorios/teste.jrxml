@@ -3,28 +3,18 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="79" splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="425" splitType="Stretch">
+			<frame>
+				<reportElement uuid="6223dc99-b7e4-4e59-a20c-c718a9eec31f" x="0" y="0" width="555" height="235"/>
+				<staticText>
+					<reportElement uuid="9c076615-3f1f-4d72-8813-452e87581eaf" x="219" y="71" width="105" height="27"/>
+					<textElement>
+						<font fontName="Times New Roman" size="18"/>
+					</textElement>
+					<text><![CDATA[TESTE PDF ]]></text>
+				</staticText>
+			</frame>
+		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
