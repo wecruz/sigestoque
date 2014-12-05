@@ -119,7 +119,7 @@
 					</s:div>
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Cargo/Fununção*: " />
+							<h:outputLabel value="Cargo/Função*: " />
 						</div>
 						<div class="col-sm-5">
 							<h:selectOneMenu
@@ -138,8 +138,8 @@
 						
 						
 					<h:commandButton action="#{manterFuncionarioAction.gerarRelatorio()}"
-						 value="imprimir"
-						
+						value="imprimir"
+						onclick="target='_black'"
 						styleClass="btn btn-default navbar-btn">
 					</h:commandButton>	
 						
@@ -177,11 +177,11 @@
 							<h:outputText value="#{funcio.cpf}" />
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Endereï¿½o</f:facet>
+							<f:facet name="header">Endereço</f:facet>
 							<h:outputText value="#{funcio.endereco}" />
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Operacoes</f:facet>
+							<f:facet name="header">Operações</f:facet>
 							<a4j:commandLink
 								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
 								value="Alterar" ajaxSingle="true" reRender="id_form" />
