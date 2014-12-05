@@ -88,7 +88,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="#{messages.endereco} " />
+								<h:outputLabel value="Endereço*: " />
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
@@ -135,7 +135,14 @@
 			</div>
 			<rich:spacer />
 			<div style="float: right">
-
+						
+						
+					<h:commandButton action="#{manterFuncionarioAction.gerarRelatorio()}"
+						 value="imprimir"
+						
+						styleClass="btn btn-default navbar-btn">
+					</h:commandButton>	
+						
 				
 					<h:commandButton action="#{manterFuncionarioAction.salvar()}"
 						 value="Cadastrar" id="_id_brn_salva"

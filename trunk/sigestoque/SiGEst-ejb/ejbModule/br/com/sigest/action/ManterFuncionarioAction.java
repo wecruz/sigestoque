@@ -1,7 +1,10 @@
 package br.com.sigest.action;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -17,6 +20,7 @@ import org.jboss.seam.annotations.Scope;
 import br.com.sigest.enums.CargoFuncao;
 import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IUsuarioService;
+import br.com.sigest.util.RelatorioUtil;
 
 /**
  * @author Werick Silva
@@ -42,6 +46,10 @@ public class ManterFuncionarioAction {
 	
 	private Integer indice;
 
+	@In
+	private RelatorioUtil relatorioUtil;
+	
+	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
 		
@@ -147,6 +155,23 @@ public class ManterFuncionarioAction {
 		}else{
 			return true;
 		}
+	}
+	
+	public String gerarRelatorio() {
+		
+		List<String> teste = new ArrayList<String>();
+		final Collection<?> list = teste;
+        final Map<String, Object> params = new HashMap<String, Object>();
+		
+		
+		try {
+			return	relatorioUtil.imprimir("teste", params, list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+		
 	}
 	
 	
