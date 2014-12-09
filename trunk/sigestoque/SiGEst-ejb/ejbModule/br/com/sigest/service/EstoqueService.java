@@ -13,6 +13,7 @@ import org.jboss.seam.annotations.Name;
 import br.com.sigest.dao.FornecedorDao;
 import br.com.sigest.modelo.Cidade;
 import br.com.sigest.modelo.Estado;
+import br.com.sigest.modelo.Fornecedor;
 
 
 @Name("estoqueService")
@@ -24,19 +25,28 @@ public class EstoqueService implements IEstoqueService{
 	@In
 	FornecedorDao fornecedorDao;
 	
-	public List<Estado> pesquisarTodosEstados() {
-		return fornecedorDao.pesquisarTodosEstados();
-	}
+//	public List<Estado> pesquisarTodosEstados() {
+//		return fornecedorDao.pesquisarTodosEstados();
+//	}
+//	
+//	public List<Cidade> pesquisarCidadesPorEstados(Estado estado) {
+//		return fornecedorDao.pesquisarCidadesPorEstados(estado);
+//	}
 	
-	public List<Cidade> pesquisarCidadesPorEstados(Estado estado) {
-		return fornecedorDao.pesquisarCidadesPorEstados(estado);
+
+	public void salvar(Fornecedor fornecedor) {
+		fornecedorDao.salvar(fornecedor);		
 	}
-	
+
+	public List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor) {
+		return fornecedorDao.pesquisarFornecedores(fornecedor);
+	}
+
 	@Destroy
 	public void destroy() {
 		
 	}
-
+	
 	@Remove
 	public void remove() {
 		

@@ -3,10 +3,12 @@ package br.com.sigest.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Create;
-import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -23,8 +25,6 @@ public class ManterFornecedoreAction {
 
 	
 	private Fornecedor fornecedor = new Fornecedor();
-
-	
 	
 	@In
 	IEstoqueService estoqueService;
@@ -38,19 +38,36 @@ public class ManterFornecedoreAction {
 	private List<Fornecedor> listFornecedores = new ArrayList<Fornecedor>();
 	
 	
+	private Boolean flagMensagen;
+	
+	
+	
 	@Create
 	public String create(){
-		
 		return "/fornecedores/fornecedores.xhtml";
 	}
 	
 	private Integer qntFornecedores = 10;
 	
-	@Factory(value="estados" , scope=ScopeType.APPLICATION)
-	public List<Estado> popularEstados(){
-		estados = estoqueService.pesquisarTodosEstados();
-		return estados;
+	
+	public void pesquisarFornecedor() {
+		if (validarCriterioPesquisa()) {
+			listFornecedores = new ArrayList<Fornecedor>();
+			listFornecedores = estoqueService.pesquisarFornecedores(getFornecedor());
+		}
 	}
+	
+	
+	
+	
+	
+	
+	
+//	@Factory(value="estados" , scope=ScopeType.APPLICATION)
+//	public List<Estado> popularEstados(){
+//		estados = estoqueService.pesquisarTodosEstados();
+//		return estados;
+//	}
 	
 	public List<Cidade> pesquisarCidadesPorEstados(){
 //		cidades =	estoqueService.pesquisarCidadesPorEstados(fornecedor.getEstado());
@@ -58,9 +75,53 @@ public class ManterFornecedoreAction {
 	}
 
 	
-	public void salvar(){
-		listFornecedores.add(getFornecedor());
+	public void salvar() {
+		if (validarCamposObrigatorios()) {
+			listFornecedores.add(getFornecedor());
+			estoqueService.salvar(getFornecedor());
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+			this.fornecedor = new Fornecedor();
+			setFlagMensagen(true);
+		}
 	}
+	
+	public boolean validarCriterioPesquisa(){		
+		if(fornecedor.getNome().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
+			setFlagMensagen(false);
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public boolean validarCamposObrigatorios(){
+		boolean campo = true;
+		if(getFornecedor().getNome().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio.", ""));
+			setFlagMensagen(false);
+			campo = false;
+		}
+		if(getFornecedor().getCnpj() == null){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo CNPJ e obrigatorio.", ""));
+			setFlagMensagen(false);
+			campo = false;
+		}
+		if(getFornecedor().getEndereco().getEndereco().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Endereço e obrigatorio.", ""));
+			setFlagMensagen(false);
+			campo = false;
+		}
+		if(getFornecedor().getEndereco().getCidade().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Cidade e obrigatorio.", ""));
+			setFlagMensagen(false);
+			campo = false;
+		}
+		
+		return campo;
+	}
+	
+	
 	
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
@@ -105,6 +166,16 @@ public class ManterFornecedoreAction {
 
 	public void setListFornecedores(List<Fornecedor> listFornecedores) {
 		this.listFornecedores = listFornecedores;
+	}
+
+
+	public Boolean getFlagMensagen() {
+		return flagMensagen;
+	}
+
+
+	public void setFlagMensagen(Boolean flagMensagen) {
+		this.flagMensagen = flagMensagen;
 	}
 
 
