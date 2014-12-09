@@ -16,106 +16,119 @@
 						<div class="titulo">Manter Fornecedores</div>
 					</div>
 					<div class="panel-body">
-						<div class="form-group">
+
+						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Codigo: " />
+								<h:outputLabel value="Nome*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.codigo}"
-									styleClass="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="nome: " />
-							</div>
-							<div class="col-sm-5 ">
 								<h:inputText value="#{manterFornecedoreAction.fornecedor.nome}"
-									styleClass="form-control" maxlength="8" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Nome fantasia *: " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.nomefantasia}"
 									styleClass="form-control" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="CNPJ: " />
+								<h:outputLabel value="CNPJ*: " />
 							</div>
 							<div class="col-sm-5">
 								<h:inputText value="#{manterFornecedoreAction.fornecedor.cnpj}"
-									styleClass="form-control" maxlength="8" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="EndereÃ§o*: " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.endereco}"
 									styleClass="form-control" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Complemento: " />
+								<h:outputLabel value="Endereço*: " />
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.complemento}"
-									styleClass="form-control" maxlength="8" />
+									value="#{manterFornecedoreAction.fornecedor.endereco.endereco}"
+									styleClass="form-control" />
 							</div>
 						</div>
-						<br /> <br />
-						<div class="form-group">
+						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Estados*: " />
+								<h:outputLabel value="Cidade*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:selectOneMenu
-									value="#{manterFornecedoreAction.fornecedor.estado}"
-									styleClass="form-control">
-									<s:selectItems noSelectionLabel="Selecione" value="#{estados}" 
-										var="estado" label="#{estado.nome}" itemValue="#{manterFornecedoreAction.fornecedor.estado}">
-									</s:selectItems>
-								</h:selectOneMenu>
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.cidade}"
+									styleClass="form-control" />
 							</div>
 						</div>
-					
-						<div class="form-group">
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Estado*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.estado}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="E-mail*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.email}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Telefone*: " />
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.telefone}"
+									value="#{manterFornecedoreAction.fornecedor.endereco.email}"
 									styleClass="form-control" />
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="E-mail: " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText value="#{manterFornecedoreAction.fornecedor.email}"
-									styleClass="form-control" maxlength="8" />
-							</div>
-						</div>
+
 					</div>
-					<div>
-						<a4j:commandButton action="#{manterFornecedoreAction.salvar()}" value="Salvar" styleClass="btn btn-default navbar-btn"/>
+					<div style="float: right">
+						<h:commandButton action="#{manterFornecedoreAction.salvar()}"
+							value="Salvar" styleClass="btn btn-default navbar-btn" />
 					</div>
 					<rich:spacer />
+					<br /> <br /> <br /> <br />
 				</div>
 			</div>
+			
+			<s:div styleClass="form-group" id="id_tabela_funcio"
+				rendered="#{manterFornecedoreAction.listFornecedores.size() >0}">
+				<div class="table-responsive, panel panel-info">
+					<div class="panel-heading">Lista de Fornecedores</div>
+					<rich:dataTable value="#{manterFornecedoreAction.listFornecedores}"
+						var="fornece" id="id_div_tabela" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Nome do Fornecedor</f:facet>
+							<h:outputText value="#{fornece.nome}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">CNPJ</f:facet>
+							<h:outputText value="#{fornece.cnpj}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Telefone</f:facet>
+							<h:outputText value="#{fornece.endereco.telefone}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Operações</f:facet>
+							<a4j:commandLink
+								action="132"
+								value="Alterar" ajaxSingle="true" reRender="id_form" />
+							<rich:spacer />
+							<a4j:commandLink value="Excluir"
+								action="132"
+								ajaxSingle="true" reRender="id_form,id_div_tabela" />
+						</rich:column>
+					</rich:dataTable>
+				</div>
+			</s:div>
 		</h:form>
 	</ui:define>
 </ui:composition>

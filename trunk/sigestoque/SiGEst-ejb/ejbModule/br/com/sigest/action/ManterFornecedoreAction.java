@@ -35,6 +35,8 @@ public class ManterFornecedoreAction {
 	
 	private List<Cidade> cidades = new ArrayList<Cidade>();
 	
+	private List<Fornecedor> listFornecedores = new ArrayList<Fornecedor>();
+	
 	
 	@Create
 	public String create(){
@@ -57,7 +59,7 @@ public class ManterFornecedoreAction {
 
 	
 	public void salvar(){
-		getFornecedor();
+		listFornecedores.add(getFornecedor());
 	}
 	
 	public void setFornecedor(Fornecedor fornecedor) {
@@ -95,6 +97,14 @@ public class ManterFornecedoreAction {
 
 	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
+	}
+
+	public List<Fornecedor> getListFornecedores() {
+		return listFornecedores;
+	}
+
+	public void setListFornecedores(List<Fornecedor> listFornecedores) {
+		this.listFornecedores = listFornecedores;
 	}
 
 

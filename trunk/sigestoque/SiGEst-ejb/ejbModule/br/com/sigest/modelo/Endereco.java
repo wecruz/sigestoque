@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,9 @@ public class Endereco {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id_endereco", nullable = false)
 	private Long id;
+	
+	@OneToOne
+	private Fornecedor fornecedor;
 	
 	@Column(name = "endereco")
 	private String  endereco ;
@@ -100,6 +104,14 @@ public class Endereco {
 
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 	
 	
