@@ -141,10 +141,12 @@ public class ManterFuncionarioAction {
 	}
 	
 	public void excluir(Funcionario funcio){
-		funcionarios.remove(funcio);
-		usuarioService.excluirFuncionario(funcio);
+		funcionario = funcio;
+		funcionarios.remove(funcionario);
+		usuarioService.excluirFuncionario(funcionario);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
+		funcionario = new Funcionario();
 	}
 	
 	public boolean validarCriterioPesquisa(){		
