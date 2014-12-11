@@ -35,15 +35,12 @@ public class FornecedorDao {
 	
 	
 	public void salvar (Fornecedor fornecedor){
-		fornecedor.getEndereco().setFornecedor(fornecedor);
 		entityManager.merge(fornecedor);
 	}
 	
 	public List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Fornecedor.class, "fornecedor");
-		criteria.createAlias("fornecedor.endereco", "endereco" , criteria.INNER_JOIN);
-		criteria.add(Restrictions.eq("endereco.fornecedor.id", fornecedor.getId()));
 		if (fornecedor.getNome() != null) {
 			criteria.add(Restrictions.like("fornecedor.nome", fornecedor.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}

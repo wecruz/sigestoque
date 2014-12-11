@@ -1,27 +1,21 @@
 package br.com.sigest.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 
-@Entity
-@Table(name ="pais")
+//@Entity
+//@Table(name ="pais")
 public class Pais {
 
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@Column(name = "id", nullable = false)
 	private int id;
 	
-	@Column(name = "nome")
+//	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "sigla")
+//	@Column(name = "sigla")
 	private String sigla;
 
 	public int getId() {

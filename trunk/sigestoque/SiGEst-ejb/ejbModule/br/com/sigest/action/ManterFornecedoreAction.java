@@ -18,6 +18,12 @@ import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.service.IEstoqueService;
 
+/**
+ * 
+ * @author Werick Silva
+ *
+ */
+
 @Name("manterFornecedoreAction")
 @AutoCreate
 @Scope(ScopeType.CONVERSATION)
@@ -54,6 +60,9 @@ public class ManterFornecedoreAction {
 		if (validarCriterioPesquisa()) {
 			listFornecedores = new ArrayList<Fornecedor>();
 			listFornecedores = estoqueService.pesquisarFornecedores(getFornecedor());
+			if(listFornecedores.isEmpty()){
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um registro encontrado.", ""));
+			}
 		}
 	}
 	
