@@ -32,7 +32,20 @@ public class Fornecedor {
 	
 	@OneToOne(mappedBy = "fornecedor", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
-	private Endereco endereco = new Endereco();
+	private Endereco endereco;
+
+	
+	
+	
+	
+	public Fornecedor() {
+		super();
+	}
+
+	public Fornecedor(Endereco endereco) {
+		super();
+		this.endereco = endereco;
+	}
 
 	public Long getId() {
 		return id;

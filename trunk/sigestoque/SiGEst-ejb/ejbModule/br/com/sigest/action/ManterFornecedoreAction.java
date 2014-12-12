@@ -14,6 +14,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Cidade;
+import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.service.IEstoqueService;
@@ -30,7 +31,7 @@ import br.com.sigest.service.IEstoqueService;
 public class ManterFornecedoreAction {
 
 	
-	private Fornecedor fornecedor = new Fornecedor();
+	private Fornecedor fornecedor = new Fornecedor(new Endereco());
 	
 	@In
 	IEstoqueService estoqueService;
@@ -86,6 +87,7 @@ public class ManterFornecedoreAction {
 	
 	public void salvar() {
 		if (validarCamposObrigatorios()) {
+			fornecedor.getEndereco().setFornecedor(getFornecedor());
 			listFornecedores.add(getFornecedor());
 			estoqueService.salvar(getFornecedor());
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));

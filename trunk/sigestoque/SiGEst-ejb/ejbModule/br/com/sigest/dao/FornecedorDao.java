@@ -32,9 +32,8 @@ public class FornecedorDao {
 	EntityManager entityManager;
 	
 	
-	
-	
 	public void salvar (Fornecedor fornecedor){
+		
 		entityManager.merge(fornecedor);
 	}
 	

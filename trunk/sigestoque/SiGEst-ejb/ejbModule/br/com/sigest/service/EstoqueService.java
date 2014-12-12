@@ -11,8 +11,6 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 
 import br.com.sigest.dao.FornecedorDao;
-import br.com.sigest.modelo.Cidade;
-import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 
 
