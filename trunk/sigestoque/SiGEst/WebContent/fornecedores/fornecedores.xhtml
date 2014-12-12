@@ -131,7 +131,7 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<a4j:commandLink action="#{manterFornecedoreAction.alterar(fornece)}" value="Alterar" ajaxSingle="true"
+							<a4j:commandLink action="#{manterFornecedoreAction.alterar(indice,fornece)}" value="Alterar" ajaxSingle="true"
 								 reRender="idform"/>
 							<rich:spacer />
 							<a4j:commandLink value="Excluir" action="#{manterFornecedoreAction.excluir(fornece)}" ajaxSingle="true"

@@ -48,6 +48,8 @@ public class ManterFornecedoreAction {
 	private Boolean flagMensagen;
 	
 	
+	private Integer indice;
+	
 	
 	@Create
 	public String create(){
@@ -88,7 +90,11 @@ public class ManterFornecedoreAction {
 	public void salvar() {
 		if (validarCamposObrigatorios()) {
 			fornecedor.getEndereco().setFornecedor(getFornecedor());
-			listFornecedores.add(getFornecedor());
+			if(getIndice() == null){
+				listFornecedores.add(getFornecedor());				
+			}else{
+				listFornecedores.set(getIndice(), getFornecedor());
+			}
 			estoqueService.salvar(getFornecedor());
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			this.fornecedor = new Fornecedor(new Endereco());
@@ -107,7 +113,8 @@ public class ManterFornecedoreAction {
 	}
 	
 	
-	public void alterar(Fornecedor fornecedor){
+	public void alterar(int indice, Fornecedor fornecedor){
+		this.indice = indice;
 		this.fornecedor = fornecedor;
 	}
 	
@@ -200,6 +207,26 @@ public class ManterFornecedoreAction {
 
 	public void setFlagMensagen(Boolean flagMensagen) {
 		this.flagMensagen = flagMensagen;
+	}
+
+
+
+
+
+
+
+	public Integer getIndice() {
+		return indice;
+	}
+
+
+
+
+
+
+
+	public void setIndice(Integer indice) {
+		this.indice = indice;
 	}
 
 
