@@ -131,11 +131,11 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<a4j:commandLink action="132" value="Alterar" ajaxSingle="true"
-								reRender="id_form" />
+							<a4j:commandLink action="#{manterFornecedoreAction.alterar(fornece)}" value="Alterar" ajaxSingle="true"
+								 reRender="idform"/>
 							<rich:spacer />
-							<a4j:commandLink value="Excluir" action="132" ajaxSingle="true"
-								reRender="id_form,id_div_tabela" />
+							<a4j:commandLink value="Excluir" action="#{manterFornecedoreAction.excluir(fornece)}" ajaxSingle="true"
+								reRender="id_tabela_funcio,idform" />
 						</rich:column>
 					</rich:dataTable>
 				</div>

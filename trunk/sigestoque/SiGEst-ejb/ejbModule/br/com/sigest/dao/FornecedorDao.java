@@ -43,6 +43,7 @@ public class FornecedorDao {
 		if (fornecedor.getNome() != null) {
 			criteria.add(Restrictions.like("fornecedor.nome", fornecedor.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}
+		criteria.createAlias("fornecedor.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();
 	}
 	

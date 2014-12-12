@@ -91,7 +91,7 @@ public class ManterFornecedoreAction {
 			listFornecedores.add(getFornecedor());
 			estoqueService.salvar(getFornecedor());
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-			this.fornecedor = new Fornecedor();
+			this.fornecedor = new Fornecedor(new Endereco());
 			setFlagMensagen(true);
 		}
 	}
@@ -105,6 +105,19 @@ public class ManterFornecedoreAction {
 			return true;
 		}
 	}
+	
+	
+	public void alterar(Fornecedor fornecedor){
+		this.fornecedor = fornecedor;
+	}
+	
+	
+	public void excluir(Fornecedor fornecedor){
+		listFornecedores.remove(fornecedor);
+		
+	}
+	
+	
 	
 	public boolean validarCamposObrigatorios(){
 		boolean campo = true;
