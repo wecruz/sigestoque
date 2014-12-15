@@ -7,6 +7,10 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich">
+
+
+
+
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="idform">
@@ -24,7 +28,7 @@
 						<div style="float: right">
 							<h:commandButton value="Pesquisar"
 								styleClass="btn btn-default navbar-btn"
-								action="#{manterFornecedoreAction.pesquisarFornecedor()}"/>
+								action="#{manterFornecedoreAction.pesquisarFornecedor()}" />
 						</div>
 
 						<div class="form-group linha">
@@ -131,15 +135,41 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<a4j:commandLink action="#{manterFornecedoreAction.alterar(indice,fornece)}" value="Alterar" ajaxSingle="true"
-								 reRender="idform"/>
+							<a4j:commandLink
+								action="#{manterFornecedoreAction.alterar(indice,fornece)}"
+								value="Alterar" ajaxSingle="true" reRender="idform" />
 							<rich:spacer />
-							<a4j:commandLink value="Excluir" action="#{manterFornecedoreAction.excluir(fornece)}" ajaxSingle="true"
-								reRender="id_tabela_funcio,idform" />
+							<a4j:commandLink value="Excluir"
+								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
+								reRender="id_tabela_funcio,idform"
+								oncomplete="Richfaces.showModalPanel('painel')">
+							</a4j:commandLink>
+
 						</rich:column>
 					</rich:dataTable>
 				</div>
 			</s:div>
+
+			<rich:modalPanel id="painel" width="350" height="150">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Excluir"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<a4j:commandLink value="X"
+							action="#{manterFornecedoreAction.cancelar()}"
+							reRender="id_tabela_funcio,idform"
+							oncomplete="Richfaces.hideModalPanel('painel')">
+						</a4j:commandLink>
+
+					</h:panelGroup>
+				</f:facet>
+				
+
+			</rich:modalPanel>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

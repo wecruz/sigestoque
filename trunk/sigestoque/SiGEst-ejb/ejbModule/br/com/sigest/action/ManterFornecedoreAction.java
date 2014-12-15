@@ -50,6 +50,8 @@ public class ManterFornecedoreAction {
 	
 	private Integer indice;
 	
+	private Fornecedor fornecedorSelecionado = new Fornecedor(new Endereco());
+	
 	
 	@Create
 	public String create(){
@@ -71,7 +73,9 @@ public class ManterFornecedoreAction {
 	
 	
 	
-	
+	public void selecionarFornecedor(Fornecedor fornecedor){
+		setFornecedorSelecionado(fornecedor);
+	}
 	
 	
 	
@@ -119,8 +123,13 @@ public class ManterFornecedoreAction {
 	}
 	
 	
-	public void excluir(Fornecedor fornecedor){
-		listFornecedores.remove(fornecedor);
+	public void excluir(){
+		listFornecedores.remove(getFornecedorSelecionado());
+		estoqueService.excluirFornecedor(getFornecedorSelecionado());
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		setFlagMensagen(true);
+	}
+	public void cancelar(){
 		
 	}
 	
@@ -227,6 +236,18 @@ public class ManterFornecedoreAction {
 
 	public void setIndice(Integer indice) {
 		this.indice = indice;
+	}
+
+
+
+	public Fornecedor getFornecedorSelecionado() {
+		return fornecedorSelecionado;
+	}
+
+
+
+	public void setFornecedorSelecionado(Fornecedor fornecedorSelecionado) {
+		this.fornecedorSelecionado = fornecedorSelecionado;
 	}
 
 

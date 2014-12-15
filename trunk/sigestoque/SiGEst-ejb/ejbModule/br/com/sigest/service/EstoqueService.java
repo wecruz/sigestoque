@@ -39,6 +39,10 @@ public class EstoqueService implements IEstoqueService{
 	public List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor) {
 		return fornecedorDao.pesquisarFornecedores(fornecedor);
 	}
+	
+	public void excluirFornecedor(Fornecedor fornecedor) {
+		fornecedorDao.excluir(fornecedor);
+	}
 
 	@Destroy
 	public void destroy() {
@@ -50,6 +54,7 @@ public class EstoqueService implements IEstoqueService{
 		
 	}
 
-
-
+	
+	
+	
 }

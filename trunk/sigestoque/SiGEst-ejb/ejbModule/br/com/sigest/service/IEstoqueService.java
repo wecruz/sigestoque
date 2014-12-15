@@ -11,6 +11,8 @@ public interface IEstoqueService {
 	
 	List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor);
 	
+	void excluirFornecedor(Fornecedor fornecedor);
+	
 	
 //	List<Estado> pesquisarTodosEstados();
 //	

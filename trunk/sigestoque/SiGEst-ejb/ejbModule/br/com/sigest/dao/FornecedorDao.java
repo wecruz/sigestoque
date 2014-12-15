@@ -15,7 +15,6 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Fornecedor;
-import br.com.sigest.modelo.Funcionario;
 
 
 /**
@@ -45,6 +44,10 @@ public class FornecedorDao {
 		}
 		criteria.createAlias("fornecedor.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();
+	}
+	
+	public void excluir(Fornecedor fornecedor){
+		entityManager.remove(fornecedor);
 	}
 	
 	
