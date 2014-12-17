@@ -1,5 +1,6 @@
 package br.com.sigest.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.sigest.enums.CargoFuncao;
@@ -40,18 +43,24 @@ public class Funcionario {
 	@Column(name = "senha")
 	private String senha;
 	
-	@Column(name = "endereco")
-	private String endereco;
-	
-	@Column(name = "telefone")
-	private Integer telefone;
-	
-	@Column(name ="celular")
-	private Integer celular;
 	
 	@Column(name = "cargoFuncao")
 	@Enumerated(EnumType.STRING)
 	private CargoFuncao cargoFuncao;
+	
+	@OneToOne(mappedBy="funcionario", cascade=CascadeType.ALL)
+	@JoinColumn(name="tb_endereco")
+	private Endereco endereco = new Endereco();
+	
+	public Funcionario() {
+		super();
+	}
+
+
+	public Funcionario(Endereco endereco) {
+		super();
+		this.endereco = endereco;
+	}
 
 	public Long getId() {
 		return id;
@@ -101,30 +110,6 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public Integer getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
-	}
-
-	public Integer getCelular() {
-		return celular;
-	}
-
-	public void setCelular(Integer celular) {
-		this.celular = celular;
-	}
-
 	public CargoFuncao getCargoFuncao() {
 		return cargoFuncao;
 	}
@@ -132,5 +117,19 @@ public class Funcionario {
 	public void setCargoFuncao(CargoFuncao cargoFuncao) {
 		this.cargoFuncao = cargoFuncao;
 	}
+
+
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	
 	
 }

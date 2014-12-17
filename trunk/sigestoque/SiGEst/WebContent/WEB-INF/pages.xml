@@ -12,7 +12,7 @@
                 <redirect view-id="/home.xhtml"/>
             </rule>
             <rule if-outcome="funcionarios">
-            	<begin-conversation join="true" flush-mode="manual" />
+            	<begin-conversation join="true" />
                 <redirect view-id="/funcionarios/funcionarios.xhtml"/>
             </rule>
              <rule if-outcome="produtos">

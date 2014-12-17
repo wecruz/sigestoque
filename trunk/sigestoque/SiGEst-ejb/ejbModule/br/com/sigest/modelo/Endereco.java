@@ -23,6 +23,10 @@ public class Endereco {
 	@JoinColumn(name="fornecedor")
 	private Fornecedor fornecedor;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="funcionario")
+	private Funcionario funcionario;
+	
 	@Column(name = "endereco")
 	private String  endereco ;
 	
@@ -43,6 +47,9 @@ public class Endereco {
 	
 	@Column(name = "telefone")
 	private Integer telefone;
+	
+	@Column(name = "celular")
+	private Integer celular;
 
 	
 	public Long getId() {
@@ -116,6 +123,23 @@ public class Endereco {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public Integer getCelular() {
+		return celular;
+	}
+
+	public void setCelular(Integer celular) {
+		this.celular = celular;
+	}
+	
 	
 	
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Destroy;

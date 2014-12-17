@@ -18,6 +18,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.enums.CargoFuncao;
+import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IUsuarioService;
 import br.com.sigest.util.RelatorioUtil;
@@ -32,7 +33,7 @@ import br.com.sigest.util.RelatorioUtil;
 public class ManterFuncionarioAction {
 
 	
-	private Funcionario funcionario = new Funcionario();
+	private Funcionario funcionario = new Funcionario(new Endereco());
 
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 	
@@ -45,6 +46,9 @@ public class ManterFuncionarioAction {
 	private Boolean flagMensagen;
 	
 	private Integer indice;
+	
+	private Funcionario funcionarioSelecionado = new Funcionario(new Endereco());
+	
 
 	@In
 	private RelatorioUtil relatorioUtil;
@@ -78,6 +82,7 @@ public class ManterFuncionarioAction {
 	
 	public void salvar(){
 		if(validarCamposObrigatorios()){
+			funcionario.getEndereco().setFuncionario(funcionario);
 			if(getIndice() == null){
 				funcionarios.add(funcionario);				
 			}else{
@@ -86,7 +91,7 @@ public class ManterFuncionarioAction {
 			usuarioService.salvarFuncionarios(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			setFlagMensagen(true);
-			funcionario = new Funcionario();
+			funcionario = new Funcionario(new Endereco());
 			setFlagMensagen(null);
 		}
 	}
@@ -121,7 +126,7 @@ public class ManterFuncionarioAction {
 		return campo;
 	}
 	
-	public List<Funcionario> pesquisarFuncioanrios(){
+	public void pesquisarFuncioanrios(){
 		if (validarCriterioPesquisa()) {
 			funcionarios = new ArrayList<Funcionario>();		
 			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
@@ -130,7 +135,6 @@ public class ManterFuncionarioAction {
 				setFlagMensagen(false);
 			}
 		}
-		return funcionarios;
 	}
 	
 	public void alterar(Funcionario funcionario, int indice){
@@ -140,13 +144,16 @@ public class ManterFuncionarioAction {
 		this.funcionario = funcionario;
 	}
 	
-	public void excluir(Funcionario funcio){
-		funcionario = funcio;
-		funcionarios.remove(funcionario);
-		usuarioService.excluirFuncionario(funcionario);
+	public void selecionarFuncionario(Funcionario funcio){
+		setFuncionarioSelecionado(funcio);
+	}
+	
+	public void excluir(){
+		funcionarios.remove(getFuncionarioSelecionado());
+		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
-		funcionario = new Funcionario();
+		funcionarioSelecionado = new Funcionario();
 	}
 	
 	public boolean validarCriterioPesquisa(){		
@@ -158,6 +165,8 @@ public class ManterFuncionarioAction {
 			return true;
 		}
 	}
+	
+	
 	
 	public String gerarRelatorio() {
 		
@@ -229,6 +238,16 @@ public class ManterFuncionarioAction {
 
 	public void setIndice(Integer indice) {
 		this.indice = indice;
+	}
+
+
+	public Funcionario getFuncionarioSelecionado() {
+		return funcionarioSelecionado;
+	}
+
+
+	public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
+		this.funcionarioSelecionado = funcionarioSelecionado;
 	}
 
 

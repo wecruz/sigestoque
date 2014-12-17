@@ -13,6 +13,7 @@ import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.annotations.Transactional;
 
 import br.com.sigest.modelo.Funcionario;
 
@@ -46,6 +47,7 @@ public class FuncionarioDao {
 		if(funcionario.getCpf() !=null){
 			criteria.add(Restrictions.eq("funcionario.cpf", funcionario.getCpf()));
 		}
+		criteria.createAlias("funcionario.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();
 	}
 	

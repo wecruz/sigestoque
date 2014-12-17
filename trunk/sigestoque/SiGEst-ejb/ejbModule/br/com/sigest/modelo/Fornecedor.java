@@ -35,9 +35,6 @@ public class Fornecedor {
 	private Endereco endereco;
 
 	
-	
-	
-	
 	public Fornecedor() {
 		super();
 	}
