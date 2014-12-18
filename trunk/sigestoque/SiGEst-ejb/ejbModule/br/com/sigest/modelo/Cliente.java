@@ -31,6 +31,23 @@ public class Cliente {
 	@OneToOne(mappedBy="cliente", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
 	private Endereco endereco;
+	
+	
+	
+	
+
+	public Cliente() {
+		super();
+	}
+
+	
+	
+	public Cliente(Endereco endereco) {
+		super();
+		this.endereco = endereco;
+	}
+
+
 
 	public Long getId() {
 		return id;
