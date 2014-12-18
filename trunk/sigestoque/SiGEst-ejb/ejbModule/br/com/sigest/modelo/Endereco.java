@@ -27,6 +27,10 @@ public class Endereco {
 	@JoinColumn(name="funcionario")
 	private Funcionario funcionario;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="cliente")
+	private Cliente cliente;
+	
 	@Column(name = "endereco")
 	private String  endereco ;
 	
@@ -138,6 +142,14 @@ public class Endereco {
 
 	public void setCelular(Integer celular) {
 		this.celular = celular;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

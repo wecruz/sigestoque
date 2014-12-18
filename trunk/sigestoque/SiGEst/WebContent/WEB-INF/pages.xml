@@ -16,7 +16,7 @@
                 <redirect view-id="/funcionarios/funcionarios.xhtml"/>
             </rule>
              <rule if-outcome="produtos">
-            	<begin-conversation join="true" flush-mode="manual" />
+            	<begin-conversation join="true"/>
                 <redirect view-id="/produtos/produtos.xhtml"/>
             </rule>
             <rule if-outcome="fornecedores">
@@ -26,6 +26,10 @@
             <rule if-outcome="relatorios">
             	<begin-conversation join="true" />
                 <redirect view-id="/manterRelatorios/manterRelatorios.xhtml"/>
+            </rule>
+            <rule if-outcome="clientes">
+            	<begin-conversation join="true" />
+                <redirect view-id="/clientes/clientes.xhtml"/>
             </rule>
         </navigation>
     </page>

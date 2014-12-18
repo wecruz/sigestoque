@@ -53,6 +53,7 @@ public class ManterFuncionarioAction {
 	@In
 	private RelatorioUtil relatorioUtil;
 	
+	private Integer qntFuncionarios = 10;
 	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public CargoFuncao[] initCargoFuncao(){
@@ -248,6 +249,16 @@ public class ManterFuncionarioAction {
 
 	public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
 		this.funcionarioSelecionado = funcionarioSelecionado;
+	}
+
+
+	public Integer getQntFuncionarios() {
+		return qntFuncionarios;
+	}
+
+
+	public void setQntFuncionarios(Integer qntFuncionarios) {
+		this.qntFuncionarios = qntFuncionarios;
 	}
 
 

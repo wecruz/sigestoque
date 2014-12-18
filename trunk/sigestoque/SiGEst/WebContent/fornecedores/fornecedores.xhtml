@@ -106,7 +106,7 @@
 			</div>
 			<div style="float: right">
 				<h:commandButton action="#{manterFornecedoreAction.salvar()}"
-					value="Salvar" styleClass="btn btn-default navbar-btn" />
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
 			</div>
 			<rich:spacer />
 			<br />
@@ -138,7 +138,7 @@
 							<a4j:commandLink
 								action="#{manterFornecedoreAction.alterar(indice,fornece)}"
 								value="Alterar" ajaxSingle="true" reRender="idform" />
-							<rich:spacer />
+							<rich:spacer width="20px" />
 							<a4j:commandLink value="Excluir"
 								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
 								reRender="id_tabela_funcio,idform"
@@ -147,6 +147,14 @@
 
 						</rich:column>
 					</rich:dataTable>
+					<center>
+						<rich:datascroller for="id_div_tabela" maxPages="20"
+							styleClass="pagination"
+							page="#{manterFornecedoreAction.qntFornecedores}" id="sc2"
+							reRender="sc1">
+						</rich:datascroller>
+					</center>
+					
 				</div>
 			</s:div>
 

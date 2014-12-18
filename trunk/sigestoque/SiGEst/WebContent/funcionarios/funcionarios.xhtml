@@ -184,6 +184,13 @@
 								oncomplete="Richfaces.showModalPanel('painel')"/>
 						</rich:column>
 					</rich:dataTable>
+					<center>
+						<rich:datascroller for="id_div_tabela" maxPages="20"
+							styleClass="pagination"
+							page="#{manterFuncionarioAction.qntFuncionarios}" id="sc2"
+							reRender="sc1">
+						</rich:datascroller>
+					</center>
 				</div>
 			</s:div>
 			<rich:modalPanel id="painel" width="350" height="150">
