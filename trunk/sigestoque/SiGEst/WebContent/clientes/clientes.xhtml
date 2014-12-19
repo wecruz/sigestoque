@@ -14,10 +14,15 @@
 		<h:form id="id_form">
 			<rich:spacer height="40px" />
 			<h:messages errorClass="alert alert-danger" />
-			<h:messages infoClass="alert alert-success" />
+			
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Clientes</div>
+				</div>
+				<div style="float: right">
+					<h:commandButton value="Pesquisar"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterClienteAction.pesquisarClientes()}" />
 				</div>
 				<div class="form-horizontal ">
 					<br /> <br /> <br />
@@ -72,6 +77,85 @@
 					</div>
 				</div>
 			</div>
+			<div style="float: right">
+				<h:commandButton action="#{manterClienteAction.salvarCliente()}"
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+			</div>
+			<rich:spacer height="20px" />
+
+
+			<s:div styleClass="form-group" id="id_tabela_funcio"
+				rendered="#{manterClienteAction.listCliente.size() >0}">
+				<div class="table-responsive, panel panel-info">
+					<div class="panel-heading">Lista de Clientes</div>
+					<rich:dataTable value="#{manterClienteAction.listCliente}"
+						var="cliente" id="id_div_tabela" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputText value="#{cliente.nome}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">CPF</f:facet>
+							<h:outputText value="#{cliente.cpf}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Operações</f:facet>
+							<a4j:commandLink
+								action="#{manterClienteAction.alterar(cliente,indice)}"
+								value="Alterar" ajaxSingle="true" reRender="idform" />
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Excluir"
+								action="#{manterClienteAction.selecionarCliente(cliente)}"
+								reRender="id_tabela_funcio,idform"
+								oncomplete="Richfaces.showModalPanel('painel')">
+							</a4j:commandLink>
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Vendas"
+								action="#"
+								reRender="id_tabela_funcio,idform">
+							</a4j:commandLink>
+
+						</rich:column>
+					</rich:dataTable>
+					<center>
+						<rich:datascroller for="id_div_tabela" maxPages="20"
+							styleClass="pagination"
+							page="#{manterClienteAction.qntClientes}" id="sc2"
+							reRender="sc1">
+						</rich:datascroller>
+					</center>
+					
+				</div>
+			</s:div>
+			<rich:modalPanel id="painel" width="350" height="150">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Excluir"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+					
+
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="Confirmar"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterClienteAction.excluirCliente()}" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						oncomplete="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel')" />
+				</center>
+			</rich:modalPanel>
+			
+			
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
