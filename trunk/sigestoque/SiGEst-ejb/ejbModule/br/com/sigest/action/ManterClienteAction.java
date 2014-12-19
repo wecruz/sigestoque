@@ -47,6 +47,7 @@ public class ManterClienteAction {
 		} else {
 			listCliente.set(indice, cliente);
 		}
+		cliente = new Cliente(new Endereco());
 		indice = null;
 	}
 
