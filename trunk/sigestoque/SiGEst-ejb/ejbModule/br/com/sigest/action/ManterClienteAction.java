@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.Create;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -40,6 +41,14 @@ public class ManterClienteAction {
 
 	private Integer indice;
 
+	
+	
+	@Create
+	public String create(){
+		return "/clientes/clientes.xhtml";
+	}
+	
+	
 	public void salvarCliente() {
 		vendasService.salvarCliente(cliente);
 		if (indice == null) {

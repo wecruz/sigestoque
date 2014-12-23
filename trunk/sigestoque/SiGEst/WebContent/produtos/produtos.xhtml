@@ -10,12 +10,156 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="id_form">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<div class="titulo">Manter Produtos</div>
+			<div class="panel-default form-horizontal ">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="titulo">Manter Produto</div>
+					</div>
+					<div class="panel-body">
+						<div style="float: right">
+							<h:commandButton value="Pesquisar"
+								styleClass="btn btn-default navbar-btn"
+								action="#s" />
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Codigo*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Descrição*: " />
+							</div>
+							<div class="col-sm-5">
+							
+							<h:inputTextarea value="" 
+							styleClass="form-control"/>
+							
+								
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Quantidade*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Quantidade minima " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Imagem do produto" />
+							</div>
+							<div class="col-sm-5">
+								<div class="coluna20pc">
+								
+										<rich:fileUpload
+											fileUploadListener="#"
+											autoclear="true" addControlLabel="Escolher"
+											immediateUpload="true" listHeight="0px" listWidth="0px"
+											id="uploadAnexo"
+											acceptedTypes="#{FORMATOS_DOCUMENTOS_VALIDOS}"
+											eventsQueue="queue-docs-foto"
+											ontyperejected="alert('Tipos válidos para anexar: PDF, JPEG, JPG, GIF, DOC, TXT e DOCX. Com tamanho menor ou igual a 50Mb');"
+											addButtonClass="btnUpload">
+											<a4j:support event="onfileuploadcomplete"
+												eventsQueue="queue-docs-foto-onfileuplpad"
+												ignoreDupResponses="true" />
+										</rich:fileUpload>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Produto" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Preço de custo " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Preço de venda " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Data de Validae" />
+							</div>
+							<div class="col-sm-5">
+								<rich:calendar value=""
+								styleClass="form-control"/>
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Fornecedor" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Categoria" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Nova unidade medida	" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+
+					</div>
 				</div>
-				
-				</div>
+			</div>
 		</h:form>
 	</ui:define>
 </ui:composition>

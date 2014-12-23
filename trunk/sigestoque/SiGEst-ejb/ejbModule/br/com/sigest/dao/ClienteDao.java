@@ -15,7 +15,6 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Cliente;
-import br.com.sigest.modelo.Fornecedor;
 
 
 /**
@@ -38,16 +37,11 @@ public class ClienteDao {
 		entityManager.remove(cliente);
 	}
 	
-	
-	
 	public List<Cliente> pesquisarClientes(Cliente cliente){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Cliente.class, "cliente");
 		if (cliente.getNome() != null) {
 			criteria.add(Restrictions.like("cliente.nome", cliente.getNome(), MatchMode.ANYWHERE).ignoreCase());
-		}
-		if (cliente.getCpf() != null) {
-			criteria.add(Restrictions.eq("cliente.cpf", cliente.getCpf()));
 		}
 		criteria.createAlias("cliente.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();

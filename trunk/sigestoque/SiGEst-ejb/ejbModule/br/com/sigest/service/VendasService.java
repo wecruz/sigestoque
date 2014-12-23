@@ -21,7 +21,6 @@ public class VendasService implements IVendasService{
 
 	@In
 	ClienteDao clienteDao;
-	
 
 	public void salvarCliente(Cliente cliente) {
 		clienteDao.salvarCliente(cliente);
