@@ -3,6 +3,7 @@ package br.com.sigest.service;
 import java.util.List;
 
 import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Produto;
 
 public interface IEstoqueService {
 	
@@ -13,7 +14,11 @@ public interface IEstoqueService {
 	
 	void excluirFornecedor(Fornecedor fornecedor);
 	
+	List<Fornecedor> fidAllFornecedor();
 	
+	void salvarProduto(Produto produto);
+	
+	 List<Produto> pesquisarProduto(Produto produto);
 //	List<Estado> pesquisarTodosEstados();
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);

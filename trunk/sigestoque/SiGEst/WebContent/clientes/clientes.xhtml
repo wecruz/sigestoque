@@ -13,16 +13,29 @@
 	<ui:define name="body">
 		<h:form id="id_form">
 			<rich:spacer height="40px" />
-			<h:messages errorClass="alert alert-danger" />
-			
+			<s:div rendered="#{manterClienteAction.flagMensagen}">
+				<rich:messages styleClass="alert alert-success"
+					rendered="#{manterClienteAction.flagMensagen}"
+					ajaxRendered="#{manterClienteAction.flagMensagen}" />
+			</s:div>
+			<s:div rendered="#{!manterClienteAction.flagMensagen}">
+				<rich:messages rendered="#{!manterClienteAction.flagMensagen}"
+					ajaxRendered="#{!manterClienteAction.flagMensagen}"
+					styleClass="alert alert-danger" />
+			</s:div>
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Clientes</div>
 				</div>
 				<div style="float: right">
 					<h:commandButton value="Pesquisar"
+						rendered="#{!manterClienteAction.flagPesquisar}"
 						styleClass="btn btn-default navbar-btn"
 						action="#{manterClienteAction.pesquisarClientes()}" />
+
+					<h:commandButton value="Novo Cadastro"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterClienteAction.novoCadastro()}" immediate="true" />
 				</div>
 				<div class="form-horizontal ">
 					<br /> <br /> <br />
@@ -32,7 +45,8 @@
 							<h:outputLabel value="Nome*: " />
 						</div>
 						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.nome}" styleClass="form-control" />
+							<h:inputText value="#{manterClienteAction.cliente.nome}"
+								styleClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group linha">
@@ -40,7 +54,8 @@
 							<h:outputLabel value="RG*: " />
 						</div>
 						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.rg}" styleClass="form-control" />
+							<h:inputText value="#{manterClienteAction.cliente.rg}"
+								styleClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group linha">
@@ -48,38 +63,52 @@
 							<h:outputLabel value="CPF*: " />
 						</div>
 						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.cpf}" styleClass="form-control" />
+							<h:inputText value="#{manterClienteAction.cliente.cpf}"
+								styleClass="form-control" />
 						</div>
 					</div>
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Telefone*: " />
+					<s:div rendered="#{manterClienteAction.flagNovoCadastro}">
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Telefone*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterClienteAction.cliente.endereco.telefone}"
+									styleClass="form-control" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.endereco.telefone}" styleClass="form-control" />
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Celular*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterClienteAction.cliente.endereco.celular}"
+									styleClass="form-control" />
+							</div>
 						</div>
-					</div>
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Celular*: " />
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Email*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterClienteAction.cliente.endereco.email}"
+									styleClass="form-control" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.endereco.celular}" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Email*: " />
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.endereco.email}" styleClass="form-control" />
-						</div>
-					</div>
+					</s:div>
 				</div>
 			</div>
 			<div style="float: right">
-				<h:commandButton action="#{manterClienteAction.salvarCliente()}"
+				<h:commandButton rendered="#{manterClienteAction.flagNovoCadastro}"
+					action="#{manterClienteAction.salvarCliente()}"
 					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+			</div>
+			<div style="float: right">
+				<h:commandButton action="#{manterClienteAction.cancelar()}"
+					value="Cancelar" styleClass="btn btn-default navbar-btn" />
 			</div>
 			<rich:spacer height="20px" />
 
@@ -103,16 +132,15 @@
 							<f:facet name="header">Operações</f:facet>
 							<a4j:commandLink
 								action="#{manterClienteAction.alterar(cliente,indice)}"
-								value="Alterar" ajaxSingle="true" reRender="idform" />
+								value="Alterar" ajaxSingle="true" reRender="id_form" />
 							<rich:spacer width="20px" />
 							<a4j:commandLink value="Excluir"
 								action="#{manterClienteAction.selecionarCliente(cliente)}"
-								reRender="id_tabela_funcio,idform"
+								reRender="id_tabela_funcio,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
 							</a4j:commandLink>
 							<rich:spacer width="20px" />
-							<a4j:commandLink value="Vendas"
-								action="#"
+							<a4j:commandLink value="Vendas" action="#"
 								reRender="id_tabela_funcio,idform">
 							</a4j:commandLink>
 
@@ -120,12 +148,11 @@
 					</rich:dataTable>
 					<center>
 						<rich:datascroller for="id_div_tabela" maxPages="20"
-							styleClass="pagination"
-							page="#{manterClienteAction.qntClientes}" id="sc2"
-							reRender="sc1">
+							styleClass="pagination" page="#{manterClienteAction.qntClientes}"
+							id="sc2" reRender="sc1">
 						</rich:datascroller>
 					</center>
-					
+
 				</div>
 			</s:div>
 			<rich:modalPanel id="painel" width="350" height="150">
@@ -136,7 +163,7 @@
 				</f:facet>
 				<f:facet name="controls">
 					<h:panelGroup>
-					
+
 
 					</h:panelGroup>
 				</f:facet>
@@ -153,9 +180,9 @@
 						onclick="Richfaces.hideModalPanel('painel')" />
 				</center>
 			</rich:modalPanel>
-			
-			
-			
+
+
+
 		</h:form>
 	</ui:define>
 </ui:composition>

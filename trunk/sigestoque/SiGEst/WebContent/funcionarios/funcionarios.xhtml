@@ -13,10 +13,17 @@
 	<ui:define name="body">
 		<h:form id="id_form">
 			<rich:spacer height="40px" />
-			<h:messages errorClass="alert alert-danger"
-				rendered="#{!manterFuncionarioAction.flagMensagen}" />
-			<h:messages infoClass="alert alert-success"
-				rendered="#{manterFuncionarioAction.flagMensagen}" />
+			
+			<s:div rendered="#{manterFuncionarioAction.flagMensagen}">
+				<rich:messages styleClass="alert alert-success"
+					rendered="#{manterFuncionarioAction.flagMensagen}"
+					ajaxRendered="#{manterFuncionarioAction.flagMensagen}" />
+			</s:div>
+			<s:div rendered="#{!manterFuncionarioAction.flagMensagen}">
+				<rich:messages rendered="#{!manterFuncionarioAction.flagMensagen}"
+					ajaxRendered="#{!manterFuncionarioAction.flagMensagen}"
+					styleClass="alert alert-danger" />
+			</s:div>
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Manter Funcionarios</div>

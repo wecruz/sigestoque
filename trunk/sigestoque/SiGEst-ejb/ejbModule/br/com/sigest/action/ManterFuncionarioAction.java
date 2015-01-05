@@ -64,7 +64,6 @@ public class ManterFuncionarioAction {
 	
 	@Create
 	public String create(){
-		
 		return "/funcionarios/funcionarios.xhtml";
 	}
 	
@@ -93,7 +92,6 @@ public class ManterFuncionarioAction {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			setFlagMensagen(true);
 			funcionario = new Funcionario(new Endereco());
-			setFlagMensagen(null);
 		}
 	}
 	

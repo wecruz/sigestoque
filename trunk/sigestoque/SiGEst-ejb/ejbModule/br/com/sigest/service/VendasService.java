@@ -23,6 +23,7 @@ public class VendasService implements IVendasService{
 	ClienteDao clienteDao;
 
 	public void salvarCliente(Cliente cliente) {
+		cliente.getEndereco().setCliente(cliente);
 		clienteDao.salvarCliente(cliente);
 	
 	}

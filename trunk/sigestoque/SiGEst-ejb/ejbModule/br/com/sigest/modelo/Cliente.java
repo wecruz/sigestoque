@@ -30,7 +30,7 @@ public class Cliente {
 	
 	@OneToOne(mappedBy="cliente", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
-	private Endereco endereco;
+	private Endereco endereco = new Endereco();
 	
 	public Cliente() {
 		super();

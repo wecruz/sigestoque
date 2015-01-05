@@ -10,25 +10,49 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="id_form">
+		<rich:spacer height="40px" />
+			<s:div rendered="#{manterProdutoAction.flagMensagen}">
+				<rich:messages styleClass="alert alert-success"
+					rendered="#{manterProdutoAction.flagMensagen}"
+					ajaxRendered="#{manterProdutoAction.flagMensagen}" />
+			</s:div>
+			<s:div rendered="#{!manterProdutoAction.flagMensagen}">
+				<rich:messages rendered="#{!manterProdutoAction.flagMensagen}"
+					ajaxRendered="#{!manterProdutoAction.flagMensagen}"
+					styleClass="alert alert-danger" />
+			</s:div>
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="titulo">Manter Produto</div>
 					</div>
+					<div style="float: right">
+						<h:commandButton value="Pesquisar"
+							rendered="#{!manterProdutoAction.flagPesquisar}"
+							styleClass="btn btn-default navbar-btn"
+							action="#{manterProdutoAction.pesquisarProduto()}" />
+
+						<h:commandButton value="Novo Cadastro"
+							styleClass="btn btn-default navbar-btn"
+							action="#" immediate="true" />
+					</div>
 					<div class="panel-body">
-						<div style="float: right">
-							<h:commandButton value="Pesquisar"
-								styleClass="btn btn-default navbar-btn"
-								action="#s" />
-						</div>
 
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Codigo*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText value=""
+								<h:inputText value="#{manterProdutoAction.produto.codigo}"
 									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Produto" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterProdutoAction.produto.nomeProduto}" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group linha">
@@ -36,11 +60,9 @@
 								<h:outputLabel value="Descrição*: " />
 							</div>
 							<div class="col-sm-5">
-							
-							<h:inputTextarea value="" 
-							styleClass="form-control"/>
-							
-								
+								<h:inputTextarea
+									value="#{manterProdutoAction.produto.descricao}"
+									styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group linha">
@@ -48,8 +70,7 @@
 								<h:outputLabel value="Quantidade*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value=""
+								<h:inputText value="#{manterProdutoAction.produto.quantidade}"
 									styleClass="form-control" />
 							</div>
 						</div>
@@ -59,7 +80,7 @@
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
-									value=""
+									value="#{manterProdutoAction.produto.quantidadeMini}"
 									styleClass="form-control" />
 							</div>
 						</div>
@@ -67,43 +88,33 @@
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Imagem do produto" />
 							</div>
+							<div class="col-sm-2 control-label">
+								<h:graphicImage value="/img/image_up.png" />
+							</div>
 							<div class="col-sm-5">
 								<div class="coluna20pc">
-								
-										<rich:fileUpload
-											fileUploadListener="#"
-											autoclear="true" addControlLabel="Escolher"
-											immediateUpload="true" listHeight="0px" listWidth="0px"
-											id="uploadAnexo"
-											acceptedTypes="#{FORMATOS_DOCUMENTOS_VALIDOS}"
-											eventsQueue="queue-docs-foto"
-											ontyperejected="alert('Tipos válidos para anexar: PDF, JPEG, JPG, GIF, DOC, TXT e DOCX. Com tamanho menor ou igual a 50Mb');"
-											addButtonClass="btnUpload">
-											<a4j:support event="onfileuploadcomplete"
-												eventsQueue="queue-docs-foto-onfileuplpad"
-												ignoreDupResponses="true" />
-										</rich:fileUpload>
+									<rich:fileUpload fileUploadListener="#" autoclear="true"
+										addControlLabel="Escolher" immediateUpload="true"
+										listHeight="0px" listWidth="0px" id="uploadAnexo"
+										acceptedTypes="#{FORMATOS_DOCUMENTOS_VALIDOS}"
+										eventsQueue="queue-docs-foto"
+										ontyperejected="alert('Tipos válidos para anexar: PDF, JPEG, JPG, GIF, DOC, TXT e DOCX. Com tamanho menor ou igual a 50Mb');"
+										addButtonClass="btnUpload">
+										<a4j:support event="onfileuploadcomplete"
+											eventsQueue="queue-docs-foto-onfileuplpad"
+											ignoreDupResponses="true" />
+									</rich:fileUpload>
 								</div>
 							</div>
 						</div>
 
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Produto" />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value=""
-									styleClass="form-control" />
-							</div>
-						</div>
+						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Preço de custo " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value=""
+								<h:inputText value="#{manterProdutoAction.produto.precoCusto}"
 									styleClass="form-control" />
 							</div>
 						</div>
@@ -112,28 +123,50 @@
 								<h:outputLabel value="Preço de venda " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value=""
+								<h:inputText value="#{manterProdutoAction.produto.precoVenda}"
 									styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Data de Validae" />
+								<h:outputLabel value="Data de Validade" />
 							</div>
 							<div class="col-sm-5">
-								<rich:calendar value=""
-								styleClass="form-control"/>
+								<rich:calendar 
+									id="data"
+									value="#{manterProdutoAction.produto.dataValidade}"
+									popup="true" 
+									enableManualInput="true" 
+									datePattern="dd/MM/yyyy"
+									locale="pt_Br" 
+									inputClass="mask-data"/>
 							</div>
 						</div>
-						<div class="form-group linha">
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Fornecedor" />
+								<h:outputLabel value="Fornecedor: " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value=""
-									styleClass="form-control" />
+								<h:selectOneMenu
+									value="#{manterProdutoAction.produto.fornecedor}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="Selecione"
+										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
+									</s:selectItems>
+								</h:selectOneMenu>
 							</div>
 						</div>
 						<div class="form-group linha">
@@ -141,8 +174,7 @@
 								<h:outputLabel value="Categoria" />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value=""
+								<h:inputText value="#{manterProdutoAction.produto.categoria}"
 									styleClass="form-control" />
 							</div>
 						</div>
@@ -152,7 +184,7 @@
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
-									value=""
+									value="#{manterProdutoAction.produto.novaUnidadeMedida}"
 									styleClass="form-control" />
 							</div>
 						</div>
@@ -160,6 +192,71 @@
 					</div>
 				</div>
 			</div>
+			<div style="float: right">
+				<h:commandButton action="#{manterProdutoAction.salvarProduto()}"
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+			</div>
+
+			<rich:spacer height="20px" />
+
+
+			<s:div styleClass="form-group" id="id_tabela_produto"
+				rendered="#{manterProdutoAction.listProdutos.size() >0}">
+				<div class="table-responsive, panel panel-info">
+					<div class="panel-heading">Lista de Produtos</div>
+					<rich:dataTable value="#{manterProdutoAction.listProdutos}"
+						var="produto" id="id_div_tabela" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Codigo</f:facet>
+							<h:outputText value="#{produto.codigo}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Descrição</f:facet>
+							<h:outputText value="#{produto.descricao}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Operações</f:facet>
+							<a4j:commandLink action="#{manterProdutoAction.alterar(produto,indice)}" value="Alterar" ajaxSingle="true"
+								reRender="id_form" />
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Excluir" action="#"
+								reRender="id_tabela_funcio,id_form"
+								oncomplete="Richfaces.showModalPanel('painel')">
+							</a4j:commandLink>
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Vendas" action="#"
+								reRender="id_tabela_produto,id_form">
+							</a4j:commandLink>
+
+						</rich:column>
+					</rich:dataTable>
+				</div>
+			</s:div>
+			<rich:modalPanel id="painel" width="350" height="150">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Excluir"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+
+
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="Confirmar"
+						styleClass="btn btn-default navbar-btn" action="#"
+						ajaxSingle="true" reRender="id_form,id_div_tabela"
+						oncomplete="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel')" />
+				</center>
+			</rich:modalPanel>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -41,7 +41,9 @@ public class ManterClienteAction {
 
 	private Integer indice;
 
-	
+	private Boolean flagMensagen;
+	private boolean flagNovoCadastro;
+	private boolean flagPesquisar;
 	
 	@Create
 	public String create(){
@@ -56,12 +58,16 @@ public class ManterClienteAction {
 		} else {
 			listCliente.set(indice, cliente);
 		}
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		setFlagMensagen(true);
 		cliente = new Cliente(new Endereco());
 		indice = null;
 	}
 
 	public void alterar(Cliente cliente, int indice) {
 		setIndice(indice);
+		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
 		this.cliente = cliente;
 	}
 
@@ -74,6 +80,7 @@ public class ManterClienteAction {
 			listCliente = new ArrayList<Cliente>();
 			listCliente = vendasService.pesquisarClientes(cliente);
 			if (listCliente.isEmpty()) {
+				setFlagMensagen(false);
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um registro encontrado.", ""));
 			}
 		}
@@ -82,14 +89,29 @@ public class ManterClienteAction {
 	public void excluirCliente() {
 		listCliente.remove(getClienteSelecionado());
 		vendasService.removerCliente(getClienteSelecionado());
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		setFlagMensagen(true);
 	}
 
+	
+	public void novoCadastro(){
+		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
+		cliente = new Cliente();
+	}
+	
+	public String cancelar(){
+		cliente = new Cliente();
+		indice = null;
+		listCliente = new ArrayList<Cliente>();
+		setFlagNovoCadastro(false);
+		setFlagPesquisar(false);
+		return "/clientes/clientes.xhtml";
+	}
+	
 	public boolean validarCriterioPesquisa() {
 		if (cliente.getNome().isEmpty()) {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Digite um critério de pesquisa.", ""));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
 			return false;
 		} else {
 			return true;
@@ -134,5 +156,35 @@ public class ManterClienteAction {
 
 	public void setClienteSelecionado(Cliente clienteSelecionado) {
 		this.clienteSelecionado = clienteSelecionado;
+	}
+
+
+	public Boolean getFlagMensagen() {
+		return flagMensagen;
+	}
+
+
+	public void setFlagMensagen(Boolean flagMensagen) {
+		this.flagMensagen = flagMensagen;
+	}
+
+
+	public boolean isFlagNovoCadastro() {
+		return flagNovoCadastro;
+	}
+
+
+	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
+		this.flagNovoCadastro = flagNovoCadastro;
+	}
+
+
+	public boolean isFlagPesquisar() {
+		return flagPesquisar;
+	}
+
+
+	public void setFlagPesquisar(boolean flagPesquisar) {
+		this.flagPesquisar = flagPesquisar;
 	}
 }

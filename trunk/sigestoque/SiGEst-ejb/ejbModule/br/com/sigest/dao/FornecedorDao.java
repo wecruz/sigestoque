@@ -36,6 +36,12 @@ public class FornecedorDao {
 		entityManager.merge(fornecedor);
 	}
 	
+	public List<Fornecedor> fidAllFornecedor(){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Fornecedor.class, "fornecedor");
+		return criteria.list();
+	}
+	
 	public List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Fornecedor.class, "fornecedor");
