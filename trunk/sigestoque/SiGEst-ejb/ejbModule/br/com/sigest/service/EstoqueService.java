@@ -57,6 +57,10 @@ public class EstoqueService implements IEstoqueService{
 		produtoDao.salvarProduto(produto);
 	}
 	
+	public void deletarProduto(Produto produto) {
+		produtoDao.deletarProduto(produto);
+	}
+	
 //	public List<Estado> pesquisarTodosEstados() {
 //		return fornecedorDao.pesquisarTodosEstados();
 //	}
@@ -77,7 +81,5 @@ public class EstoqueService implements IEstoqueService{
 
 
 
-	
-	
 	
 }

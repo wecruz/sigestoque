@@ -17,6 +17,7 @@ import br.com.sigest.modelo.Cidade;
 import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IEstoqueService;
 
 /**
@@ -45,6 +46,8 @@ public class ManterFornecedoreAction {
 	private List<Fornecedor> listFornecedores = new ArrayList<Fornecedor>();
 	
 	
+	private boolean flagNovoCadastro;
+	private boolean flagPesquisar;
 	private Boolean flagMensagen;
 	
 	
@@ -85,10 +88,10 @@ public class ManterFornecedoreAction {
 //		return estados;
 //	}
 	
-	public List<Cidade> pesquisarCidadesPorEstados(){
+//	public List<Cidade> pesquisarCidadesPorEstados(){
 //		cidades =	estoqueService.pesquisarCidadesPorEstados(fornecedor.getEstado());
-		return cidades;
-	}
+//		return cidades;
+//	}
 
 	
 	public void salvar() {
@@ -129,11 +132,21 @@ public class ManterFornecedoreAction {
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
 	}
-	public void cancelar(){
-		
+	
+	public String cancelar(){
+		setFlagNovoCadastro(false);
+		setFlagPesquisar(false);
+		fornecedor = new Fornecedor(new Endereco());
+		listFornecedores = new ArrayList<Fornecedor>();
+		fornecedorSelecionado = new Fornecedor(new Endereco()); 
+		return "/fornecedores/fornecedores.xhtml";
 	}
 	
-	
+	public void novoCadastro(){
+		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
+		fornecedor = new Fornecedor(new Endereco());
+	}
 	
 	public boolean validarCamposObrigatorios(){
 		boolean campo = true;
@@ -248,6 +261,30 @@ public class ManterFornecedoreAction {
 
 	public void setFornecedorSelecionado(Fornecedor fornecedorSelecionado) {
 		this.fornecedorSelecionado = fornecedorSelecionado;
+	}
+
+
+
+	public boolean isFlagPesquisar() {
+		return flagPesquisar;
+	}
+
+
+
+	public void setFlagPesquisar(boolean flagPesquisar) {
+		this.flagPesquisar = flagPesquisar;
+	}
+
+
+
+	public boolean isFlagNovoCadastro() {
+		return flagNovoCadastro;
+	}
+
+
+
+	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
+		this.flagNovoCadastro = flagNovoCadastro;
 	}
 
 

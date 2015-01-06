@@ -1,18 +1,18 @@
 package br.com.sigest.enums;
 
-public enum CargoFuncao {
+public enum EnumCategoria {
 
-	ADMINISTRADOR("Administrador"),
-	FUNCIONARIO("Funcionario");
+	ELETRONICOS("Eletrônicos"),
+	LIMPEZA("Limpeza");
 	
 	private final String nome;
 
-	private CargoFuncao(String nome) {
+	private EnumCategoria(String nome) {
 		this.nome = nome;
 	}
 
 	public String getNome() {
 		return nome;
-	}	
+	}
 	
 }

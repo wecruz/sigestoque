@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.jboss.beans.metadata.api.annotations.Create;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Factory;
@@ -13,6 +14,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import br.com.sigest.enums.EnumCategoria;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.service.IEstoqueService;
@@ -33,37 +35,55 @@ public class ManterProdutoAction {
 
 	private Produto produto = new Produto(new Fornecedor());
 	
-	private List<Fornecedor> listFornecedor = new ArrayList<Fornecedor>();
-	
+//	@In
+//	private List<Fornecedor> listFornecedor;
+//	
 	private List<Produto> listProdutos = new ArrayList<Produto>();
 
 	private Boolean flagMensagen;
 	private boolean flagNovoCadastro;
 	private boolean flagPesquisar;
 	
+	private Produto produtoSelecionado = new Produto(new Fornecedor());
 	
 	private Integer indice;
 
+	@Create
+	public String create(){
+		return "/produtos/produtos.xhtml";
+	}
 	
 	@Factory(value="fidAllFornecedor" , scope=ScopeType.APPLICATION)
 	public List<Fornecedor> initFornecedor(){
-		return listFornecedor = estoqueService.fidAllFornecedor();
+		return estoqueService.fidAllFornecedor();
 	}
 	
+	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
+	public EnumCategoria[] initCategorias(){
+		
+		return EnumCategoria.values();
+	}
 	
-	public void salvarProduto(){
-		listProdutos.add(produto);
+	public void salvarProduto() {
+		if (indice != null) {
+			listProdutos.set(indice, produto);
+		} else {
+			listProdutos.add(produto);
+		}
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
 		produto = new Produto(new Fornecedor());
+		setIndice(null);
 	}
 	
 	public void pesquisarProduto(){
-		listProdutos = new ArrayList<Produto>();
-		listProdutos = estoqueService.pesquisarProduto(produto);
-		if(listProdutos.isEmpty()){
-			setFlagMensagen(false);
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um registro encontrado.", ""));
+		if(validarCriterioPesquisa()){
+			listProdutos = new ArrayList<Produto>();
+			listProdutos = estoqueService.pesquisarProduto(produto);
+			if(listProdutos.isEmpty()){
+				setFlagMensagen(false);
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um registro encontrado.", ""));
+			}			
 		}
 	}
 	
@@ -72,23 +92,54 @@ public class ManterProdutoAction {
 		this.produto = produto;
 	}
 	
+	public void selecionarProduto(Produto produto){
+		setProdutoSelecionado(produto);
+		
+	}
+	
+	public void excluirProduto(){
+		listProdutos.remove(produtoSelecionado);
+		estoqueService.deletarProduto(produto);
+	}
+	
+	public void novoCadastro(){
+		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
+		produto = new Produto(new Fornecedor());
+		produtoSelecionado = new Produto(new Fornecedor());
+	}
+	
+	
+	public Boolean validarCriterioPesquisa(){
+		if (produto.getNomeProduto().isEmpty()
+				&& produto.getCodigo() == null
+				&& produto.getDescricao().isEmpty()
+				&& produto.getCategoria() == null
+				&& produto.getFornecedor() == null) {
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public String cancelar(){
+		setFlagNovoCadastro(false);
+		setFlagPesquisar(false);
+		produto = new Produto(new Fornecedor());
+		listProdutos = new ArrayList<Produto>();
+		return "/produtos/produtos.xhtml";
+	}
+	
+	
+	
+	
 	public Produto getProduto() {
 		return produto;
 	}
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
-	}
-
-	public List<Fornecedor> getListFornecedor() {
-		return listFornecedor;
-	}
-
-
-
-
-	public void setListFornecedor(List<Fornecedor> listFornecedor) {
-		this.listFornecedor = listFornecedor;
 	}
 
 	public List<Produto> getListProdutos() {
@@ -137,6 +188,16 @@ public class ManterProdutoAction {
 
 	public void setIndice(Integer indice) {
 		this.indice = indice;
+	}
+
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 	
 	

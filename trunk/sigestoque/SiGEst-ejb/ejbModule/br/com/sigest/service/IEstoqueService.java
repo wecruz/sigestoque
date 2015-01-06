@@ -18,7 +18,10 @@ public interface IEstoqueService {
 	
 	void salvarProduto(Produto produto);
 	
-	 List<Produto> pesquisarProduto(Produto produto);
+	List<Produto> pesquisarProduto(Produto produto);
+	 
+	void deletarProduto(Produto produto);
+	
 //	List<Estado> pesquisarTodosEstados();
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);

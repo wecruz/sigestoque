@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.sigest.enums.CargoFuncao;
+import br.com.sigest.enums.EnumCargoFuncao;
 
 /**
  * @author Werick Silva
@@ -46,7 +46,7 @@ public class Funcionario {
 	
 	@Column(name = "cargoFuncao")
 	@Enumerated(EnumType.STRING)
-	private CargoFuncao cargoFuncao;
+	private EnumCargoFuncao cargoFuncao;
 	
 	@OneToOne(mappedBy="funcionario", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
@@ -110,11 +110,11 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	public CargoFuncao getCargoFuncao() {
+	public EnumCargoFuncao getCargoFuncao() {
 		return cargoFuncao;
 	}
 
-	public void setCargoFuncao(CargoFuncao cargoFuncao) {
+	public void setCargoFuncao(EnumCargoFuncao cargoFuncao) {
 		this.cargoFuncao = cargoFuncao;
 	}
 

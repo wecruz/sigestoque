@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.sigest.enums.EnumCargoFuncao;
+import br.com.sigest.enums.EnumCategoria;
 
 @Entity
 @Table(name="tb_produto")
@@ -34,10 +39,10 @@ public class Produto {
 	private String nomeProduto;
 	
 	@Column(name ="quantidade")
-	private Integer quantidade;
+	private BigInteger quantidade;
 	
 	@Column(name ="quantidadeMini")
-	private Integer quantidadeMini;
+	private BigInteger quantidadeMini;
 	
 	@Column(name ="precoCusto")
 	private Float precoCusto;
@@ -52,8 +57,9 @@ public class Produto {
 	@Temporal(TemporalType.DATE)
 	private Date dataValidade;
 	
-	@Column(name="categoria")
-	private String categoria;
+	@Column(name = "categoria")
+	@Enumerated(EnumType.STRING)
+	private EnumCategoria categoria;
 	
 	@Column(name = "novaUnidadeMedida")
 	private String novaUnidadeMedida;
@@ -90,36 +96,12 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public Integer getQuantidadeMini() {
-		return quantidadeMini;
-	}
-
-	public void setQuantidadeMini(Integer quantidadeMini) {
-		this.quantidadeMini = quantidadeMini;
-	}
-
 	public Date getDataValidade() {
 		return dataValidade;
 	}
 
 	public void setDataValidade(Date dataValidade) {
 		this.dataValidade = dataValidade;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 
 	public String getNovaUnidadeMedida() {
@@ -177,6 +159,31 @@ public class Produto {
 	public void setCodigo(BigInteger codigo) {
 		this.codigo = codigo;
 	}
+
+	public EnumCategoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(EnumCategoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public BigInteger getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(BigInteger quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public BigInteger getQuantidadeMini() {
+		return quantidadeMini;
+	}
+
+	public void setQuantidadeMini(BigInteger quantidadeMini) {
+		this.quantidadeMini = quantidadeMini;
+	}
+	
 	
 	
 }

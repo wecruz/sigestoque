@@ -17,7 +17,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
-import br.com.sigest.enums.CargoFuncao;
+import br.com.sigest.enums.EnumCargoFuncao;
 import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IUsuarioService;
@@ -56,9 +56,9 @@ public class ManterFuncionarioAction {
 	private Integer qntFuncionarios = 10;
 	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
-	public CargoFuncao[] initCargoFuncao(){
+	public EnumCargoFuncao[] initCargoFuncao(){
 		
-		return CargoFuncao.values();
+		return EnumCargoFuncao.values();
 	}
 	
 	

@@ -38,4 +38,8 @@ public class ProdutoDao {
 		}
 		return criteria.list();
 	}
+	
+	public void deletarProduto(Produto produto){
+		entityManager.remove(produto);
+	}
 }
