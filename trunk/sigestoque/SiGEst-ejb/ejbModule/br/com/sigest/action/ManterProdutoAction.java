@@ -69,7 +69,7 @@ public class ManterProdutoAction {
 	}
 	
 	
-	public void uploadFileFoto(UploadEvent event) throws Exception {
+	public void uploadFileImagem(UploadEvent event) throws Exception {
 
 		UploadItem item = event.getUploadItem();
 
