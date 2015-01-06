@@ -19,7 +19,41 @@
 				</div>
 
 				<div class="form-horizontal ">
+					<br />
+					<rich:spacer width="20px" />
+					<h:outputLabel value="Vendas Para:" />
+					<rich:spacer width="20px" />
+				
+
 					<br /> <br /> <br />
+
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="CPF*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="" styleClass="form-control" />
+						</div>
+						<div class="col-sm-2 control-label">
+							<h:commandButton value="Procurar"
+								styleClass="btn btn-default navbar-btn" action="#" />
+						</div>
+					</div>
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Produto*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="" styleClass="form-control" />
+						</div>
+					</div>
+					<div class="form-group linha">
+						<div class="col-sm-10 control-label">
+							<h2>
+								<h:outputFormat value="TOTAL:" styleClass="page-header" />
+							</h2>
+						</div>
+					</div>
 
 				</div>
 			</div>

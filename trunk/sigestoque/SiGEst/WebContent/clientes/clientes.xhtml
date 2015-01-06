@@ -105,8 +105,7 @@
 				<h:commandButton rendered="#{manterClienteAction.flagNovoCadastro}"
 					action="#{manterClienteAction.salvarCliente()}"
 					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
-			</div>
-			<div style="float: right">
+			
 				<h:commandButton action="#{manterClienteAction.cancelar()}"
 					value="Cancelar" styleClass="btn btn-default navbar-btn" />
 			</div>
@@ -140,10 +139,10 @@
 								oncomplete="Richfaces.showModalPanel('painel')">
 							</a4j:commandLink>
 							<rich:spacer width="20px" />
-							<a4j:commandLink value="Vendas" action="#"
-								reRender="id_tabela_funcio,idform">
+							<a4j:commandLink value="Vendas"
+								action="#{manterVendasAction.manipulaVendas(cliente)}"
+								reRender="id_form">
 							</a4j:commandLink>
-
 						</rich:column>
 					</rich:dataTable>
 					<center>
