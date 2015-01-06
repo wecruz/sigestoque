@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.sigest.enums.EnumCargoFuncao;
 import br.com.sigest.enums.EnumCategoria;
 
 @Entity
@@ -70,11 +69,10 @@ public class Produto {
 	private Fornecedor fornecedor = new Fornecedor();
 	
 	public Produto() {
-		super();
+
 	}
 	
 	public Produto(Fornecedor fornecedor) {
-		super();
 		this.fornecedor = fornecedor;
 	}
 	

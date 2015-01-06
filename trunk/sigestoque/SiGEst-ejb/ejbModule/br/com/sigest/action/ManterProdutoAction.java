@@ -1,5 +1,9 @@
 package br.com.sigest.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +17,15 @@ import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
+import org.richfaces.event.UploadEvent;
+import org.richfaces.model.UploadItem;
 
 import br.com.sigest.enums.EnumCategoria;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
+import br.com.sigest.modelo.UploadedFile;
 import br.com.sigest.service.IEstoqueService;
+import br.com.sigest.util.UploadFileUtil;
 
 /**
  * 
@@ -33,8 +41,8 @@ public class ManterProdutoAction {
 	@In
 	IEstoqueService estoqueService;
 
-	private Produto produto = new Produto(new Fornecedor());
-	
+	private Produto produto = new Produto();
+//	
 //	@In
 //	private List<Fornecedor> listFornecedor;
 //	
@@ -48,10 +56,31 @@ public class ManterProdutoAction {
 	
 	private Integer indice;
 
+	
+	private UploadedFile file;
+	
+	@In(required = false)
+	private UploadFileUtil fileUtil;
+	
+	
 	@Create
 	public String create(){
 		return "/produtos/produtos.xhtml";
 	}
+	
+	
+	public void uploadFileFoto(UploadEvent event) throws Exception {
+
+		UploadItem item = event.getUploadItem();
+
+		this.file = new UploadedFile();
+		this.file.setDados(fileToByteArray(item.getFile()));
+		this.file.setNome(item.getFileName());
+		this.file.setMime(item.getContentType());
+		this.file.setCaminho(item.getFile().getPath());
+		this.file.setTamanho(item.getFile().length());
+	}
+	
 	
 	@Factory(value="fidAllFornecedor" , scope=ScopeType.APPLICATION)
 	public List<Fornecedor> initFornecedor(){
@@ -60,7 +89,6 @@ public class ManterProdutoAction {
 	
 	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
 	public EnumCategoria[] initCategorias(){
-		
 		return EnumCategoria.values();
 	}
 	
@@ -70,9 +98,22 @@ public class ManterProdutoAction {
 		} else {
 			listProdutos.add(produto);
 		}
+		
+		UploadedFile upFile = new UploadedFile();
+		try {
+			fileUtil = new UploadFileUtil();
+			upFile = fileUtil.salvarArquivo(file, null);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		produto.setLinkImagem(upFile.getCaminho());
+		estoqueService.salvarProduto(produto);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
 		produto = new Produto(new Fornecedor());
+		file = new UploadedFile();
+		fileUtil = new UploadFileUtil();
 		setIndice(null);
 	}
 	
@@ -87,9 +128,18 @@ public class ManterProdutoAction {
 		}
 	}
 	
-	public void alterar(Produto produto, int indice){
+	public void alterar(Produto produto, int indice) {
 		this.indice = indice;
 		this.produto = produto;
+		setFlagNovoCadastro(true);
+		setFlagPesquisar(true);
+		file = new UploadedFile();
+
+		try {
+			file.setDados(fileToByteArray(new File(produto.getLinkImagem())));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void selecionarProduto(Produto produto){
@@ -99,14 +149,19 @@ public class ManterProdutoAction {
 	
 	public void excluirProduto(){
 		listProdutos.remove(produtoSelecionado);
-		estoqueService.deletarProduto(produto);
+		estoqueService.deletarProduto(produtoSelecionado);
+		setFlagMensagen(true);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	}
 	
-	public void novoCadastro(){
+	public String novoCadastro(){
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		produto = new Produto(new Fornecedor());
 		produtoSelecionado = new Produto(new Fornecedor());
+		file = new UploadedFile();
+		fileUtil = new UploadFileUtil();
+		return create();
 	}
 	
 	
@@ -128,11 +183,24 @@ public class ManterProdutoAction {
 		setFlagPesquisar(false);
 		produto = new Produto(new Fornecedor());
 		listProdutos = new ArrayList<Produto>();
+		file = new UploadedFile();
+		fileUtil = new UploadFileUtil();
 		return "/produtos/produtos.xhtml";
 	}
 	
 	
-	
+	public byte[] fileToByteArray(File file) throws IOException {
+		InputStream is = new FileInputStream(file);
+		long length = file.length();
+		byte[] bytes = new byte[(int) length];
+		int offset = 0, n = 0;
+		while (offset < bytes.length
+				&& (n = is.read(bytes, offset, bytes.length - offset)) >= 0) {
+			offset += n;
+		}
+		is.close();
+		return bytes;
+	}
 	
 	public Produto getProduto() {
 		return produto;
@@ -150,11 +218,9 @@ public class ManterProdutoAction {
 		this.listProdutos = listProdutos;
 	}
 
-
 	public Boolean getFlagMensagen() {
 		return flagMensagen;
 	}
-
 
 	public void setFlagMensagen(Boolean flagMensagen) {
 		this.flagMensagen = flagMensagen;
@@ -165,11 +231,9 @@ public class ManterProdutoAction {
 		return flagNovoCadastro;
 	}
 
-
 	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
 		this.flagNovoCadastro = flagNovoCadastro;
 	}
-
 
 	public boolean isFlagPesquisar() {
 		return flagPesquisar;
@@ -180,11 +244,9 @@ public class ManterProdutoAction {
 		this.flagPesquisar = flagPesquisar;
 	}
 
-
 	public Integer getIndice() {
 		return indice;
 	}
-
 
 	public void setIndice(Integer indice) {
 		this.indice = indice;
@@ -199,8 +261,14 @@ public class ManterProdutoAction {
 	public void setProdutoSelecionado(Produto produtoSelecionado) {
 		this.produtoSelecionado = produtoSelecionado;
 	}
-	
-	
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
 	
 
 }

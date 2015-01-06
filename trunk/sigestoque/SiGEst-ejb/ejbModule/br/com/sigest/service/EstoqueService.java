@@ -53,7 +53,9 @@ public class EstoqueService implements IEstoqueService{
 	}
 	
 	public void salvarProduto(Produto produto) {
-		produto.getFornecedor().setProduto(produto);
+		if(produto.getFornecedor() !=null){
+			produto.getFornecedor().setProduto(produto);
+		}
 		produtoDao.salvarProduto(produto);
 	}
 	

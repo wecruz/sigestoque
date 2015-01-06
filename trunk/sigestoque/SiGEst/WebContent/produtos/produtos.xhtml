@@ -120,21 +120,36 @@
 									<h:outputLabel value="Imagem do produto" />
 								</div>
 								<div class="col-sm-2 control-label">
-									<h:graphicImage value="/img/image_up.png" />
+								
+									<s:graphicImage value="/img/image_up.png" rendered="#{manterProdutoAction.file.dados == null}"
+										id="id_Foto" />
+									
+									
+										<s:graphicImage id="fotoIMG" rendered="#{manterProdutoAction.file.dados !=null}"
+											value="#{manterProdutoAction.file.dados}"
+											style="padding-left:2px">
+											<s:transformImageSize height="150" width="140" />
+										</s:graphicImage>
+									
 								</div>
 								<div class="col-sm-5">
 									<div class="coluna20pc">
-										<rich:fileUpload fileUploadListener="#" autoclear="true"
-											addControlLabel="Escolher" immediateUpload="true"
-											listHeight="0px" listWidth="0px" id="uploadAnexo"
-											acceptedTypes="#{FORMATOS_DOCUMENTOS_VALIDOS}"
+
+										<rich:fileUpload
+											fileUploadListener="#{manterProdutoAction.uploadFileFoto}"
+											autoclear="true" 
+											addControlLabel="Escolher imagem" immediateUpload="true"
+											listHeight="0px" listWidth="0px" ajaxSingle="true"
+											id="uploadArquivoFoto"
+											acceptedTypes="jpg, jpeg, JPG, JPEG, gif, GIF, PNG, png"
 											eventsQueue="queue-docs-foto"
-											ontyperejected="alert('Tipos válidos para anexar: PDF, JPEG, JPG, GIF, DOC, TXT e DOCX. Com tamanho menor ou igual a 50Mb');"
-											addButtonClass="btnUpload">
-											<a4j:support event="onfileuploadcomplete"
-												eventsQueue="queue-docs-foto-onfileuplpad"
-												ignoreDupResponses="true" />
+											ontyperejected="alert('Tipos válidos para anexar: JPEG, JPG, GIF ou PNG. Com tamanho menor ou igual a 50Mb.');">
+											<a4j:support event="onuploadcomplete" 
+												reRender="fotoIMG,uploadArquivoFoto,id_Foto,id_form"
+												eventsQueue="queue-rerender-fotos" />
 										</rich:fileUpload>
+
+							
 									</div>
 								</div>
 							</div>
