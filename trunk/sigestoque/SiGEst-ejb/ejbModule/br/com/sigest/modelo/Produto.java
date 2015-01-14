@@ -64,9 +64,9 @@ public class Produto {
 	private String novaUnidadeMedida;
 
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="fornecedor")
-	private Fornecedor fornecedor = new Fornecedor();
+	private Fornecedor fornecedor;
 	
 	public Produto() {
 

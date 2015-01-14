@@ -21,6 +21,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.sigest.enums.EnumCategoria;
+import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.UploadedFile;
@@ -41,7 +42,8 @@ public class ManterProdutoAction {
 	@In
 	IEstoqueService estoqueService;
 
-	private Produto produto = new Produto();
+	private Produto produto = new Produto(new Fornecedor());
+	
 //	
 //	@In
 //	private List<Fornecedor> listFornecedor;
@@ -61,10 +63,13 @@ public class ManterProdutoAction {
 	
 	@In(required = false)
 	private UploadFileUtil fileUtil;
+
+	private List<Fornecedor> fornecedores;
 	
 	
 	@Create
 	public String create(){
+		
 		return "/produtos/produtos.xhtml";
 	}
 	
@@ -82,9 +87,10 @@ public class ManterProdutoAction {
 	}
 	
 	
-	@Factory(value="fidAllFornecedor" , scope=ScopeType.APPLICATION)
+	@Factory(value="fidAllFornecedor" , scope=ScopeType.EVENT)
 	public List<Fornecedor> initFornecedor(){
-		return estoqueService.fidAllFornecedor();
+		fornecedores = estoqueService.fidAllFornecedor();
+		return fornecedores;
 	}
 	
 	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
@@ -93,6 +99,7 @@ public class ManterProdutoAction {
 	}
 	
 	public void salvarProduto() {
+	
 		if (indice != null) {
 			listProdutos.set(indice, produto);
 		} else {
@@ -100,14 +107,20 @@ public class ManterProdutoAction {
 		}
 		
 		UploadedFile upFile = new UploadedFile();
-		try {
-			fileUtil = new UploadFileUtil();
-			upFile = fileUtil.salvarArquivo(file, null);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+			try {
+
+				fileUtil = new UploadFileUtil();
+				if(file.getMime() !=null  && file.getCaminho() != null){
+					upFile = fileUtil.salvarArquivo(file, null);					
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		if(upFile.getCaminho() !=null){
+			produto.setLinkImagem(upFile.getCaminho());			
 		}
-		produto.setLinkImagem(upFile.getCaminho());
 		estoqueService.salvarProduto(produto);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		setFlagMensagen(true);
@@ -268,6 +281,15 @@ public class ManterProdutoAction {
 
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
 	}
 	
 

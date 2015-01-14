@@ -71,12 +71,14 @@
 								<h:outputLabel value="Fornecedor: " />
 							</div>
 							<div class="col-sm-5">
-								<h:selectOneMenu
+								<h:selectOneMenu 
 									value="#{manterProdutoAction.produto.fornecedor}"
 									styleClass="form-control">
 									<s:selectItems noSelectionLabel="--Selecione--"
 										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
 									</s:selectItems>
+									<a4j:support event="onchange" reRender="id_form"/>
+									<s:convertEntity />
 								</h:selectOneMenu>
 							</div>
 						</div>

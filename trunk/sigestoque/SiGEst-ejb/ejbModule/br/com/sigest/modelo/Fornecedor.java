@@ -33,10 +33,6 @@ public class Fornecedor {
 	@OneToOne(mappedBy = "fornecedor", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
 	private Endereco endereco;
-	
-	@OneToOne(mappedBy = "fornecedor", cascade=CascadeType.ALL)
-	@JoinColumn(name="tb_produto")
-	private Produto produto;
 
 	
 	public Fornecedor() {
@@ -80,13 +76,4 @@ public class Fornecedor {
 		this.endereco = endereco;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-	
-	
 }
