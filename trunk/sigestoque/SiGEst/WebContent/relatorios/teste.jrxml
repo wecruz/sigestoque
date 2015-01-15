@@ -2,15 +2,68 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="381613b2-cb3c-40c3-9141-cc7f9edd2ccb">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="7"/>
+	<subDataset name="dataset1" uuid="8597394f-f569-48d5-a3b3-0023f58fb3d6">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="precoCusto" class="java.lang.Float">
+			<fieldDescription><![CDATA[precoCusto]]></fieldDescription>
+		</field>
+		<field name="novaUnidadeMedida" class="java.lang.String">
+			<fieldDescription><![CDATA[novaUnidadeMedida]]></fieldDescription>
+		</field>
+		<field name="fornecedor" class="br.com.sigest.modelo.Fornecedor">
+			<fieldDescription><![CDATA[fornecedor]]></fieldDescription>
+		</field>
+		<field name="quantidade" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[quantidade]]></fieldDescription>
+		</field>
+		<field name="nomeProduto" class="java.lang.String">
+			<fieldDescription><![CDATA[nomeProduto]]></fieldDescription>
+		</field>
+		<field name="quantidadeMini" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[quantidadeMini]]></fieldDescription>
+		</field>
+		<field name="categoria" class="br.com.sigest.enums.EnumCategoria">
+			<fieldDescription><![CDATA[categoria]]></fieldDescription>
+		</field>
+		<field name="precoVenda" class="java.lang.Float">
+			<fieldDescription><![CDATA[precoVenda]]></fieldDescription>
+		</field>
+		<field name="descricao" class="java.lang.String">
+			<fieldDescription><![CDATA[descricao]]></fieldDescription>
+		</field>
+		<field name="dataValidade" class="java.util.Date">
+			<fieldDescription><![CDATA[dataValidade]]></fieldDescription>
+		</field>
+		<field name="codigo" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[codigo]]></fieldDescription>
+		</field>
+		<field name="class" class="java.lang.Class">
+			<fieldDescription><![CDATA[class]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="fornecedor" class="br.com.sigest.modelo.Fornecedor">
+		<fieldDescription><![CDATA[fornecedor]]></fieldDescription>
+	</field>
+	<field name="listProduto" class="java.util.List">
+		<fieldDescription><![CDATA[listProduto]]></fieldDescription>
+	</field>
 	<pageHeader>
 		<band height="78">
 			<staticText>
-				<reportElement uuid="9c076615-3f1f-4d72-8813-452e87581eaf" x="212" y="26" width="129" height="27"/>
-				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="18"/>
+				<reportElement uuid="821d3fd5-55d8-40db-8a64-f8d28cf6d53d" x="154" y="16" width="236" height="48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[TESTE PDF ]]></text>
+				<text><![CDATA[RELATÓRIO]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -18,23 +71,61 @@
 		<band height="425" splitType="Stretch">
 			<frame>
 				<reportElement uuid="6223dc99-b7e4-4e59-a20c-c718a9eec31f" x="0" y="0" width="555" height="235"/>
-				<rectangle radius="10">
-					<reportElement uuid="ff695ac7-242a-45a1-b275-2425fdee4f30" x="34" y="53" width="488" height="105"/>
-				</rectangle>
 				<staticText>
-					<reportElement uuid="9c076615-3f1f-4d72-8813-452e87581eaf" x="212" y="90" width="129" height="27"/>
-					<textElement textAlignment="Center">
-						<font fontName="Times New Roman" size="18"/>
-					</textElement>
-					<text><![CDATA[TESTE PDF ]]></text>
+					<reportElement uuid="f171c325-e51d-4ada-b2a7-d57fe18d0b97" x="184" y="29" width="69" height="20"/>
+					<textElement/>
+					<text><![CDATA[Fornecedor:]]></text>
 				</staticText>
+				<textField>
+					<reportElement uuid="d46f72d1-2945-4eb4-b609-cae9cf0a6640" x="253" y="29" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{fornecedor}.getNome()]]></textFieldExpression>
+				</textField>
 				<staticText>
-					<reportElement uuid="76997e7d-c493-4cca-a158-509e8c406373" x="212" y="127" width="129" height="20"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial" size="14" isBold="true"/>
-					</textElement>
-					<text><![CDATA[SIGEST]]></text>
+					<reportElement uuid="8701a516-28ff-4382-9720-ffc0f8509bbe" x="16" y="107" width="100" height="20"/>
+					<textElement/>
+					<text><![CDATA[PRODUTO:]]></text>
 				</staticText>
+				<componentElement>
+					<reportElement uuid="c1bb2354-6fa1-495c-9bb1-431d37e91ff7" x="7" y="127" width="537" height="52"/>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="dataset1" uuid="ee8ba4f6-e071-4eda-b5ca-2c11754c5ccc">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listProduto})]]></dataSourceExpression>
+						</datasetRun>
+						<jr:listContents height="52" width="537">
+							<staticText>
+								<reportElement uuid="f416a55c-87dd-4aed-b519-0340caf4bc06" x="5" y="14" width="75" height="20"/>
+								<textElement/>
+								<text><![CDATA[Nome Produto:]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="d517074f-f999-4120-acd9-8b6c0451d6a6" x="83" y="14" width="100" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{nomeProduto}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="a226ae62-5ec0-47f9-98b5-c2a9c90548b9" x="183" y="14" width="63" height="20"/>
+								<textElement/>
+								<text><![CDATA[Quantidade:]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="9a470ff1-e4e6-4c15-bf06-4ef3c02e6d4f" x="246" y="14" width="100" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="261aa524-6843-4ef6-ad6f-2060e126a40d" x="346" y="14" width="54" height="20"/>
+								<textElement/>
+								<text><![CDATA[Descrição:]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="ca54619b-148b-424b-bc0e-561737456fa6" x="400" y="14" width="100" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
 			</frame>
 		</band>
 	</detail>

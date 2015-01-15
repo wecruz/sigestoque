@@ -87,7 +87,7 @@ public class ManterProdutoAction {
 	}
 	
 	
-	@Factory(value="fidAllFornecedor" , scope=ScopeType.EVENT)
+	@Factory(value="fidAllFornecedor" , autoCreate = true)
 	public List<Fornecedor> initFornecedor(){
 		fornecedores = estoqueService.fidAllFornecedor();
 		return fornecedores;

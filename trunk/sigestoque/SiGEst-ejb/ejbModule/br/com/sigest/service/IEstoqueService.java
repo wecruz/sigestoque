@@ -26,6 +26,7 @@ public interface IEstoqueService {
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);
 	
+	List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
 	void destroy();
 	
 	void remove();

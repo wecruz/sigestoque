@@ -14,6 +14,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 
 @Name("produtoDao")
@@ -39,6 +40,19 @@ public class ProdutoDao {
 		return criteria.list();
 	}
 	
+	
+	public List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor){
+		Session session = (Session) entityManager.getDelegate();
+		
+		Criteria criteria = session.createCriteria(Produto.class, "produto");
+		
+		criteria.createAlias("produto.fornecedor", "fornecedor", Criteria.INNER_JOIN);
+		if(fornecedor.getId()!= null){
+			criteria.add(Restrictions.eq("produto.fornecedor.id",fornecedor.getId()));
+		}
+		return criteria.list();
+	}
+ 	
 	public void deletarProduto(Produto produto){
 		entityManager.remove(produto);
 	}

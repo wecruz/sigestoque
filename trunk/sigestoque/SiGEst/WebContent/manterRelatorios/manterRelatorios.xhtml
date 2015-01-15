@@ -20,10 +20,34 @@
 					<div class="titulo">Manter Relatorios</div>
 				</div>
 				<div class="form-horizontal ">
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Fornecedor: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText id="id_txt_fornecer" label="Fornecedor"
+								styleClass="form-control"
+								value="#{manterRelatorioAction.fornecedor.nome}" />
+						</div>
+						<rich:suggestionbox frequency="0.001" minChars="0"
+							for="id_txt_fornecer" width="500" nothingLabel="Não encontrado"
+							required="true"
+							suggestionAction="#{manterRelatorioAction.pesquisarFornecedorNome}"
+							var="fornece" ajaxSingle="true" requestDelay="0">
+							<h:column>
+								<h:outputText value="#{fornece.nome}" />
+							</h:column>
+							<a4j:support event="onselect">
+								<f:setPropertyActionListener
+									target="#{manterRelatorioAction.relatorioDto.fornecedor}"
+									value="#{fornece}" />
+							</a4j:support>
+						</rich:suggestionbox>
+					</div>
 					<br /> <br /> <br />
 					<center>
 						<h:commandButton
-							action="#{manterFuncionarioAction.gerarRelatorio()}"
+							action="#{manterRelatorioAction.gerarRelatorio()}"
 							value="imprimir" onclick="target='_black'"
 							styleClass="btn btn-default navbar-btn">
 						</h:commandButton>

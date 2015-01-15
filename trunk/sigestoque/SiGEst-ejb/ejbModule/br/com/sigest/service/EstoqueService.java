@@ -61,6 +61,9 @@ public class EstoqueService implements IEstoqueService{
 		produtoDao.deletarProduto(produto);
 	}
 	
+	public List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor) {
+		return produtoDao.pesquisarProdutoFornecedor(fornecedor);
+	}
 //	public List<Estado> pesquisarTodosEstados() {
 //		return fornecedorDao.pesquisarTodosEstados();
 //	}
@@ -78,6 +81,8 @@ public class EstoqueService implements IEstoqueService{
 	public void remove() {
 		
 	}
+
+
 
 
 

@@ -167,23 +167,23 @@ public class ManterFuncionarioAction {
 	
 	
 	
-	public String gerarRelatorio() {
-		
-		List<String> teste = new ArrayList<String>();
-		final Collection<?> list = teste;
-        final Map<String, Object> params = new HashMap<String, Object>();
-		
-		
-		try {
-			return	relatorioUtil.imprimir("teste", params, list);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "";
-		
-	}
-	
+//	public String gerarRelatorio() {
+//		
+//		List<String> teste = new ArrayList<String>();
+//		final Collection<?> list = teste;
+//        final Map<String, Object> params = new HashMap<String, Object>();
+//		
+//		
+//		try {
+//			return	relatorioUtil.imprimir("teste", params, list);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return "";
+//		
+//	}
+//	
 	
 	public Funcionario getFuncionario() {
 		return funcionario;
