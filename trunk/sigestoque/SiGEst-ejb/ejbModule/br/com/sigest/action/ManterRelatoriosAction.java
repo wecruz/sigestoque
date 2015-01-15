@@ -6,8 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+import org.apache.bsf.util.StringUtils;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -44,7 +49,7 @@ public class ManterRelatoriosAction {
 			return listaRetorno;
 	}
 		String texto = (String) autoComplete;
-		List<Fornecedor> listFornecedor = estoqueService.pesquisarFornecedores(relatorioDto.getFornecedor());
+		List<Fornecedor> listFornecedor = fidAllFornecedorNome(fornecedor);
 
 		for (Fornecedor forner : listFornecedor) {
 			String idStr = String.valueOf(forner.getId());
@@ -56,11 +61,11 @@ public class ManterRelatoriosAction {
 		return listaRetorno;
 	}
 	
-//	@Factory(value="fidAllFornecedorNome" , scope=ScopeType.EVENT)
-//	public List<Fornecedor> fidAllFornecedorNome(Fornecedor fornecedor){
-//		setFornecedores(estoqueService.pesquisarFornecedores(fornecedor));
-//		return getFornecedores();
-//	}
+	@Factory(value="fidAllFornecedorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
+	public List<Fornecedor> fidAllFornecedorNome(Fornecedor fornecedor){
+		setFornecedores(estoqueService.pesquisarFornecedores(fornecedor));
+		return getFornecedores();
+	}
 	
 
 	
@@ -69,21 +74,23 @@ public class ManterRelatoriosAction {
 	
 	public String gerarRelatorio() {
 
-		
-		relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
-		
-		listRelatorioDto.add(relatorioDto);
-		
-		
-		final Collection<?> list = listRelatorioDto;
-		final Map<String, Object> params = new HashMap<String, Object>();
-		
-		try {
-			return relatorioUtil.imprimir("teste", params, list);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		if (!relatorioDto.getFornecedor().getNome().isEmpty()) {
+
+			relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
+
+			listRelatorioDto.add(relatorioDto);
+
+			final Collection<?> list = listRelatorioDto;
+			final Map<String, Object> params = new HashMap<String, Object>();
+
+			try {
+				return relatorioUtil.imprimir("teste", params, list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//		}
+//		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
 		return "";
 
 	}

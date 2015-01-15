@@ -17,7 +17,6 @@ import br.com.sigest.modelo.Cidade;
 import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
-import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IEstoqueService;
 
 /**
@@ -130,6 +129,7 @@ public class ManterFornecedoreAction {
 		listFornecedores.remove(getFornecedorSelecionado());
 		estoqueService.excluirFornecedor(getFornecedorSelecionado());
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		fornecedor = new Fornecedor();
 		setFlagMensagen(true);
 	}
 	

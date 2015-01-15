@@ -21,7 +21,6 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.sigest.enums.EnumCategoria;
-import br.com.sigest.modelo.Endereco;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.UploadedFile;
