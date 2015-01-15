@@ -7,11 +7,12 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich">
+
 <ui:composition template="/layout/template.xhtml">
 
 
 	<ui:define name="body">
-		<h:form id="id_form">
+		<h:form id="id_form" prependId="false">
 			<rich:spacer height="40px" />
 			<s:div rendered="#{manterClienteAction.flagMensagen}">
 				<rich:messages styleClass="alert alert-success"
@@ -55,7 +56,8 @@
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterClienteAction.cliente.rg}"
-								styleClass="form-control" />
+								styleClass="form-control textRg" />
+								
 						</div>
 					</div>
 					<div class="form-group linha">
@@ -64,18 +66,19 @@
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterClienteAction.cliente.cpf}"
-								styleClass="form-control" />
+								styleClass="form-control textCpf"/>
+								 
 						</div>
 					</div>
 					<s:div rendered="#{manterClienteAction.flagNovoCadastro}">
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Telefone*: " />
+								<h:outputLabel value="Telefone*:" />
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
 									value="#{manterClienteAction.cliente.endereco.telefone}"
-									styleClass="form-control" />
+									styleClass="form-control textTelefone" />
 							</div>
 						</div>
 						<div class="form-group linha">
@@ -85,7 +88,8 @@
 							<div class="col-sm-5">
 								<h:inputText
 									value="#{manterClienteAction.cliente.endereco.celular}"
-									styleClass="form-control" />
+									styleClass="form-control textTelefone" />
+								
 							</div>
 						</div>
 						<div class="form-group linha">
@@ -103,9 +107,9 @@
 			</div>
 			<div style="float: right">
 				<h:commandButton rendered="#{manterClienteAction.flagNovoCadastro}"
-					action="#{manterClienteAction.salvarCliente()}"
-					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
-			
+					action="#{manterClienteAction.salvarCliente()}" value="Cadastrar"
+					styleClass="btn btn-default navbar-btn" />
+
 				<h:commandButton action="#{manterClienteAction.cancelar()}"
 					value="Cancelar" styleClass="btn btn-default navbar-btn" />
 			</div>

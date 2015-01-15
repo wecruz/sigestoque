@@ -3,7 +3,6 @@ package br.com.sigest.modelo;
 import java.math.BigInteger;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -67,6 +66,7 @@ public class Produto {
 	@OneToOne
 	@JoinColumn(name="fornecedor")
 	private Fornecedor fornecedor;
+	
 	
 	public Produto() {
 

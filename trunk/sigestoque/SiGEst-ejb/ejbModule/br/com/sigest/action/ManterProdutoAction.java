@@ -148,7 +148,9 @@ public class ManterProdutoAction {
 		file = new UploadedFile();
 
 		try {
-			file.setDados(fileToByteArray(new File(produto.getLinkImagem())));
+			if(produto.getLinkImagem() != null){
+				file.setDados(fileToByteArray(new File(produto.getLinkImagem())));				
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
