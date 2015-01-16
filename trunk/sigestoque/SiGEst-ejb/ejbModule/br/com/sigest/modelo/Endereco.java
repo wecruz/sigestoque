@@ -50,7 +50,7 @@ public class Endereco {
 	private String estado;
 	
 	@Column(name = "telefone")
-	private Integer telefone;
+	private String telefone;
 	
 	@Column(name = "celular")
 	private Integer celular;
@@ -112,14 +112,7 @@ public class Endereco {
 		this.estado = estado;
 	}
 
-	public Integer getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
-	}
-
+	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
@@ -150,6 +143,14 @@ public class Endereco {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 	

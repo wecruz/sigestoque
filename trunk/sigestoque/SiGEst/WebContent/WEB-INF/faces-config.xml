@@ -16,5 +16,8 @@
 			<supported-locale>tr</supported-locale>
 		</locale-config>
 	</application>
-
+	<converter>  
+       <converter-id>telefoneConverter</converter-id>
+       <converter-class>br.com.sigest.converter.TelefoneConverter</converter-class>
+    </converter>
 </faces-config>

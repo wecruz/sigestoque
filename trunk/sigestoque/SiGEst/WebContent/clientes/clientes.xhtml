@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:s="http://jboss.com/products/seam/taglib"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -7,12 +8,11 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich">
-
+	
 <ui:composition template="/layout/template.xhtml">
 
-
-	<ui:define name="body">
-		<h:form id="id_form" prependId="false">
+	<ui:define name="body" >
+		<h:form id="id_form">
 			<rich:spacer height="40px" />
 			<s:div rendered="#{manterClienteAction.flagMensagen}">
 				<rich:messages styleClass="alert alert-success"
@@ -56,7 +56,7 @@
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterClienteAction.cliente.rg}"
-								styleClass="form-control textRg" />
+								styleClass="form-control " />
 								
 						</div>
 					</div>
@@ -65,9 +65,12 @@
 							<h:outputLabel value="CPF*: " />
 						</div>
 						<div class="col-sm-5">
-							<h:inputText value="#{manterClienteAction.cliente.cpf}"
-								styleClass="form-control textCpf"/>
-								 
+							
+								<h:inputText value="#{manterClienteAction.cliente.cpf}"
+									styleClass="form-control" />
+									
+								
+							
 						</div>
 					</div>
 					<s:div rendered="#{manterClienteAction.flagNovoCadastro}">
@@ -76,9 +79,13 @@
 								<h:outputLabel value="Telefone*:" />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
+								<h:inputText 
 									value="#{manterClienteAction.cliente.endereco.telefone}"
-									styleClass="form-control textTelefone" />
+									styleClass="form-control textTelefone" >
+									<f:converter converterId="telefoneConverter" /> 
+								</h:inputText>
+								
+									
 							</div>
 						</div>
 						<div class="form-group linha">
@@ -88,7 +95,7 @@
 							<div class="col-sm-5">
 								<h:inputText
 									value="#{manterClienteAction.cliente.endereco.celular}"
-									styleClass="form-control textTelefone" />
+									styleClass="form-control " />
 								
 							</div>
 						</div>
@@ -133,7 +140,7 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<a4j:commandLink
+							<a4j:commandLink 
 								action="#{manterClienteAction.alterar(cliente,indice)}"
 								value="Alterar" ajaxSingle="true" reRender="id_form" />
 							<rich:spacer width="20px" />

@@ -94,10 +94,13 @@ public class ManterClienteAction {
 	}
 
 	
-	public void novoCadastro(){
+	public String novoCadastro(){
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
-		cliente = new Cliente();
+		cliente = new Cliente(new Endereco());
+		clienteSelecionado = new Cliente(new Endereco());
+		
+		return "/clientes/clientes.xhtml";
 	}
 	
 	public String cancelar(){
