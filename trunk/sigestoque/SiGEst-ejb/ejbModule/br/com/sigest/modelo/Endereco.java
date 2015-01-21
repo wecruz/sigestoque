@@ -53,7 +53,7 @@ public class Endereco {
 	private String telefone;
 	
 	@Column(name = "celular")
-	private Integer celular;
+	private String celular;
 
 	
 	public Long getId() {
@@ -129,14 +129,6 @@ public class Endereco {
 		this.funcionario = funcionario;
 	}
 
-	public Integer getCelular() {
-		return celular;
-	}
-
-	public void setCelular(Integer celular) {
-		this.celular = celular;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -151,6 +143,14 @@ public class Endereco {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 	
 	

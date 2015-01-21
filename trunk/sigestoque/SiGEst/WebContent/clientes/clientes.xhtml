@@ -95,7 +95,9 @@
 							<div class="col-sm-5">
 								<h:inputText
 									value="#{manterClienteAction.cliente.endereco.celular}"
-									styleClass="form-control " />
+									styleClass="form-control textTelefone" >
+									<f:converter converterId="telefoneConverter" /> 
+								</h:inputText>	
 								
 							</div>
 						</div>

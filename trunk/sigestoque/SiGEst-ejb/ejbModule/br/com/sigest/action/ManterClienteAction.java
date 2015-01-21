@@ -64,11 +64,12 @@ public class ManterClienteAction {
 		indice = null;
 	}
 
-	public void alterar(Cliente cliente, int indice) {
+	public String alterar(Cliente cliente, int indice) {
 		setIndice(indice);
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		this.cliente = cliente;
+		return "/clientes/clientes.xhtml";
 	}
 
 	public void selecionarCliente(Cliente cliente) {
