@@ -1,17 +1,17 @@
 package br.com.sigest.converter;
 
-
-
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.intercept.BypassInterceptors;
 
 
-//@Name("telefoneConverter") 
-//@BypassInterceptors 
-//@org.jboss.seam.annotations.faces.Converter
+
+@Name("telefoneConverter")
+@BypassInterceptors 
+@org.jboss.seam.annotations.faces.Converter
 public class TelefoneConverter implements Converter {
 	
 	

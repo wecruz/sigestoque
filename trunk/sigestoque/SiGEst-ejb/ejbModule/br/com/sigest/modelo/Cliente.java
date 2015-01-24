@@ -26,7 +26,7 @@ public class Cliente {
 	private Integer rg;
 	
 	@Column(name = "cpf")
-	private Long cpf;
+	private String cpf;
 	
 	@OneToOne(mappedBy="cliente", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
@@ -64,12 +64,14 @@ public class Cliente {
 	public void setRg(Integer rg) {
 		this.rg = rg;
 	}
+	
+	
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

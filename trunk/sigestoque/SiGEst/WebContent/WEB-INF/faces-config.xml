@@ -20,4 +20,12 @@
        <converter-id>telefoneConverter</converter-id>
        <converter-class>br.com.sigest.converter.TelefoneConverter</converter-class>
     </converter>
+    <converter>  
+       <converter-id>cpfCnpjConverter</converter-id>
+       <converter-class>br.com.sigest.converter.CpfConverter</converter-class>
+    </converter>
+    <validator>
+    	<validator-id>validaCPF</validator-id>
+    	<validator-class>br.com.sigest.validator.ValidaCPF</validator-class>
+    </validator>
 </faces-config>
