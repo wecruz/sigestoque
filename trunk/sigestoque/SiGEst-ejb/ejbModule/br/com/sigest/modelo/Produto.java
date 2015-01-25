@@ -181,7 +181,6 @@ public class Produto {
 	public void setQuantidadeMini(BigInteger quantidadeMini) {
 		this.quantidadeMini = quantidadeMini;
 	}
-	
-	
+
 	
 }

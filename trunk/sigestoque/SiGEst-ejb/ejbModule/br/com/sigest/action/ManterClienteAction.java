@@ -2,6 +2,8 @@ package br.com.sigest.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -52,16 +54,19 @@ public class ManterClienteAction {
 	
 	
 	public void salvarCliente() {
-		vendasService.salvarCliente(cliente);
-		if (indice == null) {
-			listCliente.add(cliente);
-		} else {
-			listCliente.set(indice, cliente);
+
+		if (validEmail(cliente.getEndereco().getEmail())) {
+			vendasService.salvarCliente(cliente);
+			if (indice == null) {
+				listCliente.add(cliente);
+			} else {
+				listCliente.set(indice, cliente);
+			}
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+			setFlagMensagen(true);
+			cliente = new Cliente(new Endereco());
+			indice = null;
 		}
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-		setFlagMensagen(true);
-		cliente = new Cliente(new Endereco());
-		indice = null;
 	}
 
 	public String alterar(Cliente cliente, int indice) {
@@ -122,6 +127,18 @@ public class ManterClienteAction {
 		}
 	}
 
+	public boolean validEmail(String email) {
+	    Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$"); 
+	    Matcher m = p.matcher(email); 
+	    if (m.find()){
+	      return true;
+	    }
+	    else{
+	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e valido", ""));
+	      setFlagMensagen(false);
+	      return false;
+	    }  
+	 }
 	public Cliente getCliente() {
 		return cliente;
 	}

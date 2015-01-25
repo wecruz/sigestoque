@@ -32,6 +32,8 @@ public class Cliente {
 	@JoinColumn(name="tb_endereco")
 	private Endereco endereco = new Endereco();
 	
+	
+	
 	public Cliente() {
 		super();
 	}
@@ -82,6 +84,7 @@ public class Cliente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	
 
 }
