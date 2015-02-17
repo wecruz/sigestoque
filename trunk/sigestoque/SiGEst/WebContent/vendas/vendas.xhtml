@@ -28,10 +28,13 @@
 						<rich:spacer width="20px" />
 						<h:outputLabel value="#{manterVendasAction.cliente.nome}" />
 						<br />
-						<s:div rendered="#{manterVendasAction.cliente.id != null}">
-							<h:outputLabel value="CPF: " />
-							<h:outputLabel value="#{manterVendasAction.cliente.cpf}" />
-						</s:div>
+						<rich:spacer width="93px" />
+						<h:outputLabel value="CPF: "
+							rendered="#{manterVendasAction.cliente.id != null}" />
+						<rich:spacer width="19px" />
+						<h:outputLabel value="#{manterVendasAction.cliente.cpf}"
+							rendered="#{manterVendasAction.cliente.id != null}" />
+
 						<br />
 						<div class="form-group linha">
 							<s:div rendered="#{manterVendasAction.cliente.id == null}">
@@ -55,11 +58,11 @@
 								</div>
 							</s:div>
 						</div>
-							<div class="col-sm-9 control-label">
-								<h:commandButton value="Procurar"
-									rendered="#{manterVendasAction.cliente.id == null}"
-									styleClass="btn btn-default navbar-btn" action="#" />
-							</div>
+						<div class="col-sm-9 control-label">
+							<h:commandButton value="Procurar"
+								rendered="#{manterVendasAction.cliente.id == null}"
+								styleClass="btn btn-default navbar-btn" action="#" />
+						</div>
 					</fieldset>
 					<br /> <br />
 					<fieldset class="form-search">
@@ -71,7 +74,7 @@
 							</div>
 							<div class="col-sm-5">
 								<h:selectOneMenu
-									value="#{manterVendasAction.produto.fornecedor}"
+									value="#{manterVendasAction.vendasClientesDTO.fornecedor}"
 									styleClass="form-control">
 									<s:selectItems noSelectionLabel="--Selecione--"
 										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
@@ -87,9 +90,55 @@
 								<h:outputLabel value="Produto*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:inputText value="" styleClass="form-control" />
+								<h:selectOneMenu
+									value="#{manterVendasAction.vendasClientesDTO.produto}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="--Selecione--"
+										value="#{manterVendasAction.comboBoxListProduro()}"
+										var="produt" label="#{produt.nomeProduto}">
+									</s:selectItems>
+									<a4j:support event="onchange" reRender="id_form" />
+									<s:convertEntity />
+								</h:selectOneMenu>
 							</div>
 						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Quantidade*: " />
+							</div>
+							<div class="col-sm-5">
+								<rich:inputNumberSpinner value="50" />
+							</div>
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Valor Unitario: " />
+							</div>
+							<div class="col-sm-5">
+								<h:outputLabel
+									value="#{manterVendasAction.vendasClientesDTO.produto.precoVenda } R$"
+									rendered="#{manterVendasAction.vendasClientesDTO.produto != null}" />
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Status Venda*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:selectOneMenu value="#{manterVendasAction.venda.statusVenda}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="Selecione"
+										value="#{listStatusVenda}" var="status" label="#{status.nome}">
+									</s:selectItems>
+								</h:selectOneMenu>
+							</div>
+						</div>
+
+
+
 						<div class="col-sm-9 control-label">
 							<h:commandButton value="Adicionar"
 								styleClass="btn btn-default navbar-btn" action="#" />
@@ -133,19 +182,7 @@
 						</s:div>
 
 
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Status Venda*: " />
-							</div>
-							<div class="col-sm-5">
-								<h:selectOneMenu value="#{manterVendasAction.venda.statusVenda}"
-									styleClass="form-control">
-									<s:selectItems noSelectionLabel="Selecione"
-										value="#{listStatusVenda}" var="status" label="#{status.nome}">
-									</s:selectItems>
-								</h:selectOneMenu>
-							</div>
-						</div>
+
 
 					</fieldset>
 

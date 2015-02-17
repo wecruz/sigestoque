@@ -14,6 +14,8 @@ public class VendasClientesDTO {
 	
 	private Produto produto;
 	
+	private Fornecedor fornecedor;
+	
 	
 
 	public Cliente getCliente() {
@@ -54,6 +56,14 @@ public class VendasClientesDTO {
 
 	public Produto getProduto() {
 		return produto;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
 	
 	

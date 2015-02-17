@@ -6,6 +6,7 @@ import java.util.List;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Begin;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
@@ -14,12 +15,15 @@ import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.Venda;
 import br.com.sigest.modelo.VendasClientesDTO;
+import br.com.sigest.service.IVendasService;
 
 @Name("manterVendasAction")
 @AutoCreate
 @Scope(ScopeType.CONVERSATION)
 public class ManterVendasAction {
 
+	@In
+	private IVendasService vendasService;
 	
 	private Cliente cliente = new Cliente();
 	
@@ -38,6 +42,16 @@ public class ManterVendasAction {
 	
 	
 	private Produto produto = new Produto(new Fornecedor());
+	
+	public List<Produto> comboBoxListProduro(){
+		List<Produto> produtos = new ArrayList<Produto>();
+		if(vendasClientesDTO.getFornecedor() !=null){
+			produtos = vendasService.pesquisarProdutoFornecedor(vendasClientesDTO.getFornecedor());
+			
+		}
+		return produtos;
+		
+	}
 	
 	
 	

@@ -3,6 +3,8 @@ package br.com.sigest.service;
 import java.util.List;
 
 import br.com.sigest.modelo.Cliente;
+import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Produto;
 
 public interface IVendasService {
 	
@@ -20,6 +22,8 @@ public interface IVendasService {
 	
 	
 	List<Cliente> pesquisarClientes(Cliente cliente);
+	
+	public List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
 
 	void destroy();
 	
