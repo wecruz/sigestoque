@@ -39,14 +39,35 @@
 								<h:column>
 									<h:outputText value="#{fornece.nome}" />
 								</h:column>
-								<a4j:support event="onselect">
+								<a4j:support event="onselect" reRender="id_produto" action="#{manterRelatorioAction.pesquisarProduto()}">
 									<f:setPropertyActionListener
 										target="#{manterRelatorioAction.relatorioDto.fornecedor}"
 										value="#{fornece}" />
 								</a4j:support>
 							</rich:suggestionbox>
 						</a4j:region>
+						
+						
 					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Produto" />
+						</div>
+						<div class="col-sm-5">
+							<h:selectOneMenu id="id_produto"
+								value="#{manterRelatorioAction.relatorioDto.produto}"
+								styleClass="form-control">
+								<s:selectItems noSelectionLabel="Selecione"
+									value="#{manterRelatorioAction.relatorioDto.listProduto}" 
+									var="produto" label="#{produto.nomeProduto}">
+								</s:selectItems>
+							</h:selectOneMenu>
+						</div>
+					</div>
+					
+					
+					
 					<br /> <br /> <br />
 					<center>
 						<h:commandButton 

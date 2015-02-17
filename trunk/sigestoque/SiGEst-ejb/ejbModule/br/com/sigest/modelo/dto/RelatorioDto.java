@@ -12,6 +12,8 @@ public class RelatorioDto {
 
 	private List<Produto> listProduto = new ArrayList<Produto>();
 	
+	private Produto produto = new Produto();
+	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
@@ -26,5 +28,13 @@ public class RelatorioDto {
 
 	public void setListProduto(List<Produto> listProduto) {
 		this.listProduto = listProduto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Produto getProduto() {
+		return produto;
 	}
 }

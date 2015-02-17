@@ -20,40 +20,91 @@
 
 				<div class="form-horizontal ">
 					<br />
-					<rich:spacer width="20px" />
-					<h:outputLabel value="Vendas Para:" />
-					<rich:spacer width="20px" />
-				
+					<fieldset class="form-search">
+						<rich:spacer width="20px" />
+						<legend>Cliente</legend>
+						<rich:spacer width="20px" />
+						<h:outputLabel value="Vendas Para: " />
+						<rich:spacer width="20px" />
+						<h:outputLabel value="#{manterVendasAction.cliente.nome}" />
+						<br /> <br />
+						<s:div rendered="#{manterVendasAction.cliente.id != null}">
+							<h:outputLabel value="CPF: " />
+							<h:outputLabel value="#{manterVendasAction.cliente.cpf}" />
+						</s:div>
 
-					<br /> <br /> <br />
 
-					<div class="form-group linha">
+						<br /> <br /> <br />
+
+						<div class="form-group linha">
+							<s:div rendered="#{manterVendasAction.cliente.id == null}">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Nome*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText value="" styleClass="form-control" />
+								</div>
+							</s:div>
+						</div>
+
+
+						<div class="form-group linha">
+							<s:div rendered="#{manterVendasAction.cliente.id == null}">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="CPF*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText value="" styleClass="form-control" />
+								</div>
+							</s:div>
+							<div class="col-sm-2 control-label">
+								<h:commandButton value="Procurar"
+									rendered="#{manterVendasAction.cliente.id == null}"
+									styleClass="btn btn-default navbar-btn" action="#" />
+							</div>
+						</div>
+					</fieldset>
+					<br /> <br />
+					<fieldset class="form-search">
+						<rich:spacer width="20px" />
+						<legend>Produto </legend>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Fornecedor: " />
+							</div>
+							<div class="col-sm-5">
+								<h:selectOneMenu
+									value="#{manterVendasAction.produto.fornecedor}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="--Selecione--"
+										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
+									</s:selectItems>
+									<a4j:support event="onchange" reRender="id_form" />
+									<s:convertEntity />
+								</h:selectOneMenu>
+							</div>
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Produto*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="" styleClass="form-control" />
+							</div>
+						</div>
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="CPF*: " />
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="" styleClass="form-control" />
-						</div>
-						<div class="col-sm-2 control-label">
-							<h:commandButton value="Procurar"
-								styleClass="btn btn-default navbar-btn" action="#" />
-						</div>
-					</div>
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Produto*: " />
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="" styleClass="form-control" />
-						</div>
-					</div>
+								<h:commandButton value="Adicionar"
+									
+									styleClass="btn btn-default navbar-btn" action="#" />
+							</div>
+					</fieldset>
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Status Venda*: " />
 						</div>
 						<div class="col-sm-5">
-							<h:selectOneMenu
-								value="#{manterVendasAction.venda.statusVenda}"
+							<h:selectOneMenu value="#{manterVendasAction.venda.statusVenda}"
 								styleClass="form-control">
 								<s:selectItems noSelectionLabel="Selecione"
 									value="#{listStatusVenda}" var="status" label="#{status.nome}">

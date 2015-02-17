@@ -1,0 +1,51 @@
+package br.com.sigest.modelo;
+
+import java.util.List;
+
+public class VendasClientesDTO {
+	
+	private Cliente cliente;
+	
+	private List<Venda> vendas;
+	
+	private List<Produto> produtos;
+	
+	private List<Fornecedor> fornecedores;
+	
+	
+	
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+	
+	
+}

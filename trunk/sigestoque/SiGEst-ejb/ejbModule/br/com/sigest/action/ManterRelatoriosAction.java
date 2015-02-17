@@ -14,6 +14,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.dto.RelatorioDto;
 import br.com.sigest.service.IEstoqueService;
 import br.com.sigest.util.RelatorioUtil;
@@ -61,6 +62,11 @@ public class ManterRelatoriosAction {
 	public List<Fornecedor> fidAllFornecedorNome(Fornecedor fornecedor){
 		setFornecedores(estoqueService.pesquisarFornecedores(fornecedor));
 		return getFornecedores();
+	}
+	
+	
+	public void pesquisarProduto(){
+		relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
 	}
 	
 

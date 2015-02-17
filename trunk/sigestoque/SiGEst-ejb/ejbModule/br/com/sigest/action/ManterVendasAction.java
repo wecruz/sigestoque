@@ -4,11 +4,14 @@ import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Begin;
 import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.enums.EnumStatusVenda;
 import br.com.sigest.modelo.Cliente;
+import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.Venda;
 
 @Name("manterVendasAction")
@@ -16,7 +19,8 @@ import br.com.sigest.modelo.Venda;
 @Scope(ScopeType.CONVERSATION)
 public class ManterVendasAction {
 
-	private Cliente cliente;
+	
+	private Cliente cliente = new Cliente();
 	
 	private Venda venda = new Venda();
 	
@@ -25,6 +29,8 @@ public class ManterVendasAction {
 		this.cliente = cliente;
 		return "/vendas/vendas.xhtml";
 	}
+	
+	private Produto produto = new Produto(new Fornecedor());
 	
 	
 	@Factory(value="listStatusVenda" , scope=ScopeType.APPLICATION)
@@ -47,5 +53,13 @@ public class ManterVendasAction {
 
 	public Venda getVenda() {
 		return venda;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Produto getProduto() {
+		return produto;
 	}
 }

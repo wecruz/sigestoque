@@ -1,7 +1,9 @@
 package br.com.sigest.modelo;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +34,9 @@ public class Venda {
 	@Column(name = "st_venda")
 	@Enumerated(EnumType.STRING)
 	private EnumStatusVenda statusVenda;
+	
+	@ManyToMany(mappedBy="vendas", cascade = CascadeType.ALL)
+	private List<Cliente> cliente;
 	
 
 	public Long getId() {
@@ -55,6 +61,14 @@ public class Venda {
 
 	public void setStatusVenda(EnumStatusVenda statusVenda) {
 		this.statusVenda = statusVenda;
+	}
+
+	public void setCliente(List<Cliente> cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Cliente> getCliente() {
+		return cliente;
 	}
 
 
