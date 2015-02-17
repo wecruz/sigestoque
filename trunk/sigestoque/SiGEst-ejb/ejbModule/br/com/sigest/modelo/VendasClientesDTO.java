@@ -12,6 +12,7 @@ public class VendasClientesDTO {
 	
 	private List<Fornecedor> fornecedores;
 	
+	private Produto produto;
 	
 	
 
@@ -45,6 +46,14 @@ public class VendasClientesDTO {
 
 	public void setFornecedores(List<Fornecedor> fornecedores) {
 		this.fornecedores = fornecedores;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Produto getProduto() {
+		return produto;
 	}
 	
 	

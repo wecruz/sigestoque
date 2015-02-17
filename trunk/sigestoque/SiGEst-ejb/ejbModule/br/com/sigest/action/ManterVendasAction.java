@@ -1,18 +1,19 @@
 package br.com.sigest.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Begin;
-import org.jboss.seam.annotations.Factory;
-import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
-import br.com.sigest.enums.EnumStatusVenda;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.Venda;
+import br.com.sigest.modelo.VendasClientesDTO;
 
 @Name("manterVendasAction")
 @AutoCreate
@@ -30,14 +31,16 @@ public class ManterVendasAction {
 		return "/vendas/vendas.xhtml";
 	}
 	
+	private VendasClientesDTO vendasClientesDTO = new VendasClientesDTO();
+	
+	private List<VendasClientesDTO> listVendasClientesDTO = new ArrayList<VendasClientesDTO>();
+	
+	
+	
 	private Produto produto = new Produto(new Fornecedor());
 	
 	
-	@Factory(value="listStatusVenda" , scope=ScopeType.APPLICATION)
-	public EnumStatusVenda[] initStatusVenda(){
-		
-		return EnumStatusVenda.values();
-	}
+	
 
 	public Cliente getCliente() {
 		return cliente;
@@ -61,5 +64,21 @@ public class ManterVendasAction {
 
 	public Produto getProduto() {
 		return produto;
+	}
+
+	public void setVendasClientesDTO(VendasClientesDTO vendasClientesDTO) {
+		this.vendasClientesDTO = vendasClientesDTO;
+	}
+
+	public VendasClientesDTO getVendasClientesDTO() {
+		return vendasClientesDTO;
+	}
+
+	public void setListVendasClientesDTO(List<VendasClientesDTO> listVendasClientesDTO) {
+		this.listVendasClientesDTO = listVendasClientesDTO;
+	}
+
+	public List<VendasClientesDTO> getListVendasClientesDTO() {
+		return listVendasClientesDTO;
 	}
 }

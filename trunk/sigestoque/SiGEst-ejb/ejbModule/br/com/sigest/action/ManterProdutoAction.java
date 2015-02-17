@@ -86,11 +86,7 @@ public class ManterProdutoAction {
 	}
 	
 	
-	@Factory(value="fidAllFornecedor" , autoCreate = true)
-	public List<Fornecedor> initFornecedor(){
-		fornecedores = estoqueService.fidAllFornecedor();
-		return fornecedores;
-	}
+	
 	
 	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
 	public EnumCategoria[] initCategorias(){
