@@ -27,7 +27,7 @@ public class Cliente {
 	private String nome;
 	
 	@Column(name = "rg")
-	private Integer rg;
+	private String rg;
 	
 	@Column(name = "cpf")
 	private String cpf;
@@ -67,11 +67,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public Integer getRg() {
+	public String getRg() {
 		return rg;
 	}
 
-	public void setRg(Integer rg) {
+	public void setRg(String rg) {
 		this.rg = rg;
 	}
 	
