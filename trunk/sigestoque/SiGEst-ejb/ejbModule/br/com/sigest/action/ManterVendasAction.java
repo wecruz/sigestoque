@@ -59,6 +59,8 @@ public class ManterVendasAction {
 	public void adicionarProduto(){
 		vendasClientesDTO.getProduto().setFornecedor(vendasClientesDTO.getFornecedor());
 		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
+		vendasClientesDTO.setFornecedor(new Fornecedor());
+		vendasClientesDTO.setProduto(new Produto());
 		
 	}
 	
@@ -81,8 +83,31 @@ public class ManterVendasAction {
 			return listaRetorno;
 		}
 	
+	public List<Cliente> pesquisarClienterCpf(Object autoComplete) {
+
+		List<Cliente> listaRetorno = new ArrayList<Cliente>();
+		
+			String texto = (String) autoComplete;
+			List<Cliente> listCliente = fidAllClientePorNome(cliente);
+
+			for (Cliente client : listCliente) {
+				String idStr = String.valueOf(client.getId());
+				if (client.getCpf().toLowerCase().contains(texto.toLowerCase())
+						|| idStr.equalsIgnoreCase(texto)) {
+					listaRetorno.add(client);
+				}
+			}
+			return listaRetorno;
+		}
+	
 	@Factory(value="fidAllClientePorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
 	public List<Cliente> fidAllClientePorNome(Cliente cliente){
+		setClientes(vendasService.pesquisarClientes(cliente));
+		return getClientes();
+	}
+	
+	@Factory(value="fidAllClientePorCpf" , scope=ScopeType.CONVERSATION , autoCreate = true)
+	public List<Cliente> fidAllClientePorCpf(Cliente cliente){
 		setClientes(vendasService.pesquisarClientes(cliente));
 		return getClientes();
 	}
@@ -94,6 +119,10 @@ public class ManterVendasAction {
 	public String limpar(){
 		this.cliente = new Cliente();
 		return "/vendas/vendas.xhtml";
+	}
+	
+	public void removerProduto(Produto produto){
+		vendasClientesDTO.getProdutos().remove(produto);
 	}
 
 	public Cliente getCliente() {

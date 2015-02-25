@@ -33,6 +33,7 @@
 							rendered="#{manterVendasAction.cliente.id != null}" />
 						<rich:spacer width="19px" />
 						<h:outputLabel value="#{manterVendasAction.cliente.cpf}"
+							styleClass="textCpf"
 							rendered="#{manterVendasAction.cliente.id != null}" />
 
 						<br />
@@ -72,14 +73,30 @@
 								<div class="col-sm-2 control-label">
 									<h:outputLabel value="CPF*: " />
 								</div>
-								<div class="col-sm-5">
-									<h:inputText value="#{manterVendasAction.cliente.cpf}"
-										styleClass="form-control" id="id_txt_cpf" />
-								</div>
+								<a4j:region>
+									<div class="col-sm-5">
+										<h:inputText id="id_txt_cpf_cliente" label="Nome"
+											styleClass="form-control" value="" />
+									</div>
+									<rich:suggestionbox frequency="0.001" minChars="0"
+										for="id_txt_cpf_cliente" width="500"
+										nothingLabel="Não encontrado" required="true"
+										suggestionAction="#{manterVendasAction.pesquisarClienterCpf}"
+										var="cliente" ajaxSingle="true" requestDelay="0">
+										<h:column>
+											<h:outputText value="#{cliente.cpf}" />
+										</h:column>
+										<a4j:support event="onselect" reRender="id_form"
+											action="#{manterVendasAction.RenderdCliente(cliente)}">
+											<f:setPropertyActionListener
+												target="#{manterVendasAction.cliente}" value="#{cliente}" />
+										</a4j:support>
+									</rich:suggestionbox>
+								</a4j:region>
 							</s:div>
 						</div>
 						<div class="col-sm-9 control-label">
-							<h:commandButton value="Fechar"
+							<h:commandButton value="Novo Cliente"
 								rendered="#{manterVendasAction.cliente.id != null}"
 								styleClass="btn btn-default navbar-btn" action="#{manterVendasAction.limpar()}" />
 						</div>
@@ -137,7 +154,7 @@
 							</div>
 							<div class="col-sm-5">
 								<h:outputLabel
-									value="#{manterVendasAction.vendasClientesDTO.produto.precoVenda } R$"
+									value="#{manterVendasAction.vendasClientesDTO.produto.precoVenda}"
 									rendered="#{manterVendasAction.vendasClientesDTO.produto != null}" />
 
 							</div>
@@ -195,7 +212,8 @@
 									<rich:column>
 										<f:facet name="header">Operações</f:facet>
 
-										<a4j:commandLink value="Excluir" action="#">
+										<a4j:commandLink value="Excluir" action="#{manterVendasAction.removerProduto(produto)}"
+										reRender="id_div_tabela">
 										</a4j:commandLink>
 									</rich:column>
 								</rich:dataTable>
