@@ -1,5 +1,6 @@
 package br.com.sigest.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VendasClientesDTO {
@@ -8,7 +9,7 @@ public class VendasClientesDTO {
 	
 	private List<Venda> vendas;
 	
-	private List<Produto> produtos;
+	private List<Produto> produtos = new ArrayList<Produto>();
 	
 	private List<Fornecedor> fornecedores;
 	

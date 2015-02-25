@@ -41,9 +41,28 @@
 								<div class="col-sm-2 control-label">
 									<h:outputLabel value="Nome*: " />
 								</div>
-								<div class="col-sm-5">
-									<h:inputText value="" styleClass="form-control" />
-								</div>
+
+								<a4j:region>
+									<div class="col-sm-5">
+										<h:inputText id="id_txt_nome_cliente" label="Nome"
+											styleClass="form-control" value="" />
+									</div>
+									<rich:suggestionbox frequency="0.001" minChars="0"
+										for="id_txt_nome_cliente" width="500"
+										nothingLabel="Não encontrado" required="true"
+										suggestionAction="#{manterVendasAction.pesquisarClienterNome}"
+										var="cliente" ajaxSingle="true" requestDelay="0">
+										<h:column>
+											<h:outputText value="#{cliente.nome}" />
+										</h:column>
+										<a4j:support event="onselect" reRender="id_form"
+											action="#{manterVendasAction.RenderdCliente(cliente)}">
+											<f:setPropertyActionListener
+												target="#{manterVendasAction.cliente}" value="#{cliente}" />
+										</a4j:support>
+									</rich:suggestionbox>
+								</a4j:region>
+
 							</s:div>
 						</div>
 
@@ -54,14 +73,15 @@
 									<h:outputLabel value="CPF*: " />
 								</div>
 								<div class="col-sm-5">
-									<h:inputText value="" styleClass="form-control" />
+									<h:inputText value="#{manterVendasAction.cliente.cpf}"
+										styleClass="form-control" id="id_txt_cpf" />
 								</div>
 							</s:div>
 						</div>
 						<div class="col-sm-9 control-label">
-							<h:commandButton value="Procurar"
-								rendered="#{manterVendasAction.cliente.id == null}"
-								styleClass="btn btn-default navbar-btn" action="#" />
+							<h:commandButton value="Fechar"
+								rendered="#{manterVendasAction.cliente.id != null}"
+								styleClass="btn btn-default navbar-btn" action="#{manterVendasAction.limpar()}" />
 						</div>
 					</fieldset>
 					<br /> <br />
@@ -141,7 +161,8 @@
 
 						<div class="col-sm-9 control-label">
 							<h:commandButton value="Adicionar"
-								styleClass="btn btn-default navbar-btn" action="#" />
+								styleClass="btn btn-default navbar-btn"
+								action="#{manterVendasAction.adicionarProduto()}" />
 						</div>
 
 						<br />

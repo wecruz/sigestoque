@@ -6,6 +6,7 @@ import java.util.List;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Begin;
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -26,6 +27,8 @@ public class ManterVendasAction {
 	private IVendasService vendasService;
 	
 	private Cliente cliente = new Cliente();
+	
+	private List<Cliente> clientes;
 	
 	private Venda venda = new Venda();
 	
@@ -53,8 +56,45 @@ public class ManterVendasAction {
 		
 	}
 	
+	public void adicionarProduto(){
+		vendasClientesDTO.getProduto().setFornecedor(vendasClientesDTO.getFornecedor());
+		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
+		
+	}
 	
 	
+	
+	public List<Cliente> pesquisarClienterNome(Object autoComplete) {
+
+		List<Cliente> listaRetorno = new ArrayList<Cliente>();
+		
+			String texto = (String) autoComplete;
+			List<Cliente> listCliente = fidAllClientePorNome(cliente);
+
+			for (Cliente client : listCliente) {
+				String idStr = String.valueOf(client.getId());
+				if (client.getNome().toLowerCase().contains(texto.toLowerCase())
+						|| idStr.equalsIgnoreCase(texto)) {
+					listaRetorno.add(client);
+				}
+			}
+			return listaRetorno;
+		}
+	
+	@Factory(value="fidAllClientePorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
+	public List<Cliente> fidAllClientePorNome(Cliente cliente){
+		setClientes(vendasService.pesquisarClientes(cliente));
+		return getClientes();
+	}
+	
+	public void RenderdCliente(Cliente cliente){
+		this.cliente = cliente;
+	}
+	
+	public String limpar(){
+		this.cliente = new Cliente();
+		return "/vendas/vendas.xhtml";
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -94,5 +134,13 @@ public class ManterVendasAction {
 
 	public List<VendasClientesDTO> getListVendasClientesDTO() {
 		return listVendasClientesDTO;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
 	}
 }
