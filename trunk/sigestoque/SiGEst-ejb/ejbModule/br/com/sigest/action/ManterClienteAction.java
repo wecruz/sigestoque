@@ -56,6 +56,7 @@ public class ManterClienteAction {
 	public void salvarCliente() {
 
 		if (validEmail(cliente.getEndereco().getEmail())) {
+			cliente.setCpf(cliente.getCpf().replaceAll("[^0-9]", "")); 
 			vendasService.salvarCliente(cliente);
 			if (indice == null) {
 				listCliente.add(cliente);
