@@ -98,7 +98,8 @@
 						<div class="col-sm-9 control-label">
 							<h:commandButton value="Novo Cliente"
 								rendered="#{manterVendasAction.cliente.id != null}"
-								styleClass="btn btn-default navbar-btn" action="#{manterVendasAction.limpar()}" />
+								styleClass="btn btn-default navbar-btn"
+								action="#{manterVendasAction.limpar()}" />
 						</div>
 					</fieldset>
 					<br /> <br />
@@ -160,19 +161,7 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Status Venda*: " />
-							</div>
-							<div class="col-sm-5">
-								<h:selectOneMenu value="#{manterVendasAction.venda.statusVenda}"
-									styleClass="form-control">
-									<s:selectItems noSelectionLabel="Selecione"
-										value="#{listStatusVenda}" var="status" label="#{status.nome}">
-									</s:selectItems>
-								</h:selectOneMenu>
-							</div>
-						</div>
+
 
 
 
@@ -210,10 +199,15 @@
 										<h:outputText value="#{produto.quantidade}" />
 									</rich:column>
 									<rich:column>
+										<f:facet name="header">Valor</f:facet>
+										<h:outputText value="#{produto.precoVenda} R$" />
+									</rich:column>
+									<rich:column>
 										<f:facet name="header">Operações</f:facet>
 
-										<a4j:commandLink value="Excluir" action="#{manterVendasAction.removerProduto(produto)}"
-										reRender="id_div_tabela">
+										<a4j:commandLink value="Excluir"
+											action="#{manterVendasAction.removerProduto(produto)}"
+											reRender="id_div_tabela">
 										</a4j:commandLink>
 									</rich:column>
 								</rich:dataTable>
@@ -235,6 +229,34 @@
 						</div>
 					</div>
 
+					<div class="form-group">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Status Venda*: " />
+						</div>
+						<div class="col-sm-5">
+							<h:selectOneMenu value="#{manterVendasAction.venda.statusVenda}"
+								styleClass="form-control">
+								<s:selectItems noSelectionLabel="Selecione"
+									value="#{listStatusVenda}" var="status" label="#{status.nome}">
+								</s:selectItems>
+							</h:selectOneMenu>
+						</div>
+					</div>
+
+					<rich:spacer height="40px" />
+					
+					<div class="form-group">
+						<center>
+							<h:commandButton action="#" value="IMPRIMIR"
+								styleClass="btn btn-default navbar-btn" />
+
+							<h:commandButton action="#" value="ENVIAR"
+								styleClass="btn btn-default navbar-btn" />
+
+							<h:commandButton action="#" value="CANCELAR"
+								styleClass="btn btn-default navbar-btn" />
+						</center>
+					</div>
 				</div>
 			</div>
 		</h:form>

@@ -79,7 +79,7 @@ public class ManterRelatoriosAction {
 //		if (!relatorioDto.getFornecedor().getNome().isEmpty()) {
 
 			relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
-
+			
 			listRelatorioDto.add(relatorioDto);
 
 			final Collection<?> list = listRelatorioDto;

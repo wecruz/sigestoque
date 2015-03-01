@@ -64,8 +64,6 @@ public class ManterVendasAction {
 		
 	}
 	
-	
-	
 	public List<Cliente> pesquisarClienterNome(Object autoComplete) {
 
 		List<Cliente> listaRetorno = new ArrayList<Cliente>();
