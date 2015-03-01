@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="body">
+		<h:form id="id_form">
+			<rich:spacer height="40px" />
+			<s:div rendered="#{manterProdutoAction.flagMensagen}">
+				<rich:messages styleClass="alert alert-success"
+					rendered="#{manterProdutoAction.flagMensagen}"
+					ajaxRendered="#{manterProdutoAction.flagMensagen}" />
+			</s:div>
+			<s:div rendered="#{!manterProdutoAction.flagMensagen}">
+				<rich:messages rendered="#{!manterProdutoAction.flagMensagen}"
+					ajaxRendered="#{!manterProdutoAction.flagMensagen}"
+					styleClass="alert alert-danger" />
+			</s:div>
+			<div class="panel-default form-horizontal ">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="titulo">Manter Produto</div>
+					</div>
+					<div style="float: right">
+						<h:commandButton value="Pesquisar"
+							rendered="#{!manterProdutoAction.flagPesquisar}"
+							styleClass="btn btn-default navbar-btn"
+							action="#{manterProdutoAction.pesquisarProduto()}" />
+
+						<h:commandButton value="Novo Cadastro"
+							styleClass="btn btn-default navbar-btn" action="#{manterProdutoAction.novoCadastro()}"
+							immediate="true" />
+					</div>
+					<div class="panel-body">
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Codigo*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterProdutoAction.produto.codigo}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Produto" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterProdutoAction.produto.nomeProduto}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Descrição*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputTextarea
+									value="#{manterProdutoAction.produto.descricao}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Fornecedor: " />
+							</div>
+							<div class="col-sm-5">
+								<h:selectOneMenu 
+									value="#{manterProdutoAction.produto.fornecedor}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="--Selecione--"
+										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
+									</s:selectItems>
+									<a4j:support event="onchange" reRender="id_form"/>
+									<s:convertEntity />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Categoria: " />
+							</div>
+							<div class="col-sm-5">
+								<h:selectOneMenu
+									value="#{manterProdutoAction.produto.categoria}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="--Selecione--"
+										value="#{categorias}" var="categoria"
+										label="#{categoria.nome}">
+									</s:selectItems>
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<s:div rendered="#{manterProdutoAction.flagNovoCadastro}" >
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Quantidade*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText value="#{manterProdutoAction.produto.quantidade}"
+										styleClass="form-control" />
+								</div>
+							</div>
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Quantidade minima " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterProdutoAction.produto.quantidadeMini}"
+										styleClass="form-control" />
+								</div>
+							</div>
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Imagem do produto" />
+								</div>
+								<div class="col-sm-2 control-label">
+								
+									<s:graphicImage value="/img/image_up.png" rendered="#{manterProdutoAction.file.dados == null}"
+										id="id_Foto" />
+									
+									
+										<s:graphicImage id="fotoIMG" rendered="#{manterProdutoAction.file.dados !=null}"
+											value="#{manterProdutoAction.file.dados}"
+											style="padding-left:2px">
+											<s:transformImageSize height="150" width="140" />
+										</s:graphicImage>
+									
+								</div>
+								<div class="col-sm-5">
+								<a4j:region>
+									<div class="coluna20pc">
+
+										<rich:fileUpload
+											fileUploadListener="#{manterProdutoAction.uploadFileImagem}"
+											autoclear="true" 
+											addControlLabel="Escolher imagem" immediateUpload="true"
+											listHeight="0px" listWidth="0px" ajaxSingle="true"
+											id="uploadArquivoFoto"
+											acceptedTypes="jpg, jpeg, JPG, JPEG, gif, GIF, PNG, png"
+											eventsQueue="queue-docs-foto"
+											ontyperejected="alert('Tipos válidos para anexar: JPEG, JPG, GIF ou PNG. Com tamanho menor ou igual a 50Mb.');">
+											<a4j:support event="onuploadcomplete" 
+												reRender="fotoIMG,uploadArquivoFoto,id_Foto,id_form"
+												eventsQueue="queue-rerender-fotos" />
+										</rich:fileUpload>
+
+							
+									</div>
+									</a4j:region>
+								</div>
+							</div>
+
+
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Preço de custo " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText value="#{manterProdutoAction.produto.precoCusto}"
+										styleClass="form-control" />
+								</div>
+							</div>
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Preço de venda " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText value="#{manterProdutoAction.produto.precoVenda}"
+										styleClass="form-control" />
+								</div>
+							</div>
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Data de Validade" />
+								</div>
+								<div class="col-sm-5">
+									<rich:calendar id="data" styleClass="form-control"
+										value="#{manterProdutoAction.produto.dataValidade}"
+										popup="true" enableManualInput="true" datePattern="dd/MM/yyyy"
+										locale="pt_Br" />
+								</div>
+							</div>
+
+
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Nova unidade medida	" />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterProdutoAction.produto.novaUnidadeMedida}"
+										styleClass="form-control" />
+								</div>
+							</div>
+						</s:div>
+
+					</div>
+				</div>
+			</div>
+			<div style="float: right">
+				<h:commandButton rendered="#{manterProdutoAction.flagNovoCadastro}"
+					action="#{manterProdutoAction.salvarProduto()}"
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+					
+				<a4j:commandButton action="#{manterProdutoAction.cancelar()}"
+					value="Cancelar" reRender="id_form,id_div_tabela"
+					styleClass="btn btn-default navbar-btn" ajaxSingle="true"/>
+			</div>
+
+			<rich:spacer height="20px" />
+
+
+			<s:div styleClass="form-group" id="id_tabela_produto"
+				rendered="#{manterProdutoAction.listProdutos.size() >0}">
+				<div class="table-responsive, panel panel-info">
+					<div class="panel-heading">Lista de Produtos</div>
+					<rich:dataTable value="#{manterProdutoAction.listProdutos}"
+						var="produto" id="id_div_tabela" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Codigo</f:facet>
+							<h:outputText value="#{produto.codigo}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Descrição</f:facet>
+							<h:outputText value="#{produto.descricao}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Operações</f:facet>
+							<a4j:commandLink
+								action="#{manterProdutoAction.alterar(produto,indice)}"
+								value="Alterar" ajaxSingle="true" reRender="id_form" />
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Excluir"
+								action="#{manterProdutoAction.selecionarProduto(produto)}"
+								reRender="id_div_tabela,id_form"
+								oncomplete="Richfaces.showModalPanel('painel')">
+							</a4j:commandLink>
+						</rich:column>
+					</rich:dataTable>
+				</div>
+			</s:div>
+			<rich:modalPanel id="painel" width="350" height="150">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Excluir"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="Confirmar"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterProdutoAction.excluirProduto()}" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						oncomplete="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel')" />
+				</center>
+			</rich:modalPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

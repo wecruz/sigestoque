@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xxmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.com/products/seam/taglib" contentType="text/html">
+	<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SiGEst</title>
+<link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" />
+<a:loadStyle src="resource:///stylesheet/theme.xcss" />
+<a:loadStyle src="resource:///stylesheet/theme.xcss" />
+<a:loadStyle src="resource:///scripts/funcoes.js" />
+<a:loadStyle src="/stylesheet/theme.css" />
+<a:loadStyle src="/stylesheet/bootstrap.css" />
+<a:loadStyle src="/stylesheet/bootstrap.min.css" />
+<a:loadStyle src="/stylesheet/bootstrap-theme.css" />
+<a:loadStyle src="/stylesheet/bootstrap-theme.min.css" />
+<a:loadStyle src="/stylesheet/bootstrap-theme.css.map" />
+<a:loadStyle src="/stylesheet/bootstrap-responsive.css" />
+<a:loadStyle src="/stylesheet/bootstrap-responsive.min.css" />
+<a:loadStyle src="/stylesheet/swimbi.css" />
+<a:loadStyle src="/stylesheet/swimbi.js" />
+<a:loadStyle src="/stylesheet/swimbiUIcfg.json" />
+
+<a4j:loadScript src="/scripts/jquery.maskedinput-1.2.2.js" />
+<a4j:loadScript src="/scripts/funcoes.js" />
+
+<div class="box">
+	<div class="header">
+		<div class="logo">
+			<h:graphicImage value="/img/Logo.png" />
+		</div>
+		<div class="nome">
+			<h1>SiGEst - Sistema de Gestão de Estoque</h1>
+		</div>
+	</div>
+	<div class="menu">
+		<ui:include src="menu.xhtml">
+			<ui:param name="projectName" value="SiGEst" />
+		</ui:include>
+	</div>
+</div>
+	<rich:jQuery id="mskTextTelefone" selector=".textTelefone" timing="onload" query="mask('(99) 9999-9999',{placeholder:' '})"/>	
+	<rich:jQuery id="mskTextCpf" selector=".textCpf" timing="onload" query="mask('999.999.999-99',{placeholder:' '})"/>
+	<rich:jQuery id="mskTextRg" selector=".textRg" timing="onload" query="mask('9.999.999',{placeholder:' '})"/>
+	<rich:jQuery id="mskTexCnpj" selector=".textCnpj" timing="onload" query="mask('99.999.999/9999-99',{placeholder:' '})"/>
+	<rich:jQuery id="mskTexData" selector=".textData" timing="onload" query="mask('99/99/9999',{placeholder:' '})"/>
+</head>
+<body>
+	<div class="body">
+		<ui:insert name="body" />
+	</div>
+</body>
+<footer> <br />
+<br />
+<br />
+<div class="footer">COPYRIGHT 2014. TODOS OS DIREITOS RESERVADOS
+	SIGEST</div>
+</footer>
+	</html>
+</f:view>

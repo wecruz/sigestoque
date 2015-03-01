@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="body">
+		<h:form id="idform">
+			<rich:spacer height="40px" />
+			<h:messages errorClass="alert alert-danger"
+				rendered="#{!manterFornecedoreAction.flagMensagen}" />
+			<h:messages infoClass="alert alert-success"
+				rendered="#{manterFornecedoreAction.flagMensagen}" />
+			<div class="panel-default form-horizontal ">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="titulo">Manter Fornecedores</div>
+					</div>
+					<div class="panel-body">
+						<div style="float: right">
+							<h:commandButton value="Pesquisar"
+								styleClass="btn btn-default navbar-btn"
+								rendered="#{!manterFornecedoreAction.flagPesquisar}"
+								action="#{manterFornecedoreAction.pesquisarFornecedor()}" />
+								
+								
+							<h:commandButton value="Novo Cadastro"
+								styleClass="btn btn-default navbar-btn"
+								action="#{manterFornecedoreAction.novoCadastro()}"
+								immediate="true" />	
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Nome*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterFornecedoreAction.fornecedor.nome}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="CNPJ*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterFornecedoreAction.fornecedor.cnpj}"
+									styleClass="form-control" />
+							</div>
+						</div>
+					<s:div rendered="#{manterFornecedoreAction.flagNovoCadastro}">	
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Endereço*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.endereco}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Cidade*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.cidade}"
+									styleClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Estado*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.estado}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="E-mail*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.email}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Telefone*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterFornecedoreAction.fornecedor.endereco.telefone}"
+									styleClass="form-control" />
+							</div>
+						</div>
+					</s:div>
+					</div>
+				</div>
+			</div>
+			<div style="float: right">
+				<h:commandButton action="#{manterFornecedoreAction.salvar()}"
+					rendered="#{manterFornecedoreAction.flagNovoCadastro}"
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+					
+				<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
+					reRender="id_div_tabela,idform"
+					value="Cancelar" styleClass="btn btn-default navbar-btn" ajaxSingle="true"/>	
+			</div>
+			<rich:spacer />
+			<br />
+			<br />
+			<br />
+			<br />
+
+			<s:div styleClass="form-group" id="id_tabela_funcio"
+				rendered="#{manterFornecedoreAction.listFornecedores.size() >0}">
+				<div class="table-responsive, panel panel-info">
+					<div class="panel-heading">Lista de Fornecedores</div>
+					<rich:dataTable value="#{manterFornecedoreAction.listFornecedores}"
+						var="fornece" id="id_div_tabela" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Nome do Fornecedor</f:facet>
+							<h:outputText value="#{fornece.nome}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">CNPJ</f:facet>
+							<h:outputText value="#{fornece.cnpj}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Telefone</f:facet>
+							<h:outputText value="#{fornece.endereco.telefone}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Operações</f:facet>
+							<a4j:commandLink
+								action="#{manterFornecedoreAction.alterar(indice,fornece)}"
+								value="Alterar" ajaxSingle="true" reRender="idform" />
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Excluir"
+								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
+								reRender="id_tabela_funcio,idform"
+								oncomplete="Richfaces.showModalPanel('painel')">
+							</a4j:commandLink>
+
+						</rich:column>
+					</rich:dataTable>
+					<center>
+						<rich:datascroller for="id_div_tabela" maxPages="20"
+							styleClass="pagination"
+							page="#{manterFornecedoreAction.qntFornecedores}" id="sc2"
+							reRender="sc1">
+						</rich:datascroller>
+					</center>
+
+				</div>
+			</s:div>
+
+			<rich:modalPanel id="painel" width="350" height="150">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Excluir"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+
+
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="Confirmar"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterFornecedoreAction.excluir()}" ajaxSingle="true"
+						reRender="id_div_tabela,idform"
+						oncomplete="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel')" />
+				</center>
+
+			</rich:modalPanel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

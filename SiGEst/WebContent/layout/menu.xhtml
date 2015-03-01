@@ -1,0 +1,49 @@
+<rich:toolBar xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+	<div class="menu1">
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/home.png" />
+			<s:link id="menuHomeId" view="/home.xhtml" value="Home"
+				propagation="none" />
+		</rich:toolBarGroup>
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/produtos.png" />
+			<s:link id="menuProdutos" action="produtos" value="Produtos" propagation="none" />
+		</rich:toolBarGroup>
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/fornecedores.png" />	
+			<s:link id="menuFornecedoresId" action="fornecedores" value="Fornecedores" propagation="none" />
+		</rich:toolBarGroup>
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/clientes.png" />
+			<s:link id="menuClientesId" action="clientes" value="Clientes" propagation="none" />
+		</rich:toolBarGroup>
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/funcionarios.png"/>
+			<s:link id="menuFuncionariosId" action="funcionarios" value="Funcionarios" propagation="none" />
+		</rich:toolBarGroup>
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/relatorio.png" />
+			<s:link id="menuRelatoriosId" action="relatorios"  value="Relatorios" propagation="none" />
+		</rich:toolBarGroup>
+		<rich:toolBarGroup>
+			<h:graphicImage value="/img/menu/vendas.png" />
+			<s:link id="menuVendasId" action="vendas" value="Vendas" propagation="none" />
+		</rich:toolBarGroup>
+		<!-- @newMenuItem@ -->
+		<rich:toolBarGroup location="right">
+			<h:outputText id="menuWelcomeId"
+				value="signed in as: #{credentials.username}"
+				rendered="#{identity.loggedIn}" />
+			<s:link id="menuLoginId" view="/login.xhtml" value="Login"
+				rendered="#{not identity.loggedIn}" propagation="none" />
+			<s:link id="menuLogoutId" view="/login.xhtml"
+				action="#{identity.logout}" value="Sair"
+				rendered="#{identity.loggedIn}" propagation="none" />
+		</rich:toolBarGroup>
+	</div>
+</rich:toolBar>
