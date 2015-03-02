@@ -30,6 +30,7 @@ public class TelefoneConverter implements Converter {
 				case ')': break;
 					
 				case ' ': break;
+				
 					
 				default: numeroSemMascara.append(caracter);
 				}
