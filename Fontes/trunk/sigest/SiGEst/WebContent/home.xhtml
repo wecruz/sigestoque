@@ -5,9 +5,20 @@
 	xmlns:s="http://jboss.com/products/seam/taglib"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 	<ui:define name="body">
-	<div class="content">Home</div>
+	
+	<rich:spacer height="40px" />
+	
+	<center>
+			<a4j:mediaOutput element="img" cacheable="false" session="false"
+				createContent="#{manterGraficoAction.fazGrafico}"
+				mimeType="image/jpeg" style="width: 600px; height: 350px;">
+			</a4j:mediaOutput>
+
+		</center>
+	
 	</ui:define>
 </ui:composition>
