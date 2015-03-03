@@ -7,18 +7,54 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+	xmlns:rich="http://richfaces.org/rich" 
+	template="layout/template.xhtml">
 	<ui:define name="body">
-	
-	<rich:spacer height="40px" />
-	
-	<center>
-			<a4j:mediaOutput element="img" cacheable="false" session="false"
-				createContent="#{manterGraficoAction.fazGrafico}"
-				mimeType="image/jpeg" style="width: 600px; height: 350px;">
-			</a4j:mediaOutput>
 
+		<rich:spacer height="40px" />
+		<ui:remove>
+			<!-- <center>
+				<a4j:mediaOutput element="img" cacheable="false" session="false"
+					createContent="#{manterGraficoAction.fazGrafico}"
+					mimeType="image/jpeg" style="width: 600px; height: 350px;">
+				</a4j:mediaOutput>
+
+			</center> -->
+		</ui:remove>
+		<center>
+			<script type="text/javascript" src="scripts/jsapi.JS"></script>
+			<script type="text/javascript">
+      google.load("visualization", "1.1", {packages:["bar"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Ano', 'vendas', 'despesas', 'lucro'],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350],
+          ['2018', 1000, 400, 200],
+          ['2019', 1150, 460, 250],
+          ['2020', 1000, 400, 200]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Desempenho da empresa:',
+            subtitle: 'vendas, despesas e lucro: 2015-2017',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+			<div id="columnchart_material" style="width: 900px; height: 400px;"></div>
 		</center>
-	
+		
+		<rich:spacer height="80px" />
+		
+
 	</ui:define>
 </ui:composition>

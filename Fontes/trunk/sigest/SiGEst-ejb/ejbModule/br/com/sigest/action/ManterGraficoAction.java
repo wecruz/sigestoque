@@ -1,6 +1,5 @@
 package br.com.sigest.action;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
 
@@ -13,9 +12,7 @@ import org.jboss.seam.annotations.Scope;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 
 @Name("manterGraficoAction")
 @AutoCreate
@@ -41,16 +38,25 @@ public class ManterGraficoAction {
 		      dataset.addValue( 240 , "schools" , "2010" );
 		      dataset.addValue( 300 , "schools" , "2014" );
 		     
-			JFreeChart chart = ChartFactory.createLineChart(
-			         "teste",
-			         "Years","Number",
-			         dataset,
-			         PlotOrientation.VERTICAL,
-			         true,true,false);
+//			JFreeChart chart = ChartFactory.createLineChart(
+//			         "teste",
+//			         "Years","Number",
+//			         dataset,
+//			         PlotOrientation.VERTICAL,
+//			         true,true,false);
 			
-			chart.setBackgroundPaint(Color.white);
-			chart.setBorderVisible(true);
-			chart.setBorderPaint(Color.blue);
+			
+			
+			JFreeChart chart = ChartFactory.createBarChart3D(  
+		            null,  
+		            null,  
+		            "Porcentagem",  
+		            dataset,  
+		            PlotOrientation.VERTICAL,  
+		            true,  
+		            false,  
+		            false);  
+			
 			chart.setNotify(true);
 
 			buff = chart.createBufferedImage(600, 350,
