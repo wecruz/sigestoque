@@ -81,6 +81,13 @@
 									<s:convertEntity />
 								</h:selectOneMenu>
 							</div>
+							
+							<a4j:commandButton value="ADICIONAR FORNECEDOR" action="#" 
+							styleClass="btn btn-default navbar-btn"
+							oncomplete="Richfaces.showModalPanel('painel_fornecedor')"/>
+							
+							
+							
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
@@ -96,6 +103,10 @@
 									</s:selectItems>
 								</h:selectOneMenu>
 							</div>
+							
+							<a4j:commandButton value="ADICIONAR CATEGORIA" action="#" 
+							styleClass="btn btn-default navbar-btn"
+							oncomplete="Richfaces.showModalPanel('painel_categoria')"/>
 						</div>
 						<s:div rendered="#{manterProdutoAction.flagNovoCadastro}" >
 							<div class="form-group linha">
@@ -248,6 +259,9 @@
 					</rich:dataTable>
 				</div>
 			</s:div>
+			
+			<!-- MODAL EXCLUIR -->
+			
 			<rich:modalPanel id="painel" width="350" height="150">
 				<f:facet name="header">
 					<h:panelGroup>
@@ -271,6 +285,60 @@
 						onclick="Richfaces.hideModalPanel('painel')" />
 				</center>
 			</rich:modalPanel>
+			
+			<!-- MODAL FORNECEDOR -->
+			
+			<rich:modalPanel id="painel_fornecedor"  width="550" height="350">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Cadastrar Fornecedor"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="SALVAR"
+						styleClass="btn btn-default navbar-btn"
+						action="#" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						oncomplete="Richfaces.hideModalPanel('painel_fornecedor')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel_fornecedor')" />
+				</center>
+				
+			</rich:modalPanel>
+			
+			<!-- MODAL CATEGORIA -->
+			<rich:modalPanel id="painel_categoria" width="550" height="350">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Cadastrar Categoria"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="SALVAR"
+						styleClass="btn btn-default navbar-btn"
+						action="#" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						oncomplete="Richfaces.hideModalPanel('painel_categoria')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel_categoria')" />
+				</center>
+				
+			</rich:modalPanel>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
