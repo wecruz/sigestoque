@@ -1,6 +1,7 @@
 package br.com.sigest.util;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 
@@ -33,6 +34,9 @@ public class RelatorioUtil {
 
 	private static final DocumentType PDF = new DocumentType("pdf",
 			"application/pdf");
+	
+	
+	private static final String DIR_IMAGEM = "";
 
 	@In(value = "org.jboss.seam.document.documentStore", create = true)
 	private DocumentStore documentStore;
@@ -84,6 +88,10 @@ public class RelatorioUtil {
 				.getCurrentInstance().getExternalContext().getContext();
 		final String arquivo = context.getRealPath(DIR_RELATORIOS + fileName
 				+ ".jasper");
+		
+		params.put("IMAGEM_DIR", context.getRealPath(DIR_IMAGEM + File.separator));
+		
+		
 		final JasperPrint jasperPrint = JasperFillManager.fillReport(arquivo,
 				params, new JRBeanCollectionDataSource(colecao));
 		final ByteArrayOutputStream output = new ByteArrayOutputStream();

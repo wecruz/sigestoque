@@ -44,6 +44,7 @@
 			<fieldDescription><![CDATA[class]]></fieldDescription>
 		</field>
 	</subDataset>
+	<parameter name="IMAGEM_DIR" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -57,14 +58,18 @@
 		<fieldDescription><![CDATA[listProduto]]></fieldDescription>
 	</field>
 	<pageHeader>
-		<band height="78">
+		<band height="155">
 			<staticText>
-				<reportElement uuid="821d3fd5-55d8-40db-8a64-f8d28cf6d53d" x="154" y="16" width="236" height="48"/>
+				<reportElement uuid="821d3fd5-55d8-40db-8a64-f8d28cf6d53d" x="153" y="96" width="236" height="48"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="24" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[RELATÓRIO]]></text>
 			</staticText>
+			<image hAlign="Center">
+				<reportElement uuid="48d56a5a-2850-4d54-8f6f-926d158bb719" x="226" y="0" width="80" height="91"/>
+				<imageExpression><![CDATA[$P{IMAGEM_DIR} + "/img/Logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<detail>
@@ -88,7 +93,7 @@
 				</staticText>
 				<componentElement>
 					<reportElement uuid="c1bb2354-6fa1-495c-9bb1-431d37e91ff7" x="7" y="127" width="537" height="52"/>
-					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 						<datasetRun subDataset="dataset1" uuid="ee8ba4f6-e071-4eda-b5ca-2c11754c5ccc">
 							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listProduto})]]></dataSourceExpression>
 						</datasetRun>

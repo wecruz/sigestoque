@@ -288,7 +288,7 @@
 			
 			<!-- MODAL FORNECEDOR -->
 			
-			<rich:modalPanel id="painel_fornecedor"  width="550" height="350">
+			<rich:modalPanel id="painel_fornecedor"  width="550" height="450">
 				<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="Cadastrar Fornecedor"></h:outputText>
@@ -298,6 +298,93 @@
 					<h:panelGroup>
 					</h:panelGroup>
 				</f:facet>
+				
+				<div class="panel-default form-horizontal ">
+				<div class="panel panel-info">
+					
+					<div class="panel-body">
+						<div style="float: right">
+							
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Nome*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="CNPJ*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+					
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Endereço*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Cidade*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Estado*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="E-mail*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Telefone*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value=""
+									styleClass="form-control" />
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+				
+				
+				
+				
 				<rich:spacer height="20px" />
 				<center>
 					<a4j:commandButton value="SALVAR"
