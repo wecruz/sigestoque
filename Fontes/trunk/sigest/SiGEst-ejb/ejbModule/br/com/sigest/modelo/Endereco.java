@@ -3,12 +3,17 @@ package br.com.sigest.modelo;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.sigest.enums.EnumCargoFuncao;
+import br.com.sigest.enums.EnumEstado;
 
 @Entity
 @Table(name ="tb_endereco")
@@ -47,7 +52,8 @@ public class Endereco {
 	private String email;
 	
 	@Column(name = "estado")
-	private String estado;
+	@Enumerated(EnumType.STRING)
+	private EnumEstado estado;
 	
 	@Column(name = "telefone")
 	private String telefone;
@@ -104,15 +110,6 @@ public class Endereco {
 		this.email = email;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
@@ -152,6 +149,15 @@ public class Endereco {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
+
+	public EnumEstado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EnumEstado estado) {
+		this.estado = estado;
+	}
+	
 	
 	
 	

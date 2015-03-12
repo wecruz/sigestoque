@@ -64,6 +64,22 @@
 									styleClass="form-control" />
 							</div>
 						</div>
+						
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Estado*: " />
+							</div>
+							<div class="col-sm-5">
+									<h:selectOneMenu
+										value="#{manterFornecedoreAction.fornecedor.endereco.estado}"
+										styleClass="form-control">
+										<s:selectItems noSelectionLabel="Selecione"
+											value="#{listEstados}" var="estado" label="#{estado.nome}">
+										</s:selectItems>
+									</h:selectOneMenu>
+								</div>
+						</div>
+						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Cidade*: " />
@@ -75,16 +91,7 @@
 							</div>
 						</div>
 
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Estado*: " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.endereco.estado}"
-									styleClass="form-control" />
-							</div>
-						</div>
+						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="E-mail*: " />
