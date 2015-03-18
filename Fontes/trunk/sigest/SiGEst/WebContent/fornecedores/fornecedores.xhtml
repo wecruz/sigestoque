@@ -11,11 +11,7 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="idform">
-			<rich:spacer height="40px" />
-			<h:messages errorClass="alert alert-danger"
-				rendered="#{!manterFornecedoreAction.flagMensagen}" />
-			<h:messages infoClass="alert alert-success"
-				rendered="#{manterFornecedoreAction.flagMensagen}" />
+			
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -109,7 +105,7 @@
 							<div class="col-sm-5">
 								<h:inputText
 									value="#{manterFornecedoreAction.fornecedor.endereco.telefone}"
-									styleClass="form-control" />
+									styleClass="form-control textTelefone" />
 							</div>
 						</div>
 					</s:div>

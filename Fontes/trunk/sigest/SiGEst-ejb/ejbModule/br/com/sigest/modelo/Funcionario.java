@@ -32,10 +32,10 @@ public class Funcionario {
 	private String nome;
 	
 	@Column(name = "rg")
-	private Integer rg;
+	private String rg;
 	
 	@Column(name = "cpf")
-	private Long cpf;
+	private String cpf;
 	
 	@Column(name = "login")
 	private String login;
@@ -78,22 +78,6 @@ public class Funcionario {
 		this.nome = nome;
 	}
 
-	public Integer getRg() {
-		return rg;
-	}
-
-	public void setRg(Integer rg) {
-		this.rg = rg;
-	}
-
-	public Long getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
-
 	public String getLogin() {
 		return login;
 	}
@@ -128,6 +112,26 @@ public class Funcionario {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+
+	public String getRg() {
+		return rg;
+	}
+
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	

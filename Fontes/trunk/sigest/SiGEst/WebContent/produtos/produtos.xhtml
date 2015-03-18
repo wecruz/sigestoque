@@ -10,17 +10,7 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="id_form">
-			<rich:spacer height="40px" />
-			<s:div rendered="#{manterProdutoAction.flagMensagen}">
-				<rich:messages styleClass="alert alert-success"
-					rendered="#{manterProdutoAction.flagMensagen}"
-					ajaxRendered="#{manterProdutoAction.flagMensagen}" />
-			</s:div>
-			<s:div rendered="#{!manterProdutoAction.flagMensagen}">
-				<rich:messages rendered="#{!manterProdutoAction.flagMensagen}"
-					ajaxRendered="#{!manterProdutoAction.flagMensagen}"
-					styleClass="alert alert-danger" />
-			</s:div>
+			
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">

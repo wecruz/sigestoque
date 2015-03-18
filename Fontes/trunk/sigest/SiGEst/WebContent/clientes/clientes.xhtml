@@ -13,17 +13,7 @@
 
 	<ui:define name="body" >
 		<h:form id="id_form">
-			<rich:spacer height="40px" />
-			<s:div rendered="#{manterClienteAction.flagMensagen}">
-				<rich:messages styleClass="alert alert-success"
-					rendered="#{manterClienteAction.flagMensagen}"
-					ajaxRendered="#{manterClienteAction.flagMensagen}" />
-			</s:div>
-			<s:div rendered="#{!manterClienteAction.flagMensagen}">
-				<rich:messages rendered="#{!manterClienteAction.flagMensagen}"
-					ajaxRendered="#{!manterClienteAction.flagMensagen}"
-					styleClass="alert alert-danger" />
-			</s:div>
+			
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Clientes</div>
