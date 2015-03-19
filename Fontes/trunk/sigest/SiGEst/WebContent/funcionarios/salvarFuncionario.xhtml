@@ -69,7 +69,8 @@
 							<div class="col-sm-5">
 								<h:inputText
 									value="#{manterFuncionarioAction.funcionario.login}"
-									styleClass="form-control" maxlength="8" />
+									styleClass="form-control" maxlength="8" 
+									required="true" id="Login_sistema" label="Login no sistema"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -80,7 +81,8 @@
 							<div class="col-sm-5">
 								<h:inputSecret
 									value="#{manterFuncionarioAction.funcionario.senha}"
-									styleClass="form-control" maxlength="15" />
+									styleClass="form-control" maxlength="15" 
+									required="true" id="senha" label="Senha"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -124,7 +126,7 @@
 							<h:outputLabel value="Cargo/Função*: " />
 						</div>
 						<div class="col-sm-5">
-							<h:selectOneMenu
+							<h:selectOneMenu required="true" id="cargo_funcao" label="Cargo/Função"
 								value="#{manterFuncionarioAction.funcionario.cargoFuncao}"
 								styleClass="form-control">
 								<s:selectItems noSelectionLabel="Selecione"
