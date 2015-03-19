@@ -55,8 +55,8 @@
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
 								styleClass="form-control textCpf" 
-								required="true" id="cpf" label="CPF">
-								
+								required="true" id="cpf" label="CPF" validator="validaCPF">
+								<f:converter converterId="cpfCnpjConverter"/>
 							</h:inputText>	
 						</div>
 					</div>

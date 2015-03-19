@@ -7,6 +7,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import org.jboss.metadata.validation.ValidationException;
+import org.jboss.seam.international.Messages;
 
 
 public class ValidaCPF implements Validator {
@@ -15,8 +16,7 @@ public class ValidaCPF implements Validator {
 			Object valorTela) throws ValidatorException {
 		if (!validaCPF(String.valueOf(valorTela))) {
 			
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O CPF Informado não é Válido.", ""));
-			throw new ValidationException();
+			throw new ValidatorException(novoFacesMessageDoErro());
 		}
 	}
 
@@ -27,6 +27,31 @@ public class ValidaCPF implements Validator {
 	 * @param cpf
 	 *            String valor com 11 dígitos
 	 */
+	
+	
+	protected FacesMessage novoFacesMessageDoErro() {
+		FacesMessage message = new FacesMessage();
+		message.setSeverity(FacesMessage.SEVERITY_ERROR);
+		message.setSummary(getMensagemErro());
+		message.setDetail(getMensagemErro());
+		return message;
+	}
+	
+	
+	protected String getMensagemErro() {
+		return Messages.instance().get(getChaveMensagemErro());
+	}
+
+	/**
+	 * Retorna a chave da mensagem do erro mapeado no messages_pt_BR.properties,
+	 * a chave da mensagem do erro é o nome da classe.
+	 * 
+	 * @return nome da chave da mensagem do título do erro.
+	 */
+	protected String getChaveMensagemErro() {
+		return "O cpf informado é inválido";
+	}
+	
 	private static boolean validaCPF(String cpf) {
 		if (cpf == null || cpf.length() != 11 || isCPFPadrao(cpf))
 			return false;
