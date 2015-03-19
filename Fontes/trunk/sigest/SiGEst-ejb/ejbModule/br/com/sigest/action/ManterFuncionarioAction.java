@@ -1,10 +1,7 @@
 package br.com.sigest.action;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -71,7 +68,7 @@ public class ManterFuncionarioAction {
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		funcionario = new Funcionario();
-		return "/funcionarios/salvarFuncionario.xhtml";
+		return "salvarFuncionarios";
 	}
 	
 	public String cancelar(){
@@ -114,7 +111,7 @@ public class ManterFuncionarioAction {
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		this.funcionario = funcionario;
-		return "/funcionarios/pesquisarFuncionario.xhtml";
+		return "salvarFuncionarios";
 	}
 	
 	public void selecionarFuncionario(Funcionario funcio){
@@ -130,7 +127,7 @@ public class ManterFuncionarioAction {
 	}
 	
 	public boolean validarCriterioPesquisa(){		
-		if(funcionario.getNome().isEmpty() && funcionario.getRg() == null && funcionario.getCpf() == null){
+		if(funcionario.getNome().isEmpty() && funcionario.getRg().isEmpty() && funcionario.getCpf().isEmpty()){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
 			setFlagMensagen(false);
 			return false;

@@ -20,10 +20,6 @@
 				<div class="form-horizontal ">
 					<br /> <br /> <br />
 					<div style="float: right">
-						<h:commandButton value="Pesquisar" ajaxSingle="true"
-							styleClass="btn btn-default navbar-btn"
-							action="#{manterFuncionarioAction.pesquisarFuncioanrios()}"
-							rendered="#{!manterFuncionarioAction.flagPesquisar}" />
 
 						<h:commandButton value="Novo Cadastro"
 							styleClass="btn btn-default navbar-btn"
@@ -59,7 +55,8 @@
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
 								styleClass="form-control textCpf" 
-								required="true" id="cpf" label="CPF" >
+								required="true" id="cpf" label="CPF">
+								
 							</h:inputText>	
 						</div>
 					</div>

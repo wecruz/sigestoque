@@ -37,14 +37,14 @@ public class FuncionarioDao {
 	public List<Funcionario> pesquisarFuncionarios(Funcionario funcionario){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Funcionario.class, "funcionario");
-		if (funcionario.getNome() != null) {
+		if (!funcionario.getNome().isEmpty()) {
 			criteria.add(Restrictions.like("funcionario.nome", funcionario.getNome(), MatchMode.ANYWHERE)
 			.ignoreCase());
 		}
-		if(funcionario.getRg() !=null){
+		if(!funcionario.getRg().isEmpty()){
 			criteria.add(Restrictions.eq("funcionario.rg", funcionario.getRg()));
 		}
-		if(funcionario.getCpf() !=null){
+		if(!funcionario.getCpf().isEmpty()){
 			criteria.add(Restrictions.eq("funcionario.cpf", funcionario.getCpf()));
 		}
 		criteria.createAlias("funcionario.endereco", "endereco", Criteria.INNER_JOIN);
