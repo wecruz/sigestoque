@@ -72,11 +72,9 @@
 								</h:selectOneMenu>
 							</div>
 							
-							<a4j:commandButton value="ADICIONAR FORNECEDOR" action="#" 
-							styleClass="btn btn-default navbar-btn"
+							<a4j:commandButton title="Adcionar Fornecedor" action="#" 
+							image="/img/plus.png"
 							oncomplete="Richfaces.showModalPanel('painel_fornecedor')"/>
-							
-							
 							
 						</div>
 						<div class="form-group">
@@ -94,8 +92,7 @@
 								</h:selectOneMenu>
 							</div>
 							
-							<a4j:commandButton value="ADICIONAR CATEGORIA" action="#" 
-							styleClass="btn btn-default navbar-btn"
+							<a4j:commandButton  action="#" image="/img/plus.png" title="Adicionar Categoria"
 							oncomplete="Richfaces.showModalPanel('painel_categoria')"/>
 						</div>
 						<s:div rendered="#{manterProdutoAction.flagNovoCadastro}" >
