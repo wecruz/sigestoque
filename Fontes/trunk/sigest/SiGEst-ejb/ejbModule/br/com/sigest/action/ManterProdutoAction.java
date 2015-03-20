@@ -21,6 +21,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.sigest.enums.EnumCategoria;
+import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.UploadedFile;
@@ -42,6 +43,7 @@ public class ManterProdutoAction {
 	IEstoqueService estoqueService;
 
 	private Produto produto = new Produto(new Fornecedor());
+	
 	
 //	
 //	@In
@@ -288,6 +290,9 @@ public class ManterProdutoAction {
 	public void setFornecedores(List<Fornecedor> fornecedores) {
 		this.fornecedores = fornecedores;
 	}
+
+
+	
 	
 
 }

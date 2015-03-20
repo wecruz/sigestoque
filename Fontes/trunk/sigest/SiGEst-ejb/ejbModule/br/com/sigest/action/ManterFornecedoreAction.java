@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Create;
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -44,6 +45,9 @@ public class ManterFornecedoreAction {
 	
 	private List<Fornecedor> listFornecedores = new ArrayList<Fornecedor>();
 	
+	private Cidade cidade = new Cidade();
+	
+	private Estado estado = new Estado();
 	
 	private boolean flagNovoCadastro;
 	private boolean flagPesquisar;
@@ -74,6 +78,13 @@ public class ManterFornecedoreAction {
 	}
 	
 	
+	public List<Cidade> initCidade(){
+		
+		cidades =  estoqueService.fidAllCidade(estado);
+		
+		return cidades;
+	}
+	
 	
 	public void selecionarFornecedor(Fornecedor fornecedor){
 		setFornecedorSelecionado(fornecedor);
@@ -94,7 +105,6 @@ public class ManterFornecedoreAction {
 
 	
 	public void salvar() {
-		if (validarCamposObrigatorios()) {
 			fornecedor.getEndereco().setFornecedor(getFornecedor());
 			if(getIndice() == null){
 				listFornecedores.add(getFornecedor());				
@@ -105,7 +115,6 @@ public class ManterFornecedoreAction {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			this.fornecedor = new Fornecedor(new Endereco());
 			setFlagMensagen(true);
-		}
 	}
 	
 	public boolean validarCriterioPesquisa(){		
@@ -146,32 +155,6 @@ public class ManterFornecedoreAction {
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		fornecedor = new Fornecedor(new Endereco());
-	}
-	
-	public boolean validarCamposObrigatorios(){
-		boolean campo = true;
-		if(getFornecedor().getNome().isEmpty()){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Nome e obrigatorio.", ""));
-			setFlagMensagen(false);
-			campo = false;
-		}
-		if(getFornecedor().getCnpj() == null){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo CNPJ e obrigatorio.", ""));
-			setFlagMensagen(false);
-			campo = false;
-		}
-		if(getFornecedor().getEndereco().getEndereco().isEmpty()){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Endereço e obrigatorio.", ""));
-			setFlagMensagen(false);
-			campo = false;
-		}
-		if(getFornecedor().getEndereco().getCidade().isEmpty()){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Cidade e obrigatorio.", ""));
-			setFlagMensagen(false);
-			campo = false;
-		}
-		
-		return campo;
 	}
 	
 	
@@ -285,6 +268,30 @@ public class ManterFornecedoreAction {
 
 	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
 		this.flagNovoCadastro = flagNovoCadastro;
+	}
+
+
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+
+
+	public Estado getEstado() {
+		return estado;
 	}
 
 

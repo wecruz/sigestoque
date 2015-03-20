@@ -1,5 +1,6 @@
 package br.com.sigest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Remove;
@@ -12,6 +13,8 @@ import org.jboss.seam.annotations.Name;
 
 import br.com.sigest.dao.FornecedorDao;
 import br.com.sigest.dao.ProdutoDao;
+import br.com.sigest.modelo.Cidade;
+import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 
@@ -64,6 +67,11 @@ public class EstoqueService implements IEstoqueService{
 	public List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor) {
 		return produtoDao.pesquisarProdutoFornecedor(fornecedor);
 	}
+	public List<Estado> fidAllEstados() {
+		return fornecedorDao.fidAllEstados();
+	}
+	
+	
 //	public List<Estado> pesquisarTodosEstados() {
 //		return fornecedorDao.pesquisarTodosEstados();
 //	}
@@ -81,6 +89,17 @@ public class EstoqueService implements IEstoqueService{
 	public void remove() {
 		
 	}
+
+
+	public List<Cidade> fidAllCidade(Estado estado) {
+		List<Cidade> cidades = new ArrayList<Cidade>();
+		if(estado.getUf() != null){
+		return	cidades = fornecedorDao.fidAllCidades(estado);
+		}
+		return cidades;
+	}
+
+
 
 
 

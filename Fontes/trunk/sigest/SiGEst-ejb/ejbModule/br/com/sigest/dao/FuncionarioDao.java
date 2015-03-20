@@ -47,6 +47,9 @@ public class FuncionarioDao {
 		if(!funcionario.getCpf().isEmpty()){
 			criteria.add(Restrictions.eq("funcionario.cpf", funcionario.getCpf()));
 		}
+		if(funcionario.getCargoFuncao() != null){
+			criteria.add(Restrictions.eq("funcionario.cargoFuncao", funcionario.getCargoFuncao()));
+		}
 		criteria.createAlias("funcionario.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();
 	}

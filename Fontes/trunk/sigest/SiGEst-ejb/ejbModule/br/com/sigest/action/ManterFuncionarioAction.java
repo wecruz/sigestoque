@@ -52,6 +52,9 @@ public class ManterFuncionarioAction {
 	
 	private Integer qntFuncionarios = 10;
 	
+
+	
+	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public EnumCargoFuncao[] initCargoFuncao(){
 		
@@ -78,9 +81,14 @@ public class ManterFuncionarioAction {
 		return "/funcionarios/funcionarios.xhtml";
 	}
 	
+	public String removerMascara(String str){  
+	    return str.replaceAll("\\D", "");  
+	}
+	
 	public void salvar(){
 		
 			funcionario.getEndereco().setFuncionario(funcionario);
+			
 			if(getIndice() == null){
 				funcionarios.add(funcionario);				
 			}else{
@@ -92,8 +100,6 @@ public class ManterFuncionarioAction {
 			funcionario = new Funcionario(new Endereco());
 		
 	}
-	
-	
 	
 	public void pesquisarFuncioanrios(){
 		if (validarCriterioPesquisa()) {

@@ -11,7 +11,7 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="idform">
-			
+
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -23,12 +23,12 @@
 								styleClass="btn btn-default navbar-btn"
 								rendered="#{!manterFornecedoreAction.flagPesquisar}"
 								action="#{manterFornecedoreAction.pesquisarFornecedor()}" />
-								
-								
+
+
 							<h:commandButton value="Novo Cadastro"
 								styleClass="btn btn-default navbar-btn"
 								action="#{manterFornecedoreAction.novoCadastro()}"
-								immediate="true" />	
+								immediate="true" />
 						</div>
 
 						<div class="form-group linha">
@@ -49,23 +49,23 @@
 									styleClass="form-control" />
 							</div>
 						</div>
-					<s:div rendered="#{manterFornecedoreAction.flagNovoCadastro}">	
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Endereço*: " />
+						<s:div rendered="#{manterFornecedoreAction.flagNovoCadastro}">
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Endereço*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFornecedoreAction.fornecedor.endereco.endereco}"
+										styleClass="form-control" />
+								</div>
 							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.endereco.endereco}"
-									styleClass="form-control" />
-							</div>
-						</div>
-						
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Estado*: " />
-							</div>
-							<div class="col-sm-5">
+
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Estado*: " />
+								</div>
+								<div class="col-sm-5">
 									<h:selectOneMenu
 										value="#{manterFornecedoreAction.fornecedor.endereco.estado}"
 										styleClass="form-control">
@@ -74,41 +74,41 @@
 										</s:selectItems>
 									</h:selectOneMenu>
 								</div>
-						</div>
-						
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Cidade*: " />
 							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.endereco.cidade}"
-									styleClass="form-control" />
-							</div>
-						</div>
 
-						
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="E-mail*: " />
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Cidade*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFornecedoreAction.fornecedor.endereco.cidade}"
+										styleClass="form-control" />
+								</div>
 							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.endereco.email}"
-									styleClass="form-control" />
+
+
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="E-mail*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFornecedoreAction.fornecedor.endereco.email}"
+										styleClass="form-control" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Telefone*: " />
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Telefone*: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFornecedoreAction.fornecedor.endereco.telefone}"
+										styleClass="form-control textTelefone" />
+								</div>
 							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFornecedoreAction.fornecedor.endereco.telefone}"
-									styleClass="form-control textTelefone" />
-							</div>
-						</div>
-					</s:div>
+						</s:div>
 					</div>
 				</div>
 			</div>
@@ -116,10 +116,10 @@
 				<h:commandButton action="#{manterFornecedoreAction.salvar()}"
 					rendered="#{manterFornecedoreAction.flagNovoCadastro}"
 					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
-					
+
 				<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
-					reRender="id_div_tabela,idform"
-					value="Cancelar" styleClass="btn btn-default navbar-btn" ajaxSingle="true"/>	
+					reRender="id_div_tabela,idform" value="Cancelar"
+					styleClass="btn btn-default navbar-btn" ajaxSingle="true" />
 			</div>
 			<rich:spacer />
 			<br />
@@ -133,7 +133,7 @@
 					<div class="panel-heading">Lista de Fornecedores</div>
 					<rich:dataTable value="#{manterFornecedoreAction.listFornecedores}"
 						var="fornece" id="id_div_tabela" rowKeyVar="indice"
-						styleClass="table" rows="10">
+						styleClass="table active" rows="10">
 						<rich:column>
 							<f:facet name="header">Nome do Fornecedor</f:facet>
 							<h:outputText value="#{fornece.nome}" />
@@ -160,12 +160,13 @@
 
 						</rich:column>
 					</rich:dataTable>
+					<h:outputText value="Total de Registro:" />
 					<center>
-						<rich:datascroller for="id_div_tabela" maxPages="20"
-							styleClass="pagination"
-							page="#{manterFornecedoreAction.qntFornecedores}" id="sc2"
-							reRender="sc1">
-						</rich:datascroller>
+								<rich:datascroller for="id_div_tabela" maxPages="20"
+									styleClass="pagination btn-toolbar btn-group"
+									page="#{manterFornecedoreAction.qntFornecedores}" id="sc2"
+									reRender="sc1">
+								</rich:datascroller>
 					</center>
 
 				</div>

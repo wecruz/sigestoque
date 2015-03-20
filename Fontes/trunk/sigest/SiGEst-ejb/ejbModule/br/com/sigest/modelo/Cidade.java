@@ -1,19 +1,17 @@
 package br.com.sigest.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-//@Entity
-//@Table(name ="cidade")
+@Entity
+@Table(name ="tb_cidades")
 public class Cidade {
 
 	@Id
@@ -21,14 +19,20 @@ public class Cidade {
 	@Column(name = "id", nullable = false)
 	private int id;
 	
+	@OneToOne
+	@JoinColumn(name="estado")
+	private Estado estado;
+	
+	@Column(name = "uf")
+	private String uf;
+	
 	
 	@Column(name = "nome")
 	private String nome;
 	
 	
-//	@OneToMany(mappedBy="estado")
-	private List<Estado> estados = new ArrayList<Estado>();
-
+	
+	
 
 	public int getId() {
 		return id;
@@ -46,12 +50,22 @@ public class Cidade {
 		this.nome = nome;
 	}
 
-	public List<Estado> getEstados() {
-		return estados;
+	
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
-	public void setEstados(List<Estado> estados) {
-		this.estados = estados;
+	public String getUf() {
+		return uf;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Estado getEstado() {
+		return estado;
 	}
 	
 	
