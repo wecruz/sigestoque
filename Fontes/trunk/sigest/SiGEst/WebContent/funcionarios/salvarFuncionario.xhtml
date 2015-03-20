@@ -187,14 +187,37 @@
 								ajaxSingle="true" reRender="id_form,id_div_tabela"
 								oncomplete="Richfaces.showModalPanel('painel')"/>
 						</rich:column>
+						<f:facet name="footer">
+								<s:div styleClass="panel panel-info" >
+									<s:div styleClass="">
+										<s:div styleClass="">
+											<h:outputLabel value="Total Registros: " />
+											<h:outputText
+												value="#{manterFuncionarioAction.funcionarios.size()}" />
+										</s:div>
+									</s:div>
+									<s:div styleClass="">
+										<rich:datascroller id="datascroller" renderIfSinglePage="true"
+											immediate="true" styleClass="" />
+									</s:div>
+									<s:div styleClass="">
+										<s:div styleClass="tARight">
+											<h:outputLabel value="Registros Por Página: " />
+											<h:selectOneMenu
+												value="#{manterFuncionarioAction.qntFuncionarios}">
+												<f:selectItem itemLabel="10" itemValue="10"
+													noSelectionOption="true" />
+												<f:selectItem itemLabel="50" itemValue="50" />
+												<f:selectItem itemLabel="100" itemValue="100" />
+												<f:selectItem itemLabel="150" itemValue="150" />
+												<f:selectItem itemLabel="200" itemValue="200" />
+												<a4j:support event="onchange" reRender="id_div_tabela" />
+											</h:selectOneMenu>
+										</s:div>
+									</s:div>
+								</s:div>
+							</f:facet>
 					</rich:dataTable>
-					<center>
-						<rich:datascroller for="id_div_tabela" maxPages="20"
-							styleClass="pagination"
-							page="#{manterFuncionarioAction.qntFuncionarios}" id="sc2"
-							reRender="sc1">
-						</rich:datascroller>
-					</center>
 				</div>
 			</s:div>
 			<rich:modalPanel id="painel" width="350" height="150">
