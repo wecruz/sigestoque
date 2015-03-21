@@ -106,7 +106,7 @@ public class ManterFuncionarioAction {
 			funcionarios = new ArrayList<Funcionario>();		
 			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
 			if (funcionarios.isEmpty()) {
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um Registro Localizado.", ""));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum Registro Localizado.", ""));
 				setFlagMensagen(false);
 			}
 		}
@@ -124,12 +124,22 @@ public class ManterFuncionarioAction {
 		setFuncionarioSelecionado(funcio);
 	}
 	
-	public void excluir(){
+	public String excluir(){
 		funcionarios.remove(getFuncionarioSelecionado());
 		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-		setFlagMensagen(true);
 		funcionarioSelecionado = new Funcionario();
+		funcionario = new Funcionario(new Endereco());
+		return "funcionarios";
+	}
+	
+	public String excluirSalva(){
+		funcionarios.remove(getFuncionarioSelecionado());
+		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		funcionarioSelecionado = new Funcionario();
+		funcionario = new Funcionario(new Endereco());
+		return "salvarFuncionarios";
 	}
 	
 	public boolean validarCriterioPesquisa(){		

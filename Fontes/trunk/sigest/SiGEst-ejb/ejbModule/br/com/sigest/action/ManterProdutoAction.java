@@ -133,7 +133,7 @@ public class ManterProdutoAction {
 			listProdutos = estoqueService.pesquisarProduto(produto);
 			if(listProdutos.isEmpty()){
 				setFlagMensagen(false);
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um registro encontrado.", ""));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum registro encontrado.", ""));
 			}			
 		}
 	}

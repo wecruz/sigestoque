@@ -18,6 +18,9 @@
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
 				<div class="form-horizontal ">
+					<br /> <br /> <br />
+					<div style="float: right">
+					</div>
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Nome*: " />
@@ -215,24 +218,19 @@
 			<rich:modalPanel id="painel" width="350" height="150">
 				<f:facet name="header">
 					<h:panelGroup>
-						<h:outputText value="Excluir"></h:outputText>
+						<h:outputText value="Deseja realmente excluir?"></h:outputText>
 					</h:panelGroup>
 				</f:facet>
 				<f:facet name="controls">
 					<h:panelGroup>
-						<!-- <a4j:commandLink value="X"
-							action="#{manterFornecedoreAction.cancelar()}"
-							reRender="id_tabela_funcio,idform"
-							oncomplete="Richfaces.hideModalPanel('painel')">
-						</a4j:commandLink> -->
 
 					</h:panelGroup>
 				</f:facet>
 				<rich:spacer height="20px" />
 			<center>
 				<a4j:commandButton  value="Confirmar" styleClass="btn btn-default navbar-btn"
-					action="#{manterFuncionarioAction.excluir()}"
-					ajaxSingle="true" reRender="id_form,id_div_tabela"
+					action="#{manterFuncionarioAction.excluirSalva()}"
+					ajaxSingle="true"
 					oncomplete="Richfaces.hideModalPanel('painel')" />
 				<rich:spacer width="15px" />
 				<a4j:commandButton value="Cancelar"

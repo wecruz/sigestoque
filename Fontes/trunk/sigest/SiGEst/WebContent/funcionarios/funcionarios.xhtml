@@ -18,7 +18,7 @@
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
 				<div class="form-horizontal ">
-					
+					<br />
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Nome: " />
@@ -67,6 +67,13 @@
 			</div>
 			<rich:spacer />
 			<div style="float: right">
+				<h:commandButton value="Pesquisar" ajaxSingle="true"
+					styleClass="btn btn-default navbar-btn"
+					action="#{manterFuncionarioAction.pesquisarFuncioanrios()}" />
+
+				<h:commandButton value="Novo Cadastro"
+					styleClass="btn btn-default navbar-btn"
+					action="#{manterFuncionarioAction.novoCadastro()}" />
 
 				<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
 					value="Cancelar" styleClass="btn btn-default navbar-btn"
@@ -74,7 +81,10 @@
 
 			</div>
 			<rich:spacer />
-
+			<br />
+			<br />
+			<br />
+			<br />
 			<s:div id="id_tabela_funcio" styleClass="table"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
 				<div class="panel panel-info">
@@ -105,43 +115,43 @@
 								ajaxSingle="true" reRender="id_form,id_div_tabela"
 								oncomplete="Richfaces.showModalPanel('painel')" />
 						</rich:column>
-							<f:facet name="footer">
-								<s:div styleClass="panel panel-info" >
+						<f:facet name="footer">
+							<s:div styleClass="panel panel-info">
+								<s:div styleClass="">
 									<s:div styleClass="">
-										<s:div styleClass="">
-											<h:outputLabel value="Total Registros: " />
-											<h:outputText
-												value="#{manterFuncionarioAction.funcionarios.size()}" />
-										</s:div>
-									</s:div>
-									<s:div styleClass="">
-										<rich:datascroller id="datascroller" renderIfSinglePage="true"
-											immediate="true" styleClass="" />
-									</s:div>
-									<s:div styleClass="">
-										<s:div styleClass="tARight">
-											<h:outputLabel value="Registros Por Página: " />
-											<h:selectOneMenu
-												value="#{manterFuncionarioAction.qntFuncionarios}">
-												<f:selectItem itemLabel="10" itemValue="10"
-													noSelectionOption="true" />
-												<f:selectItem itemLabel="50" itemValue="50" />
-												<f:selectItem itemLabel="100" itemValue="100" />
-												<f:selectItem itemLabel="150" itemValue="150" />
-												<f:selectItem itemLabel="200" itemValue="200" />
-												<a4j:support event="onchange" reRender="id_div_tabela" />
-											</h:selectOneMenu>
-										</s:div>
+										<h:outputLabel value="Total Registros: " />
+										<h:outputText
+											value="#{manterFuncionarioAction.funcionarios.size()}" />
 									</s:div>
 								</s:div>
-							</f:facet>
+								<s:div styleClass="">
+									<rich:datascroller id="datascroller" renderIfSinglePage="true"
+										immediate="true" styleClass="" />
+								</s:div>
+								<s:div styleClass="">
+									<s:div styleClass="tARight">
+										<h:outputLabel value="Registros Por Página: " />
+										<h:selectOneMenu
+											value="#{manterFuncionarioAction.qntFuncionarios}">
+											<f:selectItem itemLabel="10" itemValue="10"
+												noSelectionOption="true" />
+											<f:selectItem itemLabel="50" itemValue="50" />
+											<f:selectItem itemLabel="100" itemValue="100" />
+											<f:selectItem itemLabel="150" itemValue="150" />
+											<f:selectItem itemLabel="200" itemValue="200" />
+											<a4j:support event="onchange" reRender="id_div_tabela" />
+										</h:selectOneMenu>
+									</s:div>
+								</s:div>
+							</s:div>
+						</f:facet>
 					</rich:dataTable>
 				</div>
 			</s:div>
 			<rich:modalPanel id="painel" width="350" height="150">
 				<f:facet name="header">
 					<h:panelGroup>
-						<h:outputText value="Excluir"></h:outputText>
+						<h:outputText value="Deseja realmente excluir?"></h:outputText>
 					</h:panelGroup>
 				</f:facet>
 				<f:facet name="controls">
@@ -157,23 +167,16 @@
 				<rich:spacer height="20px" />
 				<center>
 					<a4j:commandButton value="Confirmar"
-						styleClass="btn btn-default navbar-btn"
+						styleClass="btn btn-default navbar-btn" immediate="true"
 						action="#{manterFuncionarioAction.excluir()}" ajaxSingle="true"
-						reRender="id_form,id_div_tabela"
-						oncomplete="Richfaces.hideModalPanel('painel')" />
+						reRender="id_form" oncomplete="Richfaces.hideModalPanel('painel')" />
 					<rich:spacer width="15px" />
 					<a4j:commandButton value="Cancelar" action="#"
 						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
 						reRender="id_form,id_div_tabela"
 						onclick="Richfaces.hideModalPanel('painel')" />
-					<a4j:commandButton value="Pesquisar" ajaxSingle="true"
-						styleClass="btn btn-default navbar-btn"
-						action="#{manterFuncionarioAction.pesquisarFuncioanrios()}"
-						rendered="#{!manterFuncionarioAction.flagPesquisar}" />
-					<a4j:commandButton value="Novo Cadastro"
-						styleClass="btn btn-default navbar-btn"
-						action="#{manterFuncionarioAction.novoCadastro()}" />
 				</center>
+
 			</rich:modalPanel>
 		</h:form>
 	</ui:define>

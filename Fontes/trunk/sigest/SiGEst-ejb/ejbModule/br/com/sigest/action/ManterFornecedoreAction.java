@@ -72,7 +72,7 @@ public class ManterFornecedoreAction {
 			listFornecedores = new ArrayList<Fornecedor>();
 			listFornecedores = estoqueService.pesquisarFornecedores(getFornecedor());
 			if(listFornecedores.isEmpty()){
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nem um registro encontrado.", ""));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum registro encontrado.", ""));
 			}
 		}
 	}
