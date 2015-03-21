@@ -4751,10 +4751,12 @@ a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active {
 }
 
 .alert {
-	padding: 15px;
-	margin-bottom: 20px;
+	padding: 4px;
+	margin-bottom: 10px;
 	border: 1px solid transparent;
-	border-radius: 4px
+	border-radius: 4px;
+	
+	
 }
 
 .alert h4 {
@@ -4788,15 +4790,16 @@ a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active {
 .alert-success {
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
-	color: #3c763d
+	color: #3c763d;
+
 }
 
 .alert-success hr {
-	border-top-color: #c9e2b3
+	border-top-color: #c9e2b3;
 }
 
 .alert-success .alert-link {
-	color: #2b542c
+	color: #2b542c;
 }
 
 .alert-info {

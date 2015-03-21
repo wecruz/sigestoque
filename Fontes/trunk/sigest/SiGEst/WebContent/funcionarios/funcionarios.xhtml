@@ -18,17 +18,7 @@
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
 				<div class="form-horizontal ">
-					<br /> <br /> <br />
-					<div style="float: right">
-						<h:commandButton value="Pesquisar" ajaxSingle="true"
-							styleClass="btn btn-default navbar-btn"
-							action="#{manterFuncionarioAction.pesquisarFuncioanrios()}"
-							rendered="#{!manterFuncionarioAction.flagPesquisar}" />
-
-						<h:commandButton value="Novo Cadastro"
-							styleClass="btn btn-default navbar-btn"
-							action="#{manterFuncionarioAction.novoCadastro()}" />
-					</div>
+					
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Nome: " />
@@ -84,10 +74,7 @@
 
 			</div>
 			<rich:spacer />
-			<br />
-			<br />
-			<br />
-			<br />
+
 			<s:div id="id_tabela_funcio" styleClass="table"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
 				<div class="panel panel-info">
@@ -179,8 +166,14 @@
 						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
 						reRender="id_form,id_div_tabela"
 						onclick="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="Pesquisar" ajaxSingle="true"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterFuncionarioAction.pesquisarFuncioanrios()}"
+						rendered="#{!manterFuncionarioAction.flagPesquisar}" />
+					<a4j:commandButton value="Novo Cadastro"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterFuncionarioAction.novoCadastro()}" />
 				</center>
-
 			</rich:modalPanel>
 		</h:form>
 	</ui:define>

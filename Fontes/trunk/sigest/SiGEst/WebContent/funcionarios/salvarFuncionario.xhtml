@@ -18,14 +18,6 @@
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
 				<div class="form-horizontal ">
-					<br /> <br /> <br />
-					<div style="float: right">
-
-						<h:commandButton value="Novo Cadastro"
-							styleClass="btn btn-default navbar-btn"
-							action="#{manterFuncionarioAction.novoCadastro()}"
-							immediate="true" />
-					</div>
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Nome*: " />
@@ -246,7 +238,7 @@
 				<a4j:commandButton value="Cancelar"
 					action="#" styleClass="btn btn-default navbar-btn"
 					ajaxSingle="true" reRender="id_form,id_div_tabela"
-					onclick="Richfaces.hideModalPanel('painel')" />	
+					onclick="Richfaces.hideModalPanel('painel')" />
 			</center>		
 
 			</rich:modalPanel>
