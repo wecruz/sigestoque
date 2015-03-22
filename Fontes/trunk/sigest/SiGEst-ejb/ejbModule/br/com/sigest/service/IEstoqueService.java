@@ -2,6 +2,7 @@ package br.com.sigest.service;
 
 import java.util.List;
 
+import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Cidade;
 import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
@@ -27,6 +28,10 @@ public interface IEstoqueService {
 	List<Estado> fidAllEstados();
 	
 	List<Cidade> fidAllCidade(Estado estado);
+	
+	List<Categoria> fidAllCategoria();
+	
+	void salvarCategoria(Categoria categoria);
 //	List<Estado> pesquisarTodosEstados();
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);

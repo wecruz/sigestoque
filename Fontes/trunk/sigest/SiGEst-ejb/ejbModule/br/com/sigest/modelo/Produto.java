@@ -55,10 +55,6 @@ public class Produto {
 	@Temporal(TemporalType.DATE)
 	private Date dataValidade;
 	
-	@Column(name = "categoria")
-	@Enumerated(EnumType.STRING)
-	private EnumCategoria categoria;
-	
 	@Column(name = "novaUnidadeMedida")
 	private String novaUnidadeMedida;
 
@@ -66,6 +62,10 @@ public class Produto {
 	@OneToOne
 	@JoinColumn(name="fornecedor")
 	private Fornecedor fornecedor;
+	
+	@OneToOne
+	@JoinColumn(name="categoria")
+	private Categoria categoria;
 	
 	
 	public Produto() {
@@ -158,14 +158,6 @@ public class Produto {
 		this.codigo = codigo;
 	}
 
-	public EnumCategoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(EnumCategoria categoria) {
-		this.categoria = categoria;
-	}
-
 	public BigInteger getQuantidade() {
 		return quantidade;
 	}
@@ -180,6 +172,14 @@ public class Produto {
 
 	public void setQuantidadeMini(BigInteger quantidadeMini) {
 		this.quantidadeMini = quantidadeMini;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
 	

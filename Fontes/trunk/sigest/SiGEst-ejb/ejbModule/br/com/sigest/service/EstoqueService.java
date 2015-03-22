@@ -11,8 +11,10 @@ import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 
+import br.com.sigest.dao.CategoriaDao;
 import br.com.sigest.dao.FornecedorDao;
 import br.com.sigest.dao.ProdutoDao;
+import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Cidade;
 import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
@@ -31,6 +33,9 @@ public class EstoqueService implements IEstoqueService{
 	@In
 	ProdutoDao produtoDao;
 	
+	@In
+	CategoriaDao categoriaDao;
+	
 	
 	
 	
@@ -38,6 +43,9 @@ public class EstoqueService implements IEstoqueService{
 		return fornecedorDao.fidAllFornecedor();
 	}
 	
+	public void salvarCategoria(Categoria categoria) {
+		categoriaDao.salvarCategoria(categoria);
+	}
 
 	public void salvar(Fornecedor fornecedor) {
 		fornecedorDao.salvar(fornecedor);		
@@ -71,6 +79,9 @@ public class EstoqueService implements IEstoqueService{
 		return fornecedorDao.fidAllEstados();
 	}
 	
+	public List<Categoria> fidAllCategoria() {
+		return categoriaDao.pesquisarCategoria();
+	}
 	
 //	public List<Estado> pesquisarTodosEstados() {
 //		return fornecedorDao.pesquisarTodosEstados();
@@ -98,6 +109,10 @@ public class EstoqueService implements IEstoqueService{
 		}
 		return cidades;
 	}
+
+
+
+
 
 
 

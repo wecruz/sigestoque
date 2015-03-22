@@ -21,6 +21,7 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import br.com.sigest.enums.EnumCategoria;
+import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
@@ -44,6 +45,7 @@ public class ManterProdutoAction {
 
 	private Produto produto = new Produto(new Fornecedor());
 	
+	private Categoria categoria = new Categoria();
 	
 //	
 //	@In
@@ -51,9 +53,6 @@ public class ManterProdutoAction {
 //	
 	private List<Produto> listProdutos = new ArrayList<Produto>();
 
-	private Boolean flagMensagen;
-	private boolean flagNovoCadastro;
-	private boolean flagPesquisar;
 	
 	private Produto produtoSelecionado = new Produto(new Fornecedor());
 	
@@ -70,7 +69,7 @@ public class ManterProdutoAction {
 	
 	@Create
 	public String create(){
-		
+		initCategorias();
 		return "/produtos/produtos.xhtml";
 	}
 	
@@ -91,8 +90,14 @@ public class ManterProdutoAction {
 	
 	
 	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
-	public EnumCategoria[] initCategorias(){
-		return EnumCategoria.values();
+	public List<Categoria> initCategorias(){
+		return estoqueService.fidAllCategoria();
+	}
+	
+	
+	public void salvarCategoria(){
+		estoqueService.salvarCategoria(categoria);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	}
 	
 	public void salvarProduto() {
@@ -120,7 +125,6 @@ public class ManterProdutoAction {
 		}
 		estoqueService.salvarProduto(produto);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-		setFlagMensagen(true);
 		produto = new Produto(new Fornecedor());
 		file = new UploadedFile();
 		fileUtil = new UploadFileUtil();
@@ -132,17 +136,14 @@ public class ManterProdutoAction {
 			listProdutos = new ArrayList<Produto>();
 			listProdutos = estoqueService.pesquisarProduto(produto);
 			if(listProdutos.isEmpty()){
-				setFlagMensagen(false);
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum registro encontrado.", ""));
 			}			
 		}
 	}
 	
-	public void alterar(Produto produto, int indice) {
+	public String alterar(Produto produto, int indice) {
 		this.indice = indice;
 		this.produto = produto;
-		setFlagNovoCadastro(true);
-		setFlagPesquisar(true);
 		file = new UploadedFile();
 
 		try {
@@ -152,6 +153,7 @@ public class ManterProdutoAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "salvarProdutos";
 	}
 	
 	public void selecionarProduto(Produto produto){
@@ -162,18 +164,16 @@ public class ManterProdutoAction {
 	public void excluirProduto(){
 		listProdutos.remove(produtoSelecionado);
 		estoqueService.deletarProduto(produtoSelecionado);
-		setFlagMensagen(true);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		produto = new Produto();
 	}
 	
 	public String novoCadastro(){
-		setFlagNovoCadastro(true);
-		setFlagPesquisar(true);
 		produto = new Produto(new Fornecedor());
 		produtoSelecionado = new Produto(new Fornecedor());
 		file = new UploadedFile();
 		fileUtil = new UploadFileUtil();
-		return create();
+		return "salvarProdutos";
 	}
 	
 	
@@ -191,8 +191,6 @@ public class ManterProdutoAction {
 	}
 	
 	public String cancelar(){
-		setFlagNovoCadastro(false);
-		setFlagPesquisar(false);
 		produto = new Produto(new Fornecedor());
 		listProdutos = new ArrayList<Produto>();
 		file = new UploadedFile();
@@ -230,31 +228,6 @@ public class ManterProdutoAction {
 		this.listProdutos = listProdutos;
 	}
 
-	public Boolean getFlagMensagen() {
-		return flagMensagen;
-	}
-
-	public void setFlagMensagen(Boolean flagMensagen) {
-		this.flagMensagen = flagMensagen;
-	}
-
-
-	public boolean isFlagNovoCadastro() {
-		return flagNovoCadastro;
-	}
-
-	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
-		this.flagNovoCadastro = flagNovoCadastro;
-	}
-
-	public boolean isFlagPesquisar() {
-		return flagPesquisar;
-	}
-
-
-	public void setFlagPesquisar(boolean flagPesquisar) {
-		this.flagPesquisar = flagPesquisar;
-	}
 
 	public Integer getIndice() {
 		return indice;
@@ -289,6 +262,16 @@ public class ManterProdutoAction {
 
 	public void setFornecedores(List<Fornecedor> fornecedores) {
 		this.fornecedores = fornecedores;
+	}
+
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
 
