@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="body">
+		<h:form id="id_form">
+			
+			<div class="panel-default form-horizontal ">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="titulo">Manter Categoria</div>
+					</div>
+					
+					<div style="float: right">
+						<h:commandButton value="Pesquisar"
+							styleClass="btn btn-default navbar-btn"
+							action="#{manterProdutoAction.pesquisarProduto()}" />
+
+						<h:commandButton value="Novo Cadastro"
+							styleClass="btn btn-default navbar-btn" action="#{manterProdutoAction.novoCadastro()}"
+							immediate="true" />
+					</div>
+<br /><br />
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Nome*: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterProdutoAction.categoria.nome}"
+									styleClass="form-control" required="true" id="nomeCategoria" label="Nome"/>
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Descrição: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputTextarea value="#{manterProdutoAction.categoria.descricao}"
+									styleClass="form-control" />
+							</div>
+						</div>
+				</div>
+
+					</div>
+			<div style="float: right">
+				<h:commandButton 
+					action="#{manterProdutoAction.salvarProduto()}"
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+					
+				<a4j:commandButton action="#{manterProdutoAction.cancelar()}"
+					value="Cancelar" reRender="id_form,id_div_tabela"
+					styleClass="btn btn-default navbar-btn" ajaxSingle="true"/>
+			</div>
+
+			<rich:spacer height="20px" />
+
+
+			<s:div styleClass="form-group" id="id_tabela_produto"
+				rendered="#{manterProdutoAction.listProdutos.size() >0}">
+				<div class="table-responsive, panel panel-info">
+					<div class="panel-heading">Lista de Categoria</div>
+					<rich:dataTable value="#{manterProdutoAction.listProdutos}"
+						var="produto" id="id_div_tabela" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Nome Categoria</f:facet>
+							<h:outputText value="#{produto.codigo}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Descrição</f:facet>
+							<h:outputText value="#{produto.descricao}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Operações</f:facet>
+							<a4j:commandLink
+								action="#{manterProdutoAction.alterar(produto,indice)}"
+								value="Alterar" ajaxSingle="true" reRender="id_form" />
+							<rich:spacer width="20px" />
+							<a4j:commandLink value="Excluir"
+								action="#{manterProdutoAction.selecionarProduto(produto)}"
+								reRender="id_div_tabela,id_form"
+								oncomplete="Richfaces.showModalPanel('painel')">
+							</a4j:commandLink>
+						</rich:column>
+					</rich:dataTable>
+				</div>
+			</s:div>
+			
+			<!-- MODAL EXCLUIR -->
+			
+			<rich:modalPanel id="painel" width="350" height="150">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="Excluir"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+					</h:panelGroup>
+				</f:facet>
+				<rich:spacer height="20px" />
+				<center>
+					<a4j:commandButton value="Confirmar"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterProdutoAction.excluirProduto()}" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						oncomplete="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="Cancelar" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel')" />
+				</center>
+			</rich:modalPanel>
+			
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

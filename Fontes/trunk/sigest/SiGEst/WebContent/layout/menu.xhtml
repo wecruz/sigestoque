@@ -5,34 +5,62 @@
 	xmlns:s="http://jboss.com/products/seam/taglib"
 	xmlns:rich="http://richfaces.org/rich">
 	<div class="menu1">
+
+
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/home.png" />
-			<s:link id="menuHomeId" view="/home.xhtml" value="Home"
+			<s:link id="menuHomeId" action="home" value="Home"
 				propagation="none" />
 		</rich:toolBarGroup>
+		
+
+		<h:form>
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:graphicImage value="/img/menu/produtos.png" />
+						<rich:spacer width="10" />
+						<h:outputText value="Produtos" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Manter Produto"
+					action="produtos">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem submitMode="ajax" value="Manter Categoria"
+					action="categoria">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+
+			</rich:dropDownMenu>
+		</h:form>
+
+
+
 		<rich:toolBarGroup>
-			<h:graphicImage value="/img/menu/produtos.png" />
-			<s:link id="menuProdutos" action="produtos" value="Produtos" propagation="none" />
-		</rich:toolBarGroup>
-		<rich:toolBarGroup>
-			<h:graphicImage value="/img/menu/fornecedores.png" />	
-			<s:link id="menuFornecedoresId" action="fornecedores" value="Fornecedores" propagation="none" />
+			<h:graphicImage value="/img/menu/fornecedores.png" />
+			<s:link id="menuFornecedoresId" action="fornecedores"
+				value="Fornecedores" propagation="none" />
 		</rich:toolBarGroup>
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/clientes.png" />
-			<s:link id="menuClientesId" action="clientes" value="Clientes" propagation="none" />
+			<s:link id="menuClientesId" action="clientes" value="Clientes"
+				propagation="none" />
 		</rich:toolBarGroup>
 		<rich:toolBarGroup>
-			<h:graphicImage value="/img/menu/funcionarios.png"/>
-			<s:link id="menuFuncionariosId" action="funcionarios" value="Funcionarios" propagation="none" />
+			<h:graphicImage value="/img/menu/funcionarios.png" />
+			<s:link id="menuFuncionariosId" action="funcionarios"
+				value="Funcionarios" propagation="none" />
 		</rich:toolBarGroup>
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/relatorio.png" />
-			<s:link id="menuRelatoriosId" action="relatorios"  value="Relatorios" propagation="none" />
+			<s:link id="menuRelatoriosId" action="relatorios" value="Relatorios"
+				propagation="none" />
 		</rich:toolBarGroup>
 		<rich:toolBarGroup>
 			<h:graphicImage value="/img/menu/vendas.png" />
-			<s:link id="menuVendasId" action="vendas" value="Vendas" propagation="none" />
+			<s:link id="menuVendasId" action="vendas" value="Vendas"
+				propagation="none" />
 		</rich:toolBarGroup>
 		<!-- @newMenuItem@ -->
 		<rich:toolBarGroup location="right">
@@ -45,5 +73,6 @@
 				action="#{identity.logout}" value="Sair"
 				rendered="#{identity.loggedIn}" propagation="none" />
 		</rich:toolBarGroup>
+
 	</div>
 </rich:toolBar>
