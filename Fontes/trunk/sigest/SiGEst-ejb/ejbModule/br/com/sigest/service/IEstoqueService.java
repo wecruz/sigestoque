@@ -31,6 +31,8 @@ public interface IEstoqueService {
 	
 	List<Categoria> pesquisarCategoria(Categoria categoria);
 	
+	List<Categoria> fidAllCategoria();
+	
 	void salvarCategoria(Categoria categoria);
 //	List<Estado> pesquisarTodosEstados();
 //	

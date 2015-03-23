@@ -40,6 +40,14 @@ public class CategoriaDao {
 		return criteria.list();
 	}
 	
+	
+	public List<Categoria> fidAllCategoria(){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Categoria.class, "categoria");
+		
+		return criteria.list();
+	}
+	
 	public void salvarCategoria(Categoria categoria){
 		entityManager.merge(categoria);
 	}

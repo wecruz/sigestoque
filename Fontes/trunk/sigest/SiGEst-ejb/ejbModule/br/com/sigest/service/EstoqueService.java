@@ -82,6 +82,11 @@ public class EstoqueService implements IEstoqueService{
 	public List<Categoria> pesquisarCategoria(Categoria categoria) {
 		return categoriaDao.pesquisarCategoria(categoria);
 	}
+
+	
+	public List<Categoria> fidAllCategoria() {
+		return categoriaDao.fidAllCategoria();
+	}
 	
 //	public List<Estado> pesquisarTodosEstados() {
 //		return fornecedorDao.pesquisarTodosEstados();
@@ -109,6 +114,7 @@ public class EstoqueService implements IEstoqueService{
 		}
 		return cidades;
 	}
+
 
 
 
