@@ -24,6 +24,10 @@
 				<begin-conversation join="true" />
 				<redirect view-id="/produtos/categoria.xhtml" />
 			</rule>
+			<rule if-outcome="salvarCategoria">
+				<begin-conversation join="true" />
+				<redirect view-id="/produtos/salvarCategoria.xhtml" />
+			</rule>
 			<rule if-outcome="salvarProdutos">
 				<begin-conversation join="true" />
 				<redirect view-id="/produtos/salvarProdutos.xhtml" />
