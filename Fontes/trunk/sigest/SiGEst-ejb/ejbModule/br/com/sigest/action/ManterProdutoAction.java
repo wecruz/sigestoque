@@ -91,7 +91,7 @@ public class ManterProdutoAction {
 	
 	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
 	public List<Categoria> initCategorias(){
-		return estoqueService.fidAllCategoria();
+		return null;
 	}
 	
 	

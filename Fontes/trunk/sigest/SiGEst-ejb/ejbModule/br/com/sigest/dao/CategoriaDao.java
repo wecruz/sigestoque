@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.In;
@@ -23,9 +25,17 @@ public class CategoriaDao {
 	@In
 	EntityManager entityManager;
 	
-	public List<Categoria> pesquisarCategoria(){
+	public List<Categoria> pesquisarCategoria(Categoria categoria){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Categoria.class, "categoria");
+		
+		if(!categoria.getNome().isEmpty()){
+			criteria.add(Restrictions.like("categoria.nome", categoria.getNome(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		
+		if(!categoria.getDescricao().isEmpty()){
+			criteria.add(Restrictions.like("categoria.descricao", categoria.getDescricao()));
+		}
 		
 		return criteria.list();
 	}

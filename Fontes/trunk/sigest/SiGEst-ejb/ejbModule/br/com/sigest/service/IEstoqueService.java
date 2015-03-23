@@ -29,7 +29,7 @@ public interface IEstoqueService {
 	
 	List<Cidade> fidAllCidade(Estado estado);
 	
-	List<Categoria> fidAllCategoria();
+	List<Categoria> pesquisarCategoria(Categoria categoria);
 	
 	void salvarCategoria(Categoria categoria);
 //	List<Estado> pesquisarTodosEstados();

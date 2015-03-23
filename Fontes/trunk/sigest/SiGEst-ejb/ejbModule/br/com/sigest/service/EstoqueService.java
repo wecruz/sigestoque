@@ -79,8 +79,8 @@ public class EstoqueService implements IEstoqueService{
 		return fornecedorDao.fidAllEstados();
 	}
 	
-	public List<Categoria> fidAllCategoria() {
-		return categoriaDao.pesquisarCategoria();
+	public List<Categoria> pesquisarCategoria(Categoria categoria) {
+		return categoriaDao.pesquisarCategoria(categoria);
 	}
 	
 //	public List<Estado> pesquisarTodosEstados() {
