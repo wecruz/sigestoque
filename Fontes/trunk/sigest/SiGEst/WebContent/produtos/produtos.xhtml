@@ -16,15 +16,6 @@
 					<div class="panel-heading">
 						<div class="titulo">Manter Produto</div>
 					</div>
-					<div style="float: right">
-						<h:commandButton value="Pesquisar"
-							styleClass="btn btn-default navbar-btn"
-							action="#{manterProdutoAction.pesquisarProduto()}" />
-
-						<h:commandButton value="Novo Cadastro"
-							styleClass="btn btn-default navbar-btn" action="#{manterProdutoAction.novoCadastro()}"
-							immediate="true" />
-					</div>
 					<div class="panel-body">
 
 						<div class="form-group linha">
@@ -92,13 +83,13 @@
 				</div>
 			</div>
 			<div style="float: right">
-				<h:commandButton 
-					action="#{manterProdutoAction.salvarProduto()}"
-					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
-					
-				<a4j:commandButton action="#{manterProdutoAction.cancelar()}"
-					value="Cancelar" reRender="id_form,id_div_tabela"
-					styleClass="btn btn-default navbar-btn" ajaxSingle="true"/>
+				<h:commandButton value="Pesquisar"
+					styleClass="btn btn-default navbar-btn"
+					action="#{manterProdutoAction.pesquisarProduto()}" />
+
+				<h:commandButton value="Novo Cadastro"
+					styleClass="btn btn-default navbar-btn"
+					action="#{manterProdutoAction.novoCadastro()}" immediate="true" />
 			</div>
 
 			<rich:spacer height="20px" />
