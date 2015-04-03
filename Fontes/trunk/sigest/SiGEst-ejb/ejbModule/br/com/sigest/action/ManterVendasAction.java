@@ -32,6 +32,11 @@ public class ManterVendasAction {
 	
 	private Venda venda = new Venda();
 	
+	private Float valorTotal = 0F ;
+	
+	private Integer quantidadeUnidade = 0;
+
+	
 	@Begin(join = true)
 	public String manipulaVendas(Cliente cliente) {
 		this.cliente = cliente;
@@ -57,9 +62,11 @@ public class ManterVendasAction {
 	}
 	
 	public void adicionarProduto(){
+		vendasClientesDTO.getProduto().setQuantidade(quantidadeUnidade);
 		vendasClientesDTO.getProduto().setFornecedor(vendasClientesDTO.getFornecedor());
 		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
-		vendasClientesDTO.setFornecedor(new Fornecedor());
+		valorTotal += vendasClientesDTO.getProduto().getPrecoVenda();
+		quantidadeUnidade = 0;
 		vendasClientesDTO.setProduto(new Produto());
 		
 	}
@@ -119,8 +126,10 @@ public class ManterVendasAction {
 		return "/vendas/vendas.xhtml";
 	}
 	
-	public void removerProduto(Produto produto){
+	public String removerProduto(Produto produto){
 		vendasClientesDTO.getProdutos().remove(produto);
+		valorTotal -= produto.getPrecoVenda();
+		return "/vendas/vendas.xhtml";
 	}
 
 	public Cliente getCliente() {
@@ -170,4 +179,22 @@ public class ManterVendasAction {
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
+
+	public void setValorTotal(Float valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public Float getValorTotal() {
+		return valorTotal;
+	}
+
+	public Integer getQuantidadeUnidade() {
+		return quantidadeUnidade;
+	}
+
+	public void setQuantidadeUnidade(Integer quantidadeUnidade) {
+		this.quantidadeUnidade = quantidadeUnidade;
+	}
+
+	
 }

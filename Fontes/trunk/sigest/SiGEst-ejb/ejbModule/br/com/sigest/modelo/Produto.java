@@ -37,10 +37,10 @@ public class Produto {
 	private String nomeProduto;
 	
 	@Column(name ="quantidade")
-	private BigInteger quantidade;
+	private Integer quantidade;
 	
 	@Column(name ="quantidadeMini")
-	private BigInteger quantidadeMini;
+	private Integer quantidadeMini;
 	
 	@Column(name ="precoCusto")
 	private Float precoCusto;
@@ -158,19 +158,23 @@ public class Produto {
 		this.codigo = codigo;
 	}
 
-	public BigInteger getQuantidade() {
+	
+
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(BigInteger quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public BigInteger getQuantidadeMini() {
+	
+
+	public Integer getQuantidadeMini() {
 		return quantidadeMini;
 	}
 
-	public void setQuantidadeMini(BigInteger quantidadeMini) {
+	public void setQuantidadeMini(Integer quantidadeMini) {
 		this.quantidadeMini = quantidadeMini;
 	}
 
