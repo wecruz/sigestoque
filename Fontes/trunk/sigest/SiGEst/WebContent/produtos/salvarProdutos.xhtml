@@ -68,17 +68,19 @@
 								</h:selectOneMenu>
 							</div>
 
-							<a4j:commandButton title="Adcionar Fornecedor" action="#"
+							<!--<a4j:commandButton title="Adcionar Fornecedor" action="#"
 								image="/img/plus.png"
 								oncomplete="Richfaces.showModalPanel('painel_fornecedor')" />
 
+						-->
+						
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Categoria*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:selectOneMenu required="true" id="categoria"
+								<h:selectOneMenu  id="categoria"
 									label="Categoria"
 									value="#{manterProdutoAction.produto.categoria}"
 									styleClass="form-control">
@@ -89,9 +91,11 @@
 								</h:selectOneMenu>
 							</div>
 
-							<a4j:commandButton action="#" image="/img/plus.png"
+							<!--<a4j:commandButton action="#" image="/img/plus.png"
 								title="Adicionar Categoria"
 								oncomplete="Richfaces.showModalPanel('painel_categoria')" />
+						-->
+						
 						</div>
 
 						<div class="form-group linha">
@@ -275,7 +279,7 @@
 				</center>
 			</rich:modalPanel>
 
-			<!-- MODAL FORNECEDOR -->
+			<!-- MODAL FORNECEDOR 
 
 			<rich:modalPanel id="painel_fornecedor" width="550" height="450">
 				<f:facet name="header">
@@ -370,8 +374,8 @@
 				</center>
 
 			</rich:modalPanel>
-
-			<!-- MODAL CATEGORIA -->
+			-->
+			<!-- MODAL CATEGORIA 
 			<rich:modalPanel id="painel_categoria" width="550" height="350">
 				<a4j:region>
 					<f:facet name="header">
@@ -427,6 +431,7 @@
 					</center>
 				</a4j:region>
 			</rich:modalPanel>
+			-->
 
 		</h:form>
 	</ui:define>
