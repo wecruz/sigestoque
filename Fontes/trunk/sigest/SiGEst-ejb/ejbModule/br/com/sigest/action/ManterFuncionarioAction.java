@@ -124,13 +124,12 @@ public class ManterFuncionarioAction {
 		setFuncionarioSelecionado(funcio);
 	}
 	
-	public String excluir(){
+	public void excluir(){
 		funcionarios.remove(getFuncionarioSelecionado());
 		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		funcionarioSelecionado = new Funcionario();
 		funcionario = new Funcionario(new Endereco());
-		return "funcionarios";
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	}
 	
 	public String excluirSalva(){
