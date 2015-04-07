@@ -12,6 +12,20 @@
 
 	<ui:define name="body">
 		<h:form id="id_form">
+		
+		
+		<!-- MENSAGEM EM TODAS TELAS 
+			<rich:spacer height="40px" />
+			<center>
+				<div style="width: 700px;">
+					<center>
+						<h:messages infoClass="alert alert-success"
+							errorClass="alert alert-danger" warnClass="alert alert-succes" />
+					</center>
+				</div>
+			</center>
+		-->	
+
 
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -167,8 +181,8 @@
 				<rich:spacer height="20px" />
 				<center>
 					<a4j:commandButton value="Confirmar"
-						styleClass="btn btn-default navbar-btn" immediate="true"
-						action="#{manterFuncionarioAction.excluir()}" ajaxSingle="true"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterFuncionarioAction.excluir()}" 
 						reRender="id_form" oncomplete="Richfaces.hideModalPanel('painel')" />
 					<rich:spacer width="15px" />
 					<a4j:commandButton value="Cancelar" action="#"
