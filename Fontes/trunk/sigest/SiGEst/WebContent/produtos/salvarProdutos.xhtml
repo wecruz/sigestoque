@@ -73,15 +73,14 @@
 								oncomplete="Richfaces.showModalPanel('painel_fornecedor')" />
 
 						-->
-						
+
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Categoria*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:selectOneMenu  id="categoria"
-									label="Categoria"
+								<h:selectOneMenu id="categoria" label="Categoria"
 									value="#{manterProdutoAction.produto.categoria}"
 									styleClass="form-control">
 									<s:selectItems noSelectionLabel="--Selecione--"
@@ -95,7 +94,7 @@
 								title="Adicionar Categoria"
 								oncomplete="Richfaces.showModalPanel('painel_categoria')" />
 						-->
-						
+
 						</div>
 
 						<div class="form-group linha">
@@ -139,22 +138,27 @@
 
 							</div>
 							<div class="col-sm-5">
-								<a4j:region>
+								<a4j:region id="id_fileUpload">
 									<div class="coluna20pc">
-
-										<rich:fileUpload
-											fileUploadListener="#{manterProdutoAction.uploadFileImagem}"
-											autoclear="true" addControlLabel="Escolher imagem"
-											immediateUpload="true" listHeight="0px" listWidth="0px"
-											ajaxSingle="true" id="uploadArquivoFoto"
-											acceptedTypes="jpg, jpeg, JPG, JPEG, gif, GIF, PNG, png"
-											eventsQueue="queue-docs-foto"
-											ontyperejected="alert('Tipos válidos para anexar: JPEG, JPG, GIF ou PNG. Com tamanho menor ou igual a 50Mb.');">
-											<a4j:support event="onuploadcomplete"
-												reRender="fotoIMG,uploadArquivoFoto,id_Foto,id_form"
-												eventsQueue="queue-rerender-fotos" />
-										</rich:fileUpload>
-
+											<rich:fileUpload
+												fileUploadListener="#{manterProdutoAction.uploadFileImagem}"
+												autoclear="true" addControlLabel="Escolher imagem"
+												immediateUpload="true" listHeight="0px" listWidth="0px"
+												ajaxSingle="true" id="uploadArquivoFoto"
+												acceptedTypes="jpg, jpeg, JPG, JPEG, gif, GIF, PNG, png"
+												eventsQueue="queue-docs-foto"
+												ontyperejected="alert('Tipos válidos para anexar: JPEG, JPG, GIF ou PNG. Com tamanho menor ou igual a 50Mb.');">
+												<a4j:support event="onuploadcomplete"
+													reRender="fotoIMG,uploadArquivoFoto,id_Foto,id_form"
+													eventsQueue="queue-rerender-fotos" />
+											</rich:fileUpload>
+											<br /><br />
+										<a4j:commandButton
+											action="#{manterProdutoAction.removerFileUpload()}"
+											value="Remover"
+											reRender="id_Foto,fotoIMG,id_Foto,id_fileUpload"
+											rendered="#{manterProdutoAction.file.dados !=null}"
+											styleClass="btn btn-default navbar-btn" ajaxSingle="true" />
 
 									</div>
 								</a4j:region>

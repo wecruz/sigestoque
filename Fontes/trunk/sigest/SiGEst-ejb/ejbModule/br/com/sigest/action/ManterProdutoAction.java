@@ -86,7 +86,10 @@ public class ManterProdutoAction {
 		this.file.setTamanho(item.getFile().length());
 	}
 	
-	
+	public String removerFileUpload(){
+		file = new UploadedFile();
+		return "salvarProdutos";
+	}
 	
 	
 	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
