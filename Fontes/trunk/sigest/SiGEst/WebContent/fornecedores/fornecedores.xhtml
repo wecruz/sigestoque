@@ -11,7 +11,17 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="idform">
-
+			
+			<rich:spacer height="40px" />
+			<center>
+				<div style="width: 700px;">
+					<center>
+						<h:messages infoClass="alert alert-success"
+							errorClass="alert alert-danger" warnClass="alert alert-succes" />
+					</center>
+				</div>
+			</center>
+			
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
