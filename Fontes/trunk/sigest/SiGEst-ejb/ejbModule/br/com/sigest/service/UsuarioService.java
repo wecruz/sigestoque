@@ -34,6 +34,12 @@ public class UsuarioService implements IUsuarioService{
 		return	funcionarioDao.pesquisarFuncionarios(funcionario);
 	}
 	
+	public Funcionario login(String login, String senha) {
+		
+		return funcionarioDao.login(login, senha);
+	}
+
+	
 	@Destroy
 	public void destroy() {
 		
@@ -48,4 +54,5 @@ public class UsuarioService implements IUsuarioService{
 		funcionarioDao.excluirFuncionario(funcionario);
 		
 	}
+
 }

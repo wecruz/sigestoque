@@ -37,9 +37,6 @@ public class Funcionario {
 	@Column(name = "cpf")
 	private String cpf;
 	
-	@Column(name = "login")
-	private String login;
-	
 	@Column(name = "senha")
 	private String senha;
 	
@@ -76,14 +73,6 @@ public class Funcionario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getSenha() {

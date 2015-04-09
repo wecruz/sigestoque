@@ -54,6 +54,22 @@ public class FuncionarioDao {
 		return criteria.list();
 	}
 	
+	
+	public Funcionario login(String login, String senha){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Funcionario.class, "funcionario");
+		if (!login.isEmpty()) {
+			criteria.add(Restrictions.eq("funcionario.cpf", login));
+		}
+		if(!senha.isEmpty()){
+			criteria.add(Restrictions.like("funcionario.senha", senha,MatchMode.ANYWHERE).ignoreCase());
+		}
+		
+		return (Funcionario) criteria.uniqueResult();
+	}
+	
+	
+	
 	public void excluirFuncionario(Funcionario funcionario){
 		entityManager.remove(funcionario);
 	}

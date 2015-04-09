@@ -18,6 +18,8 @@ public interface IUsuarioService {
 	
 	void excluirFuncionario(Funcionario funcionario);
 	
+	Funcionario login(String login, String senha);
+	
 	void destroy();
 	
 	void remove();
