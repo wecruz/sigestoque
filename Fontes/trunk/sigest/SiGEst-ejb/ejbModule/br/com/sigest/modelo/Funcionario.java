@@ -31,6 +31,9 @@ public class Funcionario {
 	@Column(name = "nome")
 	private String nome;
 	
+	@Column(name = "email")
+	private String email;
+	
 	@Column(name = "rg")
 	private String rg;
 	
@@ -121,6 +124,16 @@ public class Funcionario {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	

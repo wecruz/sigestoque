@@ -13,6 +13,7 @@ import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.faces.Renderer;
 
 import br.com.sigest.enums.EnumCargoFuncao;
 import br.com.sigest.modelo.Endereco;
@@ -41,6 +42,10 @@ public class ManterFuncionarioAction {
 	private boolean flagPesquisar;
 	
 	private Boolean flagMensagen;
+	
+	
+	@In
+    Renderer renderer;
 	
 	private Integer indice;
 	
@@ -97,7 +102,13 @@ public class ManterFuncionarioAction {
 			usuarioService.salvarFuncionarios(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			setFlagMensagen(true);
+			
+			
+//			this.renderer.render("/email/email.xhtml");
+			
 			funcionario = new Funcionario(new Endereco());
+			
+			
 		
 	}
 	
