@@ -2,6 +2,8 @@ package br.com.sigest.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -90,27 +92,44 @@ public class ManterFuncionarioAction {
 	    return str.replaceAll("\\D", "");  
 	}
 	
-	public void salvar(){
-		
+	public void salvar() {
+
+		if (validEmail(funcionario.getEmail())) {
+
 			funcionario.getEndereco().setFuncionario(funcionario);
-			
-			if(getIndice() == null){
-				funcionarios.add(funcionario);				
-			}else{
+
+			if (getIndice() == null) {
+				funcionarios.add(funcionario);
+			} else {
 				funcionarios.set(indice, funcionario);
 			}
 			usuarioService.salvarFuncionarios(funcionario);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 			setFlagMensagen(true);
-			
-			
-//			this.renderer.render("/email/email.xhtml");
-			
+
+			// this.renderer.render("/email/email.xhtml");
+
 			funcionario = new Funcionario(new Endereco());
-			
-			
-		
+
+		}
+
 	}
+	
+	
+	
+	public boolean validEmail(String email) {
+	    Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$"); 
+	    Matcher m = p.matcher(email); 
+	    if (m.find()){
+	      return true;
+	    }
+	    else{
+	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e inválido", ""));
+	      setFlagMensagen(false);
+	      return false;
+	    }  
+	 }
+	
 	
 	public void pesquisarFuncioanrios(){
 		if (validarCriterioPesquisa()) {

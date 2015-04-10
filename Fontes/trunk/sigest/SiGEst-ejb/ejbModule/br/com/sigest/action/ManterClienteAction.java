@@ -135,7 +135,7 @@ public class ManterClienteAction {
 	      return true;
 	    }
 	    else{
-	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e valido", ""));
+	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e inválido", ""));
 	      setFlagMensagen(false);
 	      return false;
 	    }  
