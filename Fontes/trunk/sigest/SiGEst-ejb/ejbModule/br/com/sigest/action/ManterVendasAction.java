@@ -1,7 +1,13 @@
 package br.com.sigest.action;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
@@ -16,7 +22,9 @@ import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.Venda;
 import br.com.sigest.modelo.VendasClientesDTO;
+import br.com.sigest.modelo.dto.PedidoDTO;
 import br.com.sigest.service.IVendasService;
+import br.com.sigest.util.RelatorioUtil;
 
 @Name("manterVendasAction")
 @AutoCreate
@@ -35,6 +43,13 @@ public class ManterVendasAction {
 	private Float valorTotal = 0F ;
 	
 	private Integer quantidadeUnidade = 0;
+	
+	@In
+	private RelatorioUtil relatorioUtil;
+	
+	private List<PedidoDTO> listPedidoDTO = new ArrayList<PedidoDTO>();
+	
+	private PedidoDTO pedidoDTO = new PedidoDTO();
 
 	
 	@Begin(join = true)
@@ -62,12 +77,16 @@ public class ManterVendasAction {
 	}
 	
 	public void adicionarProduto(){
+		if(vendasClientesDTO.getProduto() == null){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Produto \u00E9 de preenchimento obrigat\u00F3rio.", ""));
+		}else{
 		vendasClientesDTO.getProduto().setQuantidade(quantidadeUnidade);
 		vendasClientesDTO.getProduto().setFornecedor(vendasClientesDTO.getFornecedor());
 		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
 		valorTotal += vendasClientesDTO.getProduto().getPrecoVenda();
 		quantidadeUnidade = 0;
 		vendasClientesDTO.setProduto(new Produto());
+		}
 		
 	}
 	
@@ -116,6 +135,30 @@ public class ManterVendasAction {
 		setClientes(vendasService.pesquisarClientes(cliente));
 		return getClientes();
 	}
+	
+	
+	public String gerarRelatorio() {
+
+		
+			final Collection<?> list = listPedidoDTO ;
+			final Map<String, Object> params = new HashMap<String, Object>();
+			pedidoDTO.setCliente(cliente);
+			listPedidoDTO.add(pedidoDTO);
+		
+			
+			try {
+				return relatorioUtil.imprimir("pedido_de_vendas", params, list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//		}
+		return "";
+
+	}
+	
+	
+	
 	
 	public void RenderdCliente(Cliente cliente){
 		this.cliente = cliente;
@@ -194,6 +237,22 @@ public class ManterVendasAction {
 
 	public void setQuantidadeUnidade(Integer quantidadeUnidade) {
 		this.quantidadeUnidade = quantidadeUnidade;
+	}
+
+	public void setListPedidoDTO(List<PedidoDTO> listPedidoDTO) {
+		this.listPedidoDTO = listPedidoDTO;
+	}
+
+	public List<PedidoDTO> getListPedidoDTO() {
+		return listPedidoDTO;
+	}
+
+	public void setPedidoDTO(PedidoDTO pedidoDTO) {
+		this.pedidoDTO = pedidoDTO;
+	}
+
+	public PedidoDTO getPedidoDTO() {
+		return pedidoDTO;
 	}
 
 	
