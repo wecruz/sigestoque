@@ -16,6 +16,16 @@
 			<center>
 				<div style="width: 700px;">
 					<center>
+						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
+							errorClass="alert alert-danger" warnClass="alert alert-succes" />
+					</center>
+				</div>
+			</center>
+		
+		<rich:spacer height="40px" />
+			<center>
+				<div style="width: 700px;">
+					<center>
 						<h:messages infoClass="alert alert-success"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
@@ -126,7 +136,7 @@
 									<s:selectItems noSelectionLabel="--Selecione--"
 										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
 									</s:selectItems>
-									<a4j:support event="onchange" reRender="id_form" />
+									<a4j:support event="onchange" reRender="id_produto" />
 									<s:convertEntity />
 								</h:selectOneMenu>
 							</div>
@@ -137,7 +147,7 @@
 								<h:outputLabel value="Produto*: " />
 							</div>
 							<div class="col-sm-5">
-								<h:selectOneMenu
+								<h:selectOneMenu id="id_produto"
 									value="#{manterVendasAction.vendasClientesDTO.produto}"
 									styleClass="form-control">
 									<s:selectItems noSelectionLabel="--Selecione--"
@@ -176,7 +186,7 @@
 
 						<div class="col-sm-9 control-label">
 							<h:commandButton value="Adicionar"
-								styleClass="btn btn-default navbar-btn"
+								styleClass="btn btn-default navbar-btn" 
 								action="#{manterVendasAction.adicionarProduto()}" />
 						</div>
 
@@ -251,8 +261,8 @@
 
 					<div class="form-group">
 						<center>
-							<h:commandButton action="#" value="IMPRIMIR"
-								styleClass="btn btn-default navbar-btn" />
+							<h:commandButton action="#{manterVendasAction.gerarRelatorio()}" value="IMPRIMIR PEDIDO"
+								styleClass="btn btn-default navbar-btn" onclick="target='_black'" immediate="true"/>
 
 							<h:commandButton action="#" value="CONFIRMAR VENDA"
 								styleClass="btn btn-default navbar-btn" />

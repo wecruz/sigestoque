@@ -57,11 +57,26 @@
 			<s:link id="menuRelatoriosId" action="relatorios" value="Relatorios"
 				propagation="none" />
 		</rich:toolBarGroup>
-		<rich:toolBarGroup>
-			<h:graphicImage value="/img/menu/vendas.png" />
-			<s:link id="menuVendasId" action="vendas" value="Vendas"
-				propagation="none" />
-		</rich:toolBarGroup>
+		
+		
+		<h:form>
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:graphicImage value="/img/menu/vendas.png" />
+						<rich:spacer width="10" />
+						<h:outputText value="Vendas" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem submitMode="ajax" value="Gerar Pedido de Venda"
+					action="vendas">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+
+			</rich:dropDownMenu>
+		</h:form>
+		
+		
 		<!-- @newMenuItem@ -->
 		<rich:toolBarGroup location="right">
 			<h:outputText id="menuWelcomeId"

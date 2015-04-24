@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pedido_de_vendas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a349afe-061e-402e-b4ab-ad050991de14">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IMAGEM_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cliente" class="br.com.sigest.modelo.Cliente">
+		<fieldDescription><![CDATA[cliente]]></fieldDescription>
+	</field>
+	<field name="fornecedor" class="br.com.sigest.modelo.Fornecedor">
+		<fieldDescription><![CDATA[fornecedor]]></fieldDescription>
+	</field>
+	<field name="produto" class="br.com.sigest.modelo.Produto">
+		<fieldDescription><![CDATA[produto]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="103">
+			<image hAlign="Center">
+				<reportElement x="236" y="10" width="80" height="91" uuid="6b21443b-bac3-4d55-93fa-c09539d27889"/>
+				<imageExpression><![CDATA[$P{IMAGEM_DIR} + "/img/Logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="310" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="56" width="100" height="20" uuid="cb5567ec-d32c-4d52-b78f-79e2544d83d7"/>
+				<text><![CDATA[Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="119" width="100" height="20" uuid="371af336-c6f5-4e55-b295-bba5d3115814"/>
+				<text><![CDATA[Nome Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="119" width="100" height="20" uuid="255f5fea-2ade-4f99-888f-19b535935f7f"/>
+				<textFieldExpression><![CDATA[$F{cliente}.getNome()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
