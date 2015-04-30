@@ -68,7 +68,7 @@ public class ManterVendasAction {
 	
 	public List<Produto> comboBoxListProduro(){
 		List<Produto> produtos = new ArrayList<Produto>();
-		if(vendasClientesDTO.getFornecedor() !=null){
+		if(vendasClientesDTO.getFornecedor() != null){
 			produtos = vendasService.pesquisarProdutoFornecedor(vendasClientesDTO.getFornecedor());
 			
 		}
@@ -77,16 +77,13 @@ public class ManterVendasAction {
 	}
 	
 	public void adicionarProduto(){
-		if(vendasClientesDTO.getProduto() == null){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O campo Produto \u00E9 de preenchimento obrigat\u00F3rio.", ""));
-		}else{
+		
 		vendasClientesDTO.getProduto().setQuantidade(quantidadeUnidade);
 		vendasClientesDTO.getProduto().setFornecedor(vendasClientesDTO.getFornecedor());
 		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
 		valorTotal += vendasClientesDTO.getProduto().getPrecoVenda();
 		quantidadeUnidade = 0;
 		vendasClientesDTO.setProduto(new Produto());
-		}
 		
 	}
 	

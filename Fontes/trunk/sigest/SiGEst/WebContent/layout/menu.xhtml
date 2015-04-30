@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:s="http://jboss.com/products/seam/taglib"
 	xmlns:rich="http://richfaces.org/rich">
-	<div class="menu1">
+	<div class="menu" >
 
 
 		<rich:toolBarGroup>
@@ -79,14 +79,21 @@
 		
 		<!-- @newMenuItem@ -->
 		<rich:toolBarGroup location="right">
-			<h:outputText id="menuWelcomeId"
+			<h:outputText id="menuWelcomeId" 
 				value="Usuário Logado: #{credentials.username}"
 				rendered="#{identity.loggedIn}" />
-			<s:link id="menuLoginId" view="/login.xhtml" value="Login"
+				
+			<s:link view="/alterarSenha.xhtml" rendered="#{identity.loggedIn}">
+				<h:graphicImage value="/img/icone_alterar.png" height="35" width="35px"/>
+			</s:link>
+		
+			<s:link view="/login.xhtml" rendered="#{identity.loggedIn}">
+				<h:graphicImage value="/img/icone_logout.png" height="35" width="35px"/>
+			</s:link>
+				
+			<s:link  id="menuLoginId" view="/login.xhtml" value="Login" 
 				rendered="#{not identity.loggedIn}" propagation="none" />
-			<s:link id="menuLogoutId" view="/login.xhtml"
-				action="#{identity.logout}" value="Sair"
-				rendered="#{identity.loggedIn}" propagation="none" />
+			
 		</rich:toolBarGroup>
 
 	</div>

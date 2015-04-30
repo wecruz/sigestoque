@@ -5,17 +5,17 @@ import java.util.List;
 
 public class VendasClientesDTO {
 	
-	private Cliente cliente;
+	private Cliente cliente = new  Cliente();
 	
-	private List<Venda> vendas;
+	private List<Venda> vendas  = new ArrayList<Venda>();
 	
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
-	private List<Fornecedor> fornecedores;
+	private List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 	
-	private Produto produto;
+	private Produto produto = new Produto();
 	
-	private Fornecedor fornecedor;
+	private Fornecedor fornecedor = new  Fornecedor();
 	
 	
 
