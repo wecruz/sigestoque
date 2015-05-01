@@ -67,17 +67,14 @@ public class ManterRelatoriosAction {
 	public void pesquisarProduto(){
 		relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
 	}
-	
 
-	
-	
-	
-	
 	public String gerarRelatorio() {
 
 //		if (!relatorioDto.getFornecedor().getNome().isEmpty()) {
 
 			relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
+			
+			relatorioDto.setFornecedor(relatorioDto.getFornecedor());
 			
 			listRelatorioDto.add(relatorioDto);
 
@@ -85,7 +82,7 @@ public class ManterRelatoriosAction {
 			final Map<String, Object> params = new HashMap<String, Object>();
 
 			try {
-				return relatorioUtil.imprimir("teste", params, list);
+				return relatorioUtil.imprimir("relatorio_fornecedor", params, list);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

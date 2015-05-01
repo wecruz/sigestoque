@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_fornecedor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0d2ce12-783f-45d7-835a-e53faa49d83b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="230"/>
+	<subDataset name="dataset1" uuid="388449eb-ff46-4668-8ad3-cac510554bb6">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="codigo" class="java.math.BigInteger">
+			<fieldDescription><![CDATA[codigo]]></fieldDescription>
+		</field>
+		<field name="dataValidade" class="java.util.Date">
+			<fieldDescription><![CDATA[dataValidade]]></fieldDescription>
+		</field>
+		<field name="descricao" class="java.lang.String">
+			<fieldDescription><![CDATA[descricao]]></fieldDescription>
+		</field>
+		<field name="nomeProduto" class="java.lang.String">
+			<fieldDescription><![CDATA[nomeProduto]]></fieldDescription>
+		</field>
+		<field name="novaUnidadeMedida" class="java.lang.String">
+			<fieldDescription><![CDATA[novaUnidadeMedida]]></fieldDescription>
+		</field>
+		<field name="precoCusto" class="java.lang.Float">
+			<fieldDescription><![CDATA[precoCusto]]></fieldDescription>
+		</field>
+		<field name="precoVenda" class="java.lang.Float">
+			<fieldDescription><![CDATA[precoVenda]]></fieldDescription>
+		</field>
+		<field name="quantidade" class="java.lang.Integer">
+			<fieldDescription><![CDATA[quantidade]]></fieldDescription>
+		</field>
+		<field name="quantidadeMini" class="java.lang.Integer">
+			<fieldDescription><![CDATA[quantidadeMini]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="IMAGEM_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="listProduto" class="java.util.List">
+		<fieldDescription><![CDATA[listProduto]]></fieldDescription>
+	</field>
+	<field name="produto" class="br.com.sigest.modelo.Produto">
+		<fieldDescription><![CDATA[produto]]></fieldDescription>
+	</field>
+	<field name="fornecedor" class="br.com.sigest.modelo.Fornecedor">
+		<fieldDescription><![CDATA[fornecedor]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="148" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="246" y="20" width="80" height="91" uuid="19fb8df4-5730-4eff-afce-df1e010076c3"/>
+				<imageExpression><![CDATA[$P{IMAGEM_DIR} + "/img/Logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="368" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="34" width="100" height="20" uuid="722e6497-fc1d-4242-8702-59441bc4e069"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nome Fornecedor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="157" y="34" width="100" height="20" uuid="83903b8a-68b0-41fe-b03b-c7168576a363"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fornecedor}.getNome()]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="44" y="71" width="470" height="20" uuid="d85c030d-9ed5-462c-bbfa-24e1caaf8246"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="44" y="71" width="470" height="20" uuid="0337f35a-1274-440c-b583-64dded60b7e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Lista de Produtos]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="44" y="91" width="470" height="48" uuid="fe9fe9ba-2cf9-44bc-a5a4-7e1b6fb7d5a6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="62" y="105" width="100" height="20" uuid="4feb696a-f8c6-4250-b4c5-391689beffb5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nome do Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="105" width="100" height="20" uuid="2f5bec5a-2667-47c7-9281-9e86eea7b108"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Preço de Venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="105" width="100" height="20" uuid="35a47408-e71b-46e6-91b6-656e27a51786"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Data  de Validade]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement stretchType="RelativeToTallestObject" x="44" y="139" width="470" height="21" uuid="79237cb1-8973-43e5-9196-4267ce8d0377"/>
+			</rectangle>
+			<componentElement>
+				<reportElement x="44" y="139" width="473" height="21" uuid="bb812c12-cede-4364-88f8-1085f0c239a7"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="ddca15f6-188f-41fc-a36c-bdca4bb33979">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listProduto})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="21" width="473">
+						<textField>
+							<reportElement x="18" y="0" width="100" height="20" uuid="781bed39-b5b8-4f91-af96-9bfe27d04f1f"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{nomeProduto}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="182" y="0" width="100" height="20" uuid="2e54db5a-e991-4a8f-9524-930cd3d5bb8f"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{precoVenda}]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd/MM/yyyy">
+							<reportElement x="331" y="0" width="100" height="20" uuid="4189aebd-63e6-46a2-9171-bf5e9407ba06"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{dataValidade}]]></textFieldExpression>
+						</textField>
+						<line>
+							<reportElement x="0" y="20" width="470" height="1" uuid="0c0fab72-831d-4778-8999-3391c1533c47"/>
+						</line>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>
