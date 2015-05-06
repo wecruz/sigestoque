@@ -16,18 +16,7 @@
 			<center>
 				<div style="width: 700px;">
 					<center>
-						<h:messages infoClass="alert alert-success"
-							styleClass="msgAlertaSucesso" errorClass="alert alert-danger"
-							warnClass="alert alert-succes" />
-					</center>
-				</div>
-			</center>
-
-			<rich:spacer height="40px" />
-			<center>
-				<div style="width: 700px;">
-					<center>
-						<h:messages infoClass="alert alert-success"
+						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
@@ -137,6 +126,7 @@
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Fornecedor: " />
 							</div>
+							<a4j:region>
 							<div class="col-sm-5">
 								<h:selectOneMenu
 									value="#{manterVendasAction.vendasClientesDTO.fornecedor}"
@@ -148,12 +138,14 @@
 									<s:convertEntity />
 								</h:selectOneMenu>
 							</div>
+							</a4j:region>
 						</div>
 
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Produto*: " />
 							</div>
+							<a4j:region>
 							<div class="col-sm-5">
 								<h:selectOneMenu id="id_produto"
 									value="#{manterVendasAction.vendasClientesDTO.produto}"
@@ -166,6 +158,7 @@
 									<s:convertEntity />
 								</h:selectOneMenu>
 							</div>
+							</a4j:region>
 						</div>
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">

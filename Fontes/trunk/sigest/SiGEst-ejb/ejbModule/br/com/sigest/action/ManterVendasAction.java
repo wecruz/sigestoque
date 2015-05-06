@@ -64,7 +64,7 @@ public class ManterVendasAction {
 	
 	public List<Produto> comboBoxListProduro(){
 		List<Produto> produtos = new ArrayList<Produto>();
-		if(vendasClientesDTO.getFornecedor() != null){
+		if(vendasClientesDTO.getFornecedor().getNome() != null){
 			produtos = vendasService.pesquisarProdutoFornecedor(vendasClientesDTO.getFornecedor());
 			
 		}
