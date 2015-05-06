@@ -45,29 +45,23 @@ public class ManterFuncionarioAction {
 	
 	private Boolean flagMensagen;
 	
-	
 	@In
     Renderer renderer;
 	
 	private Integer indice;
 	
 	private Funcionario funcionarioSelecionado = new Funcionario(new Endereco());
-	
 
 	@In
 	private RelatorioUtil relatorioUtil;
 	
 	private Integer qntFuncionarios = 10;
 	
-
-	
-	
 	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
 	public EnumCargoFuncao[] initCargoFuncao(){
 		
 		return EnumCargoFuncao.values();
 	}
-	
 	
 	@Create
 	public String create(){
@@ -96,20 +90,27 @@ public class ManterFuncionarioAction {
 
 		if (validEmail(funcionario.getEmail())) {
 
-			funcionario.getEndereco().setFuncionario(funcionario);
+			if (usuarioService.pesquisarFuncionarioPorCpf(funcionario.getCpf()) == null) {
 
-			if (getIndice() == null) {
-				funcionarios.add(funcionario);
+				funcionario.getEndereco().setFuncionario(funcionario);
+
+				if (getIndice() == null) {
+					funcionarios.add(funcionario);
+				} else {
+					funcionarios.set(indice, funcionario);
+				}
+				usuarioService.salvarFuncionarios(funcionario);
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,
+								"Operação realizada com sucesso.", ""));
+				setFlagMensagen(true);
+
+				// this.renderer.render("/email/email.xhtml");
+
+				funcionario = new Funcionario(new Endereco());
 			} else {
-				funcionarios.set(indice, funcionario);
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Funcionario com o CPF: "+ funcionario.getCpf()+ " Ja esta Cadastrado", ""));
 			}
-			usuarioService.salvarFuncionarios(funcionario);
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-			setFlagMensagen(true);
-
-			// this.renderer.render("/email/email.xhtml");
-
-			funcionario = new Funcionario(new Endereco());
 
 		}
 

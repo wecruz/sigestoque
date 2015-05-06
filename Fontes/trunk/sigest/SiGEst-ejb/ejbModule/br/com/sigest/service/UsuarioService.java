@@ -38,6 +38,10 @@ public class UsuarioService implements IUsuarioService{
 		
 		return funcionarioDao.login(login, senha);
 	}
+	
+	public Funcionario pesquisarFuncionarioPorCpf(String cpf) {
+		return funcionarioDao.pesquisarFuncionarioPorCpf(cpf);
+	}
 
 	
 	@Destroy

@@ -20,6 +20,8 @@ public interface IUsuarioService {
 	
 	Funcionario login(String login, String senha);
 	
+	Funcionario pesquisarFuncionarioPorCpf(String cpf);
+	
 	void destroy();
 	
 	void remove();

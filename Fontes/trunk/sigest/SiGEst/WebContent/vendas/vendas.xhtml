@@ -65,7 +65,7 @@
 								<a4j:region>
 									<div class="col-sm-5">
 										<h:inputText id="id_txt_nome_cliente" label="Nome"
-											styleClass="form-control" value="" />
+											styleClass="form-control" value="#{manterVendasAction.cliente.nome}" />
 									</div>
 									<rich:suggestionbox frequency="0.001" minChars="0"
 										for="id_txt_nome_cliente" width="500"
@@ -95,7 +95,7 @@
 								<a4j:region>
 									<div class="col-sm-5">
 										<h:inputText id="id_txt_cpf_cliente" label="Nome"
-											styleClass="form-control" value="" />
+											styleClass="form-control" value="#{manterVendasAction.cliente.cpf}" />
 									</div>
 									<rich:suggestionbox frequency="0.001" minChars="0"
 										for="id_txt_cpf_cliente" width="500"
@@ -115,7 +115,7 @@
 							</s:div>
 						</div>
 						<div class="col-sm-9 control-label">
-							<h:commandButton value="Novo Cliente"
+							<h:commandButton value="Novo Cliente"  
 								rendered="#{manterVendasAction.cliente.id != null}"
 								styleClass="btn btn-default navbar-btn"
 								action="#{manterVendasAction.limpar()}" />
