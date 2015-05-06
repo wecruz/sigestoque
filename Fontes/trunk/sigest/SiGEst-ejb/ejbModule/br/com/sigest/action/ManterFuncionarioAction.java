@@ -109,7 +109,7 @@ public class ManterFuncionarioAction {
 				funcionario = new Funcionario(new Endereco());
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Funcionario com o CPF: "+ funcionario.getCpf()+ " Ja esta Cadastrado", ""));
+								"Funcionario com o CPF: "+ funcionario.getCpf()+ " á esta cadastrado", ""));
 			}
 
 		}
