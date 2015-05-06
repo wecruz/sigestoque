@@ -60,7 +60,6 @@ public class ManterVendasAction {
 	private List<VendasClientesDTO> listVendasClientesDTO = new ArrayList<VendasClientesDTO>();
 	
 	
-	
 	private Produto produto = new Produto(new Fornecedor());
 	
 	public List<Produto> comboBoxListProduro(){
@@ -132,7 +131,6 @@ public class ManterVendasAction {
 	
 	
 	public String gerarRelatorio() {
-
 		
 			final Collection<?> list = listPedidoDTO ;
 			final Map<String, Object> params = new HashMap<String, Object>();
@@ -143,24 +141,21 @@ public class ManterVendasAction {
 			try {
 				return relatorioUtil.imprimir("pedido_de_vendas", params, list);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+		
 				e.printStackTrace();
 			}
-//		}
 		return "";
 
 	}
-	
-	
 	
 	
 	public void RenderdCliente(Cliente cliente){
 		this.cliente = cliente;
 	}
 	
-	public String limpar(){
-		this.cliente = new Cliente();
-		return "/vendas/vendas.xhtml";
+	public void limpar(){
+		this.cliente .setCpf(null);
+		this.cliente .setNome(null);
 	}
 	
 	public String removerProduto(Produto produto){

@@ -34,6 +34,9 @@ public interface IEstoqueService {
 	List<Categoria> fidAllCategoria();
 	
 	void salvarCategoria(Categoria categoria);
+	
+	void excluirCategoria(Categoria categoria);
+	
 //	List<Estado> pesquisarTodosEstados();
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);

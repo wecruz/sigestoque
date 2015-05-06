@@ -1,5 +1,7 @@
 package br.com.sigest.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,8 @@ import org.jboss.seam.annotations.Scope;
 import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Endereco;
+import br.com.sigest.modelo.Produto;
+import br.com.sigest.modelo.UploadedFile;
 import br.com.sigest.service.IEstoqueService;
 
 /**
@@ -35,9 +39,21 @@ public class ManterCategoriaAction {
 	@In
 	private IEstoqueService estoqueService;
 	
+	private Integer indice;
+	
+	private Categoria categoriaSelecionada = new Categoria();
+	
 	public void salvarCategoria(){
-		estoqueService.salvarCategoria(categoria);
+		if (indice != null) {
+			listCategoria.set(indice, categoria);
+		} else {
+			listCategoria.add(categoria);
+		}
+		
 		listCategoria.add(categoria);
+		
+		
+		estoqueService.salvarCategoria(categoria);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	}
 	
@@ -68,7 +84,25 @@ public class ManterCategoriaAction {
 		}
 	}
 	
+	public String alterar(Categoria categoria, int indice) {
+		this.setIndice(indice);
+		this.categoria = categoria;
+		
+		return "salvarCategoria";
+	}
 	
+	public void selecionarCategoria(Categoria categoria){
+		setCategoriaSelecionada(categoria);
+		
+	}
+	
+	public void excluirCategoria(){
+		listCategoria.remove(categoriaSelecionada);
+		
+		estoqueService.excluirCategoria(categoriaSelecionada);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		categoria = new Categoria();
+	}
 	
 	public Categoria getCategoria() {
 		return categoria;
@@ -84,6 +118,26 @@ public class ManterCategoriaAction {
 
 	public void setListCategoria(List<Categoria> listCategoria) {
 		this.listCategoria = listCategoria;
+	}
+
+
+	public void setIndice(Integer indice) {
+		this.indice = indice;
+	}
+
+
+	public Integer getIndice() {
+		return indice;
+	}
+
+
+	public void setCategoriaSelecionada(Categoria categoriaSelecionada) {
+		this.categoriaSelecionada = categoriaSelecionada;
+	}
+
+
+	public Categoria getCategoriaSelecionada() {
+		return categoriaSelecionada;
 	}
 
 }

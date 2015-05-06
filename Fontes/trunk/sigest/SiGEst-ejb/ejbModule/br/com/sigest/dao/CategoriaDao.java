@@ -51,5 +51,9 @@ public class CategoriaDao {
 	public void salvarCategoria(Categoria categoria){
 		entityManager.merge(categoria);
 	}
+	
+	public void excluirCategoria(Categoria categoria){
+		entityManager.remove(categoria);
+	}
 
 }

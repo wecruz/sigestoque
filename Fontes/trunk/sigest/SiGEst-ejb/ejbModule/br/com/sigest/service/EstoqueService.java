@@ -87,6 +87,9 @@ public class EstoqueService implements IEstoqueService{
 	public List<Categoria> fidAllCategoria() {
 		return categoriaDao.fidAllCategoria();
 	}
+	public void excluirCategoria(Categoria categoria) {
+		categoriaDao.excluirCategoria(categoria);		
+	}
 	
 //	public List<Estado> pesquisarTodosEstados() {
 //		return fornecedorDao.pesquisarTodosEstados();
@@ -114,6 +117,7 @@ public class EstoqueService implements IEstoqueService{
 		}
 		return cidades;
 	}
+
 
 
 

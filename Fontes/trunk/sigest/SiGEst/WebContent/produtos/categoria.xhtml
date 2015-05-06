@@ -84,11 +84,11 @@
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
 							<a4j:commandLink
-								action="#{manterProdutoAction.alterar(produto,indice)}"
+								action="#{manterCategoriaAction.alterar(categoria,indice)}"
 								value="Alterar" ajaxSingle="true" reRender="id_form" />
 							<rich:spacer width="20px" />
 							<a4j:commandLink value="Excluir"
-								action="#{manterProdutoAction.selecionarProduto(produto)}"
+								action="#{manterCategoriaAction.selecionarCategoria(categoria)}"
 								reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
 							</a4j:commandLink>
@@ -113,7 +113,7 @@
 				<center>
 					<a4j:commandButton value="Confirmar"
 						styleClass="btn btn-default navbar-btn"
-						action="#{manterProdutoAction.excluirProduto()}" ajaxSingle="true"
+						action="#{manterCategoriaAction.excluirCategoria()}" ajaxSingle="true"
 						reRender="id_form,id_div_tabela"
 						oncomplete="Richfaces.hideModalPanel('painel')" />
 					<a4j:commandButton value="Cancelar" action="#"
