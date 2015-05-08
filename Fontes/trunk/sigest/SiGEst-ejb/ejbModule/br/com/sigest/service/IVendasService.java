@@ -23,7 +23,9 @@ public interface IVendasService {
 	
 	List<Cliente> pesquisarClientes(Cliente cliente);
 	
-	public List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
+	List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
+	
+	List<Produto> fildAllProduto();
 
 	void destroy();
 	

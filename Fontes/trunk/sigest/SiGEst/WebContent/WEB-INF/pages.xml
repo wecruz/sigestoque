@@ -48,6 +48,10 @@
 				<begin-conversation join="true" />
 				<redirect view-id="/vendas/vendas.xhtml" />
 			</rule>
+			<rule if-outcome="caixa">
+				<begin-conversation join="true" />
+				<redirect view-id="/caixa/caixa.xhtml" />
+			</rule>
 			<rule if-outcome="alterarSenha">
 				<begin-conversation join="true" />
 				<redirect view-id="/alterarSenha.xhtml" />

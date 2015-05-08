@@ -38,6 +38,9 @@ public class VendasService implements IVendasService{
 		return produtoDao.pesquisarProdutoFornecedor(fornecedor);
 	}
 	
+	public List<Produto> fildAllProduto() {
+		return produtoDao.fildAllProduto();
+	}
 	
 	public void removerCliente(Cliente cliente) {
 		clienteDao.removerCliente(cliente);
@@ -56,6 +59,7 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
 
 
 

@@ -39,7 +39,7 @@ public class ManterVendasAction {
 	
 	private Float valorTotal = 0F ;
 	
-	private Integer quantidadeUnidade = 0;
+	private Integer quantidadeUnidade = 1;
 	
 	@In
 	private RelatorioUtil relatorioUtil;
@@ -64,10 +64,9 @@ public class ManterVendasAction {
 	
 	public List<Produto> comboBoxListProduro(){
 		List<Produto> produtos = new ArrayList<Produto>();
-		if(vendasClientesDTO.getFornecedor().getNome() != null){
-			produtos = vendasService.pesquisarProdutoFornecedor(vendasClientesDTO.getFornecedor());
+		
+		produtos = vendasService.fildAllProduto();
 			
-		}
 		return produtos;
 		
 	}
@@ -75,7 +74,6 @@ public class ManterVendasAction {
 	public void adicionarProduto(){
 		
 		vendasClientesDTO.getProduto().setQuantidade(quantidadeUnidade);
-		vendasClientesDTO.getProduto().setFornecedor(vendasClientesDTO.getFornecedor());
 		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
 		valorTotal += vendasClientesDTO.getProduto().getPrecoVenda();
 		quantidadeUnidade = 0;
@@ -130,6 +128,11 @@ public class ManterVendasAction {
 	}
 	
 	
+	public void alterarProduto(Produto produto){
+		vendasClientesDTO.setProduto(produto);
+		
+	}
+	
 	public String gerarRelatorio() {
 		
 			final Collection<?> list = listPedidoDTO ;
@@ -148,14 +151,13 @@ public class ManterVendasAction {
 
 	}
 	
-	
 	public void RenderdCliente(Cliente cliente){
 		this.cliente = cliente;
 	}
 	
-	public void limpar(){
-		this.cliente .setCpf(null);
-		this.cliente .setNome(null);
+	public String limpar(){
+		this.cliente = new Cliente();
+		return "/vendas/vendas.xhtml";
 	}
 	
 	public String removerProduto(Produto produto){
