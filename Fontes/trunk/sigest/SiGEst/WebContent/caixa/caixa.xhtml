@@ -12,27 +12,41 @@
 
 	<ui:define name="body">
 		<h:form id="id_form">
-		
+
 			<rich:spacer height="40px" />
 			<center>
 				<div style="width: 700px;">
 					<center>
-						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
-							errorClass="alert alert-danger" warnClass="alert alert-succes" />
+						<h:messages infoClass="alert alert-success"
+							styleClass="msgAlertaSucesso" errorClass="alert alert-danger"
+							warnClass="alert alert-succes" />
 					</center>
 				</div>
 			</center>
-
-
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<div class="titulo">Caixa</div>
-				</div>
-				<div class="form-horizontal ">
-					
-				</div>
-			</div>
 			
+				<div class="form-horizontal ">
+					<br />
+
+					<div class="panel panel-info">
+						<div class="panel-heading">Lista de Pedidos</div>
+						<rich:dataTable value="#{manterVendasAction.listPedidoDTO}"
+							var="pedido" id="id_div_tabela" rowKeyVar="indice"
+							styleClass="table" rows="10">
+							<rich:column>
+								<f:facet name="header">Nome Cliente</f:facet>
+								<h:outputText value="" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Valor</f:facet>
+								<h:outputText value="" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Operações</f:facet>
+								<a4j:commandLink action="#" value="PAGAR" />
+							</rich:column>
+						</rich:dataTable>
+					</div>
+				</div>
 		</h:form>
 	</ui:define>
 </ui:composition>
