@@ -26,6 +26,8 @@ public interface IVendasService {
 	List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
 	
 	List<Produto> fildAllProduto();
+	
+	List<Produto> pesquisarProdutos(Produto produto);
 
 	void destroy();
 	

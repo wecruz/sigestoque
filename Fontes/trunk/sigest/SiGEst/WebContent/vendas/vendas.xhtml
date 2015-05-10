@@ -72,7 +72,7 @@
 												<h:outputText value="#{cliente.nome}" />
 											</h:column>
 											<a4j:support event="onselect" reRender="id_field_cliente"
-												action="#{manterVendasAction.RenderdCliente(cliente)}">
+												action="#{manterVendasAction.renderdCliente(cliente)}">
 												<f:setPropertyActionListener
 													target="#{manterVendasAction.cliente}" value="#{cliente}" />
 											</a4j:support>
@@ -103,7 +103,7 @@
 												<h:outputText value="#{cliente.cpf}" />
 											</h:column>
 											<a4j:support event="onselect" reRender="id_field_cliente"
-												action="#{manterVendasAction.RenderdCliente(cliente)}">
+												action="#{manterVendasAction.renderdCliente(cliente)}">
 												<f:setPropertyActionListener
 													target="#{manterVendasAction.cliente}" value="#{cliente}" />
 											</a4j:support>
@@ -121,7 +121,7 @@
 					</fieldset>
 					</a4j:outputPanel>
 					<br /> <br />
-					<fieldset class="form-search">
+					<fieldset class="form-search"  id="id_field_produto">
 						<rich:spacer width="20px" />
 						<legend>Produto </legend>
 						
@@ -142,20 +142,31 @@
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Produto*: " />
 							</div>
+
 							<a4j:region>
-							<div class="col-sm-5">
-								<h:selectOneMenu id="id_produto"
-									value="#{manterVendasAction.vendasClientesDTO.produto}"
-									styleClass="form-control">
-									<s:selectItems noSelectionLabel="--Selecione--"
-										value="#{manterVendasAction.comboBoxListProduro()}"
-										var="produt" label="#{produt.nomeProduto}">
-									</s:selectItems>
-									<a4j:support event="onchange" reRender="id_form" />
-									<s:convertEntity />
-								</h:selectOneMenu>
-							</div>
+								<div class="col-sm-5">
+									<h:inputText id="id_txt_nome_produto" label="Nome Pruduto"
+										styleClass="form-control"
+										value="#{manterVendasAction.vendasClientesDTO.produto.nomeProduto}" />
+								</div>
+								<rich:suggestionbox frequency="0.001" minChars="0"
+									for="id_txt_nome_produto" width="500"
+									nothingLabel="Não encontrado" required="true"
+									suggestionAction="#{manterVendasAction.pesquisarProdutoNome}"
+									var="produt" ajaxSingle="true" requestDelay="0">
+									<h:column>
+										<h:outputText value="#{produt.nomeProduto}" />
+									</h:column>
+									<a4j:support event="onselect" reRender="id_field_produto,id_form"
+										action="#{manterVendasAction.renderdProduto(produt)}">
+										<f:setPropertyActionListener
+											target="#{manterVendasAction.vendasClientesDTO.produto}"
+											value="#{produt}" />
+									</a4j:support>
+								</rich:suggestionbox>
 							</a4j:region>
+
+
 						</div>
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">

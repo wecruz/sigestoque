@@ -14,11 +14,12 @@
 			<center>
 				<div style="width: 700px;">
 					<center>
-						<h:messages 
-							 styleClass="msgAlertaSucesso alert alert-danger"/>
+						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
+							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
 			</center>
+
 		<center>
 			<div class="boxlogin">
 				<div class="logoimagem">
@@ -35,7 +36,7 @@
 							<h:outputLabel for="username">Senha Atual: </h:outputLabel>
 						</div>
 						<div class="col-sm-5">
-							<h:inputText id="username" value=""
+							<h:inputText id="username" value="#{alterarSenhaAction.senhaAtual}"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -44,7 +45,7 @@
 							<h:outputLabel for="password">Nova Senha: </h:outputLabel>
 						</div>
 						<div class="col-sm-5">
-							<h:inputSecret id="password" value=""
+							<h:inputSecret id="password" value="#{alterarSenhaAction.novaSenha}"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -53,7 +54,7 @@
 							<h:outputLabel for="password">Comfirmar Nova Senha: </h:outputLabel>
 						</div>
 						<div class="col-sm-5">
-							<h:inputSecret id="password2" value=""
+							<h:inputSecret id="password2" value="#{alterarSenhaAction.confimarNovaSenha}"
 								styleClass="form-control" />
 						</div>
 					</div>
@@ -62,7 +63,7 @@
 				<div class="botao">
 					<center>
 						<h:commandButton id="submit" value="Aterar"
-							action="#" class="btn btn-primary" />
+							action="#{alterarSenhaAction.alterarSenha()}" class="btn btn-primary" />
 
 				<rich:spacer width="40px" />
 				

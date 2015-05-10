@@ -35,6 +35,8 @@ public class ManterVendasAction {
 	
 	private List<Cliente> clientes;
 	
+	private List<Produto> produtos;
+	
 	private Venda venda = new Venda();
 	
 	private Float valorTotal = 0F ;
@@ -115,6 +117,25 @@ public class ManterVendasAction {
 			return listaRetorno;
 		}
 	
+	
+	
+	public List<Produto> pesquisarProdutoNome(Object autoComplete) {
+
+		List<Produto> listaRetorno = new ArrayList<Produto>();
+		
+			String texto = (String) autoComplete;
+			List<Produto> listProduto = fidAllProdutoPorNome(produto);
+
+			for (Produto produt : listProduto) {
+				String idStr = String.valueOf(produt.getId());
+				if (produt.getNomeProduto().toLowerCase().contains(texto.toLowerCase())
+						|| idStr.equalsIgnoreCase(texto)) {
+					listaRetorno.add(produt);
+				}
+			}
+			return listaRetorno;
+		}
+	
 	@Factory(value="fidAllClientePorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
 	public List<Cliente> fidAllClientePorNome(Cliente cliente){
 		setClientes(vendasService.pesquisarClientes(cliente));
@@ -125,6 +146,12 @@ public class ManterVendasAction {
 	public List<Cliente> fidAllClientePorCpf(Cliente cliente){
 		setClientes(vendasService.pesquisarClientes(cliente));
 		return getClientes();
+	}
+	
+	@Factory(value="fidAllProdutoPorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
+	public List<Produto> fidAllProdutoPorNome(Produto produto){
+		setProdutos(vendasService.pesquisarProdutos(produto));
+		return getProdutos();
 	}
 	
 	
@@ -151,8 +178,12 @@ public class ManterVendasAction {
 
 	}
 	
-	public void RenderdCliente(Cliente cliente){
+	public void renderdCliente(Cliente cliente){
 		this.cliente = cliente;
+	}
+	
+	public void renderdProduto(Produto produto){
+		this.vendasClientesDTO.setProduto(produto);
 	}
 	
 	public String limpar(){
@@ -244,6 +275,14 @@ public class ManterVendasAction {
 
 	public PedidoDTO getPedidoDTO() {
 		return pedidoDTO;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
 	

@@ -50,6 +50,10 @@ public class VendasService implements IVendasService{
 		return clienteDao.pesquisarClientes(cliente);
 	}
 	
+	public List<Produto> pesquisarProdutos(Produto produto) {
+		return produtoDao.pesquisarProduto(produto);
+	}
+	
 	@Destroy
 	public void destroy() {
 		

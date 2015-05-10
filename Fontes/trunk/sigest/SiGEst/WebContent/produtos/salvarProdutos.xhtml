@@ -117,17 +117,7 @@
 									label="Quantidade" />
 							</div>
 						</div>
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Quantidade minima " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterProdutoAction.produto.quantidadeMini}"
-									styleClass="form-control" required="true"
-									id="quantidade_minima" label="Quantidade minima" />
-							</div>
-						</div>
+						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Imagem do produto" />
@@ -196,31 +186,6 @@
 									label="Preço de venda" />
 							</div>
 						</div>
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Data de Validade" />
-							</div>
-							<div class="col-sm-5">
-								<rich:calendar id="data" styleClass="form-control"
-									value="#{manterProdutoAction.produto.dataValidade}"
-									popup="true" enableManualInput="true" datePattern="dd/MM/yyyy"
-									locale="pt_Br" />
-							</div>
-						</div>
-
-
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Nova unidade medida	" />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterProdutoAction.produto.novaUnidadeMedida}"
-									styleClass="form-control" />
-							</div>
-						</div>
-
-
 					</div>
 				</div>
 			</div>
