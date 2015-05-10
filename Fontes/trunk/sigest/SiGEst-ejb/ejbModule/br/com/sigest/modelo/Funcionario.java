@@ -1,5 +1,8 @@
 package br.com.sigest.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -51,6 +55,10 @@ public class Funcionario {
 	@OneToOne(mappedBy="funcionario", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
 	private Endereco endereco = new Endereco();
+	
+	
+	@OneToMany(mappedBy="funcionario", cascade=CascadeType.ALL)
+	private List<Venda> vendas = new ArrayList<Venda>();
 	
 	public Funcionario() {
 		super();
@@ -134,6 +142,16 @@ public class Funcionario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+
+
+	public List<Venda> getVendas() {
+		return vendas;
 	}
 
 	

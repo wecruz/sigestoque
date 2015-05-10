@@ -1,5 +1,6 @@
 package br.com.sigest.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,8 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,10 +36,8 @@ public class Cliente {
 	@JoinColumn(name="tb_endereco")
 	private Endereco endereco = new Endereco();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="tb_venda_cliente", joinColumns={@JoinColumn(name="vendda_id")}, inverseJoinColumns={@JoinColumn(name="cliente_id")})
-	private List<Venda> vendas;
-	
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
+	private List<Venda> vendas = new ArrayList<Venda>();
 	
 	
 	public Cliente() {

@@ -2,9 +2,13 @@ package br.com.sigest.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
@@ -14,10 +18,12 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import br.com.sigest.enums.EnumStatusVenda;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.Venda;
+import br.com.sigest.modelo.Venda_Produto;
 import br.com.sigest.modelo.VendasClientesDTO;
 import br.com.sigest.modelo.dto.PedidoDTO;
 import br.com.sigest.service.IVendasService;
@@ -50,6 +56,7 @@ public class ManterVendasAction {
 	
 	private PedidoDTO pedidoDTO = new PedidoDTO();
 
+	private Venda_Produto venda_Produto = new Venda_Produto();
 	
 	@Begin(join = true)
 	public String manipulaVendas(Cliente cliente) {
@@ -80,6 +87,25 @@ public class ManterVendasAction {
 		valorTotal += vendasClientesDTO.getProduto().getPrecoVenda();
 		quantidadeUnidade = 0;
 		vendasClientesDTO.setProduto(new Produto());
+		
+	}
+	
+	
+	public void confimarPedidoVenda(){
+		
+		for (Produto produto : vendasClientesDTO.getProdutos()) {
+			venda_Produto.setProduto(produto);
+		}
+		
+		venda.setCliente(cliente);
+		venda.setDataVenda(new Date());
+		venda.setStatusVenda(EnumStatusVenda.NAO_PAGO);
+		venda.getVenda_Produtos().add(venda_Produto);
+		venda_Produto.setVenda(venda);
+		
+		vendasService.salvaPedidoVenda(venda);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+	
 		
 	}
 	
@@ -159,6 +185,9 @@ public class ManterVendasAction {
 		vendasClientesDTO.setProduto(produto);
 		
 	}
+	
+	
+	
 	
 	public String gerarRelatorio() {
 		
@@ -283,6 +312,14 @@ public class ManterVendasAction {
 
 	public List<Produto> getProdutos() {
 		return produtos;
+	}
+
+	public void setVenda_Produto(Venda_Produto venda_Produto) {
+		this.venda_Produto = venda_Produto;
+	}
+
+	public Venda_Produto getVenda_Produto() {
+		return venda_Produto;
 	}
 
 	

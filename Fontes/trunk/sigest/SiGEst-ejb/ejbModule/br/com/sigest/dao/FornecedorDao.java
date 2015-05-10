@@ -14,8 +14,6 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
-import br.com.sigest.modelo.Cidade;
-import br.com.sigest.modelo.Estado;
 import br.com.sigest.modelo.Fornecedor;
 
 
@@ -62,18 +60,6 @@ public class FornecedorDao {
 	}
 	
 	
-	public List<Estado> fidAllEstados(){
-		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Estado.class, "Estados");
-		return criteria.list();
-	}
-	
-	public List<Cidade> fidAllCidades(Estado estado){
-		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Cidade.class, "cidade");
-		criteria.add(Restrictions.like("cidade.estado.uf", estado.getUf()));
-		return criteria.list();
-	}
 	
 	
 //	public List<Estado> pesquisarTodosEstados(){

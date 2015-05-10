@@ -12,9 +12,11 @@ import org.jboss.seam.annotations.Name;
 
 import br.com.sigest.dao.ClienteDao;
 import br.com.sigest.dao.ProdutoDao;
+import br.com.sigest.dao.VendaDao;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
+import br.com.sigest.modelo.Venda;
 
 
 @Name("vendasService")
@@ -27,6 +29,9 @@ public class VendasService implements IVendasService{
 
 	@In
 	ProdutoDao produtoDao;
+	
+	@In
+	VendaDao vendaDao;
 	
 	public void salvarCliente(Cliente cliente) {
 		cliente.getEndereco().setCliente(cliente);
@@ -54,6 +59,11 @@ public class VendasService implements IVendasService{
 		return produtoDao.pesquisarProduto(produto);
 	}
 	
+	
+	public void salvaPedidoVenda(Venda venda) {
+		vendaDao.salvaPedidoVenda(venda);
+	}
+	
 	@Destroy
 	public void destroy() {
 		
@@ -63,6 +73,7 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
 
 
 

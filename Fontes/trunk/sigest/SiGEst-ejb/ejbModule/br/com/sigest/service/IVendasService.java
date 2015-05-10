@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
+import br.com.sigest.modelo.Venda;
 
 public interface IVendasService {
 	
@@ -28,6 +29,8 @@ public interface IVendasService {
 	List<Produto> fildAllProduto();
 	
 	List<Produto> pesquisarProdutos(Produto produto);
+	
+	void salvaPedidoVenda(Venda venda);
 
 	void destroy();
 	

@@ -2,13 +2,16 @@ package br.com.sigest.modelo;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,9 +38,6 @@ public class Produto {
 	@Column(name ="quantidade")
 	private Integer quantidade;
 	
-	@Column(name ="quantidadeMini")
-	private Integer quantidadeMini;
-	
 	@Column(name ="precoCusto")
 	private Float precoCusto;
 	
@@ -51,10 +51,6 @@ public class Produto {
 	@Temporal(TemporalType.DATE)
 	private Date dataValidade;
 	
-	@Column(name = "novaUnidadeMedida")
-	private String novaUnidadeMedida;
-
-	
 	@OneToOne
 	@JoinColumn(name="fornecedor")
 	private Fornecedor fornecedor;
@@ -62,6 +58,9 @@ public class Produto {
 	@OneToOne
 	@JoinColumn(name="categoria")
 	private Categoria categoria;
+	
+	@OneToMany(mappedBy = "produto")
+	private List<Venda_Produto> venda_Produtos;
 	
 	
 	public Produto() {
@@ -96,14 +95,6 @@ public class Produto {
 
 	public void setDataValidade(Date dataValidade) {
 		this.dataValidade = dataValidade;
-	}
-
-	public String getNovaUnidadeMedida() {
-		return novaUnidadeMedida;
-	}
-
-	public void setNovaUnidadeMedida(String novaUnidadeMedida) {
-		this.novaUnidadeMedida = novaUnidadeMedida;
 	}
 
 	public String getLinkImagem() {
@@ -164,22 +155,20 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-	
-
-	public Integer getQuantidadeMini() {
-		return quantidadeMini;
-	}
-
-	public void setQuantidadeMini(Integer quantidadeMini) {
-		this.quantidadeMini = quantidadeMini;
-	}
-
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
 	public Categoria getCategoria() {
 		return categoria;
+	}
+
+	public void setVenda_Produtos(List<Venda_Produto> venda_Produtos) {
+		this.venda_Produtos = venda_Produtos;
+	}
+
+	public List<Venda_Produto> getVenda_Produtos() {
+		return venda_Produtos;
 	}
 
 	
