@@ -28,12 +28,12 @@
 
 				<div class="panel panel-info">
 					<div class="panel-heading">Lista de Pedidos</div>
-					<rich:dataTable value="#{manterVendasAction.listPedidoDTO}"
-						var="pedido" id="id_div_tabela" rowKeyVar="indice"
+					<rich:dataTable value="#{manterCaixaAction.listVendas}"
+						var="venda" id="id_div_tabela" rowKeyVar="indice"
 						styleClass="table" rows="10">
 						<rich:column>
 							<f:facet name="header">Nome Cliente</f:facet>
-							<h:outputText value="" />
+							<h:outputText value="#{venda.cliente.nome}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Valor</f:facet>
@@ -64,6 +64,7 @@
 
 				<div class="col-sm-2 control-label">
 					<h:outputLabel value="Nome: " />
+					
 				</div>
 				<div class="col-sm-2 control-label">
 					<h:outputLabel value="Valor: " />
@@ -71,7 +72,7 @@
 				<rich:spacer height="20px" />
 				<center>
 
-					<a4j:commandButton value="Salva" action="#"
+					<a4j:commandButton value="Cancelar" action="#"
 						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
 						reRender="id_form,id_div_tabela"
 						onclick="Richfaces.hideModalPanel('painel')" />

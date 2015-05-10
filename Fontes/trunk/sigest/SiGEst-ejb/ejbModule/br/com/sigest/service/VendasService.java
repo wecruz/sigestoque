@@ -64,6 +64,12 @@ public class VendasService implements IVendasService{
 		vendaDao.salvaPedidoVenda(venda);
 	}
 	
+	public List<Venda> fildAllVendas() {
+		return vendaDao.fildAllVendas();
+	}
+	
+	
+	
 	@Destroy
 	public void destroy() {
 		
@@ -73,6 +79,8 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
+	
 
 
 

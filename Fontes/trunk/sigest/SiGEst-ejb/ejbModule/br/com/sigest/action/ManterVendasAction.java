@@ -107,6 +107,11 @@ public class ManterVendasAction {
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	
 		
+		cliente = new Cliente();
+		venda = new Venda();
+		venda_Produto = new Venda_Produto();
+		vendasClientesDTO = new VendasClientesDTO();
+		
 	}
 	
 	public List<Cliente> pesquisarClienterNome(Object autoComplete) {
