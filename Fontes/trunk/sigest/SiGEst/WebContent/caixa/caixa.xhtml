@@ -42,7 +42,7 @@
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
 							<a4j:commandLink value="Pagar"
-								action="#"
+								action="#{manterCaixaAction.selecinarVenda(venda)}"
 								ajaxSingle="true" reRender="id_form"
 								oncomplete="Richfaces.showModalPanel('painel')" />
 						</rich:column>
@@ -52,7 +52,7 @@
 
 
 
-			<rich:modalPanel id="painel" width="550" height="350">
+			<rich:modalPanel id="painel" width="800" height="600">
 				<f:facet name="header">
 					<h:panelGroup>
 						<h:outputText value="CAIXA"></h:outputText>
@@ -62,13 +62,64 @@
 
 				</f:facet>
 
-				<div class="col-sm-2 control-label">
-					<h:outputLabel value="Nome: " />
+				<div class="form-horizontal ">
+					<br />
+					<div class="form-group linha">
+						<div class="col-sm-5 control-label">
+							<h:outputLabel value="Nome Cliente: " />
+						</div>
+						<div class="col-sm-5 ">
+							<h:outputText value="#{manterCaixaAction.venda.cliente.nome}"
+								/>
+						</div>
+					</div>
 					
+						<div class="col-sm-5 control-label">
+							<h:outputLabel value="CPF: " />
+						</div>
+						<div class="col-sm-5">
+							<h:outputText value="#{manterCaixaAction.venda.cliente.cpf}" />
+						</div>
+						
+						
+						
+					
+					</div>
+				
+				<div class="form-horizontal ">
+				<br />
+
+				<div class="panel panel-info">
+					<div class="panel-heading">Lista de Produtos</div>
+					<rich:dataTable value="#{manterCaixaAction.venda.venda_Produtos}"
+						var="vendaProduto" id="id_tabela_produto" rowKeyVar="indice"
+						styleClass="table" rows="10">
+						<rich:column>
+							<f:facet name="header">Nome Produto</f:facet>
+							<h:outputText value="#{vendaProduto.produto.nomeProduto}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Data Venda</f:facet>
+							<h:outputText value="#{vendaProduto.venda.dataVenda}" />
+						</rich:column>
+					</rich:dataTable>
 				</div>
-				<div class="col-sm-2 control-label">
-					<h:outputLabel value="Valor: " />
-				</div>
+			</div>
+			
+			<div class="form-horizontal ">
+					<br />
+					<div class="form-group linha">
+						<div class="col-sm-5 control-label">
+							<h:outputLabel value="Valor Total " />
+						</div>
+						<div class="col-sm-5 ">
+							<h:outputText value="" />
+						</div>
+					</div>
+			</div>		
+			
+			
+			
 				<rich:spacer height="20px" />
 				<center>
 
