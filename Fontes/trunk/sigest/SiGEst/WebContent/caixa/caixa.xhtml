@@ -37,7 +37,7 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Valor</f:facet>
-							<h:outputText value="" />
+							<h:outputText value="#{venda.valorTotalVenda}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
@@ -113,7 +113,7 @@
 							<h:outputLabel value="Valor Total " />
 						</div>
 						<div class="col-sm-5 ">
-							<h:outputText value="" />
+							<h:outputText value="#{manterCaixaAction.venda.valorTotalVenda} R$ "/>
 						</div>
 					</div>
 			</div>		

@@ -67,7 +67,6 @@ public class ManterProdutoAction {
 	
 	@Create
 	public String create(){
-		initCategorias();
 		return "/produtos/produtos.xhtml";
 	}
 	
@@ -88,13 +87,6 @@ public class ManterProdutoAction {
 		file = new UploadedFile();
 		return "salvarProdutos";
 	}
-	
-	
-	@Factory(value="categorias" , scope=ScopeType.APPLICATION)
-	public List<Categoria> initCategorias(){
-		return estoqueService.fidAllCategoria();
-	}
-	
 	
 	public void salvarCategoria(){
 		estoqueService.salvarCategoria(categoria);

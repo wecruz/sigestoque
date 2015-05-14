@@ -11,6 +11,7 @@ import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.enums.EnumEstado;
 import br.com.sigest.enums.EnumStatusVenda;
+import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.service.IEstoqueService;
 
@@ -35,6 +36,11 @@ public class ComboBoxHelper {
 	@Factory(value="fidAllFornecedor" , autoCreate = true)
 	public List<Fornecedor> initFornecedor(){
 		return estoqueService.fidAllFornecedor();
+	}
+	
+	@Factory(value="fidAllCategorias" , autoCreate = true)
+	public List<Categoria> initCategorias(){
+		return estoqueService.fidAllCategoria();
 	}
 	
 }

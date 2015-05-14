@@ -10,8 +10,8 @@
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
 		<h:form id="id_form">
-			
-			
+
+
 			<rich:spacer height="40px" />
 			<center>
 				<div style="width: 700px;">
@@ -21,7 +21,7 @@
 					</center>
 				</div>
 			</center>
-			
+
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -62,15 +62,16 @@
 								<h:outputLabel value="Fornecedor: " />
 							</div>
 							<div class="col-sm-5">
-								<h:selectOneMenu 
-									value="#{manterProdutoAction.produto.fornecedor}"
-									styleClass="form-control">
-									<s:selectItems noSelectionLabel="--Selecione--"
-										value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
-									</s:selectItems>
-									<a4j:support event="onchange" reRender="id_form"/>
-									<s:convertEntity />
-								</h:selectOneMenu>
+								<a4j:region>
+									<h:selectOneMenu
+										value="#{manterProdutoAction.produto.fornecedor}"
+										styleClass="form-control">
+										<s:selectItems noSelectionLabel="--Selecione--"
+											value="#{fidAllFornecedor}" var="forne" label="#{forne.nome}">
+										</s:selectItems>
+										<s:convertEntity />
+									</h:selectOneMenu>
+								</a4j:region>
 							</div>
 						</div>
 						<div class="form-group">
@@ -78,17 +79,19 @@
 								<h:outputLabel value="Categoria: " />
 							</div>
 							<div class="col-sm-5">
+							<a4j:region>
 								<h:selectOneMenu
 									value="#{manterProdutoAction.produto.categoria}"
 									styleClass="form-control">
 									<s:selectItems noSelectionLabel="--Selecione--"
-										value="#{categorias}" var="categoria"
+										value="#{fidAllCategorias}" var="categoria"
 										label="#{categoria.nome}">
 									</s:selectItems>
-									<s:convertEntity/>
+									<s:convertEntity />
 								</h:selectOneMenu>
+								</a4j:region>
 							</div>
-							
+
 						</div>
 
 					</div>
@@ -137,9 +140,9 @@
 					</rich:dataTable>
 				</div>
 			</s:div>
-			
+
 			<!-- MODAL EXCLUIR -->
-			
+
 			<rich:modalPanel id="painel" width="350" height="150">
 				<f:facet name="header">
 					<h:panelGroup>
@@ -163,8 +166,8 @@
 						onclick="Richfaces.hideModalPanel('painel')" />
 				</center>
 			</rich:modalPanel>
-			
-			
+
+
 		</h:form>
 	</ui:define>
 </ui:composition>

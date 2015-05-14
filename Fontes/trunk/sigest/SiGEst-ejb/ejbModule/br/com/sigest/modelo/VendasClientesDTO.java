@@ -17,6 +17,9 @@ public class VendasClientesDTO {
 	
 	private Fornecedor fornecedor = new  Fornecedor();
 	
+	private Integer quantidadeProduto;
+	
+	private List<Venda_Produto> listVendaProduto = new ArrayList<Venda_Produto>();
 	
 
 	public Cliente getCliente() {
@@ -66,6 +69,24 @@ public class VendasClientesDTO {
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
+
+	public void setQuantidadeProduto(Integer quantidadeProduto) {
+		this.quantidadeProduto = quantidadeProduto;
+	}
+
+	public Integer getQuantidadeProduto() {
+		return quantidadeProduto;
+	}
+
+	public void setListVendaProduto(List<Venda_Produto> listVendaProduto) {
+		this.listVendaProduto = listVendaProduto;
+	}
+
+	public List<Venda_Produto> getListVendaProduto() {
+		return listVendaProduto;
+	}
+
+	
 	
 	
 }

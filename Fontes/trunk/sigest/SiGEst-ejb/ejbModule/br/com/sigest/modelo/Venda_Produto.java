@@ -21,10 +21,16 @@ public class Venda_Produto {
 	@ManyToOne
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "venda_id")
 	private Venda venda;
+	
+	@Column(name ="valorUnitario")
+	private Float valorUnitario;
+	
+	@Column(name ="quantidadeProduto")
+	private Integer quantidadeProduto;
 
 	public Long getId() {
 		return id;
@@ -48,6 +54,22 @@ public class Venda_Produto {
 
 	public void setVenda(Venda venda) {
 		this.venda = venda;
+	}
+
+	public void setValorUnitario(Float valorUnitario) {
+		this.valorUnitario = valorUnitario;
+	}
+
+	public Float getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public void setQuantidadeProduto(Integer quantidadeProduto) {
+		this.quantidadeProduto = quantidadeProduto;
+	}
+
+	public Integer getQuantidadeProduto() {
+		return quantidadeProduto;
 	}
 
 	

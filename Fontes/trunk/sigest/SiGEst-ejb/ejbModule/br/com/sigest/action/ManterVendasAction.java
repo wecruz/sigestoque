@@ -47,12 +47,12 @@ public class ManterVendasAction {
 	
 	private Float valorTotal = 0F ;
 	
-	private int quantidadeUnidade;
-	
 	@In
 	private RelatorioUtil relatorioUtil;
 	
 	private List<PedidoDTO> listPedidoDTO = new ArrayList<PedidoDTO>();
+	
+	
 	
 	private PedidoDTO pedidoDTO = new PedidoDTO();
 
@@ -81,31 +81,39 @@ public class ManterVendasAction {
 	}
 	
 	public void adicionarProduto(){
+		valorTotal = 0F;
 		
-		vendasClientesDTO.getProduto().setQuantidade(quantidadeUnidade);
-		vendasClientesDTO.getProdutos().add(vendasClientesDTO.getProduto());
-		valorTotal += vendasClientesDTO.getProduto().getPrecoVenda();
-		quantidadeUnidade = 0;
+		float valorPorProduto  = vendasClientesDTO.getQuantidadeProduto() * vendasClientesDTO.getProduto().getPrecoVenda();
+		
+		venda_Produto.setQuantidadeProduto(vendasClientesDTO.getQuantidadeProduto());
+		venda_Produto.setValorUnitario(valorPorProduto);
+		venda_Produto.setProduto(vendasClientesDTO.getProduto());
+		vendasClientesDTO.getListVendaProduto().add(venda_Produto);
+		
+		
+		for (Venda_Produto venda_Produto : vendasClientesDTO.getListVendaProduto()) {
+			valorTotal += venda_Produto.getValorUnitario();
+		}
+		
 		vendasClientesDTO.setProduto(new Produto());
+		venda_Produto = new Venda_Produto();
+		
 		
 	}
 	
 	
 	public void confimarPedidoVenda(){
 		
-		for (Produto produto : vendasClientesDTO.getProdutos()) {
-			venda_Produto.setProduto(produto);
-		}
-		
 		venda.setCliente(cliente);
 		venda.setDataVenda(new Date());
 		venda.setStatusVenda(EnumStatusVenda.NAO_PAGO);
-		venda.getVenda_Produtos().add(venda_Produto);
+		
+		venda.getVenda_Produtos().addAll(vendasClientesDTO.getListVendaProduto());
 		venda.setValorTotalVenda(valorTotal);
 		
-		
-		venda_Produto.setVenda(venda);
-		
+		for (Venda_Produto vendaProdut : vendasClientesDTO.getListVendaProduto()) {
+			vendaProdut.setVenda(venda);
+		}
 		
 		vendasService.salvaPedidoVenda(venda);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
@@ -191,13 +199,10 @@ public class ManterVendasAction {
 	}
 	
 	
-	public void alterarProduto(Produto produto){
-		vendasClientesDTO.setProduto(produto);
+	public void alterarProduto(Venda_Produto venda_Produto){
+		vendasClientesDTO.setProduto(venda_Produto.getProduto());
 		
 	}
-	
-	
-	
 	
 	public String gerarRelatorio() {
 		
@@ -230,9 +235,14 @@ public class ManterVendasAction {
 		return "/vendas/vendas.xhtml";
 	}
 	
-	public String removerProduto(Produto produto){
-		vendasClientesDTO.getProdutos().remove(produto);
-		valorTotal -= produto.getPrecoVenda();
+	public String removerProduto(Venda_Produto venda_Produto){
+		valorTotal = 0f;
+		
+		vendasClientesDTO.getListVendaProduto().remove(venda_Produto);
+		
+		for (Venda_Produto vendaPro : vendasClientesDTO.getListVendaProduto()) {
+			valorTotal += vendaPro.getValorUnitario();
+		}
 		return "/vendas/vendas.xhtml";
 	}
 
@@ -290,16 +300,6 @@ public class ManterVendasAction {
 
 	public Float getValorTotal() {
 		return valorTotal;
-	}
-
-	
-
-	public int getQuantidadeUnidade() {
-		return quantidadeUnidade;
-	}
-
-	public void setQuantidadeUnidade(int quantidadeUnidade) {
-		this.quantidadeUnidade = quantidadeUnidade;
 	}
 
 	public void setListPedidoDTO(List<PedidoDTO> listPedidoDTO) {
