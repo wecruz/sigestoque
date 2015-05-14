@@ -40,6 +40,16 @@ public class ProdutoDao {
 		return criteria.list();
 	}
 	
+	
+	public List<Produto> pesquisarProdutoVenda(Produto produto){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Produto.class, "produto");
+		if (produto.getNomeProduto() != null) {
+			criteria.add(Restrictions.like("produto.nomeProduto", produto.getNomeProduto(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		return criteria.list();
+	}
+	
 	public List<Produto> fildAllProduto(){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Produto.class, "produto");

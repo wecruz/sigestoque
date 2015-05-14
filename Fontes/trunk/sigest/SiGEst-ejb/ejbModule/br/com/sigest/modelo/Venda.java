@@ -45,6 +45,9 @@ public class Venda {
 	@OneToOne
 	@JoinColumn(name="funcionario")
 	private Funcionario funcionario;
+	
+	@Column(name ="valorTotalVenda")
+	private Float valorTotalVenda;
 
 	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
 	private List<Venda_Produto> venda_Produtos = new ArrayList<Venda_Produto>();
@@ -95,6 +98,14 @@ public class Venda {
 
 	public void setVenda_Produtos(List<Venda_Produto> venda_Produtos) {
 		this.venda_Produtos = venda_Produtos;
+	}
+
+	public void setValorTotalVenda(Float valorTotalVenda) {
+		this.valorTotalVenda = valorTotalVenda;
+	}
+
+	public Float getValorTotalVenda() {
+		return valorTotalVenda;
 	}
 	
 	

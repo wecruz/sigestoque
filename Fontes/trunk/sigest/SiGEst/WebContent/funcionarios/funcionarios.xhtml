@@ -126,36 +126,34 @@
 								ajaxSingle="true" reRender="id_form,id_div_tabela"
 								oncomplete="Richfaces.showModalPanel('painel')" />
 						</rich:column>
+						
 						<f:facet name="footer">
-							<s:div styleClass="panel panel-info">
-								<s:div styleClass="">
-									<s:div styleClass="">
-										<h:outputLabel value="Total Registros: " />
-										<h:outputText
-											value="#{manterFuncionarioAction.funcionarios.size()}" />
-									</s:div>
-								</s:div>
-								<s:div styleClass="">
-									<rich:datascroller id="datascroller" renderIfSinglePage="true"
-										immediate="true" styleClass="" />
-								</s:div>
-								<s:div styleClass="">
-									<s:div styleClass="tARight">
-										<h:outputLabel value="Registros Por Página: " />
-										<h:selectOneMenu
-											value="#{manterFuncionarioAction.qntFuncionarios}">
-											<f:selectItem itemLabel="10" itemValue="10"
-												noSelectionOption="true" />
+							<s:div styleClass="panel-heading">
+								<div class="coluna33pc">
+									<div class="titulo_150">
+										<s:label value="Total Registros:" />
+										<h:outputText value="#{manterFuncionarioAction.funcionarios.size()}" />
+									</div>
+								</div>
+								<div class="coluna33pc">
+									<rich:datascroller renderIfSinglePage="true" immediate="true"/>
+								</div>
+								<div class="coluna33pc">
+									<div class="tARight">
+										<s:label value="Registros Por Página :" />
+										<h:selectOneMenu value="#{manterFuncionarioAction.qntFuncionarios}">
+											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
 											<f:selectItem itemLabel="50" itemValue="50" />
 											<f:selectItem itemLabel="100" itemValue="100" />
 											<f:selectItem itemLabel="150" itemValue="150" />
 											<f:selectItem itemLabel="200" itemValue="200" />
 											<a4j:support event="onchange" reRender="id_div_tabela" />
 										</h:selectOneMenu>
-									</s:div>
-								</s:div>
+									</div>
+								</div>
 							</s:div>
 						</f:facet>
+						
 					</rich:dataTable>
 				</div>
 			</s:div>

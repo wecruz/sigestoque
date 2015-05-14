@@ -6287,3 +6287,9 @@ button.close {
   left: 4px;
 }
 
+.coluna33pc { float: left; width: 33%; }
+.titulo_150 { float: left; width: 150px; }
+.btnsPaginacao { padding: 0 0 0 25%; width: 150px; margin-top:3px; }
+.btnsPaginacao table tr {  background: transparent; }
+.tARight { text-align:right; }
+

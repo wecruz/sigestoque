@@ -47,7 +47,7 @@ public class ManterVendasAction {
 	
 	private Float valorTotal = 0F ;
 	
-	private Integer quantidadeUnidade = 1;
+	private int quantidadeUnidade;
 	
 	@In
 	private RelatorioUtil relatorioUtil;
@@ -101,11 +101,16 @@ public class ManterVendasAction {
 		venda.setDataVenda(new Date());
 		venda.setStatusVenda(EnumStatusVenda.NAO_PAGO);
 		venda.getVenda_Produtos().add(venda_Produto);
+		venda.setValorTotalVenda(valorTotal);
+		
+		
 		venda_Produto.setVenda(venda);
+		
 		
 		vendasService.salvaPedidoVenda(venda);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	
+		
 		
 		cliente = new Cliente();
 		venda = new Venda();
@@ -287,11 +292,13 @@ public class ManterVendasAction {
 		return valorTotal;
 	}
 
-	public Integer getQuantidadeUnidade() {
+	
+
+	public int getQuantidadeUnidade() {
 		return quantidadeUnidade;
 	}
 
-	public void setQuantidadeUnidade(Integer quantidadeUnidade) {
+	public void setQuantidadeUnidade(int quantidadeUnidade) {
 		this.quantidadeUnidade = quantidadeUnidade;
 	}
 

@@ -121,7 +121,13 @@
 			
 			
 				<rich:spacer height="20px" />
+			
 				<center>
+
+					<a4j:commandButton value="OK" action="#"
+						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
+						reRender="id_form,id_div_tabela"
+						onclick="Richfaces.hideModalPanel('painel')" />
 
 					<a4j:commandButton value="Cancelar" action="#"
 						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
