@@ -23,40 +23,42 @@
 			</center>
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Manter Relatorios</div>
+					<div class="titulo">Relatorios</div>
 				</div>
 				<br /> <br />
-				<div class="form-horizontal ">
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Fornecedor: " />
-						</div>
-						<a4j:region>
-							<div class="col-sm-5">
-								<h:inputText id="id_txt_fornecer" label="Fornecedor"
-									styleClass="form-control"
-									value="" />
+				<rich:panelBar height="200" width="1000">
+					<rich:panelBarItem label="Relatorios Fornecedor"  headerClass="text-center"  >
+							<rich:spacer height="20" />
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Fornecedor: " />
+								</div>
+								<a4j:region>
+									<div class="col-sm-5">
+										<h:inputText id="id_txt_fornecer" label="Fornecedor"
+											styleClass="form-control" value="" />
+									</div>
+									<rich:suggestionbox frequency="0.001" minChars="0"
+										for="id_txt_fornecer" width="500"
+										nothingLabel="Não encontrado" required="true"
+										suggestionAction="#{manterRelatorioAction.pesquisarFornecedorNome}"
+										var="fornece" ajaxSingle="true" requestDelay="0">
+										<h:column>
+											<h:outputText value="#{fornece.nome}" />
+										</h:column>
+										<a4j:support event="onselect" reRender="id_produto"
+											action="#{manterRelatorioAction.pesquisarProduto()}">
+											<f:setPropertyActionListener
+												target="#{manterRelatorioAction.relatorioDto.fornecedor}"
+												value="#{fornece}" />
+										</a4j:support>
+									</rich:suggestionbox>
+								</a4j:region>
+
+
 							</div>
-							<rich:suggestionbox frequency="0.001" minChars="0"
-								for="id_txt_fornecer" width="500" nothingLabel="Não encontrado"
-								required="true"
-								suggestionAction="#{manterRelatorioAction.pesquisarFornecedorNome}"
-								var="fornece" ajaxSingle="true" requestDelay="0">
-								<h:column>
-									<h:outputText value="#{fornece.nome}" />
-								</h:column>
-								<a4j:support event="onselect" reRender="id_produto" action="#{manterRelatorioAction.pesquisarProduto()}">
-									<f:setPropertyActionListener
-										target="#{manterRelatorioAction.relatorioDto.fornecedor}"
-										value="#{fornece}" />
-								</a4j:support>
-							</rich:suggestionbox>
-						</a4j:region>
-						
-						
-					</div>
-					
-					<!--<div class="form-group">
+
+							<!--<div class="form-group">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Produto" />
 						</div>
@@ -71,26 +73,42 @@
 							</h:selectOneMenu>
 						</div>
 					</div>-->
-					
-					<br /> <br /> <br />
-					<center>
-						<h:commandButton 
-							action="#{manterRelatorioAction.gerarRelatorio()}"
-							value="imprimir" onclick="target='_black'"
-							styleClass="btn btn-default navbar-btn">
-							
-						</h:commandButton>
-					</center>
-					
-					<center>
-						<h:commandButton 
-							action="#{manterRelatorioAction.gerarRelatorioVendas()}"
-							value="Relatorio Venda" onclick="target='_black'"
-							styleClass="btn btn-default navbar-btn">
-							
-						</h:commandButton>
-					</center>
-				</div>
+
+							<br /> <br /> <br />
+							<center>
+								<h:commandButton
+									action="#{manterRelatorioAction.gerarRelatorio()}"
+									value="imprimir" onclick="target='_black'"
+									styleClass="btn btn-default navbar-btn">
+
+								</h:commandButton>
+							</center>
+
+
+						
+					</rich:panelBarItem>
+					<rich:panelBarItem label="Relatorios Vendas" headerClass="text-center">
+						<rich:spacer height="20" />
+						<center>
+							<h:commandButton
+								action="#{manterRelatorioAction.gerarRelatorioVendas()}"
+								value="Relatorio Venda" onclick="target='_black'"
+								styleClass="btn btn-default navbar-btn">
+
+							</h:commandButton>
+						</center>
+
+
+					</rich:panelBarItem>
+
+
+				</rich:panelBar>
+
+
+
+
+
+
 			</div>
 		</h:form>
 	</ui:define>
