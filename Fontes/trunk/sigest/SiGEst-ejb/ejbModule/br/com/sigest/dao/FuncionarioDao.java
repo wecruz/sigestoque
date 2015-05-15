@@ -40,9 +40,7 @@ public class FuncionarioDao {
 			criteria.add(Restrictions.like("funcionario.nome", funcionario.getNome(), MatchMode.ANYWHERE)
 			.ignoreCase());
 		}
-		if(!funcionario.getRg().isEmpty()){
-			criteria.add(Restrictions.eq("funcionario.rg", funcionario.getRg()));
-		}
+		
 		if(!funcionario.getCpf().isEmpty()){
 			criteria.add(Restrictions.eq("funcionario.cpf", funcionario.getCpf()));
 		}

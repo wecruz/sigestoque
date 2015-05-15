@@ -2,8 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_grafico_vendas.jasper" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ef2b2ee-6d39-4a7e-aa36-0cfaaab2d548">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="480"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="IMAGEM_DIR" class="java.lang.String"/>
+	<parameter name="IMAGEM_DIR_1" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -16,12 +17,14 @@
 	<field name="valorTotal" class="java.lang.Double">
 		<fieldDescription><![CDATA[valorTotal]]></fieldDescription>
 	</field>
-	<columnHeader>
-		<band height="270"/>
-	</columnHeader>
-	<columnFooter>
-		<band height="256"/>
-	</columnFooter>
+	<pageHeader>
+		<band height="103">
+			<image hAlign="Center">
+				<reportElement x="232" y="0" width="80" height="91" uuid="65cb19b4-6969-449c-9b0a-5e16c2a4eb4b"/>
+				<imageExpression><![CDATA[$P{IMAGEM_DIR} + "/img/Logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
 	<lastPageFooter>
 		<band height="276">
 			<barChart>

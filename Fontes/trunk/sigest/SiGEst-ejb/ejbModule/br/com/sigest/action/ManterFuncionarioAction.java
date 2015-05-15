@@ -173,7 +173,7 @@ public class ManterFuncionarioAction {
 	}
 	
 	public boolean validarCriterioPesquisa(){		
-		if(funcionario.getNome().isEmpty() && funcionario.getRg().isEmpty() && funcionario.getCpf().isEmpty()){
+		if(funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty()){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
 			setFlagMensagen(false);
 			return false;

@@ -38,9 +38,6 @@ public class Funcionario {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "rg")
-	private String rg;
-	
 	@Column(name = "cpf")
 	private String cpf;
 	
@@ -102,33 +99,17 @@ public class Funcionario {
 		this.cargoFuncao = cargoFuncao;
 	}
 
-
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
-
-
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
-
-	public String getRg() {
-		return rg;
-	}
-
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
-
 	public String getCpf() {
 		return cpf;
 	}
-
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
