@@ -25,6 +25,74 @@
 
 			<div class="form-horizontal ">
 				<br />
+				
+				
+				<div class="form-group linha">
+								<s:div rendered="#{manterVendasAction.cliente.id == null}">
+									<div class="col-sm-2 control-label">
+										<h:outputLabel value="Nome*: " />
+									</div>
+
+									<a4j:region>
+										<div class="col-sm-5">
+											<h:inputText id="id_txt_nome_cliente" label="Nome"
+												styleClass="form-control"
+												value="#{manterVendasAction.cliente.nome}" />
+										</div>
+										<rich:suggestionbox frequency="0.001" minChars="0"
+											for="id_txt_nome_cliente" width="500"
+											nothingLabel="Não encontrado" required="true"
+											suggestionAction="#{manterCaixaAction.pesquisarVendaClienterNome}"
+											var="cliente" ajaxSingle="true" requestDelay="0">
+											<h:column>
+												<h:outputText value="#{cliente.nome}" />
+											</h:column>
+											<a4j:support event="onselect" reRender="id_div_tabela"
+												action="#{manterCaixaAction.renderdVendaCliente(cliente)}">
+												<f:setPropertyActionListener
+													target="#{manterCaixaAction.cliente}" value="#{cliente}" />
+											</a4j:support>
+										</rich:suggestionbox>
+									</a4j:region>
+
+								</s:div>
+							</div>
+
+
+							<div class="form-group linha">
+								<a4j:outputPanel
+									rendered="#{manterVendasAction.cliente.id == null}">
+									<div class="col-sm-2 control-label">
+										<h:outputLabel value="CPF*: " />
+									</div>
+									<a4j:region>
+										<div class="col-sm-5">
+											<h:inputText id="id_txt_cpf_cliente" label="Nome"
+												styleClass="form-control"
+												value="#{manterVendasAction.cliente.cpf}" />
+										</div>
+										<rich:suggestionbox frequency="0.001" minChars="0"
+											for="id_txt_cpf_cliente" width="500"
+											nothingLabel="Não encontrado" required="true"
+											suggestionAction="#{manterCaixaAction.pesquisarVendaClienterCpf}"
+											var="cliente" ajaxSingle="true" requestDelay="0">
+											<h:column>
+												<h:outputText value="#{cliente.cpf}" />
+											</h:column>
+											<a4j:support event="onselect" reRender="id_div_tabela"
+												action="#{manterCaixaAction.renderdVendaCliente(cliente)}">
+												<f:setPropertyActionListener
+													target="#{manterCaixaAction.cliente}" value="#{cliente}" />
+											</a4j:support>
+										</rich:suggestionbox>
+									</a4j:region>
+								</a4j:outputPanel>
+							</div>
+
+				
+				<br />
+				
+				
 
 				<div class="panel panel-info">
 					<div class="panel-heading">Lista de Pedidos</div>
@@ -80,9 +148,6 @@
 						<div class="col-sm-5">
 							<h:outputText value="#{manterCaixaAction.venda.cliente.cpf}" />
 						</div>
-						
-						
-						
 					
 					</div>
 				
@@ -102,6 +167,36 @@
 							<f:facet name="header">Data Venda</f:facet>
 							<h:outputText value="#{vendaProduto.venda.dataVenda}" />
 						</rich:column>
+						
+						<f:facet name="footer">
+							<s:div styleClass="panel-heading">
+								<div class="coluna33pc">
+									<div class="titulo_150">
+										<s:label value="Total Registros: " />
+										<h:outputText value="#{manterCaixaAction.venda.venda_Produtos.size()}" />
+									</div>
+								</div>
+								<div class="coluna33pc">
+									<rich:datascroller renderIfSinglePage="true" immediate="true"/>
+								</div>
+								<div class="coluna33pc">
+									<div class="tARight">
+										<s:label value="Registros Por Página :" />
+										<h:selectOneMenu value="#{manterCaixaAction.qntFuncionarios}">
+											<f:selectItem itemLabel="5" itemValue="5" noSelectionOption="true" />
+											<f:selectItem itemLabel="50" itemValue="50" />
+											<f:selectItem itemLabel="100" itemValue="100" />
+											<f:selectItem itemLabel="150" itemValue="150" />
+											<f:selectItem itemLabel="200" itemValue="200" />
+											<a4j:support event="onchange" reRender="id_div_tabela" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</s:div>
+						</f:facet>
+						
+						
+						
 					</rich:dataTable>
 				</div>
 			</div>
@@ -124,10 +219,9 @@
 			
 				<center>
 
-					<a4j:commandButton value="OK" action="#"
-						styleClass="btn btn-default navbar-btn" ajaxSingle="true"
-						reRender="id_form,id_div_tabela"
-						onclick="Richfaces.hideModalPanel('painel')" />
+					<a4j:commandButton value="OK" action="#{manterCaixaAction.darBaixaVenda()}"
+						styleClass="btn btn-default navbar-btn"  reRender="id_div_tabela,id_form"
+						oncomplete="Richfaces.hideModalPanel('painel')" />
 
 					<a4j:commandButton value="Cancelar" action="#"
 						styleClass="btn btn-default navbar-btn" ajaxSingle="true"

@@ -90,7 +90,6 @@ public class ManterVendasAction {
 		venda_Produto.setProduto(vendasClientesDTO.getProduto());
 		vendasClientesDTO.getListVendaProduto().add(venda_Produto);
 		
-		
 		for (Venda_Produto venda_Produto : vendasClientesDTO.getListVendaProduto()) {
 			valorTotal += venda_Produto.getValorUnitario();
 		}
@@ -117,8 +116,6 @@ public class ManterVendasAction {
 		
 		vendasService.salvaPedidoVenda(venda);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-	
-		
 		
 		cliente = new Cliente();
 		venda = new Venda();

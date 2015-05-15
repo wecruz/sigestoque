@@ -17,7 +17,7 @@ public class VendasClientesDTO {
 	
 	private Fornecedor fornecedor = new  Fornecedor();
 	
-	private Integer quantidadeProduto;
+	private Integer quantidadeProduto = 1;
 	
 	private List<Venda_Produto> listVendaProduto = new ArrayList<Venda_Produto>();
 	

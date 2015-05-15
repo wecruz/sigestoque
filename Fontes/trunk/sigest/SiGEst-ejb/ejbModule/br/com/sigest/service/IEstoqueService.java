@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
+import br.com.sigest.modelo.VendaRelatorioDto;
 
 public interface IEstoqueService {
 	
@@ -29,13 +30,17 @@ public interface IEstoqueService {
 	
 	void salvarCategoria(Categoria categoria);
 	
-	void excluirCategoria(Categoria categoria);
+	void excluirCategoria(Categoria categoria);						
 	
 //	List<Estado> pesquisarTodosEstados();
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);
 	
 	List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
+	
+	List<VendaRelatorioDto> pesquisarVendaMes();
+	
+	
 	void destroy();
 	
 	void remove();

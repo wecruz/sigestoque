@@ -13,9 +13,12 @@ import org.jboss.seam.annotations.Name;
 import br.com.sigest.dao.CategoriaDao;
 import br.com.sigest.dao.FornecedorDao;
 import br.com.sigest.dao.ProdutoDao;
+import br.com.sigest.dao.VendaDao;
 import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
+import br.com.sigest.modelo.Venda;
+import br.com.sigest.modelo.VendaRelatorioDto;
 
 @Name("estoqueService")
 @AutoCreate
@@ -30,6 +33,10 @@ public class EstoqueService implements IEstoqueService {
 
 	@In
 	CategoriaDao categoriaDao;
+	
+	@In
+	private
+	VendaDao vendaDao;
 
 	public List<Fornecedor> fidAllFornecedor() {
 		return fornecedorDao.fidAllFornecedor();
@@ -80,13 +87,10 @@ public class EstoqueService implements IEstoqueService {
 		categoriaDao.excluirCategoria(categoria);
 	}
 
-	// public List<Estado> pesquisarTodosEstados() {
-	// return fornecedorDao.pesquisarTodosEstados();
-	// }
-	//
-	// public List<Cidade> pesquisarCidadesPorEstados(Estado estado) {
-	// return fornecedorDao.pesquisarCidadesPorEstados(estado);
-	// }
+	public List<VendaRelatorioDto> pesquisarVendaMes() {
+		return vendaDao.pesquisarVendaMes();
+	}
+	
 
 	@Destroy
 	public void destroy() {
@@ -97,5 +101,14 @@ public class EstoqueService implements IEstoqueService {
 	public void remove() {
 
 	}
+
+	public void setVendaDao(VendaDao vendaDao) {
+		this.vendaDao = vendaDao;
+	}
+
+	public VendaDao getVendaDao() {
+		return vendaDao;
+	}
+
 
 }

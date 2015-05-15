@@ -22,7 +22,7 @@
 	<pageHeader>
 		<band height="103">
 			<image hAlign="Center">
-				<reportElement x="236" y="10" width="80" height="91" uuid="6b21443b-bac3-4d55-93fa-c09539d27889"/>
+				<reportElement x="212" y="0" width="80" height="91" uuid="6b21443b-bac3-4d55-93fa-c09539d27889"/>
 				<imageExpression><![CDATA[$P{IMAGEM_DIR} + "/img/Logo.png"]]></imageExpression>
 			</image>
 		</band>

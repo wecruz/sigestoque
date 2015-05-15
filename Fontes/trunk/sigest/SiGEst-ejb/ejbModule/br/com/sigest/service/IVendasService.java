@@ -33,6 +33,8 @@ public interface IVendasService {
 	void salvaPedidoVenda(Venda venda);
 	
 	List<Venda> fildAllVendas();
+	
+	List<Venda> pesquisarVendasCliente(Cliente cliente);
 
 	void destroy();
 	

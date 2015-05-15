@@ -68,6 +68,9 @@ public class VendasService implements IVendasService{
 		return vendaDao.fildAllVendas();
 	}
 	
+	public List<Venda> pesquisarVendasCliente(Cliente cliente) {
+		return vendaDao.pesquisarVendasCliente(cliente);
+	}
 	
 	
 	@Destroy
@@ -79,6 +82,7 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
 
 	
 

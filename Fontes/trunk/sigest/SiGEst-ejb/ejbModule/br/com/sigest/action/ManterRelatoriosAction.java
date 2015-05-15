@@ -1,10 +1,21 @@
 package br.com.sigest.action;
 
+import java.io.FileInputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
+
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
@@ -14,6 +25,8 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Venda;
+import br.com.sigest.modelo.VendaRelatorioDto;
 import br.com.sigest.modelo.dto.RelatorioDto;
 import br.com.sigest.service.IEstoqueService;
 import br.com.sigest.util.RelatorioUtil;
@@ -70,7 +83,6 @@ public class ManterRelatoriosAction {
 
 	public String gerarRelatorio() {
 
-//		if (!relatorioDto.getFornecedor().getNome().isEmpty()) {
 
 			relatorioDto.setListProduto(estoqueService.pesquisarProdutoFornecedor(relatorioDto.getFornecedor()));
 			
@@ -84,30 +96,36 @@ public class ManterRelatoriosAction {
 			try {
 				return relatorioUtil.imprimir("relatorio_fornecedor", params, list);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//		}
-//		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
+		return "";
+
+	}
+	
+	
+	
+	public String gerarRelatorioVendas() {
+
+		
+		
+		List<VendaRelatorioDto> listVendaMes = estoqueService.pesquisarVendaMes();
+		
+		final Collection<?> list = listVendaMes;
+		final Map<String, Object> params = new HashMap<String, Object>();
+
+		try {
+			return relatorioUtil.imprimir("relatorio_grafico_vendas", params, list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "";
 
 	}
 
 
-
-
-
-
-
 	public RelatorioDto getRelatorioDto() {
 		return relatorioDto;
 	}
-
-
-
-
-
-
 
 	public void setRelatorioDto(RelatorioDto relatorioDto) {
 		this.relatorioDto = relatorioDto;
