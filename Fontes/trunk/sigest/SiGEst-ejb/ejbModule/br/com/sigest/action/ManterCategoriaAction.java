@@ -1,7 +1,5 @@
 package br.com.sigest.action;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +13,11 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Categoria;
-import br.com.sigest.modelo.Cliente;
-import br.com.sigest.modelo.Endereco;
+import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.UploadedFile;
 import br.com.sigest.service.IEstoqueService;
+import br.com.sigest.util.UploadFileUtil;
 
 /**
  * 
@@ -46,17 +44,28 @@ public class ManterCategoriaAction {
 	public void salvarCategoria(){
 		if (indice != null) {
 			listCategoria.set(indice, categoria);
+			estoqueService.salvarCategoria(categoria);
+			indice = null;
+			categoria = new Categoria();
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+			
 		} else {
-			listCategoria.add(categoria);
+			if(estoqueService.pesquisarCategoria(categoria).isEmpty()){
+				listCategoria.add(categoria);
+				estoqueService.salvarCategoria(categoria);
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Categoria já Cadastrada!", ""));
+			}
 		}
-		
-		listCategoria.add(categoria);
-		
-		
-		estoqueService.salvarCategoria(categoria);
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	}
 	
+	
+	public String cancelar(){
+		categoria = new Categoria();
+		listCategoria = new ArrayList<Categoria>(); 
+		return "/produtos/categoria.xhtml";
+	}
 	
 	public void pesquisarCategoria(){
 		if(validarCriterioPesquisa()){

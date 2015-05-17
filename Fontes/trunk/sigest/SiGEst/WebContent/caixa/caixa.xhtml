@@ -104,6 +104,12 @@
 							<h:outputText value="#{venda.cliente.nome}" />
 						</rich:column>
 						<rich:column>
+							<f:facet name="header">Data Venda</f:facet>
+							<h:outputText value="#{venda.dataVenda}">
+								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
 							<f:facet name="header">Valor</f:facet>
 							<h:outputText value="#{venda.valorTotalVenda}" />
 						</rich:column>
@@ -166,6 +172,10 @@
 						<rich:column>
 							<f:facet name="header">Data Venda</f:facet>
 							<h:outputText value="#{vendaProduto.venda.dataVenda}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Quantidade</f:facet>
+							<h:outputText value="#{vendaProduto.quantidadeProduto}" />
 						</rich:column>
 						
 						<f:facet name="footer">

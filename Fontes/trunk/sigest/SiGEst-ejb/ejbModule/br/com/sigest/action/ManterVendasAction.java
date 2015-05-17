@@ -26,6 +26,7 @@ import br.com.sigest.modelo.Venda;
 import br.com.sigest.modelo.Venda_Produto;
 import br.com.sigest.modelo.VendasClientesDTO;
 import br.com.sigest.modelo.dto.PedidoDTO;
+import br.com.sigest.service.IEstoqueService;
 import br.com.sigest.service.IVendasService;
 import br.com.sigest.util.RelatorioUtil;
 
@@ -36,6 +37,9 @@ public class ManterVendasAction {
 
 	@In
 	private IVendasService vendasService;
+	
+	@In
+	IEstoqueService estoqueService;
 	
 	private Cliente cliente = new Cliente();
 	
@@ -112,6 +116,15 @@ public class ManterVendasAction {
 		
 		for (Venda_Produto vendaProdut : vendasClientesDTO.getListVendaProduto()) {
 			vendaProdut.setVenda(venda);
+			
+			int quantidadePrduto = vendaProdut.getProduto().getQuantidade();
+			int quantidadePrdutoVendido = vendaProdut.getQuantidadeProduto();
+			int quantidaReturn = quantidadePrduto -= quantidadePrdutoVendido;
+			
+			vendaProdut.getProduto().setQuantidade(quantidaReturn);
+			
+			estoqueService.salvarProduto(vendaProdut.getProduto());
+			
 		}
 		
 		vendasService.salvaPedidoVenda(venda);

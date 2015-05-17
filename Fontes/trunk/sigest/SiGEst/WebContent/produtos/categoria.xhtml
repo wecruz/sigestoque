@@ -15,7 +15,7 @@
 			<center>
 				<div style="width: 700px;">
 					<center>
-						<h:messages infoClass="alert alert-success"
+						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
@@ -25,16 +25,16 @@
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<div class="titulo">Manter Categoria</div>
+						<div class="titulo">Pesquisar Categoria</div>
 					</div>
 					<br /> <br />
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome*: " />
+							<h:outputLabel value="Nome: " />
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterCategoriaAction.categoria.nome}"
-								styleClass="form-control" required="true" id="nomeCategoria"
+								styleClass="form-control" id="nomeCategoria"
 								label="Nome" />
 						</div>
 					</div>
@@ -85,12 +85,14 @@
 							<f:facet name="header">Operações</f:facet>
 							<a4j:commandLink
 								action="#{manterCategoriaAction.alterar(categoria,indice)}"
-								value="Alterar" ajaxSingle="true" reRender="id_form" />
+								ajaxSingle="true" reRender="id_form" >
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>	
 							<rich:spacer width="20px" />
-							<a4j:commandLink value="Excluir"
-								action="#{manterCategoriaAction.selecionarCategoria(categoria)}"
+							<a4j:commandLink action="#{manterCategoriaAction.selecionarCategoria(categoria)}"
 								reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
+								<h:graphicImage value="/img/ico_excluir.png" />
 							</a4j:commandLink>
 						</rich:column>
 					</rich:dataTable>
@@ -102,7 +104,7 @@
 			<rich:modalPanel id="painel" width="350" height="150">
 				<f:facet name="header">
 					<h:panelGroup>
-						<h:outputText value="Excluir"></h:outputText>
+						<h:outputText value="Deseja realmente excluir?"></h:outputText>
 					</h:panelGroup>
 				</f:facet>
 				<f:facet name="controls">

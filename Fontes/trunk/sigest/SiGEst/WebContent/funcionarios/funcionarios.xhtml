@@ -26,7 +26,7 @@
 
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Manter Funcionarios</div>
+					<div class="titulo">Pesquisar Funcionarios</div>
 				</div>
 				<div class="form-horizontal ">
 					<br />
@@ -77,10 +77,6 @@
 					styleClass="btn btn-default navbar-btn"
 					action="#{manterFuncionarioAction.novoCadastro()}" />
 
-				<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
-					value="Cancelar" styleClass="btn btn-default navbar-btn"
-					ajaxSingle="true" />
-
 			</div>
 			<rich:spacer />
 			<br />
@@ -108,14 +104,20 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
+							<center>
 							<a4j:commandLink
 								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
-								value="Alterar" ajaxSingle="true" reRender="id_form" />
-							<rich:spacer width="20px" />
-							<a4j:commandLink value="Excluir"
+									ajaxSingle="true" reRender="id_form" >
+									<h:graphicImage value="/img/ico_alterar.png" />
+								</a4j:commandLink>
+							<rich:spacer width="25px" />
+							<a4j:commandLink 
 								action="#{manterFuncionarioAction.selecionarFuncionario(funcio)}"
 								ajaxSingle="true" reRender="id_form,id_div_tabela"
-								oncomplete="Richfaces.showModalPanel('painel')" />
+								oncomplete="Richfaces.showModalPanel('painel')" >
+								<h:graphicImage value="/img/ico_excluir.png" />
+							</a4j:commandLink>	
+							</center>
 						</rich:column>
 						
 						<f:facet name="footer">
@@ -127,7 +129,7 @@
 									</div>
 								</div>
 								<div class="coluna33pc">
-									<rich:datascroller renderIfSinglePage="true" immediate="true"/>
+									<rich:datascroller renderIfSinglePage="true"  styleClass="wrap-paginacao" immediate="true"/>
 								</div>
 								<div class="coluna33pc">
 									<div class="tARight">

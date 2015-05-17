@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_grafico_vendas.jasper" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ef2b2ee-6d39-4a7e-aa36-0cfaaab2d548">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="480"/>
 	<parameter name="IMAGEM_DIR" class="java.lang.String"/>
 	<parameter name="IMAGEM_DIR_1" class="java.lang.String"/>
 	<queryString>
@@ -26,7 +26,7 @@
 		</band>
 	</pageHeader>
 	<lastPageFooter>
-		<band height="276">
+		<band height="699">
 			<barChart>
 				<chart theme="default">
 					<reportElement positionType="Float" x="0" y="12" width="555" height="223" uuid="c678c569-e610-4c85-b99e-9eea47969ae0"/>

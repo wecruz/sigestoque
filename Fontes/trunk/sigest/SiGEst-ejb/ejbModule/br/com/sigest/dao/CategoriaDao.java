@@ -34,7 +34,7 @@ public class CategoriaDao {
 		}
 		
 		if(!categoria.getDescricao().isEmpty()){
-			criteria.add(Restrictions.like("categoria.descricao", categoria.getDescricao()));
+			criteria.add(Restrictions.like("categoria.descricao", categoria.getDescricao(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		
 		return criteria.list();

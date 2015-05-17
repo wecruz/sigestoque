@@ -34,18 +34,23 @@
 					</div>
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome*: " />
+							<h:outputLabel value="Nome: " >
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
 								styleClass="form-control" 
 								id="nome" label="Nome"
 								required="true" />
+								
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="CPF*: " />
+							<h:outputLabel value="CPF: " >
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
@@ -59,7 +64,9 @@
 					
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Senha*: " />
+								<h:outputLabel value="Senha: " >
+									<h:graphicImage value="/img/required.gif" />
+								</h:outputLabel>
 							</div>
 
 							<div class="col-sm-5">
@@ -73,7 +80,9 @@
 
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="E-MAIL*: " />
+							<h:outputLabel value="E-MAIL: " >
+								
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFuncionarioAction.funcionario.email}"
@@ -86,7 +95,9 @@
 
 					<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Endereço*: " />
+								<h:outputLabel value="Endereço: " >
+									<h:graphicImage value="/img/required.gif" />
+								</h:outputLabel>
 							</div>
 							<div class="col-sm-5">
 								<h:inputText
@@ -122,7 +133,9 @@
 					
 					<div class="form-group">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Cargo/Função*: " />
+							<h:outputLabel value="Cargo/Função: " >
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							<h:selectOneMenu required="true" id="cargo_funcao" label="Cargo/Função"

@@ -29,16 +29,7 @@
 				<div class="panel-heading">
 					<div class="titulo">Clientes</div>
 				</div>
-				<div style="float: right">
-					<h:commandButton value="Pesquisar"
-						rendered="#{!manterClienteAction.flagPesquisar}"
-						styleClass="btn btn-default navbar-btn"
-						action="#{manterClienteAction.pesquisarClientes()}" />
-
-					<h:commandButton value="Novo Cadastro"
-						styleClass="btn btn-default navbar-btn"
-						action="#{manterClienteAction.novoCadastro()}" immediate="true" />
-				</div>
+				
 				<div class="form-horizontal ">
 					<br /> <br /> <br />
 
@@ -117,6 +108,16 @@
 					</s:div>
 				</div>
 			</div>
+			<div style="float: right">
+					<h:commandButton value="Pesquisar"
+						rendered="#{!manterClienteAction.flagPesquisar}"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterClienteAction.pesquisarClientes()}" />
+
+					<h:commandButton value="Novo Cadastro"
+						styleClass="btn btn-default navbar-btn"
+						action="#{manterClienteAction.novoCadastro()}" immediate="true" />
+				</div>
 			<div style="float: right">
 				<h:commandButton rendered="#{manterClienteAction.flagNovoCadastro}"
 					action="#{manterClienteAction.salvarCliente()}" value="Cadastrar"
