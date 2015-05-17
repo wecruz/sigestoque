@@ -129,7 +129,7 @@ public class ManterProdutoAction {
 			listProdutos = new ArrayList<Produto>();
 			listProdutos = estoqueService.pesquisarProduto(produto);
 			if(listProdutos.isEmpty()){
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum registro encontrado.", ""));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Registro não Localizado.", ""));
 			}			
 		}
 	}
@@ -166,14 +166,13 @@ public class ManterProdutoAction {
 		produtoSelecionado = new Produto(new Fornecedor());
 		file = new UploadedFile();
 		fileUtil = new UploadFileUtil();
-		return "salvarProdutos";
+		return "/produtos/salvarProdutos.xhtml";
 	}
 	
 	
 	public Boolean validarCriterioPesquisa(){
 		if (produto.getNomeProduto().isEmpty()
 				&& produto.getCodigo() == null
-				&& produto.getDescricao().isEmpty()
 				&& produto.getCategoria() == null
 				&& produto.getFornecedor() == null) {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));

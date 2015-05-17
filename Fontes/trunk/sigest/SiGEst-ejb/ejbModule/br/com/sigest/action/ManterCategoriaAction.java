@@ -72,7 +72,7 @@ public class ManterCategoriaAction {
 			listCategoria = new ArrayList<Categoria>();
 			listCategoria = estoqueService.pesquisarCategoria(this.categoria);
 			if (listCategoria.isEmpty()) {
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum Registro Localizado.", ""));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Registro não Localizado.", ""));
 			}
 		}
 		

@@ -14,6 +14,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Fornecedor;
 
 
@@ -45,13 +46,12 @@ public class FornecedorDao {
 	public List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Fornecedor.class, "fornecedor");
-		if (fornecedor.getNome() != null) {
+		if (!fornecedor.getNome().isEmpty() &&  fornecedor.getNome() != null) {
 			criteria.add(Restrictions.like("fornecedor.nome", fornecedor.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}
-		if (fornecedor.getCnpj() != null) {
+		if (fornecedor.getCnpj() != null && !fornecedor.getCnpj().isEmpty()) {
 			criteria.add(Restrictions.eq("fornecedor.cnpj", fornecedor.getCnpj()));
 		}
-		criteria.createAlias("fornecedor.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();
 	}
 	
@@ -59,22 +59,6 @@ public class FornecedorDao {
 		entityManager.remove(fornecedor);
 	}
 	
-	
-	
-	
-//	public List<Estado> pesquisarTodosEstados(){
-//		Session session = (Session) entityManager.getDelegate();
-//		Criteria criteria = session.createCriteria(Estado.class, "estado");
-//		return criteria.list();
-//	}
-//	
-//	public List<Cidade> pesquisarCidadesPorEstados(Estado estado){
-//		
-//		Session session = (Session) entityManager.getDelegate();
-//		Criteria criteria = session.createCriteria(Cidade.class, "cidade");
-//		criteria.add(Restrictions.eq("cidade.estado.id", estado.getId()));
-//		return criteria.list();
-//	}
 	
 	
 	

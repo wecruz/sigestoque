@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
 
-@Name("cpfCnpjConverter")
+@Name("cpfConverter")
 @org.jboss.seam.annotations.faces.Converter
 @BypassInterceptors
 public class CpfConverter implements Converter {

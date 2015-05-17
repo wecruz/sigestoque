@@ -32,7 +32,7 @@ public class Fornecedor {
 	private String nome;
 	
 	@Column(name = "cnpj")
-	private Long cnpj;
+	private String cnpj;
 	
 	@OneToOne(mappedBy = "fornecedor", cascade=CascadeType.ALL)
 	@JoinColumn(name="tb_endereco")
@@ -66,14 +66,6 @@ public class Fornecedor {
 		this.nome = nome;
 	}
 
-	public Long getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(Long cnpj) {
-		this.cnpj = cnpj;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -88,6 +80,14 @@ public class Fornecedor {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getCnpj() {
+		return cnpj;
 	}
 
 

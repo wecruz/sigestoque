@@ -35,10 +35,6 @@ public class ManterFornecedoreAction {
 
 	private List<Fornecedor> listFornecedores = new ArrayList<Fornecedor>();
 
-	private boolean flagNovoCadastro;
-	private boolean flagPesquisar;
-	private Boolean flagMensagen;
-
 	private Integer indice;
 
 	private Fornecedor fornecedorSelecionado = new Fornecedor(new Endereco());
@@ -68,18 +64,6 @@ public class ManterFornecedoreAction {
 		setFornecedorSelecionado(fornecedor);
 	}
 
-	// @Factory(value="estados" , scope=ScopeType.APPLICATION)
-	// public List<Estado> popularEstados(){
-	// estados = estoqueService.pesquisarTodosEstados();
-	// return estados;
-	// }
-
-	// public List<Cidade> pesquisarCidadesPorEstados(){
-	// cidades =
-	// estoqueService.pesquisarCidadesPorEstados(fornecedor.getEstado());
-	// return cidades;
-	// }
-
 	public void salvar() {
 		fornecedor.getEndereco().setFornecedor(getFornecedor());
 		if (getIndice() == null) {
@@ -93,16 +77,14 @@ public class ManterFornecedoreAction {
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Operação realizada com sucesso.", ""));
 		this.fornecedor = new Fornecedor(new Endereco());
-		setFlagMensagen(true);
 	}
 
 	public boolean validarCriterioPesquisa() {
-		if (fornecedor.getNome().isEmpty()) {
+		if (fornecedor.getNome().isEmpty() && fornecedor.getCnpj().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							"Digite um critério de pesquisa.", ""));
-			setFlagMensagen(false);
 			return false;
 		} else {
 			return true;
@@ -122,22 +104,20 @@ public class ManterFornecedoreAction {
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Operação realizada com sucesso.", ""));
 		fornecedor = new Fornecedor();
-		setFlagMensagen(true);
 	}
 
 	public String cancelar() {
-		setFlagNovoCadastro(false);
-		setFlagPesquisar(false);
 		fornecedor = new Fornecedor(new Endereco());
 		listFornecedores = new ArrayList<Fornecedor>();
 		fornecedorSelecionado = new Fornecedor(new Endereco());
 		return "/fornecedores/fornecedores.xhtml";
 	}
 
-	public void novoCadastro() {
-		setFlagNovoCadastro(true);
-		setFlagPesquisar(true);
+	public String novoCadastro() {
 		fornecedor = new Fornecedor(new Endereco());
+		listFornecedores = new ArrayList<Fornecedor>();
+		fornecedorSelecionado = new Fornecedor(new Endereco());
+		return "/fornecedores/salvarFornecedores.xhtml";
 	}
 
 	public void setFornecedor(Fornecedor fornecedor) {
@@ -164,13 +144,6 @@ public class ManterFornecedoreAction {
 		this.listFornecedores = listFornecedores;
 	}
 
-	public Boolean getFlagMensagen() {
-		return flagMensagen;
-	}
-
-	public void setFlagMensagen(Boolean flagMensagen) {
-		this.flagMensagen = flagMensagen;
-	}
 
 	public Integer getIndice() {
 		return indice;
@@ -188,20 +161,5 @@ public class ManterFornecedoreAction {
 		this.fornecedorSelecionado = fornecedorSelecionado;
 	}
 
-	public boolean isFlagPesquisar() {
-		return flagPesquisar;
-	}
-
-	public void setFlagPesquisar(boolean flagPesquisar) {
-		this.flagPesquisar = flagPesquisar;
-	}
-
-	public boolean isFlagNovoCadastro() {
-		return flagNovoCadastro;
-	}
-
-	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
-		this.flagNovoCadastro = flagNovoCadastro;
-	}
 
 }

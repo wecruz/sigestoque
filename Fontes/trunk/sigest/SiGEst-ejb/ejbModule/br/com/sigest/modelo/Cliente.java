@@ -26,9 +26,6 @@ public class Cliente {
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "rg")
-	private String rg;
-	
 	@Column(name = "cpf")
 	private String cpf;
 	
@@ -64,16 +61,6 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-	
-	
 
 	public String getCpf() {
 		return cpf;

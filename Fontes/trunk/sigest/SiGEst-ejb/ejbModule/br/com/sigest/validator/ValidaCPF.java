@@ -48,7 +48,7 @@ public class ValidaCPF implements Validator {
 	 * @return nome da chave da mensagem do título do erro.
 	 */
 	protected String getChaveMensagemErro() {
-		return "O cpf informado é inválido";
+		return "O CPF informado é inválido.";
 	}
 	
 	private static boolean validaCPF(String cpf) {

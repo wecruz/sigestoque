@@ -29,11 +29,11 @@ public class CategoriaDao {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Categoria.class, "categoria");
 		
-		if(!categoria.getNome().isEmpty()){
+		if(!categoria.getNome().isEmpty() && categoria.getNome() !=null ){
 			criteria.add(Restrictions.like("categoria.nome", categoria.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		
-		if(!categoria.getDescricao().isEmpty()){
+		if(!categoria.getDescricao().isEmpty() && categoria.getNome() !=null){
 			criteria.add(Restrictions.like("categoria.descricao", categoria.getDescricao(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		

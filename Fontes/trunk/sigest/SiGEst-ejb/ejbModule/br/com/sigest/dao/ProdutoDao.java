@@ -37,6 +37,15 @@ public class ProdutoDao {
 		if (produto.getNomeProduto() != null) {
 			criteria.add(Restrictions.like("produto.nomeProduto", produto.getNomeProduto(), MatchMode.ANYWHERE).ignoreCase());
 		}
+		if (produto.getCodigo() != null) {
+			criteria.add(Restrictions.eq("produto.codigo", produto.getCodigo()));
+		}
+		if (produto.getFornecedor() != null) {
+			criteria.add(Restrictions.eq("produto.fornecedor", produto.getFornecedor()));
+		}
+		if (produto.getCategoria() != null) {
+			criteria.add(Restrictions.eq("produto.categoria", produto.getCategoria()));
+		}
 		return criteria.list();
 	}
 	

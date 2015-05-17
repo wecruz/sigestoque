@@ -25,42 +25,114 @@
 
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Pesquisar Fornecedores</div>
+					<div class="titulo">Cadastrar Fornecedores</div>
 				</div>
 				<div class="form-horizontal">
 					<br />
 
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome: " />
+							<h:outputLabel value="Nome: ">
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterFornecedoreAction.fornecedor.nome}"
+								styleClass="form-control" required="true" id="id_txt_nome_forne"
+								label="Nome" />
+						</div>
+					</div>
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="CNPJ: ">
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
+						</div>
+						<div class="col-sm-5">
+							<h:inputText value="#{manterFornecedoreAction.fornecedor.cnpj}"
+								styleClass="form-control textCnpj" required="true" id="txt_cnpj"
+								label="CNPJ" validator="validaCNPJ">
+								<f:converter converterId="cnpjConverter" />
+							</h:inputText>
+						</div>
+					</div>
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Endereço: ">
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
+						</div>
+						<div class="col-sm-5">
+							<h:inputText
+								value="#{manterFornecedoreAction.fornecedor.endereco.endereco}"
+								styleClass="form-control" required="true" id="txt_endereco"
+								label="Endereço" />
+
+						</div>
+					</div>
+
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Estado: ">
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
+						</div>
+						<div class="col-sm-5">
+							<h:selectOneMenu id="id_estado" required="true" label="Estado"
+								value="#{manterFornecedoreAction.fornecedor.endereco.estado}"
+								styleClass="form-control">
+								<s:selectItems noSelectionLabel="Selecione"
+									value="#{listEstados}" var="estado" label="#{estado.nome}">
+								</s:selectItems>
+							</h:selectOneMenu>
+						</div>
+					</div>
+
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="Cidade: ">
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
+						</div>
+						<div class="col-sm-5">
+							<h:inputText id="id_txtx_cidade" required="true" label="Cidade"
+								value="#{manterFornecedoreAction.fornecedor.endereco.cidade}"
+								styleClass="form-control" />
+						</div>
+					</div>
+
+
+					<div class="form-group linha">
+						<div class="col-sm-2 control-label">
+							<h:outputLabel value="E-mail: " />
+						</div>
+						<div class="col-sm-5">
+							<h:inputText
+								value="#{manterFornecedoreAction.fornecedor.endereco.email}"
 								styleClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="CNPJ: " />
+							<h:outputLabel value="Telefone: ">
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
-							<h:inputText value="#{manterFornecedoreAction.fornecedor.cnpj}"
-								styleClass="form-control textCnpj" validator="validaCNPJ">
-								<f:converter converterId="cnpjConverter" />
-							</h:inputText>
+							<h:inputText id="txt_telefone" required="true" label="Telefone"
+								value="#{manterFornecedoreAction.fornecedor.endereco.telefone}"
+								styleClass="form-control textTelefone" />
 						</div>
 					</div>
-
 				</div>
 			</div>
-
 			<div style="float: right">
-				<h:commandButton value="Pesquisar"
-					styleClass="btn btn-default navbar-btn"
-					action="#{manterFornecedoreAction.pesquisarFornecedor()}" />
-				<h:commandButton value="Novo Cadastro"
-					styleClass="btn btn-default navbar-btn"
-					action="#{manterFornecedoreAction.novoCadastro()}" immediate="true" />
+				<h:commandButton action="#{manterFornecedoreAction.salvar()}"
+					value="Cadastrar" styleClass="btn btn-default navbar-btn" />
+
+				<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
+					reRender="id_div_tabela,idform" value="Cancelar"
+					styleClass="btn btn-default navbar-btn" ajaxSingle="true" />
 			</div>
 			<rich:spacer />
 			<br />

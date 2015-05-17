@@ -16,7 +16,7 @@
 			<center>
 				<div style="width: 700px;">
 					<center>
-						<h:messages infoClass="alert alert-success"
+						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
@@ -25,13 +25,13 @@
 			<div class="panel-default form-horizontal ">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<div class="titulo">Manter Produto</div>
+						<div class="titulo">Pesquisar Produto</div>
 					</div>
 					<div class="panel-body">
 
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Codigo*: " />
+								<h:outputLabel value="Codigo: " />
 							</div>
 							<div class="col-sm-5">
 								<h:inputText value="#{manterProdutoAction.produto.codigo}"
@@ -44,16 +44,6 @@
 							</div>
 							<div class="col-sm-5">
 								<h:inputText value="#{manterProdutoAction.produto.nomeProduto}"
-									styleClass="form-control" />
-							</div>
-						</div>
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Descrição*: " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputTextarea
-									value="#{manterProdutoAction.produto.descricao}"
 									styleClass="form-control" />
 							</div>
 						</div>

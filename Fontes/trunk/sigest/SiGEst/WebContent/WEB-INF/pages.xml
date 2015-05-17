@@ -36,6 +36,10 @@
 				<begin-conversation join="true" />
 				<redirect view-id="/fornecedores/fornecedores.xhtml" />
 			</rule>
+			<rule if-outcome="salvarFornecedores">
+				<begin-conversation join="true" />
+				<redirect view-id="/fornecedores/salvarFornecedores.xhtml" />
+			</rule>
 			<rule if-outcome="relatorios">
 				<begin-conversation join="true" />
 				<redirect view-id="/manterRelatorios/manterRelatorios.xhtml" />
