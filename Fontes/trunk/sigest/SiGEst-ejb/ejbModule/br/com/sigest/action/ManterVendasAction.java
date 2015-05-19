@@ -178,7 +178,7 @@ public class ManterVendasAction {
 		List<Produto> listaRetorno = new ArrayList<Produto>();
 		
 			String texto = (String) autoComplete;
-			List<Produto> listProduto = fidAllProdutoPorNome(produto);
+			List<Produto> listProduto = fidAllProdutoPorNome(vendasClientesDTO.getProduto());
 
 			for (Produto produt : listProduto) {
 				String idStr = String.valueOf(produt.getId());

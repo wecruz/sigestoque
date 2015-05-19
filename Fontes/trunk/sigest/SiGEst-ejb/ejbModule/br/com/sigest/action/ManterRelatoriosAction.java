@@ -1,21 +1,10 @@
 package br.com.sigest.action;
 
-import java.io.FileInputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
-
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
@@ -25,7 +14,6 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Fornecedor;
-import br.com.sigest.modelo.Venda;
 import br.com.sigest.modelo.VendaRelatorioDto;
 import br.com.sigest.modelo.dto.RelatorioDto;
 import br.com.sigest.service.IEstoqueService;
@@ -58,7 +46,7 @@ public class ManterRelatoriosAction {
 			return listaRetorno;
 	}
 		String texto = (String) autoComplete;
-		List<Fornecedor> listFornecedor = fidAllFornecedorNome(fornecedor);
+		List<Fornecedor> listFornecedor = fidAllFornecedorNome(relatorioDto.getFornecedor());
 
 		for (Fornecedor forner : listFornecedor) {
 			String idStr = String.valueOf(forner.getId());

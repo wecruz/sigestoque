@@ -47,7 +47,7 @@
 										<h:column>
 											<h:outputText value="#{fornece.nome}" />
 										</h:column>
-										<a4j:support event="onselect" reRender="id_form"
+										<a4j:support event="onselect" 
 											action="#{manterRelatorioAction.pesquisarProduto()}">
 											<f:setPropertyActionListener
 												target="#{manterRelatorioAction.relatorioDto.fornecedor}"
@@ -72,8 +72,6 @@
 
 								
 							</center>
-
-
 						
 					</rich:panelBarItem>
 					<rich:panelBarItem label="Relatorios Vendas" headerClass="text-center panel panel-primary">
@@ -86,17 +84,9 @@
 
 							</h:commandButton>
 						</center>
-
-
 					</rich:panelBarItem>
 
-
 				</rich:panelBar>
-
-
-
-
-
 
 			</div>
 		</h:form>
