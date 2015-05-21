@@ -227,8 +227,12 @@
 							<h:outputText value="#{produto.codigo}" />
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Descrição</f:facet>
-							<h:outputText value="#{produto.descricao}" />
+							<f:facet name="header">Nome Produto</f:facet>
+							<h:outputText value="#{produto.nomeProduto}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Categoria</f:facet>
+							<h:outputText value="#{produto.categoria}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
@@ -251,7 +255,7 @@
 			<rich:modalPanel id="painel" width="350" height="150">
 				<f:facet name="header">
 					<h:panelGroup>
-						<h:outputText value="Excluir"></h:outputText>
+						<h:outputText value="Deseja realmente excluir?"></h:outputText>
 					</h:panelGroup>
 				</f:facet>
 				<f:facet name="controls">

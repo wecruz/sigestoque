@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import org.jboss.beans.metadata.api.annotations.Create;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
-import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -97,10 +96,20 @@ public class ManterProdutoAction {
 	
 		if (indice != null) {
 			listProdutos.set(indice, produto);
+			salveProduto();
 		} else {
-			listProdutos.add(produto);
+			if(estoqueService.pesquisarProdutoPorCodigo(produto.getCodigo()).isEmpty()){
+				listProdutos.add(produto);
+				salveProduto();
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Produto já Cadastrada!", ""));
+			}
 		}
 		
+	}
+
+
+	private void salveProduto() {
 		UploadedFile upFile = new UploadedFile();
 		
 			try {

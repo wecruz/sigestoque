@@ -91,9 +91,10 @@ public class ManterFornecedoreAction {
 		}
 	}
 
-	public void alterar(int indice, Fornecedor fornecedor) {
+	public String alterar(int indice, Fornecedor fornecedor) {
 		this.indice = indice;
 		this.fornecedor = fornecedor;
+		return "/fornecedores/salvarFornecedores.xhtml";
 	}
 
 	public void excluir() {

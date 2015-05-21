@@ -1,5 +1,6 @@
 package br.com.sigest.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import br.com.sigest.modelo.Categoria;
@@ -39,6 +40,8 @@ public interface IEstoqueService {
 	List<Produto> pesquisarProdutoFornecedor(Fornecedor fornecedor);
 	
 	List<VendaRelatorioDto> pesquisarVendaMes();
+	
+	List<Produto> pesquisarProdutoPorCodigo(BigInteger codigo);
 	
 	
 	void destroy();

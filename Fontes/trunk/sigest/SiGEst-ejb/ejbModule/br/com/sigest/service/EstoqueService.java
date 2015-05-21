@@ -1,5 +1,6 @@
 package br.com.sigest.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.ejb.Remove;
@@ -91,6 +92,9 @@ public class EstoqueService implements IEstoqueService {
 		return vendaDao.pesquisarVendaMes();
 	}
 	
+	public List<Produto> pesquisarProdutoPorCodigo(BigInteger codigo) {
+		return produtoDao.pesquisarProdutoPorCodigo(codigo);
+	}
 
 	@Destroy
 	public void destroy() {
@@ -109,6 +113,7 @@ public class EstoqueService implements IEstoqueService {
 	public VendaDao getVendaDao() {
 		return vendaDao;
 	}
+
 
 
 }

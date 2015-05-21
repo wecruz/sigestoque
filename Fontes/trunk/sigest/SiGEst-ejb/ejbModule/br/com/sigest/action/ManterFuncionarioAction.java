@@ -32,176 +32,190 @@ import br.com.sigest.util.RelatorioUtil;
 @Scope(ScopeType.CONVERSATION)
 public class ManterFuncionarioAction {
 
-	
 	private Funcionario funcionario = new Funcionario(new Endereco());
 
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-	
+
 	@In
 	IUsuarioService usuarioService;
-	
+
 	private boolean flagNovoCadastro;
 	private boolean flagPesquisar;
-	
+
 	private Boolean flagMensagen;
-	
+
 	@In
-    Renderer renderer;
-	
+	Renderer renderer;
+
 	private Integer indice;
-	
+
 	private Funcionario funcionarioSelecionado = new Funcionario(new Endereco());
 
 	@In
 	private RelatorioUtil relatorioUtil;
-	
+
 	private Integer qntFuncionarios = 10;
-	
-	@Factory(value="cargosFuncoes" , scope=ScopeType.APPLICATION)
-	public EnumCargoFuncao[] initCargoFuncao(){
-		
+
+	@Factory(value = "cargosFuncoes", scope = ScopeType.APPLICATION)
+	public EnumCargoFuncao[] initCargoFuncao() {
+
 		return EnumCargoFuncao.values();
 	}
-	
+
 	@Create
-	public String create(){
+	public String create() {
 		return "/funcionarios/funcionarios.xhtml";
 	}
-	
-	public String novoCadastro(){
+
+	public String novoCadastro() {
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		funcionario = new Funcionario();
 		return "salvarFuncionarios";
 	}
-	
-	public String cancelar(){
+
+	public String cancelar() {
 		setFlagNovoCadastro(false);
 		setFlagPesquisar(false);
 		funcionario = new Funcionario();
 		return "/funcionarios/funcionarios.xhtml";
 	}
-	
-	public String removerMascara(String str){  
-	    return str.replaceAll("\\D", "");  
+
+	public String removerMascara(String str) {
+		return str.replaceAll("\\D", "");
 	}
-	
+
 	public void salvar() {
 
 		if (validEmail(funcionario.getEmail())) {
 
-			if (usuarioService.pesquisarFuncionarioPorCpf(funcionario.getCpf()) == null) {
-
-				funcionario.getEndereco().setFuncionario(funcionario);
-
-				if (getIndice() == null) {
+			if (getIndice() == null) {
+				if (usuarioService.pesquisarFuncionarioPorCpf(funcionario.getCpf()) == null) {
 					funcionarios.add(funcionario);
+					salvarFuncionario();
 				} else {
-					funcionarios.set(indice, funcionario);
+					FacesContext.getCurrentInstance().addMessage(null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,"Funcionario com o CPF: "+ funcionario.getCpf()+ " á esta cadastrado", ""));
 				}
-				usuarioService.salvarFuncionarios(funcionario);
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,
-								"Operação realizada com sucesso.", ""));
-				setFlagMensagen(true);
-
-				// this.renderer.render("/email/email.xhtml");
-
-				funcionario = new Funcionario(new Endereco());
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Funcionario com o CPF: "+ funcionario.getCpf()+ " á esta cadastrado", ""));
+				funcionarios.set(indice, funcionario);
+				salvarFuncionario();
 			}
 
 		}
 
 	}
-	
-	
-	
+
+	private void salvarFuncionario() {
+		funcionario.getEndereco().setFuncionario(funcionario);
+		usuarioService.salvarFuncionarios(funcionario);
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Operação realizada com sucesso.", ""));
+		setFlagMensagen(true);
+
+		// this.renderer.render("/email/email.xhtml");
+
+		funcionario = new Funcionario(new Endereco());
+	}
+
 	public boolean validEmail(String email) {
-	    Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$"); 
-	    Matcher m = p.matcher(email); 
-	    if (m.find()){
-	      return true;
-	    }
-	    else{
-	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e inválido", ""));
-	      setFlagMensagen(false);
-	      return false;
-	    }  
-	 }
-	
-	
-	public void pesquisarFuncioanrios(){
+		Pattern p = Pattern
+				.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
+		Matcher m = p.matcher(email);
+		if (m.find()) {
+			return true;
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "O email "
+							+ email + " e inválido", ""));
+			setFlagMensagen(false);
+			return false;
+		}
+	}
+
+	public void pesquisarFuncioanrios() {
 		if (validarCriterioPesquisa()) {
-			funcionarios = new ArrayList<Funcionario>();		
+			funcionarios = new ArrayList<Funcionario>();
 			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
 			if (funcionarios.isEmpty()) {
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum Registro Localizado.", ""));
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Nenhum Registro Localizado.", ""));
 				setFlagMensagen(false);
 			}
 		}
 	}
-	
-	public String alterar(Funcionario funcionario, int indice){
+
+	public String alterar(Funcionario funcionario, int indice) {
 		this.setIndice(indice);
 		setFlagNovoCadastro(true);
 		setFlagPesquisar(true);
 		this.funcionario = funcionario;
 		return "salvarFuncionarios";
 	}
-	
-	public void selecionarFuncionario(Funcionario funcio){
+
+	public void selecionarFuncionario(Funcionario funcio) {
 		setFuncionarioSelecionado(funcio);
 	}
-	
-	public void excluir(){
+
+	public void excluir() {
 		funcionarios.remove(getFuncionarioSelecionado());
 		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
 		funcionarioSelecionado = new Funcionario();
 		funcionario = new Funcionario(new Endereco());
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Operação realizada com sucesso.", ""));
 	}
-	
-	public String excluirSalva(){
+
+	public String excluirSalva() {
 		funcionarios.remove(getFuncionarioSelecionado());
 		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Operação realizada com sucesso.", ""));
 		funcionarioSelecionado = new Funcionario();
 		funcionario = new Funcionario(new Endereco());
 		return "salvarFuncionarios";
 	}
-	
-	public boolean validarCriterioPesquisa(){		
-		if(funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty()){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
+
+	public boolean validarCriterioPesquisa() {
+		if (funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty()) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Digite um critério de pesquisa.", ""));
 			setFlagMensagen(false);
 			return false;
-		}else{
+		} else {
 			return true;
 		}
 	}
-	
-	
-	
-//	public String gerarRelatorio() {
-//		
-//		List<String> teste = new ArrayList<String>();
-//		final Collection<?> list = teste;
-//        final Map<String, Object> params = new HashMap<String, Object>();
-//		
-//		
-//		try {
-//			return	relatorioUtil.imprimir("teste", params, list);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return "";
-//		
-//	}
-//	
-	
+
+	// public String gerarRelatorio() {
+	//
+	// List<String> teste = new ArrayList<String>();
+	// final Collection<?> list = teste;
+	// final Map<String, Object> params = new HashMap<String, Object>();
+	//
+	//
+	// try {
+	// return relatorioUtil.imprimir("teste", params, list);
+	// } catch (Exception e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// return "";
+	//
+	// }
+	//
+
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -210,11 +224,9 @@ public class ManterFuncionarioAction {
 		this.funcionario = funcionario;
 	}
 
-
 	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
-
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
@@ -236,46 +248,36 @@ public class ManterFuncionarioAction {
 		this.flagPesquisar = flagPesquisar;
 	}
 
-
 	public Boolean getFlagMensagen() {
 		return flagMensagen;
 	}
-
 
 	public void setFlagMensagen(Boolean flagMensagen) {
 		this.flagMensagen = flagMensagen;
 	}
 
-
 	public Integer getIndice() {
 		return indice;
 	}
-
 
 	public void setIndice(Integer indice) {
 		this.indice = indice;
 	}
 
-
 	public Funcionario getFuncionarioSelecionado() {
 		return funcionarioSelecionado;
 	}
-
 
 	public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
 		this.funcionarioSelecionado = funcionarioSelecionado;
 	}
 
-
 	public Integer getQntFuncionarios() {
 		return qntFuncionarios;
 	}
 
-
 	public void setQntFuncionarios(Integer qntFuncionarios) {
 		this.qntFuncionarios = qntFuncionarios;
 	}
-
-
 
 }

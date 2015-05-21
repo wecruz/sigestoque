@@ -1,5 +1,6 @@
 package br.com.sigest.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,6 +46,17 @@ public class ProdutoDao {
 		}
 		if (produto.getCategoria() != null) {
 			criteria.add(Restrictions.eq("produto.categoria", produto.getCategoria()));
+		}
+		return criteria.list();
+	}
+	
+	
+	public List<Produto> pesquisarProdutoPorCodigo(BigInteger codigo){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Produto.class, "produto");
+		
+		if (codigo != null) {
+			criteria.add(Restrictions.eq("produto.codigo", codigo));
 		}
 		return criteria.list();
 	}
