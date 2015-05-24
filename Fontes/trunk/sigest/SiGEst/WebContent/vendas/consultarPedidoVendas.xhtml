@@ -138,7 +138,7 @@
 								value="Alterar" ajaxSingle="true" reRender="id_form" />
 							<rich:spacer width="20px" />
 							<a4j:commandLink value="Excluir"
-								action="#"
+								action="#{manterVendasAction.selecionarVenda(venda)}"
 								reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
 							</a4j:commandLink>
@@ -171,7 +171,7 @@
 				<center>
 					<a4j:commandButton value="Confirmar"
 						styleClass="btn btn-default navbar-btn"
-						action="#{manterFornecedoreAction.excluir()}" ajaxSingle="true"
+						action="#{manterVendasAction.ecluirPedidoVenda()}" ajaxSingle="true"
 						reRender="id_div_tabela,idform"
 						oncomplete="Richfaces.hideModalPanel('painel')" />
 					<a4j:commandButton value="Cancelar" action="#"

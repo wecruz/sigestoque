@@ -35,6 +35,8 @@ public interface IVendasService {
 	List<Venda> fildAllVendas();
 	
 	List<Venda> pesquisarVendasCliente(Cliente cliente);
+	
+	void excluirPedido(Venda venda);
 
 	void destroy();
 	

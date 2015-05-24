@@ -72,6 +72,10 @@ public class VendasService implements IVendasService{
 		return vendaDao.pesquisarVendasCliente(cliente);
 	}
 	
+	public void excluirPedido(Venda venda) {
+		vendaDao.excluirPedido(venda);
+		
+	}
 	
 	@Destroy
 	public void destroy() {
@@ -82,17 +86,4 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
-
-
-	
-
-
-
-
-
-
-
-
-
-
 }

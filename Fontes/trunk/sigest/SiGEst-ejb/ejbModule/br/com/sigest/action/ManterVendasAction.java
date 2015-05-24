@@ -56,6 +56,8 @@ public class ManterVendasAction {
 	
 	private List<PedidoDTO> listPedidoDTO = new ArrayList<PedidoDTO>();
 	
+	private Venda vendaSelecionada = new Venda();
+	
 	
 	
 	private PedidoDTO pedidoDTO = new PedidoDTO();
@@ -96,7 +98,10 @@ public class ManterVendasAction {
 	}
 	
 	public void adicionarProduto(){
+//		if(vendasClientesDTO.getProduto().getQuantidade() > 0){
+			
 		valorTotal = 0F;
+		
 		
 		float valorPorProduto  = vendasClientesDTO.getQuantidadeProduto() * vendasClientesDTO.getProduto().getPrecoVenda();
 		
@@ -111,10 +116,43 @@ public class ManterVendasAction {
 		
 		vendasClientesDTO.setProduto(new Produto());
 		venda_Produto = new Venda_Produto();
+//		}else{
+//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,
+//					"O produto " + vendasClientesDTO.getProduto().getNomeProduto() + " Esta zerado no estoque!" , ""));
+//		}
 		
 		
 	}
 	
+	
+	public void selecionarVenda(Venda venda){
+		setVendaSelecionada(venda);
+	}
+	
+	
+	public void ecluirPedidoVenda(){
+		
+		
+		for (Venda_Produto vendaProdut : vendaSelecionada.getVenda_Produtos()) {
+			vendaProdut.setVenda(vendaSelecionada);
+			
+			int quantidadePrduto = vendaProdut.getProduto().getQuantidade();
+			int quantidadePrdutoVendido = vendaProdut.getQuantidadeProduto();
+			int quantidaReturn = quantidadePrduto += quantidadePrdutoVendido;
+			
+			vendaProdut.getProduto().setQuantidade(quantidaReturn);
+			
+			estoqueService.salvarProduto(vendaProdut.getProduto());
+			
+		}
+		
+		
+		listPedidoVenda.remove(vendaSelecionada);
+		vendasService.excluirPedido(vendaSelecionada);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		vendaSelecionada = new Venda();
+		venda = new Venda();
+	}
 	
 	public void confimarPedidoVenda(){
 		
@@ -206,6 +244,9 @@ public class ManterVendasAction {
 	
 	public void pesquisarPedidoVendaCliente(){
 		listPedidoVenda = vendasService.pesquisarVendasCliente(cliente);
+		if(listPedidoVenda.isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Registro não Localizado.", ""));
+		}
 	}
 	
 	
@@ -372,6 +413,14 @@ public class ManterVendasAction {
 
 	public List<Venda> getListPedidoVenda() {
 		return listPedidoVenda;
+	}
+
+	public void setVendaSelecionada(Venda vendaSelecionada) {
+		this.vendaSelecionada = vendaSelecionada;
+	}
+
+	public Venda getVendaSelecionada() {
+		return vendaSelecionada;
 	}
 
 	

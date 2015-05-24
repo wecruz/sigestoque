@@ -67,5 +67,9 @@ public class VendaDao {
 		query.setResultTransformer(Transformers.aliasToBean(VendaRelatorioDto.class));
 		return query.list();
 	}
+	
+	public void excluirPedido(Venda venda){
+		entityManager.remove(venda);
+	}
 
 }

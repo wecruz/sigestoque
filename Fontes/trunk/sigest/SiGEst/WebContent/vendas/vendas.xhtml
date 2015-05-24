@@ -188,7 +188,6 @@
 							</div>
 						</div>
 						</a4j:outputPanel>
-						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Quantidade*: " />
@@ -199,6 +198,7 @@
 									minValue="1"  inputSize="25" inputStyle="form-control"  />
 							</div>
 						</div>
+
 						
 
 
@@ -297,7 +297,7 @@
 
 							-->
 						</ui:remove>	
-							<h:commandButton
+							<h:commandButton rendered="#{manterVendasAction.vendasClientesDTO.listVendaProduto.size() >0}"
 								action="#{manterVendasAction.confimarPedidoVenda()}"
 								value="CONFIRMAR VENDA" styleClass="btn btn-default navbar-btn" />
 
