@@ -48,7 +48,8 @@ public class Venda {
 	
 	@Column(name ="valorTotalVenda")
 	private Float valorTotalVenda;
-
+	
+	
 	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
 	private List<Venda_Produto> venda_Produtos = new ArrayList<Venda_Produto>();
 

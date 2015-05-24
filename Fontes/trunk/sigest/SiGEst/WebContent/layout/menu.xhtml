@@ -73,6 +73,10 @@
 					action="vendas">
 					<s:conversationPropagation type="none" />
 				</rich:menuItem>
+				<rich:menuItem submitMode="ajax" value="Consultar Pedido de Venda"
+					action="consultarPedidoVendas">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
 
 			</rich:dropDownMenu>
 		</h:form>
@@ -93,7 +97,7 @@
 				<h:graphicImage value="/img/icone_alterar.png" height="32" width="32px"/>
 			</s:link>
 		
-			<s:link view="/login.xhtml" rendered="#{identity.loggedIn}">
+			<s:link rendered="#{identity.loggedIn}"  action="#{authenticator.logout}">
 				<h:graphicImage value="/img/icone_logout.png" height="32" width="32px"/>
 			</s:link>
 				

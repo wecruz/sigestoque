@@ -55,13 +55,15 @@
 							<div class="form-group linha">
 								<s:div rendered="#{manterVendasAction.cliente.id == null}">
 									<div class="col-sm-2 control-label">
-										<h:outputLabel value="Nome*: " />
+										<h:outputLabel value="Nome: " >
+											<h:graphicImage value="/img/required.gif" />
+										</h:outputLabel>
 									</div>
 
 									<a4j:region>
 										<div class="col-sm-5">
 											<h:inputText id="id_txt_nome_cliente" label="Nome"
-												styleClass="form-control"
+												styleClass="form-control" required="true"
 												value="#{manterVendasAction.cliente.nome}" />
 										</div>
 										<rich:suggestionbox frequency="0.001" minChars="0"
@@ -88,12 +90,14 @@
 								<a4j:outputPanel
 									rendered="#{manterVendasAction.cliente.id == null}">
 									<div class="col-sm-2 control-label">
-										<h:outputLabel value="CPF*: " />
+										<h:outputLabel value="CPF: " >
+											<h:graphicImage value="/img/required.gif" />
+										</h:outputLabel>
 									</div>
 									<a4j:region>
 										<div class="col-sm-5">
 											<h:inputText id="id_txt_cpf_cliente" label="Nome"
-												styleClass="form-control"
+												styleClass="form-control" required="true"
 												value="#{manterVendasAction.cliente.cpf}" />
 										</div>
 										<rich:suggestionbox frequency="0.001" minChars="0"
@@ -286,10 +290,13 @@
 
 					<div class="form-group">
 						<center>
-							<h:commandButton action="#{manterVendasAction.gerarRelatorio()}"
+						<ui:remove>
+							<!--<h:commandButton action="#{manterVendasAction.gerarRelatorio()}"
 								value="IMPRIMIR PEDIDO" styleClass="btn btn-default navbar-btn"
 								onclick="target='_black'" immediate="true" />
 
+							-->
+						</ui:remove>	
 							<h:commandButton
 								action="#{manterVendasAction.confimarPedidoVenda()}"
 								value="CONFIRMAR VENDA" styleClass="btn btn-default navbar-btn" />

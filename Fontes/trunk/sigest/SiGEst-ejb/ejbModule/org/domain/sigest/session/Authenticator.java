@@ -1,5 +1,7 @@
 package org.domain.sigest.session;
 
+import java.io.Serializable;
+
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
@@ -15,9 +17,14 @@ import br.com.sigest.service.IUsuarioService;
 
 @Name("authenticator")
 @Scope(ScopeType.SESSION)
-public class Authenticator
+public class Authenticator implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@In
 	private IUsuarioService usuarioService;
 	
@@ -29,7 +36,11 @@ public class Authenticator
     @Out(required = false, scope = ScopeType.SESSION)
 	private Funcionario usuarioLogado;
     
-    
+    public String logout() {
+    	usuarioLogado = null;
+    	identity.logout();
+    	return "sair";
+    }
     
     
 

@@ -73,6 +73,9 @@ public class ManterVendasAction {
 	private List<VendasClientesDTO> listVendasClientesDTO = new ArrayList<VendasClientesDTO>();
 	
 	
+	private List<Venda> listPedidoVenda = new ArrayList<Venda>();
+	
+	
 	private Produto produto = new Produto(new Fornecedor());
 	
 	public List<Produto> comboBoxListProduro(){
@@ -82,6 +85,14 @@ public class ManterVendasAction {
 			
 		return produtos;
 		
+	}
+	
+	public String alterarPedidoVenda(Venda venda){
+			cliente = venda.getCliente();
+			vendasClientesDTO.setListVendaProduto(venda.getVenda_Produtos());
+			valorTotal = venda.getValorTotalVenda();
+			this.venda = venda;
+		return "/vendas/vendas.xhtml";
 	}
 	
 	public void adicionarProduto(){
@@ -190,6 +201,14 @@ public class ManterVendasAction {
 			return listaRetorno;
 		}
 	
+	
+	
+	
+	public void pesquisarPedidoVendaCliente(){
+		listPedidoVenda = vendasService.pesquisarVendasCliente(cliente);
+	}
+	
+	
 	@Factory(value="fidAllClientePorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
 	public List<Cliente> fidAllClientePorNome(Cliente cliente){
 		setClientes(vendasService.pesquisarClientes(cliente));
@@ -259,6 +278,9 @@ public class ManterVendasAction {
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
+	
+	
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
@@ -342,6 +364,14 @@ public class ManterVendasAction {
 
 	public Venda_Produto getVenda_Produto() {
 		return venda_Produto;
+	}
+
+	public void setListPedidoVenda(List<Venda> listPedidoVenda) {
+		this.listPedidoVenda = listPedidoVenda;
+	}
+
+	public List<Venda> getListPedidoVenda() {
+		return listPedidoVenda;
 	}
 
 	
