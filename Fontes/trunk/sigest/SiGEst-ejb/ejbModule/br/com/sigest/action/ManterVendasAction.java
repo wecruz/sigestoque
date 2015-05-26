@@ -297,6 +297,7 @@ public class ManterVendasAction {
 	}
 	
 	public void renderdProduto(Produto produto){
+		this.vendasClientesDTO.setQuantidadeMaxProduto(produto.getQuantidade());
 		this.vendasClientesDTO.setProduto(produto);
 	}
 	

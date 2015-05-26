@@ -96,7 +96,7 @@
 									</div>
 									<a4j:region>
 										<div class="col-sm-5">
-											<h:inputText id="id_txt_cpf_cliente" label="Nome"
+											<h:inputText id="id_txt_cpf_cliente" label="CPF"
 												styleClass="form-control" required="true"
 												value="#{manterVendasAction.cliente.cpf}" />
 										</div>
@@ -154,7 +154,7 @@
 								<a4j:region>
 									<div class="col-sm-5">
 										<h:inputText id="id_txt_nome_produto" label="Nome Pruduto"
-											styleClass="form-control"
+											styleClass="form-control" required="true"
 											value="#{manterVendasAction.vendasClientesDTO.produto.nomeProduto}" />
 									</div>
 									<rich:suggestionbox frequency="0.001" minChars="0"
@@ -166,7 +166,7 @@
 											<h:outputText value="#{produt.nomeProduto}" />
 										</h:column>
 										<a4j:support event="onselect"
-											reRender="id_panel_produto"
+											reRender="id_panel_produto,id_form,id_field_produto"
 											action="#{manterVendasAction.renderdProduto(produt)}">
 											<f:setPropertyActionListener
 												target="#{manterVendasAction.vendasClientesDTO.produto}"
@@ -178,27 +178,28 @@
 						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Valor Unitario: " rendered="#{manterVendasAction.vendasClientesDTO.produto != null}"/>
+								<h:outputLabel value="Valor Unitario: " rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}"/>
 							</div>
 							<div class="col-sm-5">
 								<h:outputLabel
 									value="#{manterVendasAction.vendasClientesDTO.produto.precoVenda}"
-									rendered="#{manterVendasAction.vendasClientesDTO.produto != null}" />
+									rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}" />
 
 							</div>
 						</div>
 						</a4j:outputPanel>
+						<a4j:outputPanel rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}">
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Quantidade*: " />
 							</div>
 							<div class="col-sm-5 ">
-								<rich:inputNumberSpinner maxValue="1000"  id="id_txt_quantidade"
+								<rich:inputNumberSpinner maxValue="#{manterVendasAction.vendasClientesDTO.quantidadeMaxProduto}"  id="id_txt_quantidade"
 									value="#{manterVendasAction.vendasClientesDTO.quantidadeProduto}"
 									minValue="1"  inputSize="25" inputStyle="form-control"  />
 							</div>
 						</div>
-
+						</a4j:outputPanel>
 						
 
 

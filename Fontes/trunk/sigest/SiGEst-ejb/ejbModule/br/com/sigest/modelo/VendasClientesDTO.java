@@ -19,6 +19,8 @@ public class VendasClientesDTO {
 	
 	private Integer quantidadeProduto = 1;
 	
+	private Integer quantidadeMaxProduto = 1;
+	
 	private List<Venda_Produto> listVendaProduto = new ArrayList<Venda_Produto>();
 	
 
@@ -84,6 +86,14 @@ public class VendasClientesDTO {
 
 	public List<Venda_Produto> getListVendaProduto() {
 		return listVendaProduto;
+	}
+
+	public void setQuantidadeMaxProduto(Integer quantidadeMaxProduto) {
+		this.quantidadeMaxProduto = quantidadeMaxProduto;
+	}
+
+	public Integer getQuantidadeMaxProduto() {
+		return quantidadeMaxProduto;
 	}
 
 	
