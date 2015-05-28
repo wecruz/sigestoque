@@ -51,7 +51,7 @@ public class Venda {
 	
 	
 	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
-	private List<Venda_Produto> venda_Produtos = new ArrayList<Venda_Produto>();
+	private List<VendaProduto> venda_Produtos = new ArrayList<VendaProduto>();
 
 	public Long getId() {
 		return id;
@@ -93,11 +93,11 @@ public class Venda {
 		this.funcionario = funcionario;
 	}
 
-	public List<Venda_Produto> getVenda_Produtos() {
+	public List<VendaProduto> getVenda_Produtos() {
 		return venda_Produtos;
 	}
 
-	public void setVenda_Produtos(List<Venda_Produto> venda_Produtos) {
+	public void setVenda_Produtos(List<VendaProduto> venda_Produtos) {
 		this.venda_Produtos = venda_Produtos;
 	}
 

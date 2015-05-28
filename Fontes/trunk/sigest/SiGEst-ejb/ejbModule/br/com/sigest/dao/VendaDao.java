@@ -50,6 +50,14 @@ public class VendaDao {
 		return criteria.list();
 	}
 	
+	public List<Venda> pesquisarVendas(Venda venda){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Venda.class, "venda");
+		criteria.add(Restrictions.eq("venda", venda));
+		criteria.add(Restrictions.eq("venda.statusVenda", EnumStatusVenda.NAO_PAGO));
+		return criteria.list();
+	}
+	
 	
 	public List<VendaRelatorioDto> pesquisarVendaMes(){
 		Session session = (Session) entityManager.getDelegate();

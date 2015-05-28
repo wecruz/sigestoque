@@ -2,6 +2,7 @@ package br.com.sigest.service;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
@@ -22,6 +23,7 @@ import br.com.sigest.modelo.Venda;
 @Name("vendasService")
 @AutoCreate
 @Stateful
+@Local
 public class VendasService implements IVendasService{
 
 	@In
@@ -77,6 +79,10 @@ public class VendasService implements IVendasService{
 		
 	}
 	
+	public List<Venda> pesquisarVendas(Venda venda) {
+		return vendaDao.pesquisarVendas(venda);
+	}
+	
 	@Destroy
 	public void destroy() {
 		
@@ -86,4 +92,5 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
 }

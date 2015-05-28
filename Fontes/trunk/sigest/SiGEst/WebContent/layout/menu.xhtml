@@ -87,8 +87,10 @@
 		
 		<!-- @newMenuItem@ -->
 		<rich:toolBarGroup location="right">
+		
+			<h:graphicImage value="/img/User1.png" />
 			<h:outputText id="menuWelcomeId" 
-				value="Usuário Logado: #{authenticator.usuarioLogado.nome}"
+				value="#{authenticator.usuarioLogado.nome}"
 				rendered="#{identity.loggedIn}" />
 				
 			<s:link view="/alterarSenha.xhtml" rendered="#{identity.loggedIn}">

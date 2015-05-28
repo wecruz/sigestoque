@@ -23,7 +23,7 @@ import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 import br.com.sigest.modelo.Venda;
-import br.com.sigest.modelo.Venda_Produto;
+import br.com.sigest.modelo.VendaProduto;
 import br.com.sigest.modelo.VendasClientesDTO;
 import br.com.sigest.modelo.dto.PedidoDTO;
 import br.com.sigest.service.IEstoqueService;
@@ -62,7 +62,9 @@ public class ManterVendasAction {
 	
 	private PedidoDTO pedidoDTO = new PedidoDTO();
 
-	private Venda_Produto venda_Produto = new Venda_Produto();
+	private VendaProduto vendaProduto = new VendaProduto();
+	
+	private Integer indice;
 	
 	@Begin(join = true)
 	public String manipulaVendas(Cliente cliente) {
@@ -98,28 +100,46 @@ public class ManterVendasAction {
 	}
 	
 	public void adicionarProduto(){
-//		if(vendasClientesDTO.getProduto().getQuantidade() > 0){
+		
+		if(vendasClientesDTO.getProduto().getNomeProduto() == null ||  vendasClientesDTO.getProduto().getCodigo() == null){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "Selecione Um produto." , ""));
+		}
+		else{
 			
-		valorTotal = 0F;
-		
-		
-		float valorPorProduto  = vendasClientesDTO.getQuantidadeProduto() * vendasClientesDTO.getProduto().getPrecoVenda();
-		
-		venda_Produto.setQuantidadeProduto(vendasClientesDTO.getQuantidadeProduto());
-		venda_Produto.setValorUnitario(valorPorProduto);
-		venda_Produto.setProduto(vendasClientesDTO.getProduto());
-		vendasClientesDTO.getListVendaProduto().add(venda_Produto);
-		
-		for (Venda_Produto venda_Produto : vendasClientesDTO.getListVendaProduto()) {
-			valorTotal += venda_Produto.getValorUnitario();
+			for (VendaProduto vendaProduto: vendasClientesDTO.getListVendaProduto()) {
+				if(vendaProduto.getProduto().getId().equals(vendasClientesDTO.getProduto().getId()) && indice == null){
+					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"O produto " + vendasClientesDTO.getProduto().getNomeProduto() + " Ja esta adicionado" , ""));
+					return;
+				}
+			}
+			
+			
+			
+				valorTotal = 0F;
+				float valorPorProduto  = vendasClientesDTO.getQuantidadeProduto() * vendasClientesDTO.getProduto().getPrecoVenda();
+				
+				vendaProduto.setQuantidadeProduto(vendasClientesDTO.getQuantidadeProduto());
+				vendaProduto.setValorUnitario(valorPorProduto);
+				vendaProduto.setProduto(vendasClientesDTO.getProduto());
+				if(indice == null){
+					vendasClientesDTO.getListVendaProduto().add(vendaProduto);					
+				}else{
+					vendasClientesDTO.getListVendaProduto().set(indice, vendaProduto);	
+				}
+				
+				for (VendaProduto venda_Produto : vendasClientesDTO.getListVendaProduto()) {
+					valorTotal += venda_Produto.getValorUnitario();
+				}
+				
+				vendasClientesDTO.setProduto(new Produto());
+				vendaProduto = new VendaProduto();
+				indice = null;
+			
+			
+			
 		}
 		
-		vendasClientesDTO.setProduto(new Produto());
-		venda_Produto = new Venda_Produto();
-//		}else{
-//			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,
-//					"O produto " + vendasClientesDTO.getProduto().getNomeProduto() + " Esta zerado no estoque!" , ""));
-//		}
 		
 		
 	}
@@ -133,7 +153,7 @@ public class ManterVendasAction {
 	public void ecluirPedidoVenda(){
 		
 		
-		for (Venda_Produto vendaProdut : vendaSelecionada.getVenda_Produtos()) {
+		for (VendaProduto vendaProdut : vendaSelecionada.getVenda_Produtos()) {
 			vendaProdut.setVenda(vendaSelecionada);
 			
 			int quantidadePrduto = vendaProdut.getProduto().getQuantidade();
@@ -156,6 +176,10 @@ public class ManterVendasAction {
 	
 	public void confimarPedidoVenda(){
 		
+		if(cliente.getCpf().isEmpty() || cliente.getNome().isEmpty()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "Selecione Um Cliente." , ""));
+		}else{
+	
 		venda.setCliente(cliente);
 		venda.setDataVenda(new Date());
 		venda.setStatusVenda(EnumStatusVenda.NAO_PAGO);
@@ -163,7 +187,7 @@ public class ManterVendasAction {
 		venda.getVenda_Produtos().addAll(vendasClientesDTO.getListVendaProduto());
 		venda.setValorTotalVenda(valorTotal);
 		
-		for (Venda_Produto vendaProdut : vendasClientesDTO.getListVendaProduto()) {
+		for (VendaProduto vendaProdut : vendasClientesDTO.getListVendaProduto()) {
 			vendaProdut.setVenda(venda);
 			
 			int quantidadePrduto = vendaProdut.getProduto().getQuantidade();
@@ -181,9 +205,9 @@ public class ManterVendasAction {
 		
 		cliente = new Cliente();
 		venda = new Venda();
-		venda_Produto = new Venda_Produto();
+		vendaProduto = new VendaProduto();
 		vendasClientesDTO = new VendasClientesDTO();
-		
+		}
 	}
 	
 	public List<Cliente> pesquisarClienterNome(Object autoComplete) {
@@ -269,16 +293,19 @@ public class ManterVendasAction {
 	}
 	
 	
-	public void alterarProduto(Venda_Produto venda_Produto){
-		vendasClientesDTO.setProduto(venda_Produto.getProduto());
+	public String alterarProduto(VendaProduto vendaProduto, int indice){
+		vendasClientesDTO.setProduto(vendaProduto.getProduto());
+		this.indice = indice;
+		return "/vendas/vendas.xhtml";
 		
 	}
 	
-	public String gerarRelatorio() {
+	public String gerarRelatorio(Venda venda) {
 		
 			final Collection<?> list = listPedidoDTO ;
 			final Map<String, Object> params = new HashMap<String, Object>();
-			pedidoDTO.setCliente(cliente);
+			pedidoDTO.setVenda(venda);
+			pedidoDTO.setListaVendaProduto(venda.getVenda_Produtos());
 			listPedidoDTO.add(pedidoDTO);
 		
 			
@@ -291,6 +318,11 @@ public class ManterVendasAction {
 		return "";
 
 	}
+	
+	
+	
+	
+	
 	
 	public void renderdCliente(Cliente cliente){
 		this.cliente = cliente;
@@ -306,14 +338,19 @@ public class ManterVendasAction {
 		return "/vendas/vendas.xhtml";
 	}
 	
-	public String removerProduto(Venda_Produto venda_Produto){
+	public String removerProduto(VendaProduto vendaProduto, int indice){
 		valorTotal = 0f;
 		
-		vendasClientesDTO.getListVendaProduto().remove(venda_Produto);
+		vendasClientesDTO.getListVendaProduto().remove(vendaProduto);
 		
-		for (Venda_Produto vendaPro : vendasClientesDTO.getListVendaProduto()) {
+		for (VendaProduto vendaPro : vendasClientesDTO.getListVendaProduto()) {
 			valorTotal += vendaPro.getValorUnitario();
 		}
+		
+		vendasClientesDTO.setProduto(new Produto());
+		vendaProduto = new VendaProduto();
+		this.indice = null;
+		
 		return "/vendas/vendas.xhtml";
 	}
 
@@ -400,12 +437,12 @@ public class ManterVendasAction {
 		return produtos;
 	}
 
-	public void setVenda_Produto(Venda_Produto venda_Produto) {
-		this.venda_Produto = venda_Produto;
+	public void setVenda_Produto(VendaProduto venda_Produto) {
+		this.vendaProduto = venda_Produto;
 	}
 
-	public Venda_Produto getVenda_Produto() {
-		return venda_Produto;
+	public VendaProduto getVenda_Produto() {
+		return vendaProduto;
 	}
 
 	public void setListPedidoVenda(List<Venda> listPedidoVenda) {
@@ -422,6 +459,14 @@ public class ManterVendasAction {
 
 	public Venda getVendaSelecionada() {
 		return vendaSelecionada;
+	}
+
+	public void setIndice(Integer indice) {
+		this.indice = indice;
+	}
+
+	public Integer getIndice() {
+		return indice;
 	}
 
 	

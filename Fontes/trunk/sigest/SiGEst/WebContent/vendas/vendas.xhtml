@@ -63,12 +63,12 @@
 									<a4j:region>
 										<div class="col-sm-5">
 											<h:inputText id="id_txt_nome_cliente" label="Nome"
-												styleClass="form-control" required="true"
+												styleClass="form-control" 
 												value="#{manterVendasAction.cliente.nome}" />
 										</div>
 										<rich:suggestionbox frequency="0.001" minChars="0"
 											for="id_txt_nome_cliente" width="500"
-											nothingLabel="Não encontrado" required="true"
+											nothingLabel="Não encontrado" 
 											suggestionAction="#{manterVendasAction.pesquisarClienterNome}"
 											var="cliente" ajaxSingle="true" requestDelay="0">
 											<h:column>
@@ -97,12 +97,12 @@
 									<a4j:region>
 										<div class="col-sm-5">
 											<h:inputText id="id_txt_cpf_cliente" label="CPF"
-												styleClass="form-control" required="true"
+												styleClass="form-control" 
 												value="#{manterVendasAction.cliente.cpf}" />
 										</div>
 										<rich:suggestionbox frequency="0.001" minChars="0"
 											for="id_txt_cpf_cliente" width="500"
-											nothingLabel="Não encontrado" required="true"
+											nothingLabel="Não encontrado" 
 											suggestionAction="#{manterVendasAction.pesquisarClienterCpf}"
 											var="cliente" ajaxSingle="true" requestDelay="0">
 											<h:column>
@@ -133,17 +133,16 @@
 						<a4j:outputPanel id="id_panel_produto">
 							<div class="form-group linha">
 								<div class="col-sm-2 control-label">
-									<h:outputLabel value="Codigo: " />
+									<h:outputLabel value="Codigo Produto: " />
 								</div>
 								<a4j:region>
 									<div class="col-sm-5">
-										<h:inputText
+										<h:inputText label="Codigo Produto"
 											value="#{manterVendasAction.vendasClientesDTO.produto.codigo}"
 											styleClass="form-control" />
 
 									</div>
-									<a4j:commandButton value="Pesquisar" action="#"
-										styleClass="btn btn-default navbar-btn" />
+									
 								</a4j:region>
 							</div>
 							<div class="form-group linha">
@@ -154,12 +153,12 @@
 								<a4j:region>
 									<div class="col-sm-5">
 										<h:inputText id="id_txt_nome_produto" label="Nome Pruduto"
-											styleClass="form-control" required="true"
+											styleClass="form-control" 
 											value="#{manterVendasAction.vendasClientesDTO.produto.nomeProduto}" />
 									</div>
 									<rich:suggestionbox frequency="0.001" minChars="0"
 										for="id_txt_nome_produto" width="500"
-										nothingLabel="Não encontrado" required="true"
+										nothingLabel="Não encontrado"
 										suggestionAction="#{manterVendasAction.pesquisarProdutoNome}"
 										var="produt" ajaxSingle="true" requestDelay="0">
 										<h:column>
@@ -245,12 +244,12 @@
 										<f:facet name="header">Operações</f:facet>
 
 										<h:commandLink value="Alterar" id="id_btn_alterar"
-											immediate="true"
-											action="#{manterVendasAction.alterarProduto(produto)}">
+											
+											action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
 										</h:commandLink>
 										<rich:spacer width="20px" />
-										<h:commandLink value="Excluir" immediate="true"
-											action="#{manterVendasAction.removerProduto(produto)}">
+										<h:commandLink value="Excluir" 
+											action="#{manterVendasAction.removerProduto(vendaProduto,indice)}">
 										</h:commandLink>
 
 									</rich:column>

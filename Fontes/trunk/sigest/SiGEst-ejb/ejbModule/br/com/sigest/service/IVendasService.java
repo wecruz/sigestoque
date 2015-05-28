@@ -38,6 +38,8 @@ public interface IVendasService {
 	
 	void excluirPedido(Venda venda);
 
+	List<Venda> pesquisarVendas(Venda venda);
+	
 	void destroy();
 	
 	void remove();

@@ -59,7 +59,7 @@ public class Produto {
 	private Categoria categoria;
 	
 	@OneToMany(mappedBy = "produto")
-	private List<Venda_Produto> venda_Produtos;
+	private List<VendaProduto> venda_Produtos;
 	
 	
 	public Produto() {
@@ -162,11 +162,11 @@ public class Produto {
 		return categoria;
 	}
 
-	public void setVenda_Produtos(List<Venda_Produto> venda_Produtos) {
+	public void setVenda_Produtos(List<VendaProduto> venda_Produtos) {
 		this.venda_Produtos = venda_Produtos;
 	}
 
-	public List<Venda_Produto> getVenda_Produtos() {
+	public List<VendaProduto> getVenda_Produtos() {
 		return venda_Produtos;
 	}
 

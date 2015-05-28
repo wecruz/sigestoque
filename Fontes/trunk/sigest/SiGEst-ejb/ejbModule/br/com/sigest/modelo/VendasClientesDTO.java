@@ -21,7 +21,7 @@ public class VendasClientesDTO {
 	
 	private Integer quantidadeMaxProduto = 1;
 	
-	private List<Venda_Produto> listVendaProduto = new ArrayList<Venda_Produto>();
+	private List<VendaProduto> listVendaProduto = new ArrayList<VendaProduto>();
 	
 
 	public Cliente getCliente() {
@@ -80,11 +80,11 @@ public class VendasClientesDTO {
 		return quantidadeProduto;
 	}
 
-	public void setListVendaProduto(List<Venda_Produto> listVendaProduto) {
+	public void setListVendaProduto(List<VendaProduto> listVendaProduto) {
 		this.listVendaProduto = listVendaProduto;
 	}
 
-	public List<Venda_Produto> getListVendaProduto() {
+	public List<VendaProduto> getListVendaProduto() {
 		return listVendaProduto;
 	}
 

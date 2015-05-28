@@ -17,7 +17,7 @@ import org.jboss.seam.annotations.Scope;
 import br.com.sigest.enums.EnumStatusVenda;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Venda;
-import br.com.sigest.modelo.Venda_Produto;
+import br.com.sigest.modelo.VendaProduto;
 import br.com.sigest.service.IVendasService;
 
 
@@ -34,7 +34,7 @@ public class ManterCaixaAction {
 	
 	private Venda venda = new Venda();
 	
-	private List<Venda_Produto> listaVendaProduto = new ArrayList<Venda_Produto>();
+	private List<VendaProduto> listaVendaProduto = new ArrayList<VendaProduto>();
 	
 	private Integer qntFuncionarios = 1;
 	
@@ -152,13 +152,13 @@ public class ManterCaixaAction {
 
 
 
-	public List<Venda_Produto> getListaVendaProduto() {
+	public List<VendaProduto> getListaVendaProduto() {
 		return listaVendaProduto;
 	}
 
 
 
-	public void setListaVendaProduto(List<Venda_Produto> listaVendaProduto) {
+	public void setListaVendaProduto(List<VendaProduto> listaVendaProduto) {
 		this.listaVendaProduto = listaVendaProduto;
 	}
 
