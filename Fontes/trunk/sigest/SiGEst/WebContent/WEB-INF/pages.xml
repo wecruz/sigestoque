@@ -72,6 +72,10 @@
 				<begin-conversation join="true" />
 				<redirect view-id="/alterarSenha.xhtml" />
 			</rule>
+			<rule if-outcome="estoque">
+				<begin-conversation join="true" />
+				<redirect view-id="/estoque/estoque.xhtml" />
+			</rule>
 		</navigation>
 	</page>
 	<exception class="org.jboss.seam.framework.EntityNotFoundException">

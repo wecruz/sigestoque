@@ -114,6 +114,10 @@ public class EstoqueService implements IEstoqueService {
 		return vendaDao;
 	}
 
+	public List<Produto> fildAllProduto() {
+		return produtoDao.fildAllProduto();
+	}
+
 
 
 }

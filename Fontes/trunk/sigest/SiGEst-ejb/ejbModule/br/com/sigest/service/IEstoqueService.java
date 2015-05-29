@@ -31,7 +31,9 @@ public interface IEstoqueService {
 	
 	void salvarCategoria(Categoria categoria);
 	
-	void excluirCategoria(Categoria categoria);						
+	void excluirCategoria(Categoria categoria);	
+	
+	List<Produto> fildAllProduto();
 	
 //	List<Estado> pesquisarTodosEstados();
 //	
