@@ -36,21 +36,25 @@
 
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome: " />
+							<h:outputLabel value="Nome: " >
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							<h:inputText value="#{manterClienteAction.cliente.nome}"
-								styleClass="form-control" />
+								styleClass="form-control" required="tru" id="txt_nome" label="Nome"/>
 						</div>
 					</div>
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
-							<h:outputLabel value="CPF: " />
+							<h:outputLabel value="CPF: " >
+								<h:graphicImage value="/img/required.gif" />
+							</h:outputLabel>
 						</div>
 						<div class="col-sm-5">
 							
 								<h:inputText value="#{manterClienteAction.cliente.cpf}"
-									styleClass="form-control textCpf" >
+									styleClass="form-control textCpf" id="txt_cpf" required="true" label="CPF">
 									
 								</h:inputText>	
 									
@@ -59,18 +63,55 @@
 						</div>
 					</div>
 					
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Telefone:" />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText 
+									value="#{manterClienteAction.cliente.endereco.telefone}"
+									styleClass="form-control textTelefone" >
+									<f:converter converterId="telefoneConverter" /> 
+								</h:inputText>
+								
+									
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Celular: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterClienteAction.cliente.endereco.celular}"
+									styleClass="form-control textTelefone" >
+									<f:converter converterId="telefoneConverter" /> 
+								</h:inputText>	
+								
+							</div>
+						</div>
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Email: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText
+									value="#{manterClienteAction.cliente.endereco.email}"
+									styleClass="form-control" />
+							</div>
+						</div>
+					
 				</div>
 			</div>
-			<div style="float: right">
-					<h:commandButton value="Pesquisar"
-						styleClass="btn btn-default navbar-btn"
-						action="#{manterClienteAction.pesquisarClientes()}" />
-
-					<h:commandButton value="Novo Cadastro"
-						styleClass="btn btn-default navbar-btn"
-						action="#{manterClienteAction.novoCadastro()}" immediate="true" />
-				</div>
 			
+			<div style="float: right">
+				<h:commandButton 
+					action="#{manterClienteAction.salvarCliente()}" value="Cadastrar"
+					styleClass="btn btn-default navbar-btn" />
+
+				<h:commandButton action="#{manterClienteAction.cancelar()}"
+					value="Cancelar" styleClass="btn btn-default navbar-btn" />
+			</div>
 			<rich:spacer height="20px" />
 
 
@@ -101,12 +142,11 @@
 								oncomplete="Richfaces.showModalPanel('painel')">
 							</a4j:commandLink>
 							<rich:spacer width="20px" />
-							<a4j:commandLink value="Vendas"
+							<a4j:commandLink value="Vendas" ajaxSingle="true"
 								action="#{manterVendasAction.manipulaVendas(cliente)}"
 								reRender="id_form">
 							</a4j:commandLink>
 						</rich:column>
-						
 						<f:facet name="footer">
 							<s:div styleClass="panel-heading">
 								<div class="coluna33pc">

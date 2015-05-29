@@ -52,6 +52,10 @@
 				<begin-conversation join="true" />
 				<redirect view-id="/clientes/clientes.xhtml" />
 			</rule>
+			<rule if-outcome="salvarClientes">
+				<begin-conversation join="true" />
+				<redirect view-id="/clientes/salvarCliente.xhtml" />
+			</rule>
 			<rule if-outcome="vendas">
 				<begin-conversation join="true" />
 				<redirect view-id="/vendas/vendas.xhtml" />

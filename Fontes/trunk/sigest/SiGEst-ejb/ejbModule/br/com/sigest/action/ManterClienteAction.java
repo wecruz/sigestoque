@@ -42,10 +42,6 @@ public class ManterClienteAction {
 	private Integer qntClientes = 10;
 
 	private Integer indice;
-
-	private Boolean flagMensagen;
-	private boolean flagNovoCadastro;
-	private boolean flagPesquisar;
 	
 	@Create
 	public String create(){
@@ -64,7 +60,6 @@ public class ManterClienteAction {
 				listCliente.set(indice, cliente);
 			}
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-			setFlagMensagen(true);
 			cliente = new Cliente(new Endereco());
 			indice = null;
 		}
@@ -72,10 +67,8 @@ public class ManterClienteAction {
 
 	public String alterar(Cliente cliente, int indice) {
 		setIndice(indice);
-		setFlagNovoCadastro(true);
-		setFlagPesquisar(true);
 		this.cliente = cliente;
-		return "/clientes/clientes.xhtml";
+		return "/clientes/salvarCliente.xhtml";
 	}
 
 	public void selecionarCliente(Cliente cliente) {
@@ -87,7 +80,6 @@ public class ManterClienteAction {
 			listCliente = new ArrayList<Cliente>();
 			listCliente = vendasService.pesquisarClientes(cliente);
 			if (listCliente.isEmpty()) {
-				setFlagMensagen(false);
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum registro encontrado.", ""));
 			}
 		}
@@ -97,25 +89,20 @@ public class ManterClienteAction {
 		listCliente.remove(getClienteSelecionado());
 		vendasService.removerCliente(getClienteSelecionado());
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-		setFlagMensagen(true);
 	}
 
 	
 	public String novoCadastro(){
-		setFlagNovoCadastro(true);
-		setFlagPesquisar(true);
 		cliente = new Cliente(new Endereco());
 		clienteSelecionado = new Cliente(new Endereco());
 		
-		return "/clientes/clientes.xhtml";
+		return "/clientes/salvarCliente.xhtml";
 	}
 	
 	public String cancelar(){
 		cliente = new Cliente();
 		indice = null;
 		listCliente = new ArrayList<Cliente>();
-		setFlagNovoCadastro(false);
-		setFlagPesquisar(false);
 		return "/clientes/clientes.xhtml";
 	}
 	
@@ -136,7 +123,6 @@ public class ManterClienteAction {
 	    }
 	    else{
 	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e inválido", ""));
-	      setFlagMensagen(false);
 	      return false;
 	    }  
 	 }
@@ -181,32 +167,5 @@ public class ManterClienteAction {
 	}
 
 
-	public Boolean getFlagMensagen() {
-		return flagMensagen;
-	}
-
-
-	public void setFlagMensagen(Boolean flagMensagen) {
-		this.flagMensagen = flagMensagen;
-	}
-
-
-	public boolean isFlagNovoCadastro() {
-		return flagNovoCadastro;
-	}
-
-
-	public void setFlagNovoCadastro(boolean flagNovoCadastro) {
-		this.flagNovoCadastro = flagNovoCadastro;
-	}
-
-
-	public boolean isFlagPesquisar() {
-		return flagPesquisar;
-	}
-
-
-	public void setFlagPesquisar(boolean flagPesquisar) {
-		this.flagPesquisar = flagPesquisar;
-	}
+	
 }
