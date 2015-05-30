@@ -155,13 +155,13 @@
 					<h:commandButton action="#{manterFuncionarioAction.salvar()}"
 						 value="Cadastrar" id="_id_brn_salva"
 						rendered="#{manterFuncionarioAction.flagNovoCadastro}"
-						styleClass="btn btn-default navbar-btn">
+						styleClass="btn btn-primary navbar-btn">
 						<a4j:support event="oncomplete" reRender="id_form" />
 					</h:commandButton>
 
 
 				<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
-					value="Cancelar" styleClass="btn btn-default navbar-btn" ajaxSingle="true"/>
+					value="Cancelar" styleClass="btn btn-danger navbar-btn" ajaxSingle="true"/>
 
 			</div>
 			<rich:spacer />

@@ -118,10 +118,12 @@
 								</a4j:outputPanel>
 							</div>
 							<div class="col-sm-9 control-label">
-								<h:commandButton value="Alterar" immediate="true"
+								<div id="botaoAlterar">
+									<h:commandButton value="Alterar" immediate="true"
 									rendered="#{manterVendasAction.cliente.id != null}"
-									styleClass="btn btn-default navbar-btn"
+									styleClass="btn btn-warning navbar-btn"
 									action="#{manterVendasAction.limpar()}" />
+								</div>
 							</div>
 
 						</fieldset>
@@ -199,18 +201,14 @@
 							</div>
 						</div>
 						</a4j:outputPanel>
-						
-
 
 						<div class="col-sm-8 control-label">
-							<h:commandButton value="Adicionar"
-								styleClass="btn btn-default navbar-btn"
+							<div id="botaoAdicionar">
+								<h:commandButton value="Adicionar"
+								styleClass="btn btn-primary navbar-btn"
 								action="#{manterVendasAction.adicionarProduto()}" />
+							</div>
 						</div>
-
-						<br />
-
-
 
 						<s:div id="id_tabela_produto"
 							rendered="#{manterVendasAction.vendasClientesDTO.listVendaProduto.size() >0}">
@@ -299,10 +297,10 @@
 						</ui:remove>	
 							<h:commandButton rendered="#{manterVendasAction.vendasClientesDTO.listVendaProduto.size() >0}"
 								action="#{manterVendasAction.confimarPedidoVenda()}"
-								value="CONFIRMAR VENDA" styleClass="btn btn-default navbar-btn" />
+								value="Confirmar Venda" styleClass="btn btn-success navbar-btn" />
 
-							<h:commandButton action="#" value="CANCELAR"
-								styleClass="btn btn-default navbar-btn" />
+							<h:commandButton action="#" value="Cancelar"
+								styleClass="btn btn-danger navbar-btn" />
 						</center>
 					</div>
 				</div>

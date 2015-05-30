@@ -70,11 +70,12 @@
 			<rich:spacer />
 			<div style="float: right">
 				<h:commandButton value="Pesquisar" ajaxSingle="true"
-					styleClass="btn btn-default navbar-btn"
-					action="#{manterFuncionarioAction.pesquisarFuncioanrios()}" />
+					styleClass="btn btn-info navbar-btn"
+					action="#{manterFuncionarioAction.pesquisarFuncionarios()}" />
+					
 
 				<h:commandButton value="Novo Cadastro"
-					styleClass="btn btn-default navbar-btn"
+					styleClass="btn btn-primary navbar-btn"
 					action="#{manterFuncionarioAction.novoCadastro()}" />
 
 			</div>
@@ -107,9 +108,9 @@
 							<center>
 							<a4j:commandLink
 								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
-									ajaxSingle="true" reRender="id_form" >
-									<h:graphicImage value="/img/ico_alterar.png" />
-								</a4j:commandLink>
+								ajaxSingle="true" reRender="id_form" >
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
 							<rich:spacer width="25px" />
 							<a4j:commandLink 
 								action="#{manterFuncionarioAction.selecionarFuncionario(funcio)}"

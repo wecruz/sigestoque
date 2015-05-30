@@ -6238,3 +6238,13 @@ button.close {
   top: 0;
   left: 4px;
 }
+#botaoAlterar{
+	display:block;
+	position: absolute;
+	margin:-75px 0px 0px 910px;
+}
+#botaoAdicionar{
+	display:block;
+	position: absolute;
+	margin:-105px 0px 0px 900px;
+}
