@@ -10,11 +10,9 @@
 
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
-		<h:form id="idform">
-
-			<rich:spacer height="40px" />
+		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success"
 							styleClass="msgAlertaSucesso" errorClass="alert alert-danger"
@@ -22,14 +20,13 @@
 					</center>
 				</div>
 			</center>
-
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Cadastrar Fornecedores</div>
 				</div>
-				<div class="form-horizontal">
-					<br />
-
+				<div style="width: 100%">
+				<div class="form-horizontal" style=" width: 510px; margin: 15px auto;">
+				
 					<div class="form-group linha">
 						<div class="col-sm-2 control-label">
 							<h:outputLabel value="Nome: ">
@@ -124,25 +121,24 @@
 								styleClass="form-control textTelefone" />
 						</div>
 					</div>
+				
+				</div>
+				</div>
+				<div style="width: 100%">
+					<div style="margin: 10px auto; width: 180px ">
+						<h:commandButton action="#{manterFornecedoreAction.salvar()}"
+							value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
+		
+						<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
+							reRender="id_div_tabela,idform" value="Cancelar"
+							styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
+					</div>
 				</div>
 			</div>
-			<div style="float: right">
-				<h:commandButton action="#{manterFornecedoreAction.salvar()}"
-					value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
-
-				<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
-					reRender="id_div_tabela,idform" value="Cancelar"
-					styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
-			</div>
-			<rich:spacer />
-			<br />
-			<br />
-			<br />
-			<br />
 
 			<s:div styleClass="form-group" id="id_tabela_funcio"
 				rendered="#{manterFornecedoreAction.listFornecedores.size() >0}">
-				<div class="table-responsive, panel panel-info">
+				<div class="table-responsive, panel panel-info" style="margin-top: -20px">
 					<div class="panel-heading">Lista de Fornecedores</div>
 					<rich:dataTable value="#{manterFornecedoreAction.listFornecedores}"
 						var="fornece" id="id_div_tabela" rowKeyVar="indice"
@@ -161,15 +157,28 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
+							<div class="bot01">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_alterar.png" /></div>
+							<div class="corpoBot">
 							<a4j:commandLink
 								action="#{manterFornecedoreAction.alterar(indice,fornece)}"
-								value="Alterar" ajaxSingle="true" reRender="idform" />
-							<rich:spacer width="20px" />
+								value="Alterar" ajaxSingle="true" reRender="idform" >
+							</a4j:commandLink></div>
+							</div>
+							
+							<rich:spacer width="25px" />
+							
+							<div class="bot02">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_excluir.png" /></div>									
+							<div class="corpoBot">
 							<a4j:commandLink value="Excluir"
 								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
 								reRender="id_tabela_funcio,idform"
 								oncomplete="Richfaces.showModalPanel('painel')">
-							</a4j:commandLink>
+							</a4j:commandLink></div>
+							</div>
 
 						</rich:column>
 					</rich:dataTable>

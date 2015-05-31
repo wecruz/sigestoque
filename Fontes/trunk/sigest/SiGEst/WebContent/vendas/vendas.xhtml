@@ -10,11 +10,9 @@
 <ui:composition template="/layout/template.xhtml">
 
 	<ui:define name="body">
-		<h:form id="id_form">
-
-			<rich:spacer height="40px" />
+		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success"
 							styleClass="msgAlertaSucesso" errorClass="alert alert-danger"
@@ -22,14 +20,11 @@
 					</center>
 				</div>
 			</center>
-
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Vendas</div>
 				</div>
-
-				<div class="form-horizontal ">
-					<br />
+				<div class="form-horizontal" style="margin-top: 15px">
 					<a4j:outputPanel id="id_field_cliente">
 						<fieldset class="form-search">
 
@@ -240,16 +235,23 @@
 									</rich:column>
 									<rich:column>
 										<f:facet name="header">Operações</f:facet>
-
+										<div class="bot01">
+										<div class="imgBot"><h:graphicImage value="/img/ico_alterar.png" /></div>
+										<div class="corpoBot">
 										<h:commandLink value="Alterar" id="id_btn_alterar"
-											
-											action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
-										</h:commandLink>
+										action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
+										</h:commandLink></div>
+										</div>
 										<rich:spacer width="20px" />
-										<h:commandLink value="Excluir" 
+										
+										<div class="bot02">
+										<div class="imgBot">
+										<h:graphicImage value="/img/ico_excluir.png" /></div>									
+										<div class="corpoBot"><h:commandLink value="Excluir"
 											action="#{manterVendasAction.removerProduto(vendaProduto,indice)}">
-										</h:commandLink>
-
+										</h:commandLink></div>
+										</div>
+										
 									</rich:column>
 								</rich:dataTable>
 							</div>

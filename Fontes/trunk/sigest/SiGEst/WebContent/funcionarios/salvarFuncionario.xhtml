@@ -8,170 +8,154 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/layout/template.xhtml">
-
-
 	<ui:define name="body">
-		<h:form id="id_form">
-			
-			<rich:spacer height="40px" />
+		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
-						<h:messages infoClass="alert alert-success"
+						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
 			</center>
-			
-			
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Manter Funcionarios</div>
 				</div>
-				<div class="form-horizontal ">
-					<br /> <br /> <br />
-					<div style="float: right">
-					</div>
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome: " >
-								<h:graphicImage value="/img/required.gif" />
-							</h:outputLabel>
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
-								styleClass="form-control" 
-								id="nome" label="Nome"
-								required="true" />
-								
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="CPF: " >
-								<h:graphicImage value="/img/required.gif" />
-							</h:outputLabel>
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
-								styleClass="form-control textCpf" 
-								required="true" id="cpf" label="CPF" validator="validaCPF">
-								<f:converter converterId="cpfConverter"/>
-							</h:inputText>	
-						</div>
-					</div>
-					
-					
-						<div class="form-group">
+				<div style="width: 100%">
+					<div class="form-horizontal" style=" width: 700px; margin: 15px 0px 15px 200px">
+						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Senha: " >
-									<h:graphicImage value="/img/required.gif" />
-								</h:outputLabel>
-							</div>
-
-							<div class="col-sm-5">
-								<h:inputSecret
-									value="#{manterFuncionarioAction.funcionario.senha}"
-									styleClass="form-control" maxlength="15" 
-									required="true" id="senha" label="Senha"/>
-							</div>
-						</div>
-
-
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="E-MAIL: " >
-								
-							</h:outputLabel>
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterFuncionarioAction.funcionario.email}"
-								styleClass="form-control" required="true" id="email"
-								label="E-MAIL">
-							</h:inputText>
-						</div>
-					</div>
-
-
-					<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Endereço: " >
+								<h:outputLabel value="Nome: " >
 									<h:graphicImage value="/img/required.gif" />
 								</h:outputLabel>
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.endereco.endereco}"
-									styleClass="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Telefone residencial: " />
-							</div>
-							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.endereco.telefone}"
-									styleClass="form-control textTelefone">
+								<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
+									styleClass="form-control" 
+									id="nome" label="Nome"
+									required="true" />
 									
-									<f:converter converterId="telefoneConverter" />
-								</h:inputText>	
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Celular: " />
+								<h:outputLabel value="CPF: " >
+									<h:graphicImage value="/img/required.gif" />
+								</h:outputLabel>
 							</div>
 							<div class="col-sm-5">
-								<h:inputText
-									value="#{manterFuncionarioAction.funcionario.endereco.celular}"
-									styleClass="form-control textTelefone">
-									<f:converter converterId="telefoneConverter" /> 
+								<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
+									styleClass="form-control textCpf" 
+									required="true" id="cpf" label="CPF" validator="validaCPF">
+									<f:converter converterId="cpfConverter"/>
 								</h:inputText>	
 							</div>
 						</div>
-					
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Cargo/Função: " >
-								<h:graphicImage value="/img/required.gif" />
-							</h:outputLabel>
+						
+						
+							<div class="form-group">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Senha: " >
+										<h:graphicImage value="/img/required.gif" />
+									</h:outputLabel>
+								</div>
+
+								<div class="col-sm-5">
+									<h:inputSecret
+										value="#{manterFuncionarioAction.funcionario.senha}"
+										styleClass="form-control" maxlength="15" 
+										required="true" id="senha" label="Senha"/>
+								</div>
+							</div>
+
+
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="E-MAIL: " >
+									
+								</h:outputLabel>
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterFuncionarioAction.funcionario.email}"
+									styleClass="form-control" required="true" id="email"
+									label="E-mail">
+								</h:inputText>
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:selectOneMenu required="true" id="cargo_funcao" label="Cargo/Função"
-								value="#{manterFuncionarioAction.funcionario.cargoFuncao}"
-								styleClass="form-control">
-								<s:selectItems noSelectionLabel="Selecione"
-									value="#{cargosFuncoes}" var="cargo" label="#{cargo.nome}">
-								</s:selectItems>
-							</h:selectOneMenu>
+
+						<div class="form-group">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Endereço: " >
+										<h:graphicImage value="/img/required.gif" />
+									</h:outputLabel>
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFuncionarioAction.funcionario.endereco.endereco}"
+										styleClass="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Telefone residencial: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFuncionarioAction.funcionario.endereco.telefone}"
+										styleClass="form-control textTelefone">
+										
+										<f:converter converterId="telefoneConverter" />
+									</h:inputText>	
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Celular: " />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText
+										value="#{manterFuncionarioAction.funcionario.endereco.celular}"
+										styleClass="form-control textTelefone">
+										<f:converter converterId="telefoneConverter" /> 
+									</h:inputText>	
+								</div>
+							</div>
+						
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Cargo/Função: " >
+									<h:graphicImage value="/img/required.gif" />
+								</h:outputLabel>
+							</div>
+							<div class="col-sm-5">
+								<h:selectOneMenu required="true" id="cargo_funcao" label="Cargo/Função"
+									value="#{manterFuncionarioAction.funcionario.cargoFuncao}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="Selecione"
+										value="#{cargosFuncoes}" var="cargo" label="#{cargo.nome}">
+									</s:selectItems>
+								</h:selectOneMenu>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div style="width: 100%">
+					<div style="margin: 10px auto; width: 180px ">
+						<h:commandButton action="#{manterFuncionarioAction.salvar()}"
+							 value="Cadastrar" id="_id_brn_salva"
+							rendered="#{manterFuncionarioAction.flagNovoCadastro}"
+							styleClass="btn btn-primary navbar-btn">
+							<a4j:support event="oncomplete" reRender="id_form" />
+						</h:commandButton>
+						<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
+						value="Cancelar" styleClass="btn btn-danger navbar-btn" ajaxSingle="true"/>
+					</div>
+				</div>
 			</div>
-			<rich:spacer />
-			<div style="float: right">
-				
-					<h:commandButton action="#{manterFuncionarioAction.salvar()}"
-						 value="Cadastrar" id="_id_brn_salva"
-						rendered="#{manterFuncionarioAction.flagNovoCadastro}"
-						styleClass="btn btn-primary navbar-btn">
-						<a4j:support event="oncomplete" reRender="id_form" />
-					</h:commandButton>
-
-
-				<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
-					value="Cancelar" styleClass="btn btn-danger navbar-btn" ajaxSingle="true"/>
-
-			</div>
-			<rich:spacer />
-			<br />
-			<br />
-			<br />
-			<br />
 			<s:div styleClass="form-group" id="id_tabela_funcio"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
-				<div class="table-responsive, panel panel-info">
+				<div class="table-responsive, panel panel-info" style="margin-top: -20px">
 					<div class="panel-heading">Lista de Funcionarios Cadastrados</div>
 					<rich:dataTable value="#{manterFuncionarioAction.funcionarios}"
 						var="funcio" id="id_div_tabela" rowKeyVar="indice"
@@ -190,15 +174,29 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
+							
+							<div class="bot01">
+							<div class="imgBot"><h:graphicImage value="/img/ico_alterar.png" /></div>
+							<div class="corpoBot">
 							<a4j:commandLink
 								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
-								value="Alterar" ajaxSingle="true" reRender="id_form" />
-							<rich:spacer width="20px" />
-							<a4j:commandLink value="Excluir" 
+								value="Alterar" ajaxSingle="true" reRender="id_form" /></div>
+							</div>
+							
+							<rich:spacer width="25px" />
+							
+							<div class="bot02">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_excluir.png" /></div>									
+							<div class="corpoBot">
+							<a4j:commandLink
 								action="#{manterFuncionarioAction.selecionarFuncionario(funcio)}"
-								ajaxSingle="true" reRender="id_form,id_div_tabela"
-								oncomplete="Richfaces.showModalPanel('painel')"/>
+								oncomplete="Richfaces.showModalPanel('painel')"
+								value="Excluir" ajaxSingle="true" reRender="id_form,id_div_tabela"/></div>
+							</div>
+						
 						</rich:column>
+						
 						<f:facet name="footer">
 								<s:div styleClass="panel panel-info" >
 									<s:div styleClass="">

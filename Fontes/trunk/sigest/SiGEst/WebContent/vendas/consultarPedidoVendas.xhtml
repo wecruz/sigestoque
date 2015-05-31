@@ -10,11 +10,9 @@
 
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
-		<h:form id="idform">
-
-			<rich:spacer height="40px" />
+		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success"
 							styleClass="msgAlertaSucesso" errorClass="alert alert-danger"
@@ -22,94 +20,82 @@
 					</center>
 				</div>
 			</center>
-
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Pesquisar Pedido Vendas</div>
 				</div>
-				<div class="form-horizontal">
-					<br />
-					
-					<a4j:outputPanel id="id_panel_cliente">
-					<div class="form-group linha">
-								
-									<div class="col-sm-2 control-label">
-										<h:outputLabel value="Nome Cliente: " />
-									</div>
-
-									<a4j:region>
-										<div class="col-sm-5">
-											<h:inputText id="id_txt_nome_cliente" label="Nome"
-												styleClass="form-control"
-												value="#{manterVendasAction.cliente.nome}" />
-										</div>
-										<rich:suggestionbox frequency="0.001" minChars="0"
-											for="id_txt_nome_cliente" width="500"
-											nothingLabel="Não encontrado" required="true"
-											suggestionAction="#{manterVendasAction.pesquisarClienterNome}"
-											var="cliente" ajaxSingle="true" requestDelay="0">
-											<h:column>
-												<h:outputText value="#{cliente.nome}" />
-											</h:column>
-											<a4j:support event="onselect" reRender="id_panel_cliente"
-												action="#{manterVendasAction.renderdCliente(cliente)}">
-												<f:setPropertyActionListener
-													target="#{manterVendasAction.cliente}" value="#{cliente}" />
-											</a4j:support>
-										</rich:suggestionbox>
-									</a4j:region>
-
-								
-							</div>
-							
+				<div style="width: 100%">
+					<div class="form-horizontal" style=" margin: 15px 0px 15px 210px;">
+						<a4j:outputPanel id="id_panel_cliente">
 							<div class="form-group linha">
-								
-									<div class="col-sm-2 control-label">
-										<h:outputLabel value="CPF*: " />
-									</div>
-									<a4j:region>
-										<div class="col-sm-5">
-											<h:inputText id="id_txt_cpf_cliente" label="Nome"
-												styleClass="form-control mskTextCpf"
-												value="#{manterVendasAction.cliente.cpf}" />
-										</div>
-										<rich:suggestionbox frequency="0.001" minChars="0"
-											for="id_txt_cpf_cliente" width="500"
-											nothingLabel="Não encontrado" required="true"
-											suggestionAction="#{manterVendasAction.pesquisarClienterCpf}"
-											var="cliente" ajaxSingle="true" requestDelay="0">
-											<h:column>
-												<h:outputText value="#{cliente.cpf}" />
-											</h:column>
-											<a4j:support event="onselect" reRender="id_panel_cliente"
-												action="#{manterVendasAction.renderdCliente(cliente)}">
-												<f:setPropertyActionListener
-													target="#{manterVendasAction.cliente}" value="#{cliente}" />
-											</a4j:support>
-										</rich:suggestionbox>
-									</a4j:region>
-								
-							</div>
+											<div class="col-sm-2 control-label">
+												<h:outputLabel value="Nome Cliente: " />
+											</div>
 
-					</a4j:outputPanel>
+											<a4j:region>
+												<div class="col-sm-5">
+													<h:inputText id="id_txt_nome_cliente" label="Nome"
+														styleClass="form-control"
+														value="#{manterVendasAction.cliente.nome}" />
+												</div>
+												<rich:suggestionbox frequency="0.001" minChars="0"
+													for="id_txt_nome_cliente" width="500"
+													nothingLabel="Não encontrado" required="true"
+													suggestionAction="#{manterVendasAction.pesquisarClienterNome}"
+													var="cliente" ajaxSingle="true" requestDelay="0">
+													<h:column>
+														<h:outputText value="#{cliente.nome}" />
+													</h:column>
+													<a4j:support event="onselect" reRender="id_panel_cliente"
+														action="#{manterVendasAction.renderdCliente(cliente)}">
+														<f:setPropertyActionListener
+															target="#{manterVendasAction.cliente}" value="#{cliente}" />
+													</a4j:support>
+												</rich:suggestionbox>
+											</a4j:region>		
+							</div>
+								<div class="form-group linha">
+									
+										<div class="col-sm-2 control-label">
+											<h:outputLabel value="CPF*: " />
+										</div>
+										<a4j:region>
+											<div class="col-sm-5">
+												<h:inputText id="id_txt_cpf_cliente" label="Nome"
+													styleClass="form-control mskTextCpf"
+													value="#{manterVendasAction.cliente.cpf}" />
+											</div>
+											<rich:suggestionbox frequency="0.001" minChars="0"
+												for="id_txt_cpf_cliente" width="500"
+												nothingLabel="Não encontrado" required="true"
+												suggestionAction="#{manterVendasAction.pesquisarClienterCpf}"
+												var="cliente" ajaxSingle="true" requestDelay="0">
+												<h:column>
+													<h:outputText value="#{cliente.cpf}" />
+												</h:column>
+												<a4j:support event="onselect" reRender="id_panel_cliente"
+													action="#{manterVendasAction.renderdCliente(cliente)}">
+													<f:setPropertyActionListener
+														target="#{manterVendasAction.cliente}" value="#{cliente}" />
+												</a4j:support>
+											</rich:suggestionbox>
+										</a4j:region>
+								</div>
+						</a4j:outputPanel>
+					</div>
+				</div>
+				<div style="width: 100%">
+					<div style="margin: 10px 0px 10px 460px; width: 180px ">
+						<h:commandButton value="Pesquisar"
+							styleClass="btn btn-info navbar-btn"
+							action="#{manterVendasAction.pesquisarPedidoVendaCliente()}" />
+					</div>
 				</div>
 			</div>
-
-			<div style="float: right">
-				<h:commandButton value="Pesquisar"
-					styleClass="btn btn-default navbar-btn"
-					action="#{manterVendasAction.pesquisarPedidoVendaCliente()}" />
-				
-			</div>
-			<rich:spacer />
-			<br />
-			<br />
-			<br />
-			<br />
-
 			<s:div styleClass="form-group" id="id_tabela_pedido_venda"
 				rendered="#{manterVendasAction.listPedidoVenda.size() >0}">
-				<div class="table-responsive, panel panel-info">
+				<div style="margin-top: -40px">
+				<div class="table-responsive, panel panel-info" style="margin-top: 40px">
 					<div class="panel-heading">Lista de Pedido Vendas</div>
 					<rich:dataTable value="#{manterVendasAction.listPedidoVenda}"
 						var="venda" id="id_div_tabela" rowKeyVar="indice"
@@ -136,33 +122,44 @@
 						<center>
 							<f:facet name="header">Operações</f:facet>
 							
+							<div class="bot01">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_alterar.png" /></div>
+							<div class="corpoBot">
 							<a4j:commandLink action="#{manterVendasAction.alterarPedidoVenda(venda)}"
-								ajaxSingle="true" title="Alterar" reRender="id_form" >
-								<h:graphicImage value="/img/ico_alterar.png" />
-							</a4j:commandLink>	
+								ajaxSingle="true" title="Alterar" reRender="id_form" value="Alterar">
+							</a4j:commandLink></div>
+							</div>
 							
 							<rich:spacer width="20px" />
 							
-							<a4j:commandLink  title="Excluir"
-								action="#{manterVendasAction.selecionarVenda(venda)}"
-								reRender="id_div_tabela,id_form"
+							<div class="bot03">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_excluir.png" /></div>
+							<div class="corpoBot">
+							<a4j:commandLink  action="#{manterVendasAction.selecionarVenda(venda)}"
+								title="Excluir" reRender="id_div_tabela,id_form" value="Excluir"
 								oncomplete="Richfaces.showModalPanel('painel')">
-								<h:graphicImage value="/img/ico_excluir.png" />
-							</a4j:commandLink>
+							</a4j:commandLink></div>
+							</div>
+							
 							<rich:spacer width="20px" />
 							
-						
-
-							<h:commandButton image="/img/print.png" title="Imprimir Pedido"
+							<div class="bot04">
+							<div class="imgBotImp">
+							<h:graphicImage value="/img/print.png" /></div>
+							<div class="corpoBotImp">
+							<h:commandButton style="background-color: #ECF4FE; border: 0px; color:#4298D8 " title="Imprimir Pedido" value="Imprimir" 
 								action="#{manterVendasAction.gerarRelatorio(venda)}"
 								onclick="target='_black'" immediate="true" >
-								
-							</h:commandButton>
+							</h:commandButton></div>
+							</div>
 
 							<rich:spacer width="20px" />
 							</center>
 						</rich:column>
 					</rich:dataTable>
+				</div>
 				</div>
 			</s:div>
 

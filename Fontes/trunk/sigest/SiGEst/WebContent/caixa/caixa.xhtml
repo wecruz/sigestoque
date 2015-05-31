@@ -115,16 +115,17 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
+							<div style="background-color: #ECF4FE; width: 60px; height:22px; border-width: 2px; border-style: dotted; border-color: #D7E8FD; margin-top: -1px; display:block; position:relative;">
+							<div style="margin-right: 7px; width: 16px; float:left"><h:graphicImage value="/img/ico_pagar.png" /></div>
 							<a4j:commandLink value="Pagar"
 								action="#{manterCaixaAction.selecinarVenda(venda)}"
 								ajaxSingle="true" reRender="id_form"
 								oncomplete="Richfaces.showModalPanel('painel')" />
+							</div>
 						</rich:column>
 					</rich:dataTable>
 				</div>
 			</div>
-
-
 
 			<rich:modalPanel id="painel" width="800" height="600">
 				<f:facet name="header">

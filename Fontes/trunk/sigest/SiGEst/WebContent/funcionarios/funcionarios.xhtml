@@ -9,84 +9,71 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/layout/template.xhtml">
 
-
 	<ui:define name="body">
-		<h:form id="id_form">
-		
-			<rich:spacer height="40px" />
+		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
-							errorClass="alert alert-danger" warnClass="alert alert-succes" />
+						errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
 			</center>
-
-
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="titulo">Pesquisar Funcionarios</div>
 				</div>
-				<div class="form-horizontal ">
-					<br />
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome: " />
+				<div style="width: 100%">
+					<div class="form-horizontal" style=" width: 510px; margin: 15px auto;">
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Nome: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
+									styleClass="form-control" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterFuncionarioAction.funcionario.nome}"
-								styleClass="form-control" />
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="CPF: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
+									styleClass="form-control textCpf">
+								</h:inputText>
+							</div>
 						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="CPF: " />
-						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterFuncionarioAction.funcionario.cpf}"
-								styleClass="form-control textCpf">
-							</h:inputText>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Cargo/Função: " />
-						</div>
-						<div class="col-sm-5">
-							<h:selectOneMenu
-								value="#{manterFuncionarioAction.funcionario.cargoFuncao}"
-								styleClass="form-control">
-								<s:selectItems noSelectionLabel="Selecione"
-									value="#{cargosFuncoes}" var="cargo" label="#{cargo.nome}">
-								</s:selectItems>
-							</h:selectOneMenu>
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Cargo/Função: " />
+							</div>
+							<div class="col-sm-5">
+								<h:selectOneMenu
+									value="#{manterFuncionarioAction.funcionario.cargoFuncao}"
+									styleClass="form-control">
+									<s:selectItems noSelectionLabel="Selecione"
+										value="#{cargosFuncoes}" var="cargo" label="#{cargo.nome}">
+									</s:selectItems>
+								</h:selectOneMenu>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div style="width: 100%">
+					<div style="margin: 10px auto; width: 180px ">
+						<h:commandButton value="Pesquisar" ajaxSingle="true"
+							styleClass="btn btn-info navbar-btn"
+							action="#{manterFuncionarioAction.pesquisarFuncionarios()}" />
+						<h:commandButton value="Novo Cadastro"
+							styleClass="btn btn-primary navbar-btn"
+							action="#{manterFuncionarioAction.novoCadastro()}" />
+					</div>
+				</div>
 			</div>
-			<rich:spacer />
-			<div style="float: right">
-				<h:commandButton value="Pesquisar" ajaxSingle="true"
-					styleClass="btn btn-info navbar-btn"
-					action="#{manterFuncionarioAction.pesquisarFuncionarios()}" />
-					
-
-				<h:commandButton value="Novo Cadastro"
-					styleClass="btn btn-primary navbar-btn"
-					action="#{manterFuncionarioAction.novoCadastro()}" />
-
-			</div>
-			<rich:spacer />
-			<br />
-			<br />
-			<br />
-			<br />
 			<s:div id="id_tabela_funcio" styleClass="table"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
-				<div class="panel panel-info">
+				<div class="panel panel-info" style="margin-top: -20px">
 					<div class="panel-heading">Lista de Funcionarios Cadastrados</div>
 					<rich:dataTable value="#{manterFuncionarioAction.funcionarios}"
 						var="funcio" id="id_div_tabela" rowKeyVar="indice"

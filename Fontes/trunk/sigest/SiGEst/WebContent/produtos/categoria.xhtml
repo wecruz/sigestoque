@@ -9,50 +9,46 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="body">
-		<h:form id="id_form">
-			
-			<rich:spacer height="40px" />
+		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
 			</center>
-			
-			
-			<div class="panel-default form-horizontal ">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<div class="titulo">Pesquisar Categoria</div>
-					</div>
-					<br /> <br />
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Nome: " />
+			<div class="panel panel-info">
+			<div class="panel-heading">
+			<div class="titulo">Pesquisar Categoria</div>
+			</div>
+			<div style="width: 100%">
+				<div class="form-horizontal" style=" width: 510px; margin: 15px auto;">
+						<div class="form-group linha" style="margin-top: 15px">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Nome: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputText value="#{manterCategoriaAction.categoria.nome}"
+									styleClass="form-control" id="nomeCategoria"
+									label="Nome" />
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<h:inputText value="#{manterCategoriaAction.categoria.nome}"
-								styleClass="form-control" id="nomeCategoria"
-								label="Nome" />
-						</div>
-					</div>
-					<div class="form-group linha">
-						<div class="col-sm-2 control-label">
-							<h:outputLabel value="Descrição: " />
-						</div>
-						<div class="col-sm-5">
-							<h:inputTextarea
-								value="#{manterCategoriaAction.categoria.descricao}"
-								styleClass="form-control" />
+						<div class="form-group linha">
+							<div class="col-sm-2 control-label">
+								<h:outputLabel value="Descrição: " />
+							</div>
+							<div class="col-sm-5">
+								<h:inputTextarea
+									value="#{manterCategoriaAction.categoria.descricao}"
+									styleClass="form-control" />
+							</div>
 						</div>
 					</div>
 				</div>
-
-			</div>
-			<div style="float: right">
-
+			
+			<div style="width: 100%">
+			<div style="margin: 10px auto; width: 180px ">
 				<h:commandButton value="Pesquisar"
 					styleClass="btn btn-info navbar-btn"
 					action="#{manterCategoriaAction.pesquisarCategoria()}" />
@@ -62,13 +58,13 @@
 					action="#{manterCategoriaAction.novoCadastro()}" immediate="true" />
 
 			</div>
-
+			</div>
+			</div>
 			<rich:spacer height="20px" />
-
 
 			<s:div styleClass="form-group" id="id_tabela_produto"
 				rendered="#{manterCategoriaAction.listCategoria.size() >0}">
-				<div class="table-responsive, panel panel-info">
+				<div class="table-responsive, panel panel-info" style="margin-top: -40px">
 					<div class="panel-heading">Lista de Categoria</div>
 					<rich:dataTable value="#{manterCategoriaAction.listCategoria}"
 						var="categoria" id="id_div_tabela" rowKeyVar="indice"
@@ -83,17 +79,28 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
+							
+							<div class="bot01">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_alterar.png" /></div>
+							<div class="corpoBot">
 							<a4j:commandLink
-								action="#{manterCategoriaAction.alterar(categoria,indice)}"
+								value="Alterar" action="#{manterCategoriaAction.alterar(categoria,indice)}"
 								ajaxSingle="true" reRender="id_form" >
-								<h:graphicImage value="/img/ico_alterar.png" />
-							</a4j:commandLink>	
+							</a4j:commandLink></div>
+							</div>	
+							
 							<rich:spacer width="20px" />
+							
+							<div class="bot02">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_excluir.png" /></div>									
+							<div class="corpoBot">
 							<a4j:commandLink action="#{manterCategoriaAction.selecionarCategoria(categoria)}"
-								reRender="id_div_tabela,id_form"
+								value="Excluir" reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
-								<h:graphicImage value="/img/ico_excluir.png" />
-							</a4j:commandLink>
+							</a4j:commandLink></div>
+							</div>
 						</rich:column>
 					</rich:dataTable>
 				</div>

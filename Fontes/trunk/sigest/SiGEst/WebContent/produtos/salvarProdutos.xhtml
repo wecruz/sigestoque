@@ -9,28 +9,24 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/layout/template.xhtml">
 
-
 	<ui:define name="body">
-		<h:form id="id_form">
+		<h:form id="id_form" style="margin-top:90px">
 
-			<rich:spacer height="40px" />
 			<center>
-				<div style="width: 700px;">
+				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
 					</center>
 				</div>
 			</center>
-
-			<div class="panel-default form-horizontal ">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<div class="titulo">Cadastrar Produto</div>
-					</div>
-
-					<div class="panel-body">
-
+			
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="titulo">Cadastrar Produto</div>
+				</div>
+				<div style="width: 100%">
+					<div class="form-horizontal" style="margin: 15px 0px 15px 200px;">
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Codigo: " >
@@ -93,7 +89,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Categoria*: " />
+								<h:outputLabel value="Categoria: " />
 							</div>
 							<div class="col-sm-5">
 							<a4j:region>
@@ -130,51 +126,53 @@
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Imagem do produto" />
 							</div>
-							<div class="col-sm-2 control-label">
-
-								<s:graphicImage value="/img/image_up.png"
-									rendered="#{manterProdutoAction.file.dados == null}"
-									id="id_Foto" />
-
-
-								<s:graphicImage id="fotoIMG"
-									rendered="#{manterProdutoAction.file.dados !=null}"
-									value="#{manterProdutoAction.file.dados}"
-									style="padding-left:2px">
-									<s:transformImageSize height="150" width="140" />
-								</s:graphicImage>
-
+							
+								<div class="col-sm-2 control-label">
+								<div style="margin-left: 100px; display:block; position:relative; padding-bottom: 50px">
+									<s:graphicImage value="/img/image_up.png"
+										rendered="#{manterProdutoAction.file.dados == null}"
+										id="id_Foto" />
+	
+	
+									<s:graphicImage id="fotoIMG"
+										rendered="#{manterProdutoAction.file.dados !=null}"
+										value="#{manterProdutoAction.file.dados}"
+										style="padding-left:2px">
+										<s:transformImageSize height="150" width="140" />
+									</s:graphicImage>
+	
+								</div>
 							</div>
-							<div class="col-sm-5">
-								<a4j:region id="id_fileUpload">
-									<div class="coluna20pc">
-										<rich:fileUpload
-											fileUploadListener="#{manterProdutoAction.uploadFileImagem}"
-											autoclear="true" addControlLabel="Escolher imagem"
-											immediateUpload="true" listHeight="0px" listWidth="0px"
-											ajaxSingle="true" id="uploadArquivoFoto"
-											acceptedTypes="jpg, jpeg, JPG, JPEG, gif, GIF, PNG, png"
-											eventsQueue="queue-docs-foto"
-											ontyperejected="alert('Tipos válidos para anexar: JPEG, JPG, GIF ou PNG. Com tamanho menor ou igual a 50Mb.');">
-											<a4j:support event="onuploadcomplete"
-												reRender="fotoIMG,uploadArquivoFoto,id_Foto,id_panel_img"
-												eventsQueue="queue-rerender-fotos" />
-										</rich:fileUpload>
-										<br />
-										<br />
-										<a4j:commandButton
-											action="#{manterProdutoAction.removerFileUpload()}"
-											value="Remover"
-											reRender="id_Foto,fotoIMG,id_Foto,id_fileUpload"
-											rendered="#{manterProdutoAction.file.dados !=null}"
-											styleClass="btn btn-default navbar-btn" ajaxSingle="true" />
-
-									</div>
-								</a4j:region>
+							<div style="display:block; position:absolute; margin: 155px 0px 0px 245px">
+								<div class="col-sm-5">
+									<a4j:region id="id_fileUpload">
+										<div class="coluna20pc">
+											<rich:fileUpload
+												fileUploadListener="#{manterProdutoAction.uploadFileImagem}"
+												autoclear="true" addControlLabel="Escolher imagem"
+												immediateUpload="true" listHeight="0px" listWidth="0px"
+												ajaxSingle="true" id="uploadArquivoFoto"
+												acceptedTypes="jpg, jpeg, JPG, JPEG, gif, GIF, PNG, png"
+												eventsQueue="queue-docs-foto"
+												ontyperejected="alert('Tipos válidos para anexar: JPEG, JPG, GIF ou PNG. Com tamanho menor ou igual a 50Mb.');">
+												<a4j:support event="onuploadcomplete"
+													reRender="fotoIMG,uploadArquivoFoto,id_Foto,id_panel_img"
+													eventsQueue="queue-rerender-fotos" />
+											</rich:fileUpload>
+											<div style="display:block; position:absolute; margin: -180px 0px 0px 180px;">
+											<a4j:commandButton
+												action="#{manterProdutoAction.removerFileUpload()}"
+												value="Remover"
+												reRender="id_Foto,fotoIMG,id_Foto,id_fileUpload"
+												rendered="#{manterProdutoAction.file.dados !=null}"
+												ajaxSingle="true" />
+											</div>
+										</div>
+									</a4j:region>
+								</div>
 							</div>
 							</a4j:outputPanel>
 						</div>
-
 
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
@@ -202,23 +200,21 @@
 						</div>
 					</div>
 				</div>
+					<div style="width: 100%">
+						<div style="margin: 10px auto; width: 180px ">
+								<h:commandButton action="#{manterProdutoAction.salvarProduto()}"
+									value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
+
+								<a4j:commandButton action="#{manterProdutoAction.cancelar()}"
+									value="Cancelar" reRender="id_form,id_div_tabela"
+									styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
+						</div>
+					</div>
 			</div>
-			<div style="float: right">
-				<h:commandButton action="#{manterProdutoAction.salvarProduto()}"
-					value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
-
-				<a4j:commandButton action="#{manterProdutoAction.cancelar()}"
-					value="Cancelar" reRender="id_form,id_div_tabela"
-					styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
-			</div>
-
-			<rich:spacer height="20px" />
-
-
 			<s:div styleClass="form-group" id="id_tabela_produto"
 				rendered="#{manterProdutoAction.listProdutos.size() >0}">
-				<div class="table-responsive, panel panel-info">
-					<div class="panel-heading">Lista de Produtos</div>
+				<div class="table-responsive, panel panel-info" style="margin-top: -20px">
+					<div class="panel-heading" >Lista de Produtos</div>
 					<rich:dataTable value="#{manterProdutoAction.listProdutos}"
 						var="produto" id="id_div_tabela" rowKeyVar="indice"
 						styleClass="table" rows="10">
@@ -236,15 +232,28 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
+							<div class="bot01">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_alterar.png" /></div>
+							<div class="corpoBot">
 							<a4j:commandLink
 								action="#{manterProdutoAction.alterar(produto,indice)}"
-								value="Alterar" ajaxSingle="true" reRender="id_form" />
-							<rich:spacer width="20px" />
+								value="Alterar" ajaxSingle="true" reRender="id_form" >
+							</a4j:commandLink></div>
+							</div>
+							
+							<rich:spacer width="25px" />
+							
+							<div class="bot02">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_excluir.png" /></div>									
+							<div class="corpoBot">
 							<a4j:commandLink value="Excluir"
 								action="#{manterProdutoAction.selecionarProduto(produto)}"
 								reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
-							</a4j:commandLink>
+							</a4j:commandLink></div>
+							</div>
 						</rich:column>
 					</rich:dataTable>
 				</div>
