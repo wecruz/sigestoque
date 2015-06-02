@@ -3,7 +3,7 @@ package br.com.sigest.enums;
 public enum EnumCargoFuncao {
 
 	ADMINISTRADOR("Administrador"),
-	VENDENDO("Vendedor"),
+	VENDENDO("vendedor"),
 	CAIXA("Caixa");
 	
 	private final String nome;

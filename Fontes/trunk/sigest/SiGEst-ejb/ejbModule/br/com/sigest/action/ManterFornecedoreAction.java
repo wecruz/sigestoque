@@ -2,6 +2,8 @@ package br.com.sigest.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -55,7 +57,7 @@ public class ManterFornecedoreAction {
 				FacesContext.getCurrentInstance().addMessage(
 						null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Nenhum registro encontrado.", ""));
+								"Registro não Localizado.", ""));
 			}
 		}
 	}
@@ -65,19 +67,35 @@ public class ManterFornecedoreAction {
 	}
 
 	public void salvar() {
-		fornecedor.getEndereco().setFornecedor(getFornecedor());
-		if (getIndice() == null) {
-			listFornecedores.add(getFornecedor());
-		} else {
-			listFornecedores.set(getIndice(), getFornecedor());
+		if(validEmail(getFornecedor().getEndereco().getEmail())){
+			fornecedor.getEndereco().setFornecedor(getFornecedor());
+			if (getIndice() == null) {
+				listFornecedores.add(getFornecedor());
+			} else {
+				listFornecedores.set(getIndice(), getFornecedor());
+			}
+			estoqueService.salvar(getFornecedor());
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Operação realizada com sucesso.", ""));
+			this.fornecedor = new Fornecedor(new Endereco());
+		
 		}
-		estoqueService.salvar(getFornecedor());
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO,
-						"Operação realizada com sucesso.", ""));
-		this.fornecedor = new Fornecedor(new Endereco());
 	}
+	
+	
+	public boolean validEmail(String email) {
+	    Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$"); 
+	    Matcher m = p.matcher(email); 
+	    if (m.find()){
+	      return true;
+	    }
+	    else{
+	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"O email "+email+" e inválido", ""));
+	      return false;
+	    }  
+	 }
 
 	public boolean validarCriterioPesquisa() {
 		if (fornecedor.getNome().isEmpty() && fornecedor.getCnpj().isEmpty()) {
@@ -161,6 +179,7 @@ public class ManterFornecedoreAction {
 	public void setFornecedorSelecionado(Fornecedor fornecedorSelecionado) {
 		this.fornecedorSelecionado = fornecedorSelecionado;
 	}
+
 
 
 }

@@ -63,6 +63,8 @@ public class ManterProdutoAction {
 
 	private List<Fornecedor> fornecedores;
 	
+	private Integer qntProdutos = 10;
+	
 	
 	@Create
 	public String create(){
@@ -273,6 +275,16 @@ public class ManterProdutoAction {
 
 	public Categoria getCategoria() {
 		return categoria;
+	}
+
+
+	public void setQntProdutos(Integer qntProdutos) {
+		this.qntProdutos = qntProdutos;
+	}
+
+
+	public Integer getQntProdutos() {
+		return qntProdutos;
 	}
 
 

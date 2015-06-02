@@ -255,6 +255,32 @@
 							</a4j:commandLink></div>
 							</div>
 						</rich:column>
+						<f:facet name="footer">
+							<s:div styleClass="panel-heading">
+								<div class="coluna33pc">
+									<div class="titulo_150">
+										<s:label value="Total Registros:" />
+										<h:outputText value="#{manterProdutoAction.listProdutos.size()}" />
+									</div>
+								</div>
+								<div class="coluna33pc">
+									<rich:datascroller renderIfSinglePage="true"  styleClass="wrap-paginacao" immediate="true"/>
+								</div>
+								<div class="coluna33pc">
+									<div class="tARight">
+										<s:label value="Registros Por Página :" />
+										<h:selectOneMenu value="#{manterProdutoAction.qntProdutos}">
+											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
+											<f:selectItem itemLabel="50" itemValue="50" />
+											<f:selectItem itemLabel="100" itemValue="100" />
+											<f:selectItem itemLabel="150" itemValue="150" />
+											<f:selectItem itemLabel="200" itemValue="200" />
+											<a4j:support event="onchange" reRender="id_tabela_produto" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</s:div>
+						</f:facet>
 					</rich:dataTable>
 				</div>
 			</s:div>

@@ -64,7 +64,7 @@
 					<div style="margin: 10px auto; width: 180px ">
 						<h:commandButton value="Pesquisar" ajaxSingle="true"
 							styleClass="btn btn-info navbar-btn"
-							action="#{manterFuncionarioAction.pesquisarFuncionarios()}" />
+							action="#{manterFuncionarioAction.pesquisarFuncioanrios()}" />
 						<h:commandButton value="Novo Cadastro"
 							styleClass="btn btn-primary navbar-btn"
 							action="#{manterFuncionarioAction.novoCadastro()}" />
@@ -74,7 +74,7 @@
 			<s:div id="id_tabela_funcio" styleClass="table"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
 				<div class="panel panel-info" style="margin-top: -20px">
-					<div class="panel-heading">Lista de Funcionarios Cadastrados</div>
+					<div class="panel-heading">Lista de Funcionarios</div>
 					<rich:dataTable value="#{manterFuncionarioAction.funcionarios}"
 						var="funcio" id="id_div_tabela" rowKeyVar="indice"
 						styleClass="table" rows="10">
@@ -95,9 +95,9 @@
 							<center>
 							<a4j:commandLink
 								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
-								ajaxSingle="true" reRender="id_form" >
-								<h:graphicImage value="/img/ico_alterar.png" />
-							</a4j:commandLink>
+									ajaxSingle="true" reRender="id_form" >
+									<h:graphicImage value="/img/ico_alterar.png" />
+								</a4j:commandLink>
 							<rich:spacer width="25px" />
 							<a4j:commandLink 
 								action="#{manterFuncionarioAction.selecionarFuncionario(funcio)}"

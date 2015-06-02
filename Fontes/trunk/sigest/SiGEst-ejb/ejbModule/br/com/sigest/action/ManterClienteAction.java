@@ -80,7 +80,7 @@ public class ManterClienteAction {
 			listCliente = new ArrayList<Cliente>();
 			listCliente = vendasService.pesquisarClientes(cliente);
 			if (listCliente.isEmpty()) {
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nenhum registro encontrado.", ""));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Registro não Localizado.", ""));
 			}
 		}
 	}

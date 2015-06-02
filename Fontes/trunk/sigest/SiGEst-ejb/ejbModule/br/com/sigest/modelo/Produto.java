@@ -26,7 +26,7 @@ public class Produto {
 	private Long id;
 	
 	@Column(name = "codigo")
-	private BigInteger codigo;
+	private Integer codigo;
 	
 	@Column(name = "descricao")
 	private String descricao;
@@ -58,8 +58,7 @@ public class Produto {
 	@JoinColumn(name="categoria")
 	private Categoria categoria;
 	
-	@OneToMany(mappedBy = "produto")
-	private List<VendaProduto> venda_Produtos;
+
 	
 	
 	public Produto() {
@@ -136,16 +135,6 @@ public class Produto {
 		this.precoVenda = precoVenda;
 	}
 
-	public BigInteger getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(BigInteger codigo) {
-		this.codigo = codigo;
-	}
-
-	
-
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -162,13 +151,15 @@ public class Produto {
 		return categoria;
 	}
 
-	public void setVenda_Produtos(List<VendaProduto> venda_Produtos) {
-		this.venda_Produtos = venda_Produtos;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
-	public List<VendaProduto> getVenda_Produtos() {
-		return venda_Produtos;
+	public Integer getCodigo() {
+		return codigo;
 	}
+
+	
 
 	
 }

@@ -12,6 +12,7 @@ import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
 
+import br.com.sigest.enums.EnumCargoFuncao;
 import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IUsuarioService;
 
@@ -35,6 +36,12 @@ public class Authenticator implements Serializable
     
     @Out(required = false, scope = ScopeType.SESSION)
 	private Funcionario usuarioLogado;
+    
+    
+    private boolean menuCaixa;
+    private boolean menuAdministrador;
+    private boolean menuVendendor;
+    	
     
     public String logout() {
     	usuarioLogado = null;
@@ -60,8 +67,22 @@ public class Authenticator implements Serializable
     		
     		credentials.setUsername(usuarioLogado.getNome());
     		identity.addRole(usuarioLogado.getNome());
-    		return true;
     		
+    		if(usuarioLogado.getCargoFuncao().equals(EnumCargoFuncao.ADMINISTRADOR)){
+    			menuAdministrador = true;
+    			menuCaixa = false;
+    			menuVendendor = false;
+    		}else if(usuarioLogado.getCargoFuncao().equals(EnumCargoFuncao.CAIXA)){
+    			menuCaixa = true;
+    			menuAdministrador = false;
+    			menuVendendor = false;
+    		} else if(usuarioLogado.getCargoFuncao().equals(EnumCargoFuncao.VENDENDO)){
+    			menuVendendor = true;
+    			menuCaixa = false;
+    			menuAdministrador = false;
+    		}
+
+    		return true;
     	}
         return false;
     }
@@ -77,6 +98,41 @@ public class Authenticator implements Serializable
 		return usuarioLogado;
 	}
 
+
+
+	public void setMenuCaixa(boolean menuCaixa) {
+		this.menuCaixa = menuCaixa;
+	}
+
+
+
+	public boolean isMenuCaixa() {
+		return menuCaixa;
+	}
+
+
+
+	public boolean isMenuAdministrador() {
+		return menuAdministrador;
+	}
+
+
+
+	public void setMenuAdministrador(boolean menuAdministrador) {
+		this.menuAdministrador = menuAdministrador;
+	}
+
+
+
+	public boolean isMenuVendendor() {
+		return menuVendendor;
+	}
+
+
+
+	public void setMenuVendendor(boolean menuVendendor) {
+		this.menuVendendor = menuVendendor;
+	}
 
 	
 

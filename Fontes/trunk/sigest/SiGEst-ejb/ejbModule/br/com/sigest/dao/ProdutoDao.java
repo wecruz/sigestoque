@@ -51,7 +51,7 @@ public class ProdutoDao {
 	}
 	
 	
-	public List<Produto> pesquisarProdutoPorCodigo(BigInteger codigo){
+	public List<Produto> pesquisarProdutoPorCodigo(Integer codigo){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Produto.class, "produto");
 		

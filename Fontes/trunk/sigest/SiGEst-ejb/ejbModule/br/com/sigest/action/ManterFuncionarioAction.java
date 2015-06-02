@@ -139,12 +139,13 @@ public class ManterFuncionarioAction {
 	public void pesquisarFuncioanrios() {
 		if (validarCriterioPesquisa()) {
 			funcionarios = new ArrayList<Funcionario>();
+			funcionario.setCpf(funcionario.getCpf().replaceAll("[^0-9]", "")); 
 			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
 			if (funcionarios.isEmpty()) {
 				FacesContext.getCurrentInstance().addMessage(
 						null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Nenhum Registro Localizado.", ""));
+								"Registro não Localizado.", ""));
 				setFlagMensagen(false);
 			}
 		}
@@ -186,7 +187,7 @@ public class ManterFuncionarioAction {
 	}
 
 	public boolean validarCriterioPesquisa() {
-		if (funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty()) {
+		if (funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty() && funcionario.getCargoFuncao() == null) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,

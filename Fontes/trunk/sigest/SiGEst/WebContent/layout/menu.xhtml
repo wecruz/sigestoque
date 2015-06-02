@@ -12,14 +12,15 @@
 				propagation="none" />
 		</rich:toolBarGroup>
 		
-		<rich:toolBarGroup>
+		
+		<rich:toolBarGroup rendered="#{authenticator.menuAdministrador}"  >
 			<h:graphicImage value="/img/menu/fornecedores.png" height="24" width="24px" />
 			<s:link id="menuFornecedoresId" action="fornecedores"
 				value="Fornecedores" propagation="none" />
 		</rich:toolBarGroup>
 
 		<h:form>
-			<rich:dropDownMenu>
+			<rich:dropDownMenu rendered="#{authenticator.menuAdministrador}">
 				<f:facet name="label">
 					<h:panelGroup>
 						<h:graphicImage value="/img/menu/produtos.png" height="24" width="24px" />
@@ -39,17 +40,17 @@
 			</rich:dropDownMenu>
 		</h:form>
 		
-		<rich:toolBarGroup>
+		<rich:toolBarGroup rendered="#{authenticator.menuAdministrador || authenticator.menuVendendor}">
 			<h:graphicImage value="/img/menu/clientes.png" height="24" width="24px" />
 			<s:link id="menuClientesId" action="clientes" value="Clientes"
 				propagation="none" />
 		</rich:toolBarGroup>
-		<rich:toolBarGroup>
+		<rich:toolBarGroup rendered="#{authenticator.menuAdministrador}">
 			<h:graphicImage value="/img/menu/funcionarios.png" height="24" width="24px" />
 			<s:link id="menuFuncionariosId" action="funcionarios"
 				value="Funcionarios" propagation="none" />
 		</rich:toolBarGroup>
-		<rich:toolBarGroup>
+		<rich:toolBarGroup rendered="#{authenticator.menuAdministrador || authenticator.menuVendendor}">
 			<h:graphicImage value="/img/menu/relatorio.png" height="24" width="24px" />
 			<s:link id="menuRelatoriosId" action="relatorios" value="Relatorios"
 				propagation="none" />
@@ -59,7 +60,7 @@
 		
 		
 		<h:form>
-			<rich:dropDownMenu>
+			<rich:dropDownMenu rendered="#{authenticator.menuAdministrador || authenticator.menuVendendor}">
 				<f:facet name="label">
 					<h:panelGroup>
 						<h:graphicImage value="/img/menu/vendas.png" height="24" width="24px" />
@@ -79,7 +80,7 @@
 			</rich:dropDownMenu>
 		</h:form>
 		
-		<rich:toolBarGroup>
+		<rich:toolBarGroup rendered="#{authenticator.menuCaixa || authenticator.menuAdministrador}">
 			<h:graphicImage value="/img/ico_caixa.png" height="24" width="24px"/>
 			<s:link id="menuCaixaId" action="caixa" value="Caixa"
 				propagation="none" />

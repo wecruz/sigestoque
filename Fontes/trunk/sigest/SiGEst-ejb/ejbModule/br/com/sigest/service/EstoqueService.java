@@ -1,6 +1,5 @@
 package br.com.sigest.service;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import javax.ejb.Remove;
@@ -18,7 +17,6 @@ import br.com.sigest.dao.VendaDao;
 import br.com.sigest.modelo.Categoria;
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
-import br.com.sigest.modelo.Venda;
 import br.com.sigest.modelo.VendaRelatorioDto;
 
 @Name("estoqueService")
@@ -92,7 +90,7 @@ public class EstoqueService implements IEstoqueService {
 		return vendaDao.pesquisarVendaMes();
 	}
 	
-	public List<Produto> pesquisarProdutoPorCodigo(BigInteger codigo) {
+	public List<Produto> pesquisarProdutoPorCodigo(Integer codigo) {
 		return produtoDao.pesquisarProdutoPorCodigo(codigo);
 	}
 

@@ -43,7 +43,7 @@ public interface IEstoqueService {
 	
 	List<VendaRelatorioDto> pesquisarVendaMes();
 	
-	List<Produto> pesquisarProdutoPorCodigo(BigInteger codigo);
+	List<Produto> pesquisarProdutoPorCodigo(Integer codigo);
 	
 	
 	void destroy();
