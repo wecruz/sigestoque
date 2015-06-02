@@ -80,16 +80,14 @@
 						</div>
 				</div>
 				</div>
-				<div style="width: 100%">
-					<div style="margin: 10px auto; width: 180px ">
+				<center>
 						<h:commandButton value="Pesquisar"
 							styleClass="btn btn-info navbar-btn"
 							action="#{manterProdutoAction.pesquisarProduto()}" />
 						<h:commandButton value="Novo Cadastro"
 							styleClass="btn btn-primary navbar-btn"
 							action="#{manterProdutoAction.novoCadastro()}" immediate="true" />
-					</div>
-				</div>
+				</center>			
 			</div>
 
 			<s:div styleClass="form-group" id="id_tabela_produto"
@@ -112,7 +110,7 @@
 							<h:outputText value="#{produto.categoria.nome}" />
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Operações</f:facet>
+							<f:facet name="header">Operaï¿½ï¿½es</f:facet>
 							
 							<div class="bot01">
 							<div class="imgBot">
@@ -150,7 +148,7 @@
 								</div>
 								<div class="coluna33pc">
 									<div class="tARight">
-										<s:label value="Registros Por Página :" />
+										<s:label value="Registros Por Pï¿½gina :" />
 										<h:selectOneMenu value="#{manterProdutoAction.qntProdutos}">
 											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
 											<f:selectItem itemLabel="50" itemValue="50" />
