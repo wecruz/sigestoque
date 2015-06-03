@@ -6,78 +6,66 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	template="layout/templateLogin.xhtml">
-
 	<ui:define name="body">
 		<h:form id="loginForm">
-		<center>
-				<rich:spacer height="40px" />
-			
-				<div style="width: 700px;">
-					<center>
+	
+				<div class="boxlogin" style="width: 1000px; margin: 30px 0px -20px 0px">
+						<div class="logoimagem">
+							<h:graphicImage value="/img/box_sigest.png" styleClass="imglogo" />
+						</div>
+						<div style="width: 700px; margin: 5px auto -20px">
 						<h:messages infoClass="alert alert-success" styleClass="msgAlertaSucesso"
 							errorClass="alert alert-danger" warnClass="alert alert-succes" />
-					</center>
 				</div>
-			
-
-		
-			<div class="boxlogin">
-				<div class="logoimagem">
-					<h:graphicImage value="/img/box_sigest.png" styleClass="imglogo" />
+						<!-- login -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="titulo">Alterar Senha</div>
 				</div>
-				<!-- login -->
+				<div style=" width: 1000px">
+						<div class="form-horizontal" style=" width: 780px; margin-top: 15px">
 
+								<div class="form-group linha">
+									<div class="col-sm-5 control-label">
+										<h:outputLabel for="username">Senha Atual: </h:outputLabel>
+									</div>
+									<div class="col-sm-5">
+										<h:inputText  value="#{alterarSenhaAction.senhaAtual}"
+											styleClass="form-control"/>
+									</div>
+								</div>
+								<div class="form-group linha">
+									<div class="col-sm-5 control-label">
+										<h:outputLabel for="password">Nova Senha: </h:outputLabel>
+									</div>
+									<div class="col-sm-5">
+										<h:inputSecret  value="#{alterarSenhaAction.novaSenha}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group linha">
+									<div class="col-sm-5 control-label">
+										<h:outputLabel >Confirmar Nova Senha: </h:outputLabel>
+									</div>
+									<div class="col-sm-5">
+										<h:inputSecret  value="#{alterarSenhaAction.confimarNovaSenha}"
+											styleClass="form-control" />
+									</div>
+								</div>
 
-
-
-				<div class="form-horizontal">
-				
-					<div class="form-group linha">
-						<div class="col-sm-5 control-label">
-							<h:outputLabel for="username">Senha Atual: </h:outputLabel>
-						</div>
-						<div class="col-sm-5">
-							<h:inputText  value="#{alterarSenhaAction.senhaAtual}"
-								styleClass="form-control"/>
 						</div>
 					</div>
-					<div class="form-group linha">
-						<div class="col-sm-5 control-label">
-							<h:outputLabel for="password">Nova Senha: </h:outputLabel>
-						</div>
-						<div class="col-sm-5">
-							<h:inputSecret  value="#{alterarSenhaAction.novaSenha}"
-								styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group linha">
-						<div class="col-sm-5 control-label">
-							<h:outputLabel >Confirmar Nova Senha: </h:outputLabel>
-						</div>
-						<div class="col-sm-5">
-							<h:inputSecret  value="#{alterarSenhaAction.confimarNovaSenha}"
-								styleClass="form-control" />
-						</div>
-					</div>
-					
-				</div>
-				<div class="botao">
-					<center>
-						<h:commandButton  value="Aterar"
+					<div style="width: 100%">
+						<div style="margin: 10px auto; width: 180px ">
+							<h:commandButton  value="Aterar"
 							action="#{alterarSenhaAction.alterarSenha()}" class="btn btn-primary" />
-
-				<rich:spacer width="40px" />
-				
-
-
-					<s:link view="/home.xhtml" value="Voltar"  styleClass="btn btn-link" >
-					</s:link>
-				</center>
+							<rich:spacer width="40px" />
+							<s:link view="/home.xhtml" value="Voltar"  styleClass="btn btn-link" >
+							</s:link>
+						</div>
+					</div>
 				</div>
-
-
 			</div>
-			</center>
 		</h:form>
 	</ui:define>
 </ui:composition>
