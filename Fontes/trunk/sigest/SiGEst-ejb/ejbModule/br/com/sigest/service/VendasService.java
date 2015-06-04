@@ -82,6 +82,10 @@ public class VendasService implements IVendasService{
 	public List<Venda> pesquisarVendas(Venda venda) {
 		return vendaDao.pesquisarVendas(venda);
 	}
+
+	public List<Produto> pesquisarProdutoPorCodigo(Integer codigo) {
+		return produtoDao.pesquisarProdutoPorCodigo(codigo);
+	}
 	
 	@Destroy
 	public void destroy() {
@@ -92,5 +96,6 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
 
 }

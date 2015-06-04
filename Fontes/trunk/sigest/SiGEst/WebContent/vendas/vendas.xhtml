@@ -115,7 +115,6 @@
 							<div class="col-sm-9 control-label">
 								<div id="botaoAlterar">
 									<h:commandButton value="Alterar" immediate="true"
-									rendered="#{manterVendasAction.cliente.id != null}"
 									styleClass="btn btn-warning navbar-btn"
 									action="#{manterVendasAction.limpar()}" />
 								</div>
@@ -130,16 +129,31 @@
 						<a4j:outputPanel id="id_panel_produto">
 							<div class="form-group linha">
 								<div class="col-sm-2 control-label">
-									<h:outputLabel value="Codigo Produto: " />
+									<h:outputLabel value="Codigo Produto*: " />
 								</div>
+
 								<a4j:region>
 									<div class="col-sm-5">
-										<h:inputText label="Codigo Produto"
-											value="#{manterVendasAction.vendasClientesDTO.produto.codigo}"
-											styleClass="form-control" />
-
+										<h:inputText id="id_txt_codigo_produto" label="Codigo Produto"
+											styleClass="form-control" 
+											value="#{manterVendasAction.vendasClientesDTO.produto.codigo}" />
 									</div>
-									
+									<rich:suggestionbox frequency="0.001" minChars="0"
+										for="id_txt_codigo_produto" width="500"
+										nothingLabel="Não encontrado"
+										suggestionAction="#{manterVendasAction.pesquisarProdutoCPF}"
+										var="produt" ajaxSingle="true" requestDelay="0">
+										<h:column>
+											<h:outputText value="#{produt.codigo}" />
+										</h:column>
+										<a4j:support event="onselect"
+											reRender="id_panel_produto,id_form,id_field_produto"
+											action="#{manterVendasAction.renderdProduto(produt)}">
+											<f:setPropertyActionListener
+												target="#{manterVendasAction.vendasClientesDTO.produto}"
+												value="#{produt}" />
+										</a4j:support>
+									</rich:suggestionbox>
 								</a4j:region>
 							</div>
 							<div class="form-group linha">
@@ -171,6 +185,8 @@
 									</rich:suggestionbox>
 								</a4j:region>
 							</div>
+							
+							
 						
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
@@ -196,10 +212,17 @@
 							</div>
 						</div>
 						</a4j:outputPanel>
-
+						
 						<div class="col-sm-8 control-label">
+								<div id="botaoAlterar">
+									<h:commandButton value="Alterar" immediate="true"
+									styleClass="btn btn-warning navbar-btn"
+									action="#{manterVendasAction.limparProduto()}" />
+								</div>
+						
 							<div id="botaoAdicionar">
-								<h:commandButton value="Adicionar"
+								<h:commandButton value="Adicionar" 
+								rendered="#{manterVendasAction.flagRenderProduto}"
 								styleClass="btn btn-primary navbar-btn"
 								action="#{manterVendasAction.adicionarProduto()}" />
 							</div>

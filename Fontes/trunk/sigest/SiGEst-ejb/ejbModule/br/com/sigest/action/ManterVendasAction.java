@@ -58,7 +58,7 @@ public class ManterVendasAction {
 	
 	private Venda vendaSelecionada = new Venda();
 	
-	
+	private boolean flagRenderProduto;
 	
 	private PedidoDTO pedidoDTO = new PedidoDTO();
 
@@ -113,8 +113,6 @@ public class ManterVendasAction {
 					return;
 				}
 			}
-			
-			
 			
 				valorTotal = 0F;
 				float valorPorProduto  = vendasClientesDTO.getQuantidadeProduto() * vendasClientesDTO.getProduto().getPrecoVenda();
@@ -263,6 +261,23 @@ public class ManterVendasAction {
 			return listaRetorno;
 		}
 	
+	public List<Produto> pesquisarProdutoCPF(Object autoComplete) {
+
+		List<Produto> listaRetorno = new ArrayList<Produto>();
+		
+			String texto = (String) autoComplete;
+			List<Produto> listProduto = fidAllProdutoPorCpf(vendasClientesDTO.getProduto().getCodigo());
+
+			for (Produto produt : listProduto) {
+				String idStr = String.valueOf(produt.getId());
+				if (produt.getNomeProduto().toLowerCase().contains(texto.toLowerCase())
+						|| idStr.equalsIgnoreCase(texto)) {
+					listaRetorno.add(produt);
+				}
+			}
+			return listaRetorno;
+		}
+	
 	
 	
 	
@@ -289,6 +304,12 @@ public class ManterVendasAction {
 	@Factory(value="fidAllProdutoPorNome" , scope=ScopeType.CONVERSATION , autoCreate = true)
 	public List<Produto> fidAllProdutoPorNome(Produto produto){
 		setProdutos(vendasService.pesquisarProdutos(produto));
+		return getProdutos();
+	}
+	
+	@Factory(value="fidAllProdutoPorCpf" , scope=ScopeType.CONVERSATION , autoCreate = true)
+	public List<Produto> fidAllProdutoPorCpf(Integer codigo){
+		setProdutos(vendasService.pesquisarProdutoPorCodigo(codigo));
 		return getProdutos();
 	}
 	
@@ -329,12 +350,26 @@ public class ManterVendasAction {
 	}
 	
 	public void renderdProduto(Produto produto){
+		
+		if(produto.getQuantidade() == 0){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+					"O produto " + produto.getNomeProduto() + " Estar Com estoque 0." , ""));
+			setFlagRenderProduto(false);
+			return;
+		}else{
+		setFlagRenderProduto(true);
 		this.vendasClientesDTO.setQuantidadeMaxProduto(produto.getQuantidade());
 		this.vendasClientesDTO.setProduto(produto);
+		}
 	}
 	
 	public String limpar(){
 		this.cliente = new Cliente();
+		return "/vendas/vendas.xhtml";
+	}
+	
+	public String limparProduto(){
+		this.vendasClientesDTO.setProduto(new Produto());
 		return "/vendas/vendas.xhtml";
 	}
 	
@@ -467,6 +502,14 @@ public class ManterVendasAction {
 
 	public Integer getIndice() {
 		return indice;
+	}
+
+	public void setFlagRenderProduto(boolean flagRenderProduto) {
+		this.flagRenderProduto = flagRenderProduto;
+	}
+
+	public boolean isFlagRenderProduto() {
+		return flagRenderProduto;
 	}
 
 	

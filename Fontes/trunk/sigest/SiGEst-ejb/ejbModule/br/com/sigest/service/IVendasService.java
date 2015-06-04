@@ -40,6 +40,8 @@ public interface IVendasService {
 
 	List<Venda> pesquisarVendas(Venda venda);
 	
+	List<Produto> pesquisarProdutoPorCodigo(Integer codigo);
+	
 	void destroy();
 	
 	void remove();
