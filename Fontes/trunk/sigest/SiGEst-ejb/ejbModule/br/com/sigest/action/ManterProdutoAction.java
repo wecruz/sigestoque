@@ -127,6 +127,7 @@ public class ManterProdutoAction {
 		if(upFile.getCaminho() !=null){
 			produto.setLinkImagem(upFile.getCaminho());			
 		}
+		produto.setAtivo(true);
 		estoqueService.salvarProduto(produto);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		produto = new Produto(new Fornecedor());
@@ -167,6 +168,7 @@ public class ManterProdutoAction {
 	
 	public void excluirProduto(){
 		listProdutos.remove(produtoSelecionado);
+		produtoSelecionado.setAtivo(false);
 		estoqueService.deletarProduto(produtoSelecionado);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		produto = new Produto();

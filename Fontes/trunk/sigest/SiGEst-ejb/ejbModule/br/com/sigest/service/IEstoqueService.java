@@ -1,6 +1,5 @@
 package br.com.sigest.service;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import br.com.sigest.modelo.Categoria;

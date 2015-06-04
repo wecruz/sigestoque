@@ -35,6 +35,7 @@ public class ProdutoDao {
 	public List<Produto> pesquisarProduto(Produto produto){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Produto.class, "produto");
+		criteria.add(Restrictions.eq("produto.ativo", true));
 		if (produto.getNomeProduto() != null) {
 			criteria.add(Restrictions.like("produto.nomeProduto", produto.getNomeProduto(), MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -92,6 +93,6 @@ public class ProdutoDao {
 	}
  	
 	public void deletarProduto(Produto produto){
-		entityManager.remove(produto);
+		entityManager.merge(produto);
 	}
 }

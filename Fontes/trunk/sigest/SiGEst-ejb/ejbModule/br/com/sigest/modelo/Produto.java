@@ -1,8 +1,6 @@
 package br.com.sigest.modelo;
 
-import java.math.BigInteger;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +21,9 @@ public class Produto {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id_produto", nullable = false)
 	private Long id;
+	
+	
+	private Boolean ativo;
 	
 	@Column(name = "codigo")
 	private Integer codigo;
@@ -157,6 +157,14 @@ public class Produto {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
 	}
 
 	
