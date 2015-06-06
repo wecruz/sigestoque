@@ -20,7 +20,7 @@
 			</center>
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Manter Funcionarios</div>
+					<div class="titulo">Cadastrar Funcionários</div>
 				</div>
 				<div style="width: 100%">
 					<div class="form-horizontal" style=" width: 700px; margin: 15px 0px 15px 200px">
@@ -72,7 +72,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
-								<h:outputLabel value="E-MAIL: " >
+								<h:outputLabel value="E-mail: " >
 									
 								</h:outputLabel>
 							</div>
@@ -98,7 +98,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-2 control-label">
-									<h:outputLabel value="Telefone residencial: " />
+									<h:outputLabel value="Telefone Residencial: " />
 								</div>
 								<div class="col-sm-5">
 									<h:inputText
@@ -140,8 +140,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="width: 100%">
-					<div style="margin: 10px auto; width: 180px ">
+				<center>
 						<h:commandButton action="#{manterFuncionarioAction.salvar()}"
 							 value="Cadastrar" id="_id_brn_salva"
 							rendered="#{manterFuncionarioAction.flagNovoCadastro}"
@@ -150,13 +149,13 @@
 						</h:commandButton>
 						<a4j:commandButton action="#{manterFuncionarioAction.cancelar()}"
 						value="Cancelar" styleClass="btn btn-danger navbar-btn" ajaxSingle="true"/>
-					</div>
-				</div>
+				</center>
+				<rich:spacer width="5px" />
 			</div>
 			<s:div styleClass="form-group" id="id_tabela_funcio"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
 				<div class="table-responsive, panel panel-info" style="margin-top: -20px">
-					<div class="panel-heading">Lista de Funcionarios Cadastrados</div>
+					<div class="panel-heading">Lista de Funcionários Cadastrados</div>
 					<rich:dataTable value="#{manterFuncionarioAction.funcionarios}"
 						var="funcio" id="id_div_tabela" rowKeyVar="indice"
 						styleClass="table" rows="10">
@@ -174,57 +173,47 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							
-							<div class="bot01">
-							<div class="imgBot"><h:graphicImage value="/img/ico_alterar.png" /></div>
-							<div class="corpoBot">
+							<center>
 							<a4j:commandLink
 								action="#{manterFuncionarioAction.alterar(funcio, indice)}"
-								value="Alterar" ajaxSingle="true" reRender="id_form" /></div>
-							</div>
-							
+									ajaxSingle="true" reRender="id_form" >
+									<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
 							<rich:spacer width="25px" />
-							
-							<div class="bot02">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_excluir.png" /></div>									
-							<div class="corpoBot">
-							<a4j:commandLink
+							<a4j:commandLink 
 								action="#{manterFuncionarioAction.selecionarFuncionario(funcio)}"
 								oncomplete="Richfaces.showModalPanel('painel')"
-								value="Excluir" ajaxSingle="true" reRender="id_form,id_div_tabela"/></div>
-							</div>
-						
+								ajaxSingle="true" reRender="id_form,id_div_tabela">
+								<h:graphicImage value="/img/ico_excluir.png" />
+							</a4j:commandLink>	
+							</center>
 						</rich:column>
 						
 						<f:facet name="footer">
-								<s:div styleClass="panel panel-info" >
-									<s:div styleClass="">
-										<s:div styleClass="">
-											<h:outputLabel value="Total Registros: " />
-											<h:outputText
-												value="#{manterFuncionarioAction.funcionarios.size()}" />
-										</s:div>
-									</s:div>
-									<s:div styleClass="">
+								<s:div styleClass="panel-heading" >
+									<div class="coluna33pc">
+										<div class="titulo_150">
+											<s:label value="Total Registros:" />
+											<h:outputText style="margin-left: 4px" value="#{manterFuncionarioAction.funcionarios.size()}" />
+										</div>
+									</div>
+									<div class="coluna33pc">
 										<rich:datascroller id="datascroller" renderIfSinglePage="true"
-											immediate="true" styleClass="" />
-									</s:div>
-									<s:div styleClass="">
-										<s:div styleClass="tARight">
-											<h:outputLabel value="Registros Por Página: " />
-											<h:selectOneMenu
-												value="#{manterFuncionarioAction.qntFuncionarios}">
-												<f:selectItem itemLabel="10" itemValue="10"
-													noSelectionOption="true" />
+											immediate="true" styleClass="wrap-paginacao" />
+									</div>
+									<div class="coluna33pc">
+										<div class="tARight">
+											<s:label value="Registros por Página:" />
+											<h:selectOneMenu style="margin-left: 4px" value="#{manterFuncionarioAction.qntFuncionarios}">
+												<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
 												<f:selectItem itemLabel="50" itemValue="50" />
 												<f:selectItem itemLabel="100" itemValue="100" />
 												<f:selectItem itemLabel="150" itemValue="150" />
 												<f:selectItem itemLabel="200" itemValue="200" />
 												<a4j:support event="onchange" reRender="id_div_tabela" />
 											</h:selectOneMenu>
-										</s:div>
-									</s:div>
+										</div>
+									</div>
 								</s:div>
 							</f:facet>
 					</rich:dataTable>

@@ -95,6 +95,7 @@
 												styleClass="form-control" 
 												value="#{manterVendasAction.cliente.cpf}" />
 										</div>
+										
 										<rich:suggestionbox frequency="0.001" minChars="0"
 											for="id_txt_cpf_cliente" width="500"
 											nothingLabel="Não encontrado" 
@@ -112,15 +113,14 @@
 									</a4j:region>
 								</a4j:outputPanel>
 							</div>
-							<div class="col-sm-9 control-label">
+						</fieldset>
+														<div class="col-sm-9 control-label">
 								<div id="botaoAlterar">
 									<h:commandButton value="Alterar" immediate="true"
 									styleClass="btn btn-warning navbar-btn"
 									action="#{manterVendasAction.limpar()}" />
 								</div>
-							</div>
-
-						</fieldset>
+								</div>
 					</a4j:outputPanel>
 					<br /> <br />
 					<fieldset class="form-search" id="id_field_produto">
@@ -185,9 +185,7 @@
 									</rich:suggestionbox>
 								</a4j:region>
 							</div>
-							
-							
-						
+
 						<div class="form-group linha">
 							<div class="col-sm-2 control-label">
 								<h:outputLabel value="Valor Unitario: " rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}"/>
@@ -258,34 +256,31 @@
 									</rich:column>
 									<rich:column>
 										<f:facet name="header">Operações</f:facet>
-										<div class="bot01">
-										<div class="imgBot"><h:graphicImage value="/img/ico_alterar.png" /></div>
-										<div class="corpoBot">
-										<h:commandLink value="Alterar" id="id_btn_alterar"
+										<center>
+										<h:graphicImage value="/img/ico_alterar.png" />
+										<h:commandLink id="id_btn_alterar"
 										action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
-										</h:commandLink></div>
-										</div>
+										</h:commandLink>
 										<rich:spacer width="20px" />
-										
-										<div class="bot02">
-										<div class="imgBot">
-										<h:graphicImage value="/img/ico_excluir.png" /></div>									
-										<div class="corpoBot"><h:commandLink value="Excluir"
+
+										<h:graphicImage value="/img/ico_excluir.png" />									
+										<h:commandLink
 											action="#{manterVendasAction.removerProduto(vendaProduto,indice)}">
-										</h:commandLink></div>
-										</div>
-										
+										</h:commandLink>
+										</center>
 									</rich:column>
 								</rich:dataTable>
 							</div>
 							<div class="form-group linha" id="id_valor_total">
 								<div class="col-sm-10 control-label">
-									<h2>
+									<center>
+									<h2 Style="width: 1000px">
 										<h:outputText value="TOTAL: " styleClass="page-header" />
+										<h:outputText value=" R$" styleClass="page-header" />
 										<h:outputText value=" #{manterVendasAction.valorTotal}"
 											styleClass="page-header" />
-										<h:outputText value=" R$" styleClass="page-header" />
 									</h2>
+									</center>
 								</div>
 							</div>
 						</s:div>

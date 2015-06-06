@@ -124,16 +124,15 @@
 				
 				</div>
 				</div>
-				<div style="width: 100%">
-					<div style="margin: 10px auto; width: 180px ">
-						<h:commandButton action="#{manterFornecedoreAction.salvar()}"
-							value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
-		
-						<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
-							reRender="id_div_tabela,idform" value="Cancelar"
-							styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
-					</div>
-				</div>
+				<center>
+					<h:commandButton action="#{manterFornecedoreAction.salvar()}"
+						value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
+	
+					<a4j:commandButton action="#{manterFornecedoreAction.cancelar()}"
+						reRender="id_div_tabela,idform" value="Cancelar"
+						styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
+				</center>
+				<rich:spacer height="5px" />
 			</div>
 
 			<s:div styleClass="form-group" id="id_tabela_funcio"
@@ -157,40 +156,51 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<div class="bot01">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_alterar.png" /></div>
-							<div class="corpoBot">
+							<center>
 							<a4j:commandLink
 								action="#{manterFornecedoreAction.alterar(indice,fornece)}"
-								value="Alterar" ajaxSingle="true" reRender="idform" >
-							</a4j:commandLink></div>
-							</div>
+								ajaxSingle="true" reRender="idform" >
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
 							
 							<rich:spacer width="25px" />
 							
-							<div class="bot02">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_excluir.png" /></div>									
-							<div class="corpoBot">
-							<a4j:commandLink value="Excluir"
+							<a4j:commandLink
 								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
 								reRender="id_tabela_funcio,idform"
 								oncomplete="Richfaces.showModalPanel('painel')">
-							</a4j:commandLink></div>
-							</div>
-
+							<h:graphicImage value="/img/ico_excluir.png" />
+							</a4j:commandLink>
+							</center>
+							<rich:spacer height="5px" />
 						</rich:column>
+						<f:facet name="footer">
+							<s:div styleClass="panel-heading">
+								<div class="coluna33pc">
+									<div class="titulo_150">
+										<s:label value="Total Registros:" />
+										<h:outputText value="#{manterFornecedoreAction.listFornecedores.size()}" />
+									</div>
+								</div>
+								<div class="coluna33pc">
+									<rich:datascroller renderIfSinglePage="true"  styleClass="wrap-paginacao" immediate="true" reRender="id_tabela_funcio" />
+								</div>
+								<div class="coluna33pc">
+									<div class="tARight">
+										<s:label value="Registros Por Página :" />
+										<h:selectOneMenu value="#{manterFornecedoreAction.qntFornecedores}" >
+											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true"/>
+											<f:selectItem itemLabel="50" itemValue="50" />
+											<f:selectItem itemLabel="100" itemValue="100" />
+											<f:selectItem itemLabel="150" itemValue="150" />
+											<f:selectItem itemLabel="200" itemValue="200" />
+											<a4j:support event="onchange" reRender="id_div_tabela" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</s:div>
+						</f:facet>
 					</rich:dataTable>
-					<h:outputText value="Total de Registro:" />
-					<center>
-						<rich:datascroller for="id_div_tabela" maxPages="20"
-							styleClass="pagination btn-toolbar btn-group"
-							page="#{manterFornecedoreAction.qntFornecedores}" id="sc2"
-							reRender="sc1">
-						</rich:datascroller>
-					</center>
-
 				</div>
 			</s:div>
 

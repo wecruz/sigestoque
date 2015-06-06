@@ -115,13 +115,13 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<div style="background-color: #ECF4FE; width: 60px; height:22px; border-width: 2px; border-style: dotted; border-color: #D7E8FD; margin-top: -1px; display:block; position:relative;">
-							<div style="margin-right: 7px; width: 16px; float:left"><h:graphicImage value="/img/ico_pagar.png" /></div>
-							<a4j:commandLink value="Pagar"
-								action="#{manterCaixaAction.selecinarVenda(venda)}"
+							<center>
+							<a4j:commandLink action="#{manterCaixaAction.selecinarVenda(venda)}"
 								ajaxSingle="true" reRender="id_form"
-								oncomplete="Richfaces.showModalPanel('painel')" />
-							</div>
+								oncomplete="Richfaces.showModalPanel('painel')" >
+								<h:graphicImage value="/img/ico_pagar.png" />
+							</a4j:commandLink>
+							</center>
 						</rich:column>
 					</rich:dataTable>
 				</div>
@@ -144,19 +144,16 @@
 							<h:outputLabel value="Nome Cliente: " />
 						</div>
 						<div class="col-sm-5 ">
-							<h:outputText value="#{manterCaixaAction.venda.cliente.nome}"
-								/>
+							<h:outputText value="#{manterCaixaAction.venda.cliente.nome}"/>
 						</div>
 					</div>
-					
-						<div class="col-sm-5 control-label">
-							<h:outputLabel value="CPF: " />
-						</div>
-						<div class="col-sm-5">
-							<h:outputText value="#{manterCaixaAction.venda.cliente.cpf}" />
-						</div>
-					
+					<div class="col-sm-5 control-label">
+						<h:outputLabel value="CPF: " />
 					</div>
+					<div class="col-sm-5">
+						<h:outputText value="#{manterCaixaAction.venda.cliente.cpf}" />
+					</div>
+				</div>
 				
 				<div class="form-horizontal ">
 				<br />

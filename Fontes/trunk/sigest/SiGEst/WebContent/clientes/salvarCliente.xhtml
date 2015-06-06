@@ -23,7 +23,7 @@
 			</center>
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Clientes</div>
+					<div class="titulo">Cadastrar Clientes</div>
 				</div>
 				<div style="width: 100%">
 					<div class="form-horizontal" style=" width: 510px; margin: 15px auto">
@@ -88,23 +88,19 @@
 							</div>
 					</div>
 				</div>
-				<div style="width: 100%">
-					<div style="margin: 10px auto; width: 180px ">
+				<center>
 						<h:commandButton 
 							action="#{manterClienteAction.salvarCliente()}" value="Cadastrar"
 							styleClass="btn btn-primary navbar-btn" />
 
 						<h:commandButton action="#{manterClienteAction.cancelar()}"
 							value="Cancelar" styleClass="btn btn-danger navbar-btn" />
-					</div>
-				</div>
+				</center>
+				<rich:spacer height="5px" />
 			</div>
-			<rich:spacer height="20px" />
-
-
 			<s:div styleClass="form-group" id="id_tabela_funcio"
 				rendered="#{manterClienteAction.listCliente.size() >0}">
-				<div class="table-responsive, panel panel-info" style="margin-top: -40px">
+				<div class="table-responsive, panel panel-info" style="margin-top: -20px">
 					<div class="panel-heading">Lista de Clientes</div>
 					<rich:dataTable value="#{manterClienteAction.listCliente}"
 						var="cliente" id="id_div_tabela" rowKeyVar="indice"
@@ -119,48 +115,37 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							
-							<div class="bot01">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_alterar.png" /></div>
-							<div class="corpoBot">
+							<center>
 							<a4j:commandLink 
-								value="Alterar" action="#{manterClienteAction.alterar(cliente,indice)}"
+								action="#{manterClienteAction.alterar(cliente,indice)}"
 								ajaxSingle="true" reRender="id_form" >
-							</a4j:commandLink></div>
-							</div>
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
 							
 							<rich:spacer width="25px" />
-							
-							<div class="bot02">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_excluir.png" /></div>									
-							<div class="corpoBot">
+
 							<a4j:commandLink
-								value="Excluir" action="#{manterClienteAction.selecionarCliente(cliente)}"
+								action="#{manterClienteAction.selecionarCliente(cliente)}"
 								reRender="id_tabela_funcio,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')" >
-							</a4j:commandLink></div>
-							</div>
+								<h:graphicImage value="/img/ico_excluir.png" />
+							</a4j:commandLink>
 							
 							<rich:spacer width="25px" />
 							
-							<div class="botCliVen">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_vendas.png" /></div>
-							<div class="corpoBot">
 							<a4j:commandLink ajaxSingle="true"
-								value="Vendas" action="#{manterVendasAction.manipulaVendas(cliente)}"
+								action="#{manterVendasAction.manipulaVendas(cliente)}"
 								reRender="id_form">
-							</a4j:commandLink></div>
-							</div>
+								<h:graphicImage value="/img/ico_vendas.png" />
+							</a4j:commandLink>
+						</center>
 						</rich:column>
 						<f:facet name="footer">
 							<s:div styleClass="panel-heading">
 								<div class="coluna33pc">
 									<div class="titulo_150">
 										<s:label value="Total Registros:" />
-										<h:outputText value="#{manterClienteAction.listCliente.size()}" />
+										<h:outputText style="margin-left: 4px" value="#{manterClienteAction.listCliente.size()}" />
 									</div>
 								</div>
 								<div class="coluna33pc">
@@ -168,8 +153,8 @@
 								</div>
 								<div class="coluna33pc">
 									<div class="tARight">
-										<s:label value="Registros Por Página :" />
-										<h:selectOneMenu value="#{manterClienteAction.qntClientes}">
+										<s:label value="Registros por Página:" />
+										<h:selectOneMenu style="margin-left: 4px" value="#{manterClienteAction.qntClientes}">
 											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
 											<f:selectItem itemLabel="50" itemValue="50" />
 											<f:selectItem itemLabel="100" itemValue="100" />

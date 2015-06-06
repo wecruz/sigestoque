@@ -23,7 +23,7 @@
 			
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Cadastrar Produto</div>
+					<div class="titulo">Cadastrar Produtos</div>
 				</div>
 				<div style="width: 100%">
 					<div class="form-horizontal" style="margin: 15px 0px 15px 200px;">
@@ -200,16 +200,15 @@
 						</div>
 					</div>
 				</div>
-					<div style="width: 100%">
-						<div style="margin: 10px auto; width: 180px ">
+					<center>
 								<h:commandButton action="#{manterProdutoAction.salvarProduto()}"
 									value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
 
 								<a4j:commandButton action="#{manterProdutoAction.cancelar()}"
 									value="Cancelar" reRender="id_form,id_div_tabela"
 									styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
-						</div>
-					</div>
+					</center>
+					<rich:spacer height="5px" />
 			</div>
 			<s:div styleClass="form-group" id="id_tabela_produto"
 				rendered="#{manterProdutoAction.listProdutos.size() >0}">
@@ -232,35 +231,27 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<div class="bot01">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_alterar.png" /></div>
-							<div class="corpoBot">
+							<center>
 							<a4j:commandLink
 								action="#{manterProdutoAction.alterar(produto,indice)}"
-								value="Alterar" ajaxSingle="true" reRender="id_form" >
-							</a4j:commandLink></div>
-							</div>
-							
-							<rich:spacer width="25px" />
-							
-							<div class="bot02">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_excluir.png" /></div>									
-							<div class="corpoBot">
-							<a4j:commandLink value="Excluir"
-								action="#{manterProdutoAction.selecionarProduto(produto)}"
+								ajaxSingle="true" reRender="id_form" >
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
+							<rich:spacer width="25px" />						
+							<a4j:commandLink action="#{manterProdutoAction.selecionarProduto(produto)}"
 								reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
-							</a4j:commandLink></div>
-							</div>
+								<h:graphicImage value="/img/ico_excluir.png" />	
+							</a4j:commandLink>
+							</center>
+							<rich:spacer height="5px" />
 						</rich:column>
 						<f:facet name="footer">
 							<s:div styleClass="panel-heading">
 								<div class="coluna33pc">
 									<div class="titulo_150">
 										<s:label value="Total Registros:" />
-										<h:outputText value="#{manterProdutoAction.listProdutos.size()}" />
+										<h:outputText style="margin-left: 4px" value="#{manterProdutoAction.listProdutos.size()}" />
 									</div>
 								</div>
 								<div class="coluna33pc">
@@ -268,8 +259,8 @@
 								</div>
 								<div class="coluna33pc">
 									<div class="tARight">
-										<s:label value="Registros Por Página :" />
-										<h:selectOneMenu value="#{manterProdutoAction.qntProdutos}">
+										<s:label value="Registros por Página :" />
+										<h:selectOneMenu style="margin-left: 4px" value="#{manterProdutoAction.qntProdutos}">
 											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
 											<f:selectItem itemLabel="50" itemValue="50" />
 											<f:selectItem itemLabel="100" itemValue="100" />

@@ -50,16 +50,15 @@
 					</div>
 				</div>
 				</div>
-				<div style="width: 100%">
-					<div style="margin: 10px auto; width: 180px ">
+				<center>
 				<h:commandButton action="#{manterCategoriaAction.salvarCategoria()}"
 					value="Cadastrar" styleClass="btn btn-primary navbar-btn" />
 
 				<a4j:commandButton action="#{manterCategoriaAction.cancelar()}"
 					value="Cancelar" reRender="id_form,id_div_tabela"
 					styleClass="btn btn-danger navbar-btn" ajaxSingle="true" />
-					</div>
-				</div>
+				</center>
+				<rich:spacer height="5px" />
 			</div>
 
 			<s:div styleClass="form-group" id="id_tabela_produto"
@@ -79,26 +78,20 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<div class="bot01">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_alterar.png" /></div>
-							<div class="corpoBot">
+							<center>
 							<a4j:commandLink
-								value="Alterar" action="#{manterCategoriaAction.alterar(categoria,indice)}"
+								action="#{manterCategoriaAction.alterar(categoria,indice)}"
 								ajaxSingle="true" reRender="id_form" >
-							</a4j:commandLink></div>
-							</div>	
-							<rich:spacer width="20px" />
-							<div class="bot02">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_excluir.png" /></div>									
-							<div class="corpoBot">
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
+							<rich:spacer width="25px" />							
 							<a4j:commandLink
-								value="Excluir" action="#{manterCategoriaAction.selecionarCategoria(categoria)}"
+								action="#{manterCategoriaAction.selecionarCategoria(categoria)}"
 								reRender="id_div_tabela,id_form"
 								oncomplete="Richfaces.showModalPanel('painel')">
-							</a4j:commandLink></div>
-							</div>
+								<h:graphicImage value="/img/ico_excluir.png" />
+							</a4j:commandLink>
+							</center>
 						</rich:column>
 					</rich:dataTable>
 				</div>
