@@ -66,11 +66,19 @@ public class ManterVendasAction {
 	
 	private Integer indice;
 	
+	private Integer qntprodutoAdd = 10;
+	
 	@Begin(join = true)
 	public String manipulaVendas(Cliente cliente) {
 		this.cliente = cliente;
 		return "/vendas/vendas.xhtml";
 	}
+	
+	
+	/**
+	 * DESCONTO
+	 * resultado = (valor*porcentagem)/100;
+	 */
 	
 	private VendasClientesDTO vendasClientesDTO = new VendasClientesDTO();
 	
@@ -510,6 +518,14 @@ public class ManterVendasAction {
 
 	public boolean isFlagRenderProduto() {
 		return flagRenderProduto;
+	}
+
+	public void setQntprodutoAdd(Integer qntprodutoAdd) {
+		this.qntprodutoAdd = qntprodutoAdd;
+	}
+
+	public Integer getQntprodutoAdd() {
+		return qntprodutoAdd;
 	}
 
 	

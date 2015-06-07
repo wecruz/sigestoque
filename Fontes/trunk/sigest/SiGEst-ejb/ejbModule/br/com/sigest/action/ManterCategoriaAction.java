@@ -41,6 +41,8 @@ public class ManterCategoriaAction {
 	
 	private Categoria categoriaSelecionada = new Categoria();
 	
+	private Integer qntCategoria = 10;
+	
 	public void salvarCategoria(){
 		if (indice != null) {
 			listCategoria.set(indice, categoria);
@@ -147,6 +149,16 @@ public class ManterCategoriaAction {
 
 	public Categoria getCategoriaSelecionada() {
 		return categoriaSelecionada;
+	}
+
+
+	public void setQntCategoria(Integer qntCategoria) {
+		this.qntCategoria = qntCategoria;
+	}
+
+
+	public Integer getQntCategoria() {
+		return qntCategoria;
 	}
 
 }

@@ -12,7 +12,7 @@
 	<ui:define name="body">
 		<h:form id="id_form" style="margin-top:90px">
 			<center>
-				<div style="width: 700px; margin-top:-35px; margin-bottom: -28px">
+				<div style="width: 700px; margin-top: -35px; margin-bottom: -28px">
 					<center>
 						<h:messages infoClass="alert alert-success"
 							styleClass="msgAlertaSucesso" errorClass="alert alert-danger"
@@ -50,7 +50,7 @@
 							<div class="form-group linha">
 								<s:div rendered="#{manterVendasAction.cliente.id == null}">
 									<div class="col-sm-2 control-label">
-										<h:outputLabel value="Nome: " >
+										<h:outputLabel value="Nome: ">
 											<h:graphicImage value="/img/required.gif" />
 										</h:outputLabel>
 									</div>
@@ -58,12 +58,12 @@
 									<a4j:region>
 										<div class="col-sm-5">
 											<h:inputText id="id_txt_nome_cliente" label="Nome"
-												styleClass="form-control" 
+												styleClass="form-control"
 												value="#{manterVendasAction.cliente.nome}" />
 										</div>
 										<rich:suggestionbox frequency="0.001" minChars="0"
 											for="id_txt_nome_cliente" width="500"
-											nothingLabel="Não encontrado" 
+											nothingLabel="Não encontrado"
 											suggestionAction="#{manterVendasAction.pesquisarClienterNome}"
 											var="cliente" ajaxSingle="true" requestDelay="0">
 											<h:column>
@@ -85,20 +85,20 @@
 								<a4j:outputPanel
 									rendered="#{manterVendasAction.cliente.id == null}">
 									<div class="col-sm-2 control-label">
-										<h:outputLabel value="CPF: " >
+										<h:outputLabel value="CPF: ">
 											<h:graphicImage value="/img/required.gif" />
 										</h:outputLabel>
 									</div>
 									<a4j:region>
 										<div class="col-sm-5">
 											<h:inputText id="id_txt_cpf_cliente" label="CPF"
-												styleClass="form-control" 
+												styleClass="form-control"
 												value="#{manterVendasAction.cliente.cpf}" />
 										</div>
-										
+
 										<rich:suggestionbox frequency="0.001" minChars="0"
 											for="id_txt_cpf_cliente" width="500"
-											nothingLabel="Não encontrado" 
+											nothingLabel="Não encontrado"
 											suggestionAction="#{manterVendasAction.pesquisarClienterCpf}"
 											var="cliente" ajaxSingle="true" requestDelay="0">
 											<h:column>
@@ -114,13 +114,13 @@
 								</a4j:outputPanel>
 							</div>
 						</fieldset>
-														<div class="col-sm-9 control-label">
-								<div id="botaoAlterar">
-									<h:commandButton value="Alterar" immediate="true"
+						<div class="col-sm-9 control-label">
+							<div id="botaoAlterar">
+								<h:commandButton value="Alterar" immediate="true"
 									styleClass="btn btn-warning navbar-btn"
 									action="#{manterVendasAction.limpar()}" />
-								</div>
-								</div>
+							</div>
+						</div>
 					</a4j:outputPanel>
 					<br /> <br />
 					<fieldset class="form-search" id="id_field_produto">
@@ -135,7 +135,7 @@
 								<a4j:region>
 									<div class="col-sm-5">
 										<h:inputText id="id_txt_codigo_produto" label="Codigo Produto"
-											styleClass="form-control" 
+											styleClass="form-control"
 											value="#{manterVendasAction.vendasClientesDTO.produto.codigo}" />
 									</div>
 									<rich:suggestionbox frequency="0.001" minChars="0"
@@ -164,7 +164,7 @@
 								<a4j:region>
 									<div class="col-sm-5">
 										<h:inputText id="id_txt_nome_produto" label="Nome Pruduto"
-											styleClass="form-control" 
+											styleClass="form-control"
 											value="#{manterVendasAction.vendasClientesDTO.produto.nomeProduto}" />
 									</div>
 									<rich:suggestionbox frequency="0.001" minChars="0"
@@ -186,43 +186,47 @@
 								</a4j:region>
 							</div>
 
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Valor Unitario: " rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}"/>
-							</div>
-							<div class="col-sm-5">
-								<h:outputLabel
-									value="#{manterVendasAction.vendasClientesDTO.produto.precoVenda}"
-									rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}" />
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Valor Unitario: "
+										rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}" />
+								</div>
+								<div class="col-sm-5">
+									<h:outputLabel
+										value="#{manterVendasAction.vendasClientesDTO.produto.precoVenda}"
+										rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}" />
 
+								</div>
 							</div>
-						</div>
 						</a4j:outputPanel>
-						<a4j:outputPanel rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}">
-						<div class="form-group linha">
-							<div class="col-sm-2 control-label">
-								<h:outputLabel value="Quantidade*: " />
+						<a4j:outputPanel
+							rendered="#{manterVendasAction.vendasClientesDTO.produto.id != null}">
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Quantidade*: " />
+								</div>
+								<div class="col-sm-5 ">
+									<rich:inputNumberSpinner
+										maxValue="#{manterVendasAction.vendasClientesDTO.quantidadeMaxProduto}"
+										id="id_txt_quantidade"
+										value="#{manterVendasAction.vendasClientesDTO.quantidadeProduto}"
+										minValue="1" inputSize="25" inputStyle="form-control" />
+								</div>
 							</div>
-							<div class="col-sm-5 ">
-								<rich:inputNumberSpinner maxValue="#{manterVendasAction.vendasClientesDTO.quantidadeMaxProduto}"  id="id_txt_quantidade"
-									value="#{manterVendasAction.vendasClientesDTO.quantidadeProduto}"
-									minValue="1"  inputSize="25" inputStyle="form-control"  />
-							</div>
-						</div>
 						</a4j:outputPanel>
-						
+
 						<div class="col-sm-8 control-label">
-								<div id="botaoAlterar">
-									<h:commandButton value="Alterar" immediate="true"
+							<div id="botaoAlterar">
+								<h:commandButton value="Alterar" immediate="true"
 									styleClass="btn btn-warning navbar-btn"
 									action="#{manterVendasAction.limparProduto()}" />
-								</div>
-						
+							</div>
+
 							<div id="botaoAdicionar">
-								<h:commandButton value="Adicionar" 
-								rendered="#{manterVendasAction.flagRenderProduto}"
-								styleClass="btn btn-primary navbar-btn"
-								action="#{manterVendasAction.adicionarProduto()}" />
+								<h:commandButton value="Adicionar"
+									rendered="#{manterVendasAction.flagRenderProduto}"
+									styleClass="btn btn-primary navbar-btn"
+									action="#{manterVendasAction.adicionarProduto()}" />
 							</div>
 						</div>
 
@@ -257,29 +261,59 @@
 									<rich:column>
 										<f:facet name="header">Operações</f:facet>
 										<center>
-										<h:graphicImage value="/img/ico_alterar.png" />
-										<h:commandLink id="id_btn_alterar"
-										action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
-										</h:commandLink>
-										<rich:spacer width="20px" />
+											<h:graphicImage value="/img/ico_alterar.png" />
+											<h:commandLink id="id_btn_alterar"
+												action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
+											</h:commandLink>
+											<rich:spacer width="20px" />
 
-										<h:graphicImage value="/img/ico_excluir.png" />									
-										<h:commandLink
-											action="#{manterVendasAction.removerProduto(vendaProduto,indice)}">
-										</h:commandLink>
+											<h:graphicImage value="/img/ico_excluir.png" />
+											<h:commandLink
+												action="#{manterVendasAction.removerProduto(vendaProduto,indice)}">
+											</h:commandLink>
 										</center>
 									</rich:column>
+									<f:facet name="footer">
+										<s:div styleClass="panel-heading">
+											<div class="coluna33pc">
+												<div class="titulo_150">
+													<s:label value="Total Registros:" />
+													<h:outputText style="margin-left: 4px"
+														value="#{manterVendasAction.vendasClientesDTO.listVendaProduto.size()}" />
+												</div>
+											</div>
+											<div class="coluna33pc">
+												<rich:datascroller renderIfSinglePage="true"
+													styleClass="wrap-paginacao" immediate="true" />
+											</div>
+											<div class="coluna33pc">
+												<div class="tARight">
+													<s:label value="Registros por Página :" />
+													<h:selectOneMenu style="margin-left: 4px"
+														value="#{manterVendasAction.qntprodutoAdd}">
+														<f:selectItem itemLabel="10" itemValue="10"
+															noSelectionOption="true" />
+														<f:selectItem itemLabel="50" itemValue="50" />
+														<f:selectItem itemLabel="100" itemValue="100" />
+														<f:selectItem itemLabel="150" itemValue="150" />
+														<f:selectItem itemLabel="200" itemValue="200" />
+														<a4j:support event="onchange" reRender="id_div_tabela" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+										</s:div>
+									</f:facet>
 								</rich:dataTable>
 							</div>
 							<div class="form-group linha" id="id_valor_total">
 								<div class="col-sm-10 control-label">
 									<center>
-									<h2 Style="width: 1000px">
-										<h:outputText value="TOTAL: " styleClass="page-header" />
-										<h:outputText value=" R$" styleClass="page-header" />
-										<h:outputText value=" #{manterVendasAction.valorTotal}"
-											styleClass="page-header" />
-									</h2>
+										<h2 Style="width: 1000px">
+											<h:outputText value="TOTAL: " styleClass="page-header" />
+											<h:outputText value=" R$" styleClass="page-header" />
+											<h:outputText value=" #{manterVendasAction.valorTotal}"
+												styleClass="page-header" />
+										</h2>
 									</center>
 								</div>
 							</div>
@@ -308,14 +342,15 @@
 
 					<div class="form-group">
 						<center>
-						<ui:remove>
-							<!--<h:commandButton action="#{manterVendasAction.gerarRelatorio()}"
+							<ui:remove>
+								<!--<h:commandButton action="#{manterVendasAction.gerarRelatorio()}"
 								value="IMPRIMIR PEDIDO" styleClass="btn btn-default navbar-btn"
 								onclick="target='_black'" immediate="true" />
 
 							-->
-						</ui:remove>	
-							<h:commandButton rendered="#{manterVendasAction.vendasClientesDTO.listVendaProduto.size() >0}"
+							</ui:remove>
+							<h:commandButton
+								rendered="#{manterVendasAction.vendasClientesDTO.listVendaProduto.size() >0}"
 								action="#{manterVendasAction.confimarPedidoVenda()}"
 								value="Confirmar Venda" styleClass="btn btn-success navbar-btn" />
 
