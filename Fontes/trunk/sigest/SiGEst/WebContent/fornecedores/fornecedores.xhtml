@@ -83,22 +83,28 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Operações</f:facet>
-							<center>
+							<div class="bot01">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_alterar.png" /></div>
+							<div class="corpoBot">
 							<a4j:commandLink
 								action="#{manterFornecedoreAction.alterar(indice,fornece)}"
-								ajaxSingle="true" reRender="idform" >
-								<h:graphicImage value="/img/ico_alterar.png" />
-							</a4j:commandLink>
+								value="Alterar" ajaxSingle="true" reRender="idform" >
+							</a4j:commandLink></div>
+							</div>
 							
 							<rich:spacer width="25px" />
-							
-							<a4j:commandLink
+							<div class="bot02">
+							<div class="imgBot">
+							<h:graphicImage value="/img/ico_excluir.png" /></div>									
+							<div class="corpoBot">
+							<a4j:commandLink value="Excluir"
 								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
 								reRender="id_tabela_funcio,idform"
 								oncomplete="Richfaces.showModalPanel('painel')">
-								<h:graphicImage value="/img/ico_excluir.png" />	
-							</a4j:commandLink>
-							</center>
+							</a4j:commandLink></div>
+							</div>
+
 						</rich:column>
 						<f:facet name="footer">
 							<s:div styleClass="panel-heading">
@@ -156,6 +162,7 @@
 						reRender="id_form,id_div_tabela"
 						onclick="Richfaces.hideModalPanel('painel')" />
 				</center>
+
 			</rich:modalPanel>
 
 		</h:form>

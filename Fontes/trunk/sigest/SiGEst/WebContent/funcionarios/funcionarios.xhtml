@@ -21,7 +21,7 @@
 			</center>
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="titulo">Pesquisar Funcionários</div>
+					<div class="titulo">Pesquisar Funcionarios</div>
 				</div>
 				<div style="width: 100%">
 					<div class="form-horizontal" style=" width: 510px; margin: 15px auto;">
@@ -73,7 +73,7 @@
 			<s:div id="id_tabela_funcio" styleClass="table"
 				rendered="#{manterFuncionarioAction.funcionarios.size() > 0}">
 				<div class="panel panel-info" style="margin-top: -20px">
-					<div class="panel-heading">Lista de Funcionários</div>
+					<div class="panel-heading">Lista de Funcionarios</div>
 					<rich:dataTable value="#{manterFuncionarioAction.funcionarios}"
 						var="funcio" id="id_div_tabela" rowKeyVar="indice"
 						styleClass="table" rows="10">
@@ -111,8 +111,8 @@
 							<s:div styleClass="panel-heading">
 								<div class="coluna33pc">
 									<div class="titulo_150">
-										<s:label value="Total Registros: " />
-										<h:outputText style="margin-left: 4px" value="#{manterFuncionarioAction.funcionarios.size()}" />
+										<s:label value="Total Registros:" />
+										<h:outputText value="#{manterFuncionarioAction.funcionarios.size()}" />
 									</div>
 								</div>
 								<div class="coluna33pc">
@@ -120,8 +120,8 @@
 								</div>
 								<div class="coluna33pc">
 									<div class="tARight">
-										<s:label value="Registros por Página: " />
-										<h:selectOneMenu style="margin-left: 4px" value="#{manterFuncionarioAction.qntFuncionarios}">
+										<s:label value="Registros Por Página :" />
+										<h:selectOneMenu value="#{manterFuncionarioAction.qntFuncionarios}">
 											<f:selectItem itemLabel="10" itemValue="10" noSelectionOption="true" />
 											<f:selectItem itemLabel="50" itemValue="50" />
 											<f:selectItem itemLabel="100" itemValue="100" />
@@ -165,6 +165,7 @@
 						reRender="id_form,id_div_tabela"
 						onclick="Richfaces.hideModalPanel('painel')" />
 				</center>
+
 			</rich:modalPanel>
 		</h:form>
 	</ui:define>
