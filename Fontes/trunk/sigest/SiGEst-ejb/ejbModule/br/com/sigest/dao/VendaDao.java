@@ -45,7 +45,6 @@ public class VendaDao {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Venda.class, "venda");
 		criteria.add(Restrictions.eq("venda.cliente", cliente));
-		criteria.add(Restrictions.eq("venda.statusVenda", EnumStatusVenda.NAO_PAGO));
 		return criteria.list();
 	}
 	
@@ -67,10 +66,12 @@ public class VendaDao {
 		hql.append("sum(valorTotalVenda) valorTotal ");
 		hql.append("from tb_venda ");
 		hql.append("where st_venda='PAGO' ");
+		hql.append("  and date_format(dataVenda,'%Y') = :ano ");
 		hql.append("group by date_format(dataVenda,'%Y'), ");
 		hql.append("date_format(dataVenda,'%m') ");
 		hql.append("order by anoVenda, mesVenda ");
 		Query query = session.createSQLQuery(hql.toString());
+		query.setParameter("ano", "2014");
 		query.setResultTransformer(Transformers.aliasToBean(VendaRelatorioDto.class));
 		return query.list();
 	}

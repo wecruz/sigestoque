@@ -11,6 +11,8 @@ import org.jboss.seam.annotations.Scope;
 
 import org.domain.sigest.session.Authenticator;
 
+import br.com.sigest.modelo.Fornecedor;
+import br.com.sigest.modelo.Funcionario;
 import br.com.sigest.service.IUsuarioService;
 
 /**
@@ -32,25 +34,29 @@ public class AlterarSenhaAction {
     private String novaSenha;
     private String confimarNovaSenha;
     
+    private Funcionario usuarioLogado = new Funcionario();
     
-    
-    public String alterarSenha(){
+    public void alterarSenha(){
     	if(!authenticator.getUsuarioLogado().getSenha().equals(senhaAtual)){
     		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Senha Atual Incorreta.", ""));
-    		  return "";
+    		  return;
     	}else if(!novaSenha.equals(confimarNovaSenha)){
     		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Nova Senha não Pode ser diferente Comfirmar Nova Senha.", ""));
-    		return "";
+    		return;
     	}
+    	
     	authenticator.getUsuarioLogado().setSenha(novaSenha);
-    	usuarioService.salvarFuncionarios(authenticator.getUsuarioLogado());
-    	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Senha Alterada Com Sucesso.", ""));
+    	
+    	setUsuarioLogado(authenticator.getUsuarioLogado());
+    	
+    	usuarioService.salvarFuncionarios(getUsuarioLogado());
+    	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Senha Alterada Com Sucesso.", ""));
     	
     	setNovaSenha(null);
     	setConfimarNovaSenha(null);
     	setSenhaAtual(null);
     	
-    	return "/alterarSenha.xhtml";
+    	
     }
 
 
@@ -88,6 +94,22 @@ public class AlterarSenhaAction {
 	public void setConfimarNovaSenha(String confimarNovaSenha) {
 		this.confimarNovaSenha = confimarNovaSenha;
 	}
+
+
+
+	public Funcionario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+
+
+	public void setUsuarioLogado(Funcionario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
+
+
+	
     
     
 }
