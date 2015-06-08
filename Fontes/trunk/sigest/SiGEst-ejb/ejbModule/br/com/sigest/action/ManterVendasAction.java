@@ -18,6 +18,8 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import com.sun.net.httpserver.Authenticator;
+
 import br.com.sigest.enums.EnumStatusVenda;
 import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
@@ -28,6 +30,7 @@ import br.com.sigest.modelo.VendasClientesDTO;
 import br.com.sigest.modelo.dto.PedidoDTO;
 import br.com.sigest.service.IEstoqueService;
 import br.com.sigest.service.IVendasService;
+import br.com.sigest.service.UsuarioService;
 import br.com.sigest.util.RelatorioUtil;
 
 @Name("manterVendasAction")
@@ -68,6 +71,10 @@ public class ManterVendasAction {
 	
 	private Integer qntprodutoAdd = 10;
 	
+	private Float valorDesconto = 0F ;
+	
+	
+	
 	@Begin(join = true)
 	public String manipulaVendas(Cliente cliente) {
 		this.cliente = cliente;
@@ -97,6 +104,12 @@ public class ManterVendasAction {
 			
 		return produtos;
 		
+	}
+	
+	public void Calculardesconto(){
+		float resultado = (valorTotal *valorDesconto)/100;
+		valorTotal = 0f;
+		valorTotal = resultado;
 	}
 	
 	public String alterarPedidoVenda(Venda venda){
@@ -193,6 +206,8 @@ public class ManterVendasAction {
 		venda.getVenda_Produtos().addAll(vendasClientesDTO.getListVendaProduto());
 		venda.setValorTotalVenda(valorTotal);
 		
+		Authenticator authenticator;
+		
 		for (VendaProduto vendaProdut : vendasClientesDTO.getListVendaProduto()) {
 			vendaProdut.setVenda(venda);
 			
@@ -269,7 +284,7 @@ public class ManterVendasAction {
 			return listaRetorno;
 		}
 	
-	public List<Produto> pesquisarProdutoCPF(Object autoComplete) {
+	public List<Produto> pesquisarProdutoCodigo(Object autoComplete) {
 
 		List<Produto> listaRetorno = new ArrayList<Produto>();
 		
@@ -526,6 +541,14 @@ public class ManterVendasAction {
 
 	public Integer getQntprodutoAdd() {
 		return qntprodutoAdd;
+	}
+
+	public void setValorDesconto(Float valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+
+	public Float getValorDesconto() {
+		return valorDesconto;
 	}
 
 	

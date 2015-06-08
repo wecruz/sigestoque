@@ -68,13 +68,24 @@ public class ManterFornecedoreAction {
 
 	public void salvar() {
 		if(validEmail(getFornecedor().getEndereco().getEmail())){
+			
+			
+			
+			
+			
+			
 			fornecedor.getEndereco().setFornecedor(getFornecedor());
+			
 			if (getIndice() == null) {
 				listFornecedores.add(getFornecedor());
 			} else {
 				listFornecedores.set(getIndice(), getFornecedor());
+			
 			}
+			getFornecedor().setAtivo(true);
+			
 			estoqueService.salvar(getFornecedor());
+			
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -117,9 +128,9 @@ public class ManterFornecedoreAction {
 
 	public void excluir() {
 		listFornecedores.remove(getFornecedorSelecionado());
-		estoqueService.excluirFornecedor(getFornecedorSelecionado());
-		FacesContext.getCurrentInstance().addMessage(
-				null,
+		getFornecedorSelecionado().setAtivo(false);
+		estoqueService.salvar(getFornecedorSelecionado());
+		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Operação realizada com sucesso.", ""));
 		fornecedor = new Fornecedor();

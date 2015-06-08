@@ -6,6 +6,7 @@ import javax.ejb.Local;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
+import org.domain.sigest.session.Authenticator;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.In;
@@ -34,6 +35,8 @@ public class VendasService implements IVendasService{
 	
 	@In
 	VendaDao vendaDao;
+	@In
+	Authenticator authenticator;
 	
 	public void salvarCliente(Cliente cliente) {
 		cliente.getEndereco().setCliente(cliente);
@@ -63,6 +66,7 @@ public class VendasService implements IVendasService{
 	
 	
 	public void salvaPedidoVenda(Venda venda) {
+		venda.setFuncionario(authenticator.getUsuarioLogado());
 		vendaDao.salvaPedidoVenda(venda);
 	}
 	

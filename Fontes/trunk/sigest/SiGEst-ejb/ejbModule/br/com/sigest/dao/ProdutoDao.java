@@ -15,6 +15,8 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import sun.nio.cs.Surrogate.Parser;
+
 import br.com.sigest.modelo.Fornecedor;
 import br.com.sigest.modelo.Produto;
 
@@ -58,7 +60,7 @@ public class ProdutoDao {
 		criteria.add(Restrictions.eq("produto.ativo", true));
 		
 		if (codigo != null) {
-			criteria.add(Restrictions.eq("produto.codigo", codigo));
+			criteria.add(Restrictions.like("produto.codigo", codigo.toString() , MatchMode.ANYWHERE).ignoreCase());
 		}
 		return criteria.list();
 	}

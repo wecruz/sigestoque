@@ -35,6 +35,7 @@ public class Authenticator implements Serializable
     @In Credentials credentials;
     
     @Out(required = false, scope = ScopeType.SESSION)
+    @In(required = false)
 	private Funcionario usuarioLogado;
     
     

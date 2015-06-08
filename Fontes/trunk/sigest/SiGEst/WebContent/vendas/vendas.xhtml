@@ -141,7 +141,7 @@
 									<rich:suggestionbox frequency="0.001" minChars="0"
 										for="id_txt_codigo_produto" width="500"
 										nothingLabel="Não encontrado"
-										suggestionAction="#{manterVendasAction.pesquisarProdutoCPF}"
+										suggestionAction="#{manterVendasAction.pesquisarProdutoCodigo}"
 										var="produt" ajaxSingle="true" requestDelay="0">
 										<h:column>
 											<h:outputText value="#{produt.codigo}" />
@@ -304,6 +304,21 @@
 										</s:div>
 									</f:facet>
 								</rich:dataTable>
+							</div>
+							<div class="form-group linha">
+								<div class="col-sm-2 control-label">
+									<h:outputLabel value="Desconto" />
+								</div>
+								<div class="col-sm-5">
+									<h:inputText value="#{manterVendasAction.valorDesconto}" styleClass="form-control" />
+								</div>
+								<div class="col-sm-5">
+									<center>
+										<h:commandButton value="Calcular Desconto"
+											styleClass="btn btn-info navbar-btn"
+											action="#{manterVendasAction.Calculardesconto()}" />
+									</center>
+								</div>
 							</div>
 							<div class="form-group linha" id="id_valor_total">
 								<div class="col-sm-10 control-label">

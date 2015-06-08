@@ -88,22 +88,20 @@ public class ManterFuncionarioAction {
 	public void salvar() {
 
 		if (validEmail(funcionario.getEmail())) {
-
+			
+			if (usuarioService.pesquisarFuncionarioPorCpf(funcionario.getCpf()) != null) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,"Funcionario com o CPF: "+ funcionario.getCpf()+ " á esta cadastrado", ""));
+				return;
+			}
 			if (getIndice() == null) {
-				if (usuarioService.pesquisarFuncionarioPorCpf(funcionario.getCpf()) == null) {
 					funcionarios.add(funcionario);
-					salvarFuncionario();
-				} else {
-					FacesContext.getCurrentInstance().addMessage(null,
-							new FacesMessage(FacesMessage.SEVERITY_ERROR,"Funcionario com o CPF: "+ funcionario.getCpf()+ " á esta cadastrado", ""));
 				}
 			} else {
 				funcionarios.set(indice, funcionario);
-				salvarFuncionario();
 			}
-
-		}
-
+			salvarFuncionario();
+		
 	}
 
 	private void salvarFuncionario() {

@@ -28,6 +28,9 @@ public class Fornecedor {
 	@Column(name = "id_fornecedor", nullable = false)
 	private Long id;
 	
+	@Column(name = "ativo")
+	private Boolean ativo;
+	
 	@Column(name = "nome")
 	private String nome;
 	
@@ -88,6 +91,14 @@ public class Fornecedor {
 
 	public String getCnpj() {
 		return cnpj;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
 	}
 
 

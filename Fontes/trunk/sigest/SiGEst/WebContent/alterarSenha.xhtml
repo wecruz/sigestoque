@@ -29,29 +29,37 @@
 
 								<div class="form-group linha">
 									<div class="col-sm-5 control-label">
-										<h:outputLabel for="username">Senha Atual: </h:outputLabel>
+										<h:outputLabel for="username">Senha Atual: 
+										<h:graphicImage value="/img/required.gif" />
+										</h:outputLabel>
 									</div>
 									<div class="col-sm-5">
-										<h:inputText  value="#{alterarSenhaAction.senhaAtual}"
-											styleClass="form-control"/>
+										<h:inputSecret  value="#{alterarSenhaAction.senhaAtual}"
+											styleClass="form-control" required="true" id="txt_senha_atual" label="Senha Atual">
 									</div>
 								</div>
 								<div class="form-group linha">
 									<div class="col-sm-5 control-label">
-										<h:outputLabel for="password">Nova Senha: </h:outputLabel>
+										<h:outputLabel for="password">Nova Senha: 
+										<h:graphicImage value="/img/required.gif" />
+										</h:outputLabel>
 									</div>
 									<div class="col-sm-5">
 										<h:inputSecret  value="#{alterarSenhaAction.novaSenha}"
-											styleClass="form-control" />
+											id="txt_nova_senha"
+											styleClass="form-control" required="true" label="Nova Senha"/>
 									</div>
 								</div>
 								<div class="form-group linha">
 									<div class="col-sm-5 control-label">
-										<h:outputLabel >Confirmar Nova Senha: </h:outputLabel>
+										<h:outputLabel >Confirmar Nova Senha: 
+											<h:graphicImage value="/img/required.gif" />
+										</h:outputLabel>
 									</div>
 									<div class="col-sm-5">
 										<h:inputSecret  value="#{alterarSenhaAction.confimarNovaSenha}"
-											styleClass="form-control" />
+											id="txt_Confirmar_Nova_Senha"
+											styleClass="form-control" required="true" label="Confirmar Nova Senha"/>
 									</div>
 								</div>
 

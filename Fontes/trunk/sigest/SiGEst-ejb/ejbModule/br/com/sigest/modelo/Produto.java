@@ -22,7 +22,7 @@ public class Produto {
 	@Column(name = "id_produto", nullable = false)
 	private Long id;
 	
-	
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	@Column(name = "codigo")
