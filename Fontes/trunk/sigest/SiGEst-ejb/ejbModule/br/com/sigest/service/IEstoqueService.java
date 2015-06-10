@@ -34,6 +34,8 @@ public interface IEstoqueService {
 	
 	List<Produto> fildAllProduto();
 	
+	public List<Produto> pesquisarProdutoPorCodigoInter(Integer codigo);
+	
 //	List<Estado> pesquisarTodosEstados();
 //	
 //	List<Cidade> pesquisarCidadesPorEstados(Estado estado);

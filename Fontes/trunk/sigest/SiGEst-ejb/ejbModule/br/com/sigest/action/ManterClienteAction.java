@@ -49,20 +49,32 @@ public class ManterClienteAction {
 	}
 	
 	
-	public void salvarCliente() {
+	public String salvarCliente() {
 
 		if (validEmail(cliente.getEndereco().getEmail())) {
-//			cliente.setCpf(cliente.getCpf().replaceAll("[^0-9]", "")); 
-			vendasService.salvarCliente(cliente);
+//			cliente.setCpf(cliente.getCpf().replaceAll("[^0-9]", ""));
+			
 			if (indice == null) {
 				listCliente.add(cliente);
+				vendasService.salvarCliente(cliente);
+				indice = null;
+				pesquisarClientes();
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+				cliente = new Cliente(new Endereco());
+				return "/clientes/salvarCliente.xhtml";
+				
 			} else {
 				listCliente.set(indice, cliente);
+				vendasService.salvarCliente(cliente);
+				indice = null;
+				pesquisarClientes();
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+				cliente = new Cliente(new Endereco());
+				return "/clientes/salvarCliente.xhtml";
 			}
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-			cliente = new Cliente(new Endereco());
-			indice = null;
+			
 		}
+		return "/clientes/salvarCliente.xhtml";
 	}
 
 	public String alterar(Cliente cliente, int indice) {
@@ -107,7 +119,7 @@ public class ManterClienteAction {
 	}
 	
 	public boolean validarCriterioPesquisa() {
-		if (cliente.getNome().isEmpty()) {
+		if (cliente.getNome().isEmpty() && cliente.getCpf().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Digite um critério de pesquisa.", ""));
 			return false;
 		} else {

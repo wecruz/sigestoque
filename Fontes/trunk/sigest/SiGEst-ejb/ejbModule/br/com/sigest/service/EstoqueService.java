@@ -116,6 +116,10 @@ public class EstoqueService implements IEstoqueService {
 		return produtoDao.fildAllProduto();
 	}
 
+	public List<Produto> pesquisarProdutoPorCodigoInter(Integer codigo) {
+		return produtoDao.pesquisarProdutoPorCodigoInter(codigo);
+	}
+
 
 
 }

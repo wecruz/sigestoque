@@ -66,33 +66,34 @@ public class ManterFornecedoreAction {
 		setFornecedorSelecionado(fornecedor);
 	}
 
-	public void salvar() {
+	public String salvar() {
 		if(validEmail(getFornecedor().getEndereco().getEmail())){
-			
-			
-			
-			
-			
-			
-			fornecedor.getEndereco().setFornecedor(getFornecedor());
 			
 			if (getIndice() == null) {
 				listFornecedores.add(getFornecedor());
+				getFornecedor().setAtivo(true);
+				estoqueService.salvar(getFornecedor());
+				indice = null;
+				pesquisarFornecedor();
+				fornecedor = new Fornecedor(new Endereco());
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+				return "/fornecedores/salvarFornecedores.xhtml";
+				
 			} else {
 				listFornecedores.set(getIndice(), getFornecedor());
-			
+				getFornecedor().setAtivo(true);
+				estoqueService.salvar(getFornecedor());
+				indice = null;
+				pesquisarFornecedor();
+				fornecedor = new Fornecedor(new Endereco());
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+				return "/fornecedores/salvarFornecedores.xhtml";
 			}
-			getFornecedor().setAtivo(true);
 			
-			estoqueService.salvar(getFornecedor());
 			
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"Operação realizada com sucesso.", ""));
-			this.fornecedor = new Fornecedor(new Endereco());
-		
 		}
+		
+		return "/fornecedores/salvarFornecedores.xhtml";
 	}
 	
 	
@@ -122,6 +123,7 @@ public class ManterFornecedoreAction {
 
 	public String alterar(int indice, Fornecedor fornecedor) {
 		this.indice = indice;
+		
 		this.fornecedor = fornecedor;
 		return "/fornecedores/salvarFornecedores.xhtml";
 	}

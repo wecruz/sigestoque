@@ -85,23 +85,33 @@ public class ManterFuncionarioAction {
 		return str.replaceAll("\\D", "");
 	}
 
-	public void salvar() {
+	public String salvar() {
 
 		if (validEmail(funcionario.getEmail())) {
-			
-			if (usuarioService.pesquisarFuncionarioPorCpf(funcionario.getCpf()) != null) {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR,"Funcionario com o CPF: "+ funcionario.getCpf()+ " á esta cadastrado", ""));
-				return;
-			}
+
 			if (getIndice() == null) {
+				if (usuarioService.pesquisarFuncionarioPorCpf(funcionario
+						.getCpf()) != null) {
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,
+									"Funcionario com o CPF: "
+											+ funcionario.getCpf()
+											+ " á esta cadastrado", ""));
+					return "salvarFuncionarios";
+				} else {
 					funcionarios.add(funcionario);
+					salvarFuncionario();
+					return "salvarFuncionarios";
 				}
+
 			} else {
 				funcionarios.set(indice, funcionario);
+				salvarFuncionario();
+				return "salvarFuncionarios";
 			}
-			salvarFuncionario();
-		
+		}
+		return "salvarFuncionarios";
 	}
 
 	private void salvarFuncionario() {
@@ -111,10 +121,10 @@ public class ManterFuncionarioAction {
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Operação realizada com sucesso.", ""));
-		setFlagMensagen(true);
 
 		// this.renderer.render("/email/email.xhtml");
-
+		indice = null;
+		pesquisarFuncioanrios();
 		funcionario = new Funcionario(new Endereco());
 	}
 
@@ -137,7 +147,7 @@ public class ManterFuncionarioAction {
 	public void pesquisarFuncioanrios() {
 		if (validarCriterioPesquisa()) {
 			funcionarios = new ArrayList<Funcionario>();
-			funcionario.setCpf(funcionario.getCpf().replaceAll("[^0-9]", "")); 
+			funcionario.setCpf(funcionario.getCpf().replaceAll("[^0-9]", ""));
 			funcionarios = usuarioService.pesquisarFuncionarios(funcionario);
 			if (funcionarios.isEmpty()) {
 				FacesContext.getCurrentInstance().addMessage(
@@ -185,7 +195,8 @@ public class ManterFuncionarioAction {
 	}
 
 	public boolean validarCriterioPesquisa() {
-		if (funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty() && funcionario.getCargoFuncao() == null) {
+		if (funcionario.getNome().isEmpty() && funcionario.getCpf().isEmpty()
+				&& funcionario.getCargoFuncao() == null) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,

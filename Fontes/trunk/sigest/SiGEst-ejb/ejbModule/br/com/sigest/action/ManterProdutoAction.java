@@ -100,7 +100,7 @@ public class ManterProdutoAction {
 			listProdutos.set(indice, produto);
 			salveProduto();
 		} else {
-			if(estoqueService.pesquisarProdutoPorCodigo(produto.getCodigo()).isEmpty()){
+			if(estoqueService.pesquisarProdutoPorCodigoInter(produto.getCodigo()).isEmpty()){
 				listProdutos.add(produto);
 				salveProduto();
 			}else{

@@ -47,13 +47,14 @@ public class FornecedorDao {
 	public List<Fornecedor> pesquisarFornecedores(Fornecedor fornecedor){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Fornecedor.class, "fornecedor");
+		criteria.add(Restrictions.eq("fornecedor.ativo", true));
+		
 		if (!fornecedor.getNome().isEmpty() &&  fornecedor.getNome() != null) {
 			criteria.add(Restrictions.like("fornecedor.nome", fornecedor.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		if (fornecedor.getCnpj() != null && !fornecedor.getCnpj().isEmpty()) {
 			criteria.add(Restrictions.eq("fornecedor.cnpj", fornecedor.getCnpj()));
 		}
-		criteria.add(Restrictions.like("fornecedor.ativo", true));
 		return criteria.list();
 	}
 	

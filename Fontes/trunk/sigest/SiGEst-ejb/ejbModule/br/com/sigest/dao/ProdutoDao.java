@@ -65,6 +65,17 @@ public class ProdutoDao {
 		return criteria.list();
 	}
 	
+	public List<Produto> pesquisarProdutoPorCodigoInter(Integer codigo){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Produto.class, "produto");
+		criteria.add(Restrictions.eq("produto.ativo", true));
+		
+		if (codigo != null) {
+			criteria.add(Restrictions.eq("produto.codigo", codigo));
+		}
+		return criteria.list();
+	}
+	
 	
 	public List<Produto> pesquisarProdutoVenda(Produto produto){
 		Session session = (Session) entityManager.getDelegate();

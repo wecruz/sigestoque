@@ -40,6 +40,11 @@ public class ClienteDao {
 	public List<Cliente> pesquisarClientes(Cliente cliente){
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Cliente.class, "cliente");
+		
+		if (cliente.getCpf() != null) {
+			criteria.add(Restrictions.like("cliente.cpf", cliente.getCpf(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		
 		if (cliente.getNome() != null) {
 			criteria.add(Restrictions.like("cliente.nome", cliente.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}

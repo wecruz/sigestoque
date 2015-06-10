@@ -261,15 +261,17 @@
 									<rich:column>
 										<f:facet name="header">Operações</f:facet>
 										<center>
-											<h:graphicImage value="/img/ico_alterar.png" />
+											
 											<h:commandLink id="id_btn_alterar"
 												action="#{manterVendasAction.alterarProduto(vendaProduto,indice)}">
+												<h:graphicImage value="/img/ico_alterar.png" />
 											</h:commandLink>
 											<rich:spacer width="20px" />
 
-											<h:graphicImage value="/img/ico_excluir.png" />
+											
 											<h:commandLink
 												action="#{manterVendasAction.removerProduto(vendaProduto,indice)}">
+												<h:graphicImage value="/img/ico_excluir.png" />
 											</h:commandLink>
 										</center>
 									</rich:column>

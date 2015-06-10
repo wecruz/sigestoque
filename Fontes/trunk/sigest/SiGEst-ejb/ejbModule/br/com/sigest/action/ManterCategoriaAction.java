@@ -43,23 +43,28 @@ public class ManterCategoriaAction {
 	
 	private Integer qntCategoria = 10;
 	
-	public void salvarCategoria(){
+	public String salvarCategoria(){
 		if (indice != null) {
 			listCategoria.set(indice, categoria);
 			estoqueService.salvarCategoria(categoria);
 			indice = null;
+			pesquisarCategoria();
 			categoria = new Categoria();
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-			
+			return "salvarCategoria";
 		} else {
 			if(estoqueService.pesquisarCategoria(categoria).isEmpty()){
 				listCategoria.add(categoria);
 				estoqueService.salvarCategoria(categoria);
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+				pesquisarCategoria();
+				categoria = new Categoria();
+				return "salvarCategoria";
 			}else{
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Categoria já Cadastrada!", ""));
 			}
 		}
+		return "salvarCategoria";
 	}
 	
 	
