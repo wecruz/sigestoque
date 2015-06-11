@@ -123,38 +123,27 @@
 						<center>
 							<f:facet name="header">Operações</f:facet>
 							
-							<div class="bot01">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_alterar.png" /></div>
-							<div class="corpoBot">
 							<a4j:commandLink action="#{manterVendasAction.alterarPedidoVenda(venda)}"
-								ajaxSingle="true" title="Alterar" reRender="id_form" value="Alterar">
-							</a4j:commandLink></div>
-							</div>
+								ajaxSingle="true" title="Alterar" reRender="id_form" >
+								<h:graphicImage value="/img/ico_alterar.png" />
+							</a4j:commandLink>
 							
 							<rich:spacer width="20px" />
 							
-							<div class="bot03">
-							<div class="imgBot">
-							<h:graphicImage value="/img/ico_excluir.png" /></div>
-							<div class="corpoBot">
 							<a4j:commandLink  action="#{manterVendasAction.selecionarVenda(venda)}"
-								title="Excluir" reRender="id_div_tabela,id_form" value="Excluir"
+								title="Excluir" reRender="id_div_tabela,id_form" 
 								oncomplete="Richfaces.showModalPanel('painel')">
-							</a4j:commandLink></div>
-							</div>
+								<h:graphicImage value="/img/ico_excluir.png" />
+							</a4j:commandLink>
 							
 							<rich:spacer width="20px" />
 							
-							<div class="bot04">
-							<div class="imgBotImp">
-							<h:graphicImage value="/img/print.png" /></div>
-							<div class="corpoBotImp">
-							<h:commandButton style="background-color: #ECF4FE; border: 0px; color:#4298D8 " title="Imprimir Pedido" value="Imprimir" 
+							
+							<h:commandButton style="background-color: #ECF4FE; border: 0px; color:#4298D8 " title="Imprimir Pedido" 
 								action="#{manterVendasAction.gerarRelatorio(venda)}"
+								image="/img/print.png"
 								onclick="target='_black'" immediate="true" >
-							</h:commandButton></div>
-							</div>
+							</h:commandButton>
 
 							<rich:spacer width="20px" />
 							</center>

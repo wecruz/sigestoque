@@ -49,19 +49,32 @@ public class ManterClienteAction {
 	}
 	
 	
-	public String salvarCliente() {
+	public void salvarCliente() {
 
 		if (validEmail(cliente.getEndereco().getEmail())) {
 //			cliente.setCpf(cliente.getCpf().replaceAll("[^0-9]", ""));
 			
 			if (indice == null) {
-				listCliente.add(cliente);
-				vendasService.salvarCliente(cliente);
-				indice = null;
-				pesquisarClientes();
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-				cliente = new Cliente(new Endereco());
-				return "/clientes/salvarCliente.xhtml";
+				
+				if(vendasService.pesquisarClientePorCpf(cliente.getCpf()) !=null){
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,
+									"Cliente com o CPF: "
+											+ cliente.getCpf()
+											+ " á esta cadastrado", ""));
+					return ;
+				}else{
+					listCliente.add(cliente);
+					vendasService.salvarCliente(cliente);
+					indice = null;
+					pesquisarClientes();
+					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+					cliente = new Cliente(new Endereco());
+					return ;
+				}
+				
+				
 				
 			} else {
 				listCliente.set(indice, cliente);
@@ -70,11 +83,10 @@ public class ManterClienteAction {
 				pesquisarClientes();
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 				cliente = new Cliente(new Endereco());
-				return "/clientes/salvarCliente.xhtml";
+				return ;
 			}
 			
 		}
-		return "/clientes/salvarCliente.xhtml";
 	}
 
 	public String alterar(Cliente cliente, int indice) {

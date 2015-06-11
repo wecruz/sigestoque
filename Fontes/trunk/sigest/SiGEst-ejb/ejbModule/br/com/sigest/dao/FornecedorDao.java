@@ -15,6 +15,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Categoria;
+import br.com.sigest.modelo.Cliente;
 import br.com.sigest.modelo.Fornecedor;
 
 
@@ -62,6 +63,17 @@ public class FornecedorDao {
 		entityManager.remove(fornecedor);
 	}
 	
+	
+	public Fornecedor pesquisarFornecedorPorCpf(String cnpj){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Fornecedor.class, "fornecedor");
+		
+		if(!cnpj.isEmpty()){
+			criteria.add(Restrictions.eq("fornecedor.cnpj", cnpj));
+		}
+		
+		return (Fornecedor) criteria.uniqueResult();
+	}
 	
 	
 	

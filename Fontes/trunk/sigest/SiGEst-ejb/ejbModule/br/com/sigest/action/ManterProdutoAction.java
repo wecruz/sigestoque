@@ -99,12 +99,17 @@ public class ManterProdutoAction {
 		if (indice != null) {
 			listProdutos.set(indice, produto);
 			salveProduto();
+			return;
+		
+		
 		} else {
 			if(estoqueService.pesquisarProdutoPorCodigoInter(produto.getCodigo()).isEmpty()){
 				listProdutos.add(produto);
 				salveProduto();
+				return;
 			}else{
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Produto já Cadastrada!", ""));
+				return;
 			}
 		}
 		
@@ -129,11 +134,12 @@ public class ManterProdutoAction {
 		}
 		produto.setAtivo(true);
 		estoqueService.salvarProduto(produto);
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+		setIndice(null);
+		pesquisarProduto();
 		produto = new Produto(new Fornecedor());
 		file = new UploadedFile();
 		fileUtil = new UploadFileUtil();
-		setIndice(null);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 	}
 	
 	public void pesquisarProduto(){
@@ -169,7 +175,7 @@ public class ManterProdutoAction {
 	public void excluirProduto(){
 		listProdutos.remove(produtoSelecionado);
 		produtoSelecionado.setAtivo(false);
-		estoqueService.deletarProduto(produtoSelecionado);
+		estoqueService.salvarProduto(produtoSelecionado);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		produto = new Produto();
 	}

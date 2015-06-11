@@ -66,18 +66,31 @@ public class ManterFornecedoreAction {
 		setFornecedorSelecionado(fornecedor);
 	}
 
-	public String salvar() {
+	public void salvar() {
 		if(validEmail(getFornecedor().getEndereco().getEmail())){
 			
 			if (getIndice() == null) {
-				listFornecedores.add(getFornecedor());
-				getFornecedor().setAtivo(true);
-				estoqueService.salvar(getFornecedor());
-				indice = null;
-				pesquisarFornecedor();
-				fornecedor = new Fornecedor(new Endereco());
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-				return "/fornecedores/salvarFornecedores.xhtml";
+				
+				if(estoqueService.pesquisarFornecedorPorCpf(fornecedor.getCnpj()) != null){
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,
+									"Fornecedor com o CNPJ: "
+											+ fornecedor.getCnpj()
+											+ " á esta cadastrado", ""));
+					return ;
+				}else{
+					listFornecedores.add(getFornecedor());
+					getFornecedor().setAtivo(true);
+					estoqueService.salvar(getFornecedor());
+					indice = null;
+					pesquisarFornecedor();
+					fornecedor = new Fornecedor(new Endereco());
+					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
+					return ;
+				}
+				
+				
 				
 			} else {
 				listFornecedores.set(getIndice(), getFornecedor());
@@ -87,13 +100,13 @@ public class ManterFornecedoreAction {
 				pesquisarFornecedor();
 				fornecedor = new Fornecedor(new Endereco());
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-				return "/fornecedores/salvarFornecedores.xhtml";
+				return ;
 			}
 			
 			
 		}
 		
-		return "/fornecedores/salvarFornecedores.xhtml";
+		return ;
 	}
 	
 	

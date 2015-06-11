@@ -15,6 +15,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Cliente;
+import br.com.sigest.modelo.Funcionario;
 
 
 /**
@@ -51,6 +52,18 @@ public class ClienteDao {
 		criteria.createAlias("cliente.endereco", "endereco", Criteria.INNER_JOIN);
 		return criteria.list();
 	}
+	
+	public Cliente pesquisarClientePorCpf(String cpf){
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Cliente.class, "cliente");
+		
+		if(!cpf.isEmpty()){
+			criteria.add(Restrictions.eq("cliente.cpf", cpf));
+		}
+		
+		return (Cliente) criteria.uniqueResult();
+	}
+	
 	
 
 }

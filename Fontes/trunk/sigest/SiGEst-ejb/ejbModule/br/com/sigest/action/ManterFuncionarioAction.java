@@ -85,7 +85,7 @@ public class ManterFuncionarioAction {
 		return str.replaceAll("\\D", "");
 	}
 
-	public String salvar() {
+	public void salvar() {
 
 		if (validEmail(funcionario.getEmail())) {
 
@@ -98,20 +98,20 @@ public class ManterFuncionarioAction {
 									"Funcionario com o CPF: "
 											+ funcionario.getCpf()
 											+ " á esta cadastrado", ""));
-					return "salvarFuncionarios";
+					return ;
 				} else {
 					funcionarios.add(funcionario);
 					salvarFuncionario();
-					return "salvarFuncionarios";
+					return ;
 				}
 
 			} else {
 				funcionarios.set(indice, funcionario);
 				salvarFuncionario();
-				return "salvarFuncionarios";
+				return ;
 			}
 		}
-		return "salvarFuncionarios";
+		return ;
 	}
 
 	private void salvarFuncionario() {

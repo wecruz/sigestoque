@@ -120,6 +120,10 @@ public class EstoqueService implements IEstoqueService {
 		return produtoDao.pesquisarProdutoPorCodigoInter(codigo);
 	}
 
+	public Fornecedor pesquisarFornecedorPorCpf(String cnpj) {
+		return fornecedorDao.pesquisarFornecedorPorCpf(cnpj);
+	}
+
 
 
 }

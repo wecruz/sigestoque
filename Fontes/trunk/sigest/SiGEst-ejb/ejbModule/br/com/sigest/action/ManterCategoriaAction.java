@@ -13,11 +13,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 import br.com.sigest.modelo.Categoria;
-import br.com.sigest.modelo.Fornecedor;
-import br.com.sigest.modelo.Produto;
-import br.com.sigest.modelo.UploadedFile;
 import br.com.sigest.service.IEstoqueService;
-import br.com.sigest.util.UploadFileUtil;
 
 /**
  * 
@@ -43,7 +39,7 @@ public class ManterCategoriaAction {
 	
 	private Integer qntCategoria = 10;
 	
-	public String salvarCategoria(){
+	public void salvarCategoria(){
 		if (indice != null) {
 			listCategoria.set(indice, categoria);
 			estoqueService.salvarCategoria(categoria);
@@ -51,7 +47,7 @@ public class ManterCategoriaAction {
 			pesquisarCategoria();
 			categoria = new Categoria();
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
-			return "salvarCategoria";
+			return ;
 		} else {
 			if(estoqueService.pesquisarCategoria(categoria).isEmpty()){
 				listCategoria.add(categoria);
@@ -59,12 +55,12 @@ public class ManterCategoriaAction {
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 				pesquisarCategoria();
 				categoria = new Categoria();
-				return "salvarCategoria";
+				return ;
 			}else{
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Categoria já Cadastrada!", ""));
 			}
 		}
-		return "salvarCategoria";
+		return ;
 	}
 	
 	

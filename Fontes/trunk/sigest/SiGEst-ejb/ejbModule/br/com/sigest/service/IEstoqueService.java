@@ -30,7 +30,9 @@ public interface IEstoqueService {
 	
 	void salvarCategoria(Categoria categoria);
 	
-	void excluirCategoria(Categoria categoria);	
+	void excluirCategoria(Categoria categoria);
+	
+	Fornecedor pesquisarFornecedorPorCpf(String cnpj);
 	
 	List<Produto> fildAllProduto();
 	

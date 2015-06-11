@@ -91,6 +91,9 @@ public class VendasService implements IVendasService{
 		return produtoDao.pesquisarProdutoPorCodigo(codigo);
 	}
 	
+	public Cliente pesquisarClientePorCpf(String cpf) {
+		return clienteDao.pesquisarClientePorCpf(cpf);
+	}
 	@Destroy
 	public void destroy() {
 		
@@ -100,6 +103,7 @@ public class VendasService implements IVendasService{
 	public void remove() {
 		
 	}
+
 
 
 }

@@ -239,7 +239,7 @@
 							</a4j:commandLink>
 							<rich:spacer width="25px" />						
 							<a4j:commandLink action="#{manterProdutoAction.selecionarProduto(produto)}"
-								reRender="id_div_tabela,id_form"
+								ajaxSingle="true"
 								oncomplete="Richfaces.showModalPanel('painel')">
 								<h:graphicImage value="/img/ico_excluir.png" />	
 							</a4j:commandLink>

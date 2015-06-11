@@ -40,6 +40,8 @@ public interface IVendasService {
 
 	List<Venda> pesquisarVendas(Venda venda);
 	
+	Cliente pesquisarClientePorCpf(String cpf);
+	
 	List<Produto> pesquisarProdutoPorCodigo(Integer codigo);
 	
 	void destroy();
