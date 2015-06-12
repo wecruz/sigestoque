@@ -167,7 +167,7 @@
 							
 							<a4j:commandLink
 								action="#{manterFornecedoreAction.selecionarFornecedor(fornece)}"
-								reRender="id_tabela_funcio,idform"
+								ajaxSingle="true"
 								oncomplete="Richfaces.showModalPanel('painel')">
 							<h:graphicImage value="/img/ico_excluir.png" />
 							</a4j:commandLink>
