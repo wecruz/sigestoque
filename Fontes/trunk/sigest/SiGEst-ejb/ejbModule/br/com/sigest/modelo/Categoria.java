@@ -22,6 +22,8 @@ public class Categoria {
 	@Column(name = "id_categoria", nullable = false)
 	private Long id;
 	
+	@Column(name = "ativo")
+	private Boolean ativo;
 	
 	@Column(name = "descricao")
 	private String descricao;
@@ -31,7 +33,7 @@ public class Categoria {
 
 	
 	
-	@OneToMany(mappedBy="categoria", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="categoria")
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
 	public String getDescricao() {
@@ -64,6 +66,14 @@ public class Categoria {
 
 	public List<Produto> getProdutos() {
 		return produtos;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
 	}
 
 }

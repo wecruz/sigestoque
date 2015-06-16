@@ -29,6 +29,8 @@ public class CategoriaDao {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Categoria.class, "categoria");
 		
+		criteria.add(Restrictions.eq("categoria.ativo", true));
+		
 		if(!categoria.getNome().isEmpty() && categoria.getNome() !=null ){
 			criteria.add(Restrictions.like("categoria.nome", categoria.getNome(), MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -42,8 +44,11 @@ public class CategoriaDao {
 	
 	
 	public List<Categoria> fidAllCategoria(){
+		
 		Session session = (Session) entityManager.getDelegate();
+		
 		Criteria criteria = session.createCriteria(Categoria.class, "categoria");
+		criteria.add(Restrictions.eq("categoria.ativo", true));
 		
 		return criteria.list();
 	}

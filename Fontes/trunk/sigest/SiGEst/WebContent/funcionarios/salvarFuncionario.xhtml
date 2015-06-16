@@ -233,7 +233,7 @@
 			<center>
 				<a4j:commandButton  value="Confirmar" styleClass="btn btn-default navbar-btn"
 					action="#{manterFuncionarioAction.excluirSalva()}"
-					ajaxSingle="true"
+					ajaxSingle="true" reRender="id_form,id_div_tabela"
 					oncomplete="Richfaces.hideModalPanel('painel')" />
 				<rich:spacer width="15px" />
 				<a4j:commandButton value="Cancelar"

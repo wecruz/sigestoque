@@ -182,7 +182,7 @@ public class ManterFuncionarioAction {
 						"Operação realizada com sucesso.", ""));
 	}
 
-	public String excluirSalva() {
+	public void excluirSalva() {
 		funcionarios.remove(getFuncionarioSelecionado());
 		usuarioService.excluirFuncionario(getFuncionarioSelecionado());
 		FacesContext.getCurrentInstance().addMessage(
@@ -190,8 +190,6 @@ public class ManterFuncionarioAction {
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Operação realizada com sucesso.", ""));
 		funcionarioSelecionado = new Funcionario();
-		funcionario = new Funcionario(new Endereco());
-		return "salvarFuncionarios";
 	}
 
 	public boolean validarCriterioPesquisa() {

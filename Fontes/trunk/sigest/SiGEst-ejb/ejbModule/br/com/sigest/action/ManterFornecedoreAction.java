@@ -148,7 +148,6 @@ public class ManterFornecedoreAction {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Operação realizada com sucesso.", ""));
-		fornecedor = new Fornecedor();
 	}
 
 	public String cancelar() {

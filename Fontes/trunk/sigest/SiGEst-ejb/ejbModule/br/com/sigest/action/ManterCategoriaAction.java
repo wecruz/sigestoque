@@ -42,6 +42,7 @@ public class ManterCategoriaAction {
 	public void salvarCategoria(){
 		if (indice != null) {
 			listCategoria.set(indice, categoria);
+			categoria.setAtivo(true);
 			estoqueService.salvarCategoria(categoria);
 			indice = null;
 			pesquisarCategoria();
@@ -51,6 +52,7 @@ public class ManterCategoriaAction {
 		} else {
 			if(estoqueService.pesquisarCategoria(categoria).isEmpty()){
 				listCategoria.add(categoria);
+				categoria.setAtivo(true);
 				estoqueService.salvarCategoria(categoria);
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 				pesquisarCategoria();
@@ -110,8 +112,8 @@ public class ManterCategoriaAction {
 	
 	public void excluirCategoria(){
 		listCategoria.remove(categoriaSelecionada);
-		
-		estoqueService.excluirCategoria(categoriaSelecionada);
+		categoriaSelecionada.setAtivo(false);
+		estoqueService.salvarCategoria(categoriaSelecionada);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso.", ""));
 		categoria = new Categoria();
 	}

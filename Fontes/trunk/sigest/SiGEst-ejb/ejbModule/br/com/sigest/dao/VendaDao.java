@@ -66,12 +66,10 @@ public class VendaDao {
 		hql.append("sum(valorTotalVenda) valorTotal ");
 		hql.append("from tb_venda ");
 		hql.append("where st_venda='PAGO' ");
-		hql.append("  and date_format(dataVenda,'%Y') = :ano ");
 		hql.append("group by date_format(dataVenda,'%Y'), ");
 		hql.append("date_format(dataVenda,'%m') ");
 		hql.append("order by anoVenda, mesVenda ");
 		Query query = session.createSQLQuery(hql.toString());
-		query.setParameter("ano", "2014");
 		query.setResultTransformer(Transformers.aliasToBean(VendaRelatorioDto.class));
 		return query.list();
 	}
